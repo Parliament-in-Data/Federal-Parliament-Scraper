@@ -13,6 +13,9 @@ This library provides a scraper based on the Python library Beautiful Soup for t
 - Provide statistical information on the occurence of the names of the different parliament members in a specific meeting.
 - Allow end users to not only get titles of the meeting topics but also the notes of the discussion itself.
 
+## Getting started
+Have a look at `demo.py` to get started.
+
 ## Imminent To-Do's
 - [ ] Complete the files in /data/composition to also contain information on members who didn't serve a full term in the parliament
 - [ ] Improve the class structure of Votes
