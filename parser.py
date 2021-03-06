@@ -32,6 +32,9 @@ class ParliamentarySession:
         self.start = ParliamentarySession.sessions[session]['from']
         self.end = ParliamentarySession.sessions[session]['to']
 
+        # TODO: remove
+        self.undefined_members = set()
+
     def find_member(self, query):
         """Using their name as listed in the meeting notes
         find the Member object related.
@@ -48,7 +51,7 @@ class ParliamentarySession:
         for member in self.members:
             if member.hasName(query):
                 return member
-        print("Couldn't find: %s" % (query))
+        self.undefined_members.add(query)
     def get_plenary_meetings(self, refresh = False):
         """This API returns an overview of all Plenary meetings in the session.
         A list of Meeting objects is returned.
@@ -82,7 +85,7 @@ class ParliamentarySession:
             with open('data/composition/%d.json' % self.session) as json_file: 
                 data = json.load(json_file) 
                 for entry in data:
-                    member = Member(entry['first_name'], entry['last_name'], entry['party'], entry['province'], entry['language'])
+                    member = Member(entry['first_name'], entry['last_name'], entry['party'], entry['province'], entry['language'], entry['wiki'])
                     if 'alternative_names' in entry:
                         member.set_alternative_names(entry['alternative_names'])
                     self.members.append(member)

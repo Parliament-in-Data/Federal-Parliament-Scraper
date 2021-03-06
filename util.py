@@ -22,13 +22,13 @@ def clean_string(text):
         str: Cleaned string
     """
     result = ' '.join(text.split())
-    result = result.replace('\r', '').replace('\n', ' ').replace(u'\xa0', u' ').replace(u'\xad', u'-').rstrip().lstrip()
+    result = result.replace('\r', '').replace('.', '').replace('\n', ' ').replace(u'\xa0', u' ').replace(u'\xad', u'-').rstrip().lstrip()
     return result
 
 def clean_list(list):
     """Removes falsy items from a list
     """
-    return [item for item in list if item]
+    return [clean_string(item) for item in list if item]
 
 def go_to_p(tag):
     """Go to the nearest parent p tag of a NavigableString.

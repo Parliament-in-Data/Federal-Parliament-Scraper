@@ -42,8 +42,8 @@ class Member:
         name = "%s %s" % (self.last_name, self.first_name)
         # Fallback for alternative names
         if self.alternative_names:
-            for name in self.alternative_names:
-                if normalize_str(query) == normalize_str(name):
+            for n in self.alternative_names:
+                if normalize_str(query) == normalize_str(n):
                     return True
         return normalize_str(query) == normalize_str(name)
     def set_alternative_names(self, names):
