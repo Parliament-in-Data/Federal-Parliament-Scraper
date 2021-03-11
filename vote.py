@@ -22,6 +22,20 @@ class Vote:
 
     def __repr__(self):
         return "Vote(%d, %d, %d, %d)" % (self.vote_number, self.yes, self.no, self.abstention)
+    def to_dict(self, session_base_URI):
+        return {
+            'id': self.vote_number,
+            'type': 'general',
+            'yes': self.yes,
+            'no': self.no,
+            'abstention': self.abstention, 
+            'passed': self.has_passed(),
+            'voters': {
+                "yes": [f'{session_base_URI}members/{member.uuid}.json' for member in self.yes_voters], 
+                "no": [f'{session_base_URI}members/{member.uuid}.json' for member in self.no_voters], 
+                "abstention": [f'{session_base_URI}members/{member.uuid}.json' for member in self.abstention_voters]
+                }
+            }
     def has_passed(self):
         """Does this motion have the majority of votes
 
@@ -89,6 +103,24 @@ class LanguageGroupVote:
         self.abstention_voters = []
     def __repr__(self):
         return "LanguageGroupVote(%d, %d, %d)" % (self.vote_number, self.vote_NL, self.vote_FR)
+    def to_dict(self, session_base_URI):
+        return {
+            'id': self.vote_number,
+            'type': 'language_group',
+            'yes': self.vote_NL.yes + self.vote_FR.yes,
+            'no': self.vote_NL.no + self.vote_FR.no,
+            'abstention': self.vote_NL.abstention + self.vote_FR.abstention, 
+            'passed': self.has_passed(),
+            'voters': {
+                "yes": [f'{session_base_URI}members/{member.uuid}' for member in self.vote_NL.yes_voters + self.vote_FR.yes_voters], 
+                "no": [f'{session_base_URI}members/{member.uuid}' for member in self.vote_NL.no_voters + self.vote_FR.no_voters], 
+                "abstention": [f'{session_base_URI}members/{member.uuid}' for member in self.vote_NL.abstention_voters + self.vote_FR.abstention_voters]
+                },
+            'detail': {
+                "NL": self.vote_NL.to_dict(session_base_URI),
+                "FR": self.vote_FR.to_dict(session_base_URI)
+                }
+            }
     def has_passed(self):
         """The vote has to pass in both halves of the parliament.
 
