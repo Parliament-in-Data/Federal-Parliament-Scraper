@@ -78,6 +78,7 @@
         "party": "N-VA",
         "province": "Antwerpen",
         "language": "Nederlands",
+        "alternative_names": ["De Ridder Min"],
         "wiki": "https://nl.wikipedia.org/wiki/Minneke_De_Ridder"
     },
     {
@@ -1598,6 +1599,7 @@
         "party": "cdH",
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Frans",
+        "alternative_names": ["Rolin Myriam"],
         "wiki": "https://nl.wikipedia.org/wiki/Myriam_Delacroix-Rolin"
     },
     {
@@ -1910,6 +1912,7 @@
         "party": "Parti Populaire",
         "province": "Waals-Brabant",
         "language": "Frans",
+        "alternative_names": ["Louis", "Louis LaurentVote nominatif - Naamstemming: 002"],
         "wiki": "https://nl.wikipedia.org/wiki/Laurent_Louis"
     }
 ]
