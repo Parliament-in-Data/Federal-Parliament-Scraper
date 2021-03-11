@@ -6,6 +6,9 @@ import requests
 from util import clean_string, go_to_p, clean_list
 from vote import Vote, LanguageGroupVote
 import re
+from os import path, makedirs
+import json
+from collections import defaultdict
 
 class TimeOfDay(Enum):
     '''
@@ -35,6 +38,9 @@ class MeetingTopic:
         self.id = id
         self.item = item
         self.votes = []
+
+    def to_dict(self, session_base_URI):
+        return {'id': self.item, 'title': {'NL': self.title_NL, 'FR': self.title_FR}, 'votes': [vote.to_dict(session_base_URI) for vote in self.votes]}
 
     def __repr__(self):
         return "MeetingTopic(%s, %s, %s)" % (self.session, self.id, self.item)
@@ -123,6 +129,31 @@ class Meeting:
         self.time_of_day = time_of_day
         self.date = date
         self.topics = {}
+    def dump_json(self, base_path, base_URI="/"):
+        base_meeting_path = path.join(base_path, "meetings")
+        base_meeting_URI = f'{base_URI}meetings/'
+        resource_name = f'{self.id}.json'
+
+        makedirs(base_meeting_path, exist_ok=True)
+
+        if not self.topics:
+            self.get_meeting_topics()
+
+        topics = defaultdict(list)
+        for key in self.topics:
+            topic = self.topics[key]
+            topics[topic.get_section()[0]].append(topic.to_dict(base_URI))
+
+
+        with open(path.join(base_meeting_path, resource_name), 'w+') as fp:
+            json.dump({
+                'id': self.id,
+                'time_of_day': str(self.time_of_day),
+                'date': self.date.isoformat(),
+                'topics': topics
+            }, fp, ensure_ascii=False)
+
+        return f'{base_meeting_URI}{resource_name}'
     def __repr__(self):
         return 'Meeting(%s, %s, %s, %s)' % (self.session, self.id, self.time_of_day, repr(self.date))
     def get_notes_url(self):

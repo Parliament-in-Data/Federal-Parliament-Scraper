@@ -1,6 +1,10 @@
 import requests
 from bs4 import BeautifulSoup
 from util import normalize_str
+import json
+import uuid
+from os import path, makedirs
+import hashlib
 
 class Member:
     """
@@ -24,6 +28,21 @@ class Member:
         self.language = language
         self.alternative_names = []
         self.url = url
+        sha_1 = hashlib.sha1()
+        sha_1.update(self.first_name.encode('utf-8') + self.last_name.encode('utf-8') + self.party.encode('utf-8') + self.province.encode('utf-8'))
+        self.uuid = sha_1.hexdigest()[:10]# Should be sufficiently random
+
+    def dump_json(self, base_path, base_URI="/"):
+        base_path = path.join(base_path, "members")
+        base_URI = f'{base_URI}members/'
+        resource_name = f'{self.uuid}.json'
+
+        makedirs(base_path, exist_ok=True)
+        
+        with open(path.join(base_path, resource_name), 'w+') as fp:
+            json.dump({'id': str(self.uuid), 'first_name': self.first_name, 'last_name': self.last_name, 'language': self.language, 'province': self.province, 'part': self.party, 'wiki': self.url}, fp, ensure_ascii=False)
+
+        return f'{base_URI}{resource_name}'
     def __repr__(self):
         return "Member(\"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\")" % (self.first_name, self.last_name, self.party, self.province, self.language, self.url)
     def __str__(self):
