@@ -235,12 +235,15 @@ class Meeting:
                     agenda_item = extract_title_by_vote(table, Language.FR)
                     agenda_item1 = extract_title_by_vote(table, Language.NL)
                     assert(agenda_item1 == agenda_item)
-                    rows = table.find_all('tr')
+
+                    # Some pages have a height="0" override tag to fix browser display issues.
+                    # We have to ignore these otherwise we would start interpreting the votes as the wrong type.
+                    rows = table.find_all('tr', attrs={'height': None})
 
                     if len(rows) == 5:
-                        vote = Vote.from_table(vote_number, table)
+                        vote = Vote.from_table(vote_number, rows)
                     elif len(rows) == 6:
-                        vote = LanguageGroupVote.from_table(vote_number, table)
+                        vote = LanguageGroupVote.from_table(vote_number, rows)
                     else:
                         continue
 
