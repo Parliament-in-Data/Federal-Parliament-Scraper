@@ -170,6 +170,8 @@ class Meeting:
         page = requests.get(self.get_notes_url())
         soup = BeautifulSoup(page.content, 'html.parser')
 
+        print('currently checking:', self.get_notes_url())
+
         def extract_title_by_vote(table, language):
             class_name = Meeting.language_mapping[language][1]
 
