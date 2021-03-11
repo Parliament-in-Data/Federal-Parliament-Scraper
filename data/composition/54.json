@@ -276,7 +276,23 @@
         "party": "CD&V",
         "province": "Oost-Vlaanderen",
         "language": "Nederlands",
-        "wiki": "https://nl.wikipedia.org/wiki/Sarah_Claerhout"
+        "wiki": "https://nl.wikipedia.org/wiki/Sarah_Claerhout",
+        "replaces": [{
+            "name": "De Crem Pieter",
+            "dates": [
+                {
+                    "from": "2014-10-14"
+                }
+            ]
+        }]
+    },
+    {
+        "first_name": "Pieter",
+        "last_name": "De Crem",
+        "party": "CD&V",
+        "province": "Oost-Vlaanderen",
+        "language": "Nederlands",
+        "wiki": "https://nl.wikipedia.org/wiki/Pieter_De_Crem"
     },
     {
         "first_name": "Vincent",
@@ -982,7 +998,23 @@
         "party": "MR",
         "province": "Brussel-Hoofdstad",
         "language": "Frans",
-        "wiki": "https://nl.wikipedia.org/wiki/Sophie_Wilm%C3%A8s"
+        "wiki": "https://nl.wikipedia.org/wiki/Sophie_Wilm%C3%A8s",
+        "replaces": [{
+            "name": "Reynders Didier",
+            "dates": [
+                {
+                    "from": "2014-10-11"
+                }
+            ]
+        }]
+    },
+    {
+        "first_name": "Didier",
+        "last_name": "Reynders",
+        "party": "MR",
+        "province": "Brussel-Hoofdstad",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Didier_Reynders"
     },
     {
         "first_name": "Gautier",
@@ -1014,6 +1046,7 @@
         "party": "MR",
         "province": "Luik",
         "language": "Frans",
+        "alternative_names": ["Mailleux Caroline"],
         "wiki": "https://nl.wikipedia.org/wiki/Caroline_Cassart-Mailleux"
     },
     {
@@ -1224,7 +1257,7 @@
         "party": "Groen",
         "province": "Vlaams-Brabant",
         "language": "Nederlands",
-        "alternative_names": ["Dedry Marie"],
+        "alternative_names": ["Dedry Marie", "Dedrij Marie"],
         "wiki": "https://nl.wikipedia.org/wiki/Anne_Dedry"
     },
     {
@@ -1310,6 +1343,7 @@
         "party": "CD&V",
         "province": "Vlaams-Brabant",
         "language": "Nederlands",
+        "alternative_names": ["Geens Koenraad"],
         "wiki": "https://nl.wikipedia.org/wiki/Koen_Geens"
     },
     {
@@ -1555,7 +1589,22 @@
                     "from": "2018-10-04"
                 }
             ]
+        }, {
+            "name": "Flahaut André",
+            "dates": [
+                {
+                    "from": "2014-07-30"
+                }
+            ]
         }]
+    },
+    {
+        "first_name": "André",
+        "last_name": "Flahaut",
+        "party": "PS",
+        "province": "Waals-Brabant",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Andr%C3%A9_Flahaut"
     },
     {
         "first_name": "Charles",
