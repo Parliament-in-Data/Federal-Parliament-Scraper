@@ -625,7 +625,7 @@
     {
         "first_name": "Marco",
         "last_name": "Van Hees",
-        "party": "PTB-go!",
+        "party": "PTB-go",
         "province": "Henegouwen",
         "language": "Frans",
         "alternative_names": ["Van Hees Marc"],
@@ -827,7 +827,7 @@
     {
         "first_name": "Véronique",
         "last_name": "Caprasse",
-        "party": "FDF[2]",
+        "party": "FDF",
         "province": "Brussel-Hoofdstad",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/V%C3%A9ronique_Caprasse"
@@ -939,7 +939,7 @@
     {
         "first_name": "Olivier",
         "last_name": "Maingain",
-        "party": "FDF[2]",
+        "party": "FDF",
         "province": "Brussel-Hoofdstad",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Olivier_Maingain"
@@ -1132,7 +1132,7 @@
     {
         "first_name": "Raoul",
         "last_name": "Hedebouw",
-        "party": "PTB-go!",
+        "party": "PTB-go",
         "province": "Luik",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Raoul_Hedebouw"
