@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from parser import ParliamentarySession
+from parlement_parser import ParliamentarySession
 import os
 import sys
 
