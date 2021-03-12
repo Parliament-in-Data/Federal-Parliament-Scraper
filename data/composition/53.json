@@ -21,6 +21,7 @@
         "party": "N-VA",
         "province": "Antwerpen",
         "language": "Nederlands",
+        "alternative_names": ["Van Noppen Florentinus"],
         "wiki": "https://nl.wikipedia.org/wiki/Flor_Van_Noppen"
     },
     {
@@ -48,12 +49,28 @@
         "wiki": "https://nl.wikipedia.org/wiki/Jan_Van_Esbroeck"
     },
     {
+        "first_name": "Kris",
+        "last_name": "Van Dijck",
+        "party": "N-VA",
+        "province": "Antwerpen",
+        "language": "Nederlands",
+        "wiki": "https://nl.wikipedia.org/wiki/Kris_Van_Dijck"
+    },
+    {
         "first_name": "Bert",
         "last_name": "Wollants",
         "party": "N-VA",
         "province": "Antwerpen",
         "language": "Nederlands",
-        "wiki": "https://nl.wikipedia.org/wiki/Bert_Wollants"
+        "wiki": "https://nl.wikipedia.org/wiki/Bert_Wollants",
+        "replaces": [{
+            "name": "Van Dijck Kris",
+            "dates":[
+                {
+                    "from": "2010-07-06"
+                }
+            ]
+        }]
     },
     {
         "first_name": "Minneke",
@@ -61,6 +78,7 @@
         "party": "N-VA",
         "province": "Antwerpen",
         "language": "Nederlands",
+        "alternative_names": ["De Ridder Min"],
         "wiki": "https://nl.wikipedia.org/wiki/Minneke_De_Ridder"
     },
     {
@@ -101,7 +119,16 @@
         "party": "N-VA",
         "province": "Leuven",
         "language": "Nederlands",
+        "alternative_names": ["Demol Elsa"],
         "wiki": "https://nl.wikipedia.org/wiki/Els_Demol"
+    },
+    {
+        "first_name": "Frieda",
+        "last_name": "Brepoels",
+        "party": "N-VA",
+        "province": "Limburg",
+        "language": "Nederlands",
+        "wiki": "https://nl.wikipedia.org/wiki/Frieda_Brepoels"
     },
     {
         "first_name": "Peter",
@@ -109,7 +136,23 @@
         "party": "N-VA",
         "province": "Limburg",
         "language": "Nederlands",
-        "wiki": "https://nl.wikipedia.org/wiki/Peter_Luykx"
+        "wiki": "https://nl.wikipedia.org/wiki/Peter_Luykx",
+        "replaces": [{
+            "name": "Brepoels Frieda",
+            "dates":[
+                {
+                    "from": "2010-07-06"
+                }
+            ]
+        }]
+    },
+    {
+        "first_name": "Jan",
+        "last_name": "Peumans",
+        "party": "N-VA",
+        "province": "Limburg",
+        "language": "Nederlands",
+        "wiki": "https://nl.wikipedia.org/wiki/Jan_Peumans"
     },
     {
         "first_name": "Veerle",
@@ -117,7 +160,15 @@
         "party": "N-VA",
         "province": "Limburg",
         "language": "Nederlands",
-        "wiki": "https://nl.wikipedia.org/wiki/Veerle_Wouters"
+        "wiki": "https://nl.wikipedia.org/wiki/Veerle_Wouters",
+        "replaces": [{
+            "name": "Peumans Jan",
+            "dates":[
+                {
+                    "from": "2010-07-06"
+                }
+            ]
+        }]
     },
     {
         "first_name": "Steven",
@@ -184,12 +235,28 @@
         "wiki": "https://nl.wikipedia.org/wiki/Miranda_Van_Eetvelde"
     },
     {
+        "first_name": "Geert",
+        "last_name": "Bourgeois",
+        "party": "N-VA",
+        "province": "West-Vlaanderen",
+        "language": "Nederlands",
+        "wiki": "https://nl.wikipedia.org/wiki/Geert_Bourgeois"
+    },
+    {
         "first_name": "Bert",
         "last_name": "Maertens",
         "party": "N-VA",
         "province": "West-Vlaanderen",
         "language": "Nederlands",
-        "wiki": "https://nl.wikipedia.org/wiki/Bert_Maertens"
+        "wiki": "https://nl.wikipedia.org/wiki/Bert_Maertens",
+        "replaces": [{
+            "name": "Bourgeois Geert",
+            "dates":[
+                {
+                    "from": "2010-07-13"
+                }
+            ]
+        }]
     },
     {
         "first_name": "Daphné",
@@ -200,12 +267,28 @@
         "wiki": "https://nl.wikipedia.org/wiki/Daphn%C3%A9_Dumery"
     },
     {
+        "first_name": "Manu",
+        "last_name": "Beuselinck",
+        "party": "N-VA",
+        "province": "West-Vlaanderen",
+        "language": "Nederlands",
+        "wiki": "https://nl.wikipedia.org/wiki/Manu_Beuselinck"
+    },
+    {
         "first_name": "Cathy",
         "last_name": "Coudyser",
         "party": "N-VA",
         "province": "West-Vlaanderen",
         "language": "Nederlands",
-        "wiki": "https://nl.wikipedia.org/wiki/Cathy_Coudyser"
+        "wiki": "https://nl.wikipedia.org/wiki/Cathy_Coudyser",
+        "replaces": [{
+            "name": "Beuselinck Manu",
+            "dates":[
+                {
+                    "from": "2012-11-08"
+                }
+            ]
+        }]
     },
     {
         "first_name": "Koenraad",
@@ -214,6 +297,22 @@
         "province": "West-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Koenraad_Degroote"
+    },
+    {
+        "first_name": "Christophe",
+        "last_name": "Collignon",
+        "party": "PS",
+        "province": "Luik",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Christophe_Collignon"
+    },
+    {
+        "first_name": "Joëlle",
+        "last_name": "Milquet",
+        "party": "PS",
+        "province": "Henegouwen",
+        "language": "Frans",
+        "wiki": "https://fr.wikipedia.org/wiki/Jo%C3%ABlle_Milquet"
     },
     {
         "first_name": "Philippe",
@@ -232,12 +331,36 @@
         "wiki": "https://nl.wikipedia.org/wiki/Colette_Burgeon"
     },
     {
+        "first_name": "Guy",
+        "last_name": "Coëme",
+        "party": "PS",
+        "province": "Luik",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Guy_Co%C3%ABme"
+    },
+    {
         "first_name": "Christophe",
         "last_name": "Lacroix",
         "party": "PS",
         "province": "Luik",
         "language": "Frans",
-        "wiki": "https://nl.wikipedia.org/wiki/Christophe_Lacroix"
+        "wiki": "https://nl.wikipedia.org/wiki/Christophe_Lacroix",
+        "replaces": [{
+            "name": "Coëme Guy",
+            "dates":[
+                {
+                    "from": "2012-10-25"
+                }
+            ]
+        }]
+    },
+    {
+        "first_name": "Philippe",
+        "last_name": "Courard",
+        "party": "PS",
+        "province": "Luxemburg",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Philippe_Courard"
     },
     {
         "first_name": "André",
@@ -245,7 +368,15 @@
         "party": "PS",
         "province": "Luxemburg",
         "language": "Frans",
-        "wiki": "https://nl.wikipedia.org/wiki/Andr%C3%A9_Perp%C3%A8te"
+        "wiki": "https://nl.wikipedia.org/wiki/Andr%C3%A9_Perp%C3%A8te",
+        "replaces": [{
+            "name": "Courard Philippe",
+            "dates":[
+                {
+                    "from": "2011-12-07"
+                }
+            ]
+        }]
     },
     {
         "first_name": "Jean-Marc",
@@ -256,12 +387,28 @@
         "wiki": "https://nl.wikipedia.org/wiki/Jean-Marc_Deliz%C3%A9e"
     },
     {
+        "first_name": "Valérie",
+        "last_name": "Déom",
+        "party": "PS",
+        "province": "Namen",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Val%C3%A9rie_D%C3%A9om"
+    },
+    {
         "first_name": "Vincent",
         "last_name": "Sampaoli",
         "party": "PS",
         "province": "Namen",
         "language": "Frans",
-        "wiki": "https://nl.wikipedia.org/wiki/Vincent_Sampaoli"
+        "wiki": "https://nl.wikipedia.org/wiki/Vincent_Sampaoli",
+        "replaces": [{
+            "name": "Déom Valérie",
+            "dates":[
+                {
+                    "from": "2013-04-18"
+                }
+            ]
+        }]
     },
     {
         "first_name": "Laurent",
@@ -272,12 +419,36 @@
         "wiki": "https://nl.wikipedia.org/wiki/Laurent_Devin"
     },
     {
+        "first_name": "Elio",
+        "last_name": "Di Rupo",
+        "party": "PS",
+        "province": "Henegouwen",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Elio_Di_Rupo"
+    },
+    {
         "first_name": "Laurence",
         "last_name": "Meire",
         "party": "PS",
         "province": "Henegouwen",
         "language": "Frans",
-        "wiki": "https://nl.wikipedia.org/wiki/Laurence_Meire"
+        "wiki": "https://nl.wikipedia.org/wiki/Laurence_Meire",
+        "replaces": [{
+            "name": "Di Rupo Elio",
+            "dates":[
+                {
+                    "from": "2013-01-10"
+                }
+            ]
+        }]
+    },
+    {
+        "first_name": "Anthony",
+        "last_name": "Dufrane",
+        "party": "PS",
+        "province": "Henegouwen",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Anthony_Dufrane"
     },
     {
         "first_name": "Bruno",
@@ -285,7 +456,23 @@
         "party": "PS",
         "province": "Henegouwen",
         "language": "Frans",
-        "wiki": "https://nl.wikipedia.org/wiki/Bruno_Van_Grootenbrulle"
+        "wiki": "https://nl.wikipedia.org/wiki/Bruno_Van_Grootenbrulle",
+        "replaces": [{
+            "name": "Meire Laurence",
+            "dates":[
+                {
+                    "from": "2011-12-07",
+                    "to": "2013-01-10"
+                }
+            ]
+        }, {
+            "name": "Dufrane Anthony",
+            "dates":[
+                {
+                    "from": "2013-01-10"
+                }
+            ]
+        }]
     },
     {
         "first_name": "Julie",
@@ -293,6 +480,7 @@
         "party": "PS",
         "province": "Luik",
         "language": "Frans",
+        "alternative_names": ["Fernandez Fernandez Julia"],
         "wiki": "https://nl.wikipedia.org/wiki/Julie_Fernandez-Fernandez"
     },
     {
@@ -312,12 +500,45 @@
         "wiki": "https://nl.wikipedia.org/wiki/Andr%C3%A9_Fr%C3%A9d%C3%A9ric"
     },
     {
+        "first_name": "Thierry",
+        "last_name": "Giet",
+        "party": "PS",
+        "province": "Luik",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Thierry_Giet",
+        "replaces": [{
+            "name": "Daerden Michel",
+            "dates":[
+                {
+                    "from": "2010-07-06",
+                    "to": "2013-06-24"
+                }
+            ]
+        }]
+    },
+    {
         "first_name": "Véronique",
         "last_name": "Bonni",
         "party": "PS",
         "province": "Luik",
         "language": "Frans",
-        "wiki": "https://nl.wikipedia.org/wiki/V%C3%A9ronique_Bonni"
+        "wiki": "https://nl.wikipedia.org/wiki/V%C3%A9ronique_Bonni",
+        "replaces": [{
+            "name": "Giet Thierry",
+            "dates":[
+                {
+                    "from": "2013-06-26"
+                }
+            ]
+        }]
+    },
+    {
+        "first_name": "Rudy",
+        "last_name": "Demotte",
+        "party": "PS",
+        "province": "Henegouwen",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Rudy_Demotte"
     },
     {
         "first_name": "Olivier",
@@ -325,7 +546,23 @@
         "party": "PS",
         "province": "Henegouwen",
         "language": "Frans",
-        "wiki": "https://nl.wikipedia.org/wiki/Olivier_Henry"
+        "wiki": "https://nl.wikipedia.org/wiki/Olivier_Henry",
+        "replaces": [{
+            "name": "Demotte Rudy",
+            "dates":[
+                {
+                    "from": "2010-07-06"
+                }
+            ]
+        }]
+    },
+    {
+        "first_name": "Fadila",
+        "last_name": "Laanan",
+        "party": "PS",
+        "province": "Brussel-Halle-Vilvoorde",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Fadila_Laanan"
     },
     {
         "first_name": "Karine",
@@ -333,7 +570,15 @@
         "party": "PS",
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Frans",
-        "wiki": "https://nl.wikipedia.org/wiki/Karine_Lalieux"
+        "wiki": "https://nl.wikipedia.org/wiki/Karine_Lalieux",
+        "replaces": [{
+            "name": "Laanan Fadila",
+            "dates":[
+                {
+                    "from": "2010-07-06"
+                }
+            ]
+        }]
     },
     {
         "first_name": "Marie-Claire",
@@ -360,12 +605,36 @@
         "wiki": "https://nl.wikipedia.org/wiki/Yvan_Mayeur"
     },
     {
+        "first_name": "Patrick",
+        "last_name": "Moriau",
+        "party": "PS",
+        "province": "Henegouwen",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Patrick_Moriau"
+    },
+    {
         "first_name": "Manuella",
         "last_name": "Senecaut",
         "party": "PS",
         "province": "Henegouwen",
         "language": "Frans",
-        "wiki": "https://nl.wikipedia.org/wiki/Manuella_Senecaut"
+        "wiki": "https://nl.wikipedia.org/wiki/Manuella_Senecaut",
+        "replaces": [{
+            "name": "Moriau Patrick",
+            "dates":[
+                {
+                    "from": "2013-09-17"
+                }
+            ]
+        }]
+    },
+    {
+        "first_name": "Mauro",
+        "last_name": "Lenzini",
+        "party": "PS",
+        "province": "Luik",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Mauro_Lenzini"
     },
     {
         "first_name": "Linda",
@@ -373,7 +642,23 @@
         "party": "PS",
         "province": "Luik",
         "language": "Frans",
-        "wiki": "https://nl.wikipedia.org/wiki/Linda_Musin"
+        "wiki": "https://nl.wikipedia.org/wiki/Linda_Musin",
+        "replaces": [{
+            "name": "Lenzini Mauro",
+            "dates":[
+                {
+                    "from": "2010-07-06"
+                }
+            ]
+        }]
+    },
+    {
+        "first_name": "Laurette",
+        "last_name": "Onkelinx",
+        "party": "PS",
+        "province": "Brussel-Halle-Vilvoorde",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Laurette_Onkelinx"
     },
     {
         "first_name": "Isabelle",
@@ -381,7 +666,15 @@
         "party": "PS",
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Frans",
-        "wiki": "https://nl.wikipedia.org/wiki/Isabelle_Emmery"
+        "wiki": "https://nl.wikipedia.org/wiki/Isabelle_Emmery",
+        "replaces": [{
+            "name": "Onkelinx Laurette",
+            "dates":[
+                {
+                    "from": "2011-12-07"
+                }
+            ]
+        }]
     },
     {
         "first_name": "Özlem",
@@ -392,12 +685,37 @@
         "wiki": "https://nl.wikipedia.org/wiki/%C3%96zlem_%C3%96zen"
     },
     {
+        "first_name": "Rachid",
+        "last_name": "Madrane",
+        "party": "PS",
+        "province": "Brussel-Halle-Vilvoorde",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Rachid_Madrane",
+        "replaces": [{
+            "name": "Picqué Charles",
+            "dates":[
+                {
+                    "from": "2010-07-06",
+                    "to": "2012-12-13"
+                }
+            ]
+        }]
+    },
+    {
         "first_name": "Mohammed",
         "last_name": "Jabour",
         "party": "PS",
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Frans",
-        "wiki": "https://nl.wikipedia.org/wiki/Mohammed_Jabour"
+        "wiki": "https://nl.wikipedia.org/wiki/Mohammed_Jabour",
+        "replaces": [{
+            "name": "Madrane Rachid",
+            "dates":[
+                {
+                    "from": "2012-12-13"
+                }
+            ]
+        }]
     },
     {
         "first_name": "Franco",
@@ -424,6 +742,14 @@
         "wiki": "https://nl.wikipedia.org/wiki/Eric_Thi%C3%A9baut"
     },
     {
+        "first_name": "Jihane",
+        "last_name": "Annane",
+        "party": "MR",
+        "province": "Henegouwen",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Jihane_Annane"
+    },
+    {
         "first_name": "Corinne",
         "last_name": "De Permentier",
         "party": "MR",
@@ -441,11 +767,27 @@
     },
     {
         "first_name": "Olivier",
+        "last_name": "Chastel",
+        "party": "MR",
+        "province": "Henegouwen",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Olivier_Chastel"
+    },
+    {
+        "first_name": "Olivier",
         "last_name": "Destrebecq",
         "party": "MR",
         "province": "Henegouwen",
         "language": "Frans",
-        "wiki": "https://nl.wikipedia.org/wiki/Olivier_Destrebecq"
+        "wiki": "https://nl.wikipedia.org/wiki/Olivier_Destrebecq",
+        "replaces": [{
+            "name": "Chastel Olivier",
+            "dates":[
+                {
+                    "from": "2011-12-07"
+                }
+            ]
+        }]
     },
     {
         "first_name": "Jacqueline",
@@ -472,12 +814,29 @@
         "wiki": "https://nl.wikipedia.org/wiki/Denis_Ducarme"
     },
     {
+        "first_name": "Sabine",
+        "last_name": "Laruelle",
+        "party": "MR",
+        "province": "Namen",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Sabine_Laruelle"
+    },
+    {
         "first_name": "Valérie",
         "last_name": "Warzée-Caverenne",
         "party": "MR",
         "province": "Namen",
         "language": "Frans",
-        "wiki": "https://nl.wikipedia.org/wiki/Val%C3%A9rie_Warz%C3%A9e-Caverenne"
+        "alternative_names": ["Caverenne Valérie"],
+        "wiki": "https://nl.wikipedia.org/wiki/Val%C3%A9rie_Warz%C3%A9e-Caverenne",
+        "replaces": [{
+            "name": "Laruelle Sabine",
+            "dates":[
+                {
+                    "from": "2011-12-07"
+                }
+            ]
+        }]
     },
     {
         "first_name": "David",
@@ -512,12 +871,28 @@
         "wiki": "https://nl.wikipedia.org/wiki/Val%C3%A9rie_De_Bue"
     },
     {
+        "first_name": "Didier",
+        "last_name": "Reynders",
+        "party": "MR",
+        "province": "Luik",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Didier_Reynders"
+    },
+    {
         "first_name": "Luc",
         "last_name": "Gustin",
         "party": "MR",
         "province": "Luik",
         "language": "Frans",
-        "wiki": "https://nl.wikipedia.org/wiki/Luc_Gustin"
+        "wiki": "https://nl.wikipedia.org/wiki/Luc_Gustin",
+        "replaces": [{
+            "name": "Reynders Didier",
+            "dates":[
+                {
+                    "from": "2011-12-07"
+                }
+            ]
+        }]
     },
     {
         "first_name": "Kattrin",
@@ -544,12 +919,37 @@
         "wiki": "https://nl.wikipedia.org/wiki/Philippe_Goffin"
     },
     {
+        "first_name": "Inge",
+        "last_name": "Vervotte",
+        "party": "CD&V",
+        "province": "Antwerpen",
+        "language": "Nederlands",
+        "wiki": "https://nl.wikipedia.org/wiki/Inge_Vervotte"
+    },
+    {
         "first_name": "Nik",
         "last_name": "Van Gool",
         "party": "CD&V",
         "province": "Antwerpen",
         "language": "Nederlands",
-        "wiki": "https://nl.wikipedia.org/wiki/Nik_Van_Gool"
+        "alternative_names": ["Van Gool Dominica"],
+        "wiki": "https://nl.wikipedia.org/wiki/Nik_Van_Gool",
+        "replaces": [{
+            "name": "Vervotte Inge",
+            "dates":[
+                {
+                    "from": "2013-01-10"
+                }
+            ]
+        }]
+    },
+    {
+        "first_name": "Servais",
+        "last_name": "Verherstraeten",
+        "party": "CD&V",
+        "province": "Antwerpen",
+        "language": "Nederlands",
+        "wiki": "https://nl.wikipedia.org/wiki/Servais_Verherstraeten"
     },
     {
         "first_name": "Kristof",
@@ -557,7 +957,15 @@
         "party": "CD&V",
         "province": "Antwerpen",
         "language": "Nederlands",
-        "wiki": "https://nl.wikipedia.org/wiki/Kristof_Waterschoot"
+        "wiki": "https://nl.wikipedia.org/wiki/Kristof_Waterschoot",
+        "replaces": [{
+            "name": "Verherstraeten Servais",
+            "dates":[
+                {
+                    "from": "2011-12-07"
+                }
+            ]
+        }]
     },
     {
         "first_name": "Nahima",
@@ -582,6 +990,18 @@
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Steven_Vanackere"
+    },
+    {
+        "first_name": "Michel",
+        "last_name": "Doomst",
+        "party": "CD&V",
+        "province": "Brussel-Halle-Vilvoorde",
+        "language": "Nederlands",
+        "wiki": "https://nl.wikipedia.org/wiki/Michel_Doomst",
+        "replaces": [{
+            "name": "Vanackere Steven",
+            "dates": [{ "from": "2011-12-07", "to": "2013-03-05" }]
+        }]
     },
     {
         "first_name": "Sonja",
@@ -616,12 +1036,36 @@
         "wiki": "https://nl.wikipedia.org/wiki/Liesbeth_Van_der_Auwera"
     },
     {
+        "first_name": "Ivo",
+        "last_name": "Belet",
+        "party": "CD&V",
+        "province": "Limburg",
+        "language": "Nederlands",
+        "wiki": "https://nl.wikipedia.org/wiki/Ivo_Belet"
+    },
+    {
         "first_name": "Gerald",
         "last_name": "Kindermans",
         "party": "CD&V",
         "province": "Limburg",
         "language": "Nederlands",
-        "wiki": "https://nl.wikipedia.org/wiki/Gerald_Kindermans"
+        "wiki": "https://nl.wikipedia.org/wiki/Gerald_Kindermans",
+        "replaces": [{
+            "name": "Belet Ivo",
+            "dates":[
+                {
+                    "from": "2010-07-06"
+                }
+            ]
+        }]
+    },
+    {
+        "first_name": "Pieter",
+        "last_name": "De Crem",
+        "party": "CD&V",
+        "province": "Oost-Vlaanderen",
+        "language": "Nederlands",
+        "wiki": "https://nl.wikipedia.org/wiki/Pieter_De_Crem"
     },
     {
         "first_name": "Jenne",
@@ -629,7 +1073,15 @@
         "party": "CD&V",
         "province": "Oost-Vlaanderen",
         "language": "Nederlands",
-        "wiki": "https://nl.wikipedia.org/wiki/Jenne_De_Potter"
+        "wiki": "https://nl.wikipedia.org/wiki/Jenne_De_Potter",
+        "replaces": [{
+            "name": "De Crem Pieter",
+            "dates":[
+                {
+                    "from": "2011-12-07"
+                }
+            ]
+        }]
     },
     {
         "first_name": "Leen",
@@ -648,12 +1100,36 @@
         "wiki": "https://nl.wikipedia.org/wiki/Stefaan_Vercamer"
     },
     {
+        "first_name": "Yves",
+        "last_name": "Leterme",
+        "party": "CD&V",
+        "province": "West-Vlaanderen",
+        "language": "Nederlands",
+        "wiki": "https://nl.wikipedia.org/wiki/Yves_Leterme"
+    },
+    {
         "first_name": "Roel",
         "last_name": "Deseyn",
         "party": "CD&V",
         "province": "West-Vlaanderen",
         "language": "Nederlands",
-        "wiki": "https://nl.wikipedia.org/wiki/Roel_Deseyn"
+        "wiki": "https://nl.wikipedia.org/wiki/Roel_Deseyn",
+        "replaces": [{
+            "name": "Leterme Yves",
+            "dates":[
+                {
+                    "from": "2011-12-15"
+                }
+            ]
+        }]
+    },
+    {
+        "first_name": "Stefaan",
+        "last_name": "De Clerck",
+        "party": "CD&V",
+        "province": "West-Vlaanderen",
+        "language": "Nederlands",
+        "wiki": "https://nl.wikipedia.org/wiki/Stefaan_De_Clerck"
     },
     {
         "first_name": "Bercy",
@@ -661,7 +1137,15 @@
         "party": "CD&V",
         "province": "West-Vlaanderen",
         "language": "Nederlands",
-        "wiki": "https://nl.wikipedia.org/wiki/Bercy_Slegers"
+        "wiki": "https://nl.wikipedia.org/wiki/Bercy_Slegers",
+        "replaces": [{
+            "name": "De Clerck Stefaan",
+            "dates":[
+                {
+                    "from": "2013-10-08"
+                }
+            ]
+        }]
     },
     {
         "first_name": "Nathalie",
@@ -672,12 +1156,28 @@
         "wiki": "https://nl.wikipedia.org/wiki/Nathalie_Muylle"
     },
     {
+        "first_name": "Hendrik",
+        "last_name": "Bogaert",
+        "party": "CD&V",
+        "province": "West-Vlaanderen",
+        "language": "Nederlands",
+        "wiki": "https://nl.wikipedia.org/wiki/Hendrik_Bogaert"
+    },
+    {
         "first_name": "Gerda",
         "last_name": "Mylle",
         "party": "CD&V",
         "province": "West-Vlaanderen",
         "language": "Nederlands",
-        "wiki": "https://nl.wikipedia.org/wiki/Gerda_Mylle"
+        "wiki": "https://nl.wikipedia.org/wiki/Gerda_Mylle",
+        "replaces": [{
+            "name": "Bogaert Hendrik",
+            "dates":[
+                {
+                    "from": "2013-10-08"
+                }
+            ]
+        }]
     },
     {
         "first_name": "Caroline",
@@ -688,12 +1188,28 @@
         "wiki": "https://nl.wikipedia.org/wiki/Caroline_Gennez"
     },
     {
+        "first_name": "Patrick",
+        "last_name": "Janssens",
+        "party": "sp.a",
+        "province": "Antwerpen",
+        "language": "Nederlands",
+        "wiki": "https://nl.wikipedia.org/wiki/Patrick_Janssens"
+    },
+    {
         "first_name": "David",
         "last_name": "Geerts",
         "party": "sp.a",
         "province": "Antwerpen",
         "language": "Nederlands",
-        "wiki": "https://nl.wikipedia.org/wiki/David_Geerts"
+        "wiki": "https://nl.wikipedia.org/wiki/David_Geerts",
+        "replaces": [{
+            "name": "Janssens Patrick",
+            "dates":[
+                {
+                    "from": "2010-07-06"
+                }
+            ]
+        }]
     },
     {
         "first_name": "Maya",
@@ -720,12 +1236,28 @@
         "wiki": "https://nl.wikipedia.org/wiki/Bruno_Tobback"
     },
     {
+        "first_name": "Ingrid",
+        "last_name": "Lieten",
+        "party": "sp.a",
+        "province": "Limburg",
+        "language": "Nederlands",
+        "wiki": "https://nl.wikipedia.org/wiki/Ingrid_Lieten"
+    },
+    {
         "first_name": "Meryame",
         "last_name": "Kitir",
         "party": "sp.a",
         "province": "Limburg",
         "language": "Nederlands",
-        "wiki": "https://nl.wikipedia.org/wiki/Meryame_Kitir"
+        "wiki": "https://nl.wikipedia.org/wiki/Meryame_Kitir",
+        "replaces": [{
+            "name": "Lieten Ingrid",
+            "dates":[
+                {
+                    "from": "2010-07-06"
+                }
+            ]
+        }]
     },
     {
         "first_name": "Peter",
@@ -768,12 +1300,28 @@
         "wiki": "https://nl.wikipedia.org/wiki/Renaat_Landuyt"
     },
     {
+        "first_name": "Myriam",
+        "last_name": "Vanlerberghe",
+        "party": "sp.a",
+        "province": "West-Vlaanderen",
+        "language": "Nederlands",
+        "wiki": "https://nl.wikipedia.org/wiki/Myriam_Vanlerberghe"
+    },
+    {
         "first_name": "Rosaline",
         "last_name": "Mouton",
         "party": "sp.a",
         "province": "West-Vlaanderen",
         "language": "Nederlands",
-        "wiki": "https://nl.wikipedia.org/wiki/Rosaline_Mouton"
+        "wiki": "https://nl.wikipedia.org/wiki/Rosaline_Mouton",
+        "replaces": [{
+            "name": "Vanlerberghe Myriam",
+            "dates":[
+                {
+                    "from": "2012-12-06"
+                }
+            ]
+        }]
     },
     {
         "first_name": "Ann",
@@ -784,12 +1332,28 @@
         "wiki": "https://nl.wikipedia.org/wiki/Ann_Vanheste"
     },
     {
+        "first_name": "Annemie",
+        "last_name": "Turtelboom",
+        "party": "Open Vld",
+        "province": "Antwerpen",
+        "language": "Nederlands",
+        "wiki": "https://nl.wikipedia.org/wiki/Annemie_Turtelboom"
+    },
+    {
         "first_name": "Frank",
         "last_name": "Wilrycx",
         "party": "Open Vld",
         "province": "Antwerpen",
         "language": "Nederlands",
-        "wiki": "https://nl.wikipedia.org/wiki/Frank_Wilrycx"
+        "wiki": "https://nl.wikipedia.org/wiki/Frank_Wilrycx",
+        "replaces": [{
+            "name": "Turtelboom Annemie",
+            "dates":[
+                {
+                    "from": "2011-12-07"
+                }
+            ]
+        }]
     },
     {
         "first_name": "Bart",
@@ -808,12 +1372,37 @@
         "wiki": "https://nl.wikipedia.org/wiki/Willem-Frederik_Schiltz"
     },
     {
+        "first_name": "Guy",
+        "last_name": "Vanhengel",
+        "party": "Open Vld",
+        "province": "Brussel-Halle-Vilvoorde",
+        "language": "Nederlands",
+        "wiki": "https://nl.wikipedia.org/wiki/Guy_Vanhengel"
+    },
+    {
         "first_name": "Lieve",
         "last_name": "Wierinck",
         "party": "Open Vld",
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Nederlands",
-        "wiki": "https://nl.wikipedia.org/wiki/Lieve_Wierinck"
+        "alternative_names": ["Wierinck Godelieve"],
+        "wiki": "https://nl.wikipedia.org/wiki/Lieve_Wierinck",
+        "replaces": [{
+            "name": "Vanhengel Guy",
+            "dates":[
+                {
+                    "from": "2011-12-16"
+                }
+            ]
+        }]
+    },
+    {
+        "first_name": "Maggie",
+        "last_name": "De Block",
+        "party": "Open Vld",
+        "province": "Brussel-Halle-Vilvoorde",
+        "language": "Nederlands",
+        "wiki": "https://nl.wikipedia.org/wiki/Maggie_De_Block"
     },
     {
         "first_name": "Luk",
@@ -821,7 +1410,15 @@
         "party": "Open Vld",
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Nederlands",
-        "wiki": "https://nl.wikipedia.org/wiki/Luk_Van_Biesen"
+        "wiki": "https://nl.wikipedia.org/wiki/Luk_Van_Biesen",
+        "replaces": [{
+            "name": "De Block Maggie",
+            "dates":[
+                {
+                    "from": "2011-12-07"
+                }
+            ]
+        }]
     },
     {
         "first_name": "Gwendolyn",
@@ -880,11 +1477,24 @@
         "wiki": "https://nl.wikipedia.org/wiki/Vincent_Van_Quickenborne"
     },
     {
+        "first_name": "Roland",
+        "last_name": "Defreyne",
+        "party": "Open Vld",
+        "province": "West-Vlaanderen",
+        "language": "Nederlands",
+        "wiki": "https://nl.wikipedia.org/wiki/Roland_Defreyne",
+        "replaces": [{
+            "name": "Van Quickenborne Vincent",
+            "dates": [{ "from": "2011-12-07", "to": "2012-10-18" }]
+        }]
+    },
+    {
         "first_name": "Sabien",
         "last_name": "Lahaye-Battheu",
         "party": "Open Vld",
         "province": "West-Vlaanderen",
         "language": "Nederlands",
+        "alternative_names": ["Battheu Sabien"],
         "wiki": "https://nl.wikipedia.org/wiki/Sabien_Lahaye-Battheu"
     },
     {
@@ -984,12 +1594,37 @@
         "wiki": "https://nl.wikipedia.org/wiki/Peter_Logghe"
     },
     {
+        "first_name": "Georges",
+        "last_name": "Dallemagne",
+        "party": "cdH",
+        "province": "Brussel-Halle-Vilvoorde",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Georges_Dallemagne"
+    },
+    {
         "first_name": "Jeanne",
         "last_name": "Nyanga-Lumbala",
         "party": "cdH",
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Frans",
-        "wiki": "https://nl.wikipedia.org/wiki/Jeanne_Nyanga-Lumbala"
+        "wiki": "https://nl.wikipedia.org/wiki/Jeanne_Nyanga-Lumbala",
+        "replaces": [{
+            "name": "Dallemagne Georges",
+            "dates":[
+                {
+                    "from": "2013-05-16"
+                }
+            ]
+        }]
+    },
+    {
+        "first_name": "Myriam",
+        "last_name": "Delacroix-Rolin",
+        "party": "cdH",
+        "province": "Brussel-Halle-Vilvoorde",
+        "language": "Frans",
+        "alternative_names": ["Rolin Myriam"],
+        "wiki": "https://nl.wikipedia.org/wiki/Myriam_Delacroix-Rolin"
     },
     {
         "first_name": "Georges",
@@ -997,7 +1632,15 @@
         "party": "cdH",
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Frans",
-        "wiki": "https://nl.wikipedia.org/wiki/Georges_Dallemagne"
+        "wiki": "https://nl.wikipedia.org/wiki/Georges_Dallemagne",
+        "replaces": [{
+            "name": "Delacroix-Rolin Myriam",
+            "dates":[
+                {
+                    "from": "2013-05-16"
+                }
+            ]
+        }]
     },
     {
         "first_name": "Catherine",
@@ -1016,12 +1659,28 @@
         "wiki": "https://nl.wikipedia.org/wiki/Christian_Brotcorne"
     },
     {
+        "first_name": "Maxime",
+        "last_name": "Prévot",
+        "party": "cdH",
+        "province": "Namen",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Maxime_Pr%C3%A9vot"
+    },
+    {
         "first_name": "Christophe",
         "last_name": "Bastin",
         "party": "cdH",
         "province": "Namen",
         "language": "Frans",
-        "wiki": "https://nl.wikipedia.org/wiki/Christophe_Bastin"
+        "wiki": "https://nl.wikipedia.org/wiki/Christophe_Bastin",
+        "replaces": [{
+            "name": "Prévot Maxime",
+            "dates":[
+                {
+                    "from": "2010-07-06"
+                }
+            ]
+        }]
     },
     {
         "first_name": "Benoît",
@@ -1032,12 +1691,58 @@
         "wiki": "https://nl.wikipedia.org/wiki/Beno%C3%AEt_Lutgen"
     },
     {
+        "first_name": "Annick",
+        "last_name": "Van Den Ende-Chapellier",
+        "party": "cdH",
+        "province": "Luxemburg",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Annick_Van_Den_Ende-Chapellier",
+        "alternative_names": ["Van Den Ende Annick"],
+        "replaces": [{
+            "name": "Lutgen Benoît",
+            "dates": [{ "from": "2010-07-06", "to": "2011-12-15" }]
+        }]
+    },
+    {
+        "first_name": "Isabelle",
+        "last_name": "Poncelet",
+        "party": "cdH",
+        "province": "Luxemburg",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Isabelle_Poncelet"
+    },
+    {
         "first_name": "Josy",
         "last_name": "Arens",
         "party": "cdH",
         "province": "Luxemburg",
         "language": "Frans",
-        "wiki": "https://nl.wikipedia.org/wiki/Josy_Arens"
+        "alternative_names": ["Arens Joseph"],
+        "wiki": "https://nl.wikipedia.org/wiki/Josy_Arens",
+        "replaces": [{
+            "name": "Poncelet Isabelle",
+            "dates":[
+                {
+                    "from": "2010-07-06"
+                }
+            ]
+        }]
+    },
+    {
+        "first_name": "Melchior",
+        "last_name": "Wathelet",
+        "party": "cdH",
+        "province": "Luik",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Melchior_Wathelet_(1949)"
+    },
+    {
+        "first_name": "Marie-Martine",
+        "last_name": "Schyns",
+        "party": "cdH",
+        "province": "Luik",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Marie-Martine_Schyns"
     },
     {
         "first_name": "Benoît",
@@ -1045,7 +1750,23 @@
         "party": "cdH",
         "province": "Luik",
         "language": "Frans",
-        "wiki": "https://nl.wikipedia.org/wiki/Beno%C3%AEt_Dr%C3%A8ze"
+        "wiki": "https://nl.wikipedia.org/wiki/Beno%C3%AEt_Dr%C3%A8ze",
+        "replaces": [{
+            "name": "Schyns Marie-Martine",
+            "dates":[
+                {
+                    "from": "2013-07-06"
+                }
+            ]
+        }]
+    },
+    {
+        "first_name": "Marie-Dominique",
+        "last_name": "Simonet",
+        "party": "cdH",
+        "province": "Luik",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Marie-Dominique_Simonet"
     },
     {
         "first_name": "Joseph",
@@ -1053,7 +1774,23 @@
         "party": "cdH",
         "province": "Luik",
         "language": "Frans",
-        "wiki": "https://nl.wikipedia.org/wiki/Joseph_George"
+        "wiki": "https://nl.wikipedia.org/wiki/Joseph_George",
+        "replaces": [{
+            "name": "Simonet Marie-Dominique",
+            "dates":[
+                {
+                    "from": "2010-07-06"
+                }
+            ]
+        }]
+    },
+    {
+        "first_name": "Olivier",
+        "last_name": "Deleuze",
+        "party": "Ecolo",
+        "province": "Brussel-Halle-Vilvoorde",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Olivier_Deleuze"
     },
     {
         "first_name": "Fouad",
@@ -1061,7 +1798,15 @@
         "party": "Ecolo",
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Frans",
-        "wiki": "https://nl.wikipedia.org/wiki/Fouad_Lahssaini"
+        "wiki": "https://nl.wikipedia.org/wiki/Fouad_Lahssaini",
+        "replaces": [{
+            "name": "Deleuze Olivier",
+            "dates":[
+                {
+                    "from": "2012-03-29"
+                }
+            ]
+        }]
     },
     {
         "first_name": "Zoé",
@@ -1101,6 +1846,7 @@
         "party": "Ecolo",
         "province": "Waals-Brabant",
         "language": "Frans",
+        "alternative_names": ["Snoy et d'Oppuers Thérèse"],
         "wiki": "https://nl.wikipedia.org/wiki/Th%C3%A9r%C3%A8se_Snoy"
     },
     {
@@ -1133,6 +1879,7 @@
         "party": "Groen",
         "province": "Antwerpen",
         "language": "Nederlands",
+        "alternative_names": ["Calvo y Castañer Kristof"],
         "wiki": "https://nl.wikipedia.org/wiki/Kristof_Calvo"
     },
     {
@@ -1189,6 +1936,7 @@
         "party": "LDD",
         "province": "West-Vlaanderen",
         "language": "Nederlands",
+        "alternative_names": ["Dedecker Jean Marie"],
         "wiki": "https://nl.wikipedia.org/wiki/Jean-Marie_Dedecker"
     },
     {
@@ -1197,6 +1945,7 @@
         "party": "Parti Populaire",
         "province": "Waals-Brabant",
         "language": "Frans",
+        "alternative_names": ["Louis", "Louis Laurent"],
         "wiki": "https://nl.wikipedia.org/wiki/Laurent_Louis"
     }
 ]

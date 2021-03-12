@@ -1,10 +1,13 @@
 #%%
+<<<<<<< HEAD
 from parlement_parser import ParliamentarySession
 session = ParliamentarySession(55)
+=======
+from parliament_parser import ParliamentarySession
+session = ParliamentarySession(54)
+>>>>>>> feature/improvements
 # Get an object containing all known members during the session
 session.get_members()
-session.dump_json("build/")
-# %%
 # Get all plenary meeting
 meetings = session.get_plenary_meetings()
 # %%
@@ -18,11 +21,3 @@ for idx in reversed(list(topics.keys())):
         print("Ja: %s" % ([str(voter) for voter in vote.yes_voters]))
         print("Nee: %s" % ([str(voter) for voter in vote.no_voters]))
         print("Onthouding: %s" % ([str(voter) for voter in vote.abstention_voters]))
-# %%
-for meeting in meetings:
-    meeting.get_meeting_topics(refresh=True)
-# %%
-for member in session.undefined_members:
-    print(member)
-
-# %%
