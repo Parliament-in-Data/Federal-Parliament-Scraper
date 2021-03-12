@@ -1,12 +1,12 @@
 #%%
 from parliament_parser import ParliamentarySession
-session = ParliamentarySession(55)
+session = ParliamentarySession(53)
 # Get an object containing all known members during the session
 session.get_members()
 # Get all plenary meeting
 meetings = session.get_plenary_meetings()
 #%%
-meetings[-10].get_meeting_topics(refresh=True)
+meetings[-61].get_meeting_topics(refresh=True)
 # %%
 # For a single meeting a lot of information is available
 topics = meetings[0].get_meeting_topics() # <- This is a dict mapping the agenda item number onto an object
@@ -37,4 +37,6 @@ for idx in reversed(list(topics.keys())):
         print("Nee: %s" % ([str(voter) for voter in vote.no_voters]))
         print("Onthouding: %s" % ([str(voter) for voter in vote.abstention_voters]))# %%
 
+# %%
+session.find_member("Louis")
 # %%

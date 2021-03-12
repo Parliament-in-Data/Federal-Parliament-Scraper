@@ -244,6 +244,7 @@ class Meeting:
                                     next_vote = go_to_p(tags[i+1]).find_previous_sibling() if i + 1 < len(tags) else vote_header.parent.find_all('p')[-1]
                                     current_node = next_vote
                                     abstention = clean_string(current_node.get_text())
+                                    current_node = current_node.find_previous_sibling()
                                     while not (current_node.name == "table" or 'naamstemming' in current_node.get_text().lower()): # FIXME: I've removed the null check here... this might break some things.
                                         if current_node.get_text():
                                             abstention = clean_string(current_node.get_text()) + ',' + abstention

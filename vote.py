@@ -23,6 +23,7 @@ class Vote:
         self.no_voters = []
         self.abstention = abstention
         self.abstention_voters = []
+        self.unsure = False
 
     def __repr__(self):
         return "Vote(%d, %d, %d, %d)" % (self.vote_number, self.yes, self.no, self.abstention)
@@ -72,8 +73,12 @@ class Vote:
         Args:
             l (List[Member]): A list of Members who voted for
         """
-        if len(l) != self.yes:
+        if abs(len(l) - self.yes) > 2:
+            # Sometimes there are some inconsistencies in the counts and the reported names
+            # We allow some tolerance for this
             print(f'NOTE: The number of yes voters did not match the provided list: {len(l)} instead of {self.yes}')
+            self.unsure = True
+        self.yes = len(l)
         self.yes_voters = l
 
     def set_no_voters(self, l: List[Member]):
@@ -82,8 +87,12 @@ class Vote:
         Args:
             l (List[Member]): A list of Members who voted against
         """
-        if len(l) != self.no:
+        if abs(len(l) - self.no) > 2:
+            # Sometimes there are some inconsistencies in the counts and the reported names
+            # We allow some tolerance for this
             print(f'NOTE: The number of no voters did not match the provided list: {len(l)} instead of {self.no}')
+            self.unsure = True
+        self.no = len(l)
         self.no_voters = l
 
     def set_abstention_voters(self, l: List[Member]):
@@ -92,8 +101,12 @@ class Vote:
         Args:
             l (List[Member]): A list of Members who abstained from the vote
         """
-        if len(l) != self.abstention:
+        if abs(len(l) - self.abstention) > 2:
+            # Sometimes there are some inconsistencies in the counts and the reported names
+            # We allow some tolerance for this
             print(f'NOTE: The number of abstention voters did not match the provided list: {len(l)} instead of {self.abstention}')
+            self.unsure = True
+        self.abstention = len(l)
         self.abstention_voters = l
 
 
