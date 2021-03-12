@@ -299,6 +299,14 @@
         "wiki": "https://nl.wikipedia.org/wiki/Koenraad_Degroote"
     },
     {
+        "first_name": "Joëlle",
+        "last_name": "Milquet",
+        "party": "PS",
+        "province": "Henegouwen",
+        "language": "Frans",
+        "wiki": "https://fr.wikipedia.org/wiki/Jo%C3%ABlle_Milquet"
+    },
+    {
         "first_name": "Philippe",
         "last_name": "Blanchart",
         "party": "PS",
@@ -724,6 +732,14 @@
         "province": "Henegouwen",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Eric_Thi%C3%A9baut"
+    },
+    {
+        "first_name": "Jihane",
+        "last_name": "Annane",
+        "party": "MR",
+        "province": "Henegouwen",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Jihane_Annane"
     },
     {
         "first_name": "Corinne",
@@ -1673,6 +1689,7 @@
         "province": "Luxemburg",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Annick_Van_Den_Ende-Chapellier",
+        "alternative_names": ["Van Den Ende Annick"],
         "replaces": [{
             "name": "Lutgen Benoît",
             "dates": [{ "from": "2010-07-06", "to": "2011-12-15" }]
@@ -1702,6 +1719,14 @@
                 }
             ]
         }]
+    },
+    {
+        "first_name": "Melchior",
+        "last_name": "Wathelet",
+        "party": "cdH",
+        "province": "Luik",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Melchior_Wathelet_(1949)"
     },
     {
         "first_name": "Marie-Martine",
@@ -1912,7 +1937,7 @@
         "party": "Parti Populaire",
         "province": "Waals-Brabant",
         "language": "Frans",
-        "alternative_names": ["Louis", "Louis LaurentVote nominatif - Naamstemming: 002"],
+        "alternative_names": ["Louis", "Louis Laurent"],
         "wiki": "https://nl.wikipedia.org/wiki/Laurent_Louis"
     }
 ]
