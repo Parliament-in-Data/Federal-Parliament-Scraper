@@ -114,5 +114,7 @@ class ParliamentarySession:
                     if 'alternative_names' in entry:
                         member.set_alternative_names(
                             entry['alternative_names'])
+                    if 'replaces' in entry:
+                        member.set_replaces(entry['replaces'])
                     self.members.append(member)
         return self.members
