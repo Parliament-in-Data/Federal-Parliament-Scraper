@@ -7,6 +7,8 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ main ]
+    paths:
+    - '**.py'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -34,11 +36,9 @@ jobs:
       - name: Perform scraping and package a release
         run: |
           python build.py "/" 55
-  deploy:
-    name: 'Deploy to Netlify'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: jsmrcaga/action-netlify-deploy@v1.1.0
+
+      - name: Deploy to Netlify
+        uses: jsmrcaga/action-netlify-deploy@v1.1.0
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_API_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

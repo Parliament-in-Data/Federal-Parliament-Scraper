@@ -35,7 +35,7 @@ class ParliamentarySession:
                 'end': self.end,
                 'members': [member.dump_json(base_path, base_URI) for member in self.members],
                 'meetings': {'plenary': [meeting.dump_json(base_path, base_URI) for meeting in self.plenary_meetings]}}, fp)
-
+        return path.join(base_path, 'session.json')
     def __init__(self, session: int):
         """Initialize a new instance of the scraper
 

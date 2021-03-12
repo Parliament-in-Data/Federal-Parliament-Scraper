@@ -264,7 +264,6 @@ class Meeting:
                 # (in that case no table is present but the table encapsulating the report can be)
                 if table and table.name == 'table' and len(table.find_all('tr', attrs={'height': None})) <= 6:
                     
-                    print("Vote number: %d" % vote_number)
                     agenda_item = extract_title_by_vote(table, Language.FR)
                     agenda_item1 = extract_title_by_vote(table, Language.NL)
                     assert(agenda_item1 == agenda_item)
