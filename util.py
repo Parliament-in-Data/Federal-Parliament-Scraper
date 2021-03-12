@@ -26,10 +26,18 @@ def clean_string(text: str):
     result = result.replace('\r', '').replace('.', '').replace('\n', ' ').replace(u'\xa0', u' ').replace(u'\xad', u'-').rstrip().lstrip()
     return result
 
+banned_set = set([
+    # No idea about this one, occurs in the dataset but has passed away before the time the dataset was made?
+    # Probably another person with the same name but can't find info about them.
+    ' Ramaekers Jef',
+    # Dataset error
+    'Vote nominatif - Naamstemming: 002'
+])
+
 def clean_list(list: list):
     """Removes falsy items from a list
     """
-    return [clean_string(item) for item in list if item]
+    return [clean_string(item) for item in list if item and item not in banned_set]
 
 def go_to_p(tag: NavigableString):
     """Go to the nearest parent p tag of a NavigableString.

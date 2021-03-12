@@ -48,23 +48,19 @@ class Vote:
             bool: Does this motion have the majority of votes
         """
         return self.yes > self.no + self.abstention
-
-    def from_table(vote_number: int, vote_table: NavigableString):
+    def from_table(vote_number:int, vote_rows:NavigableString):
         """Generate a new Vote from a parsed table.
 
         Args:
             vote_number (int): Number of the vote in this meeting (e.g. 1)
-            vote_table (NavigableString): Vote table as obtained by BeautifulSoup
+            vote_rows (NavigableString): Vote rows as obtained by BeautifulSoup
 
         Returns:
             Vote: 
         """
-        rows = vote_table.find_all('tr')
-        assert len(rows) == 5, "A Normal Vote Table consists of 5 rows"
-        yes = int(clean_string(rows[1].find_all('td')[1].find('p').get_text()))
-        no = int(clean_string(rows[2].find_all('td')[1].find('p').get_text()))
-        abstention = int(clean_string(
-            rows[3].find_all('td')[1].find('p').get_text()))
+        yes = int(clean_string(vote_rows[1].find_all('td')[1].find('p').get_text()))
+        no = int(clean_string(vote_rows[2].find_all('td')[1].find('p').get_text()))
+        abstention = int(clean_string(vote_rows[3].find_all('td')[1].find('p').get_text()))
 
         return Vote(vote_number, yes, no, abstention)
 
@@ -138,31 +134,22 @@ class LanguageGroupVote(Vote):
         """
         return self.vote_NL.has_passed() and self.vote_FR.has_passed()
 
-    def from_table(vote_number: int, vote_table: NavigableString):
+    def from_table(vote_number: int, vote_rows: NavigableString):
         """Generate a new Vote from a parsed table.
 
         Args:
             vote_number (int): Number of the vote in this meeting (e.g. 1)
-            vote_table (NavigableString): Vote table as obtained by BeautifulSoup
+            vote_rows (NavigableString): Vote rows as obtained by BeautifulSoup
 
         Returns:
             Vote: 
         """
-        rows = vote_table.find_all('tr')
-        assert len(rows) == 6, "A LanguageGroupVote Table consists of 6 rows"
+        yes_fr = int(clean_string(vote_rows[2].find_all('td')[1].find('p').get_text()))
+        no_fr = int(clean_string(vote_rows[3].find_all('td')[1].find('p').get_text()))
+        abstention_fr = int(clean_string(vote_rows[4].find_all('td')[1].find('p').get_text()))
 
-        yes_fr = int(clean_string(
-            rows[2].find_all('td')[1].find('p').get_text()))
-        no_fr = int(clean_string(
-            rows[3].find_all('td')[1].find('p').get_text()))
-        abstention_fr = int(clean_string(
-            rows[4].find_all('td')[1].find('p').get_text()))
-
-        yes_nl = int(clean_string(
-            rows[2].find_all('td')[3].find('p').get_text()))
-        no_nl = int(clean_string(
-            rows[3].find_all('td')[3].find('p').get_text()))
-        abstention_nl = int(clean_string(
-            rows[4].find_all('td')[3].find('p').get_text()))
+        yes_nl = int(clean_string(vote_rows[2].find_all('td')[3].find('p').get_text()))
+        no_nl = int(clean_string(vote_rows[3].find_all('td')[3].find('p').get_text()))
+        abstention_nl = int(clean_string(vote_rows[4].find_all('td')[3].find('p').get_text()))
 
         return LanguageGroupVote(vote_number, Vote(vote_number, yes_nl, no_nl, abstention_nl), Vote(vote_number, yes_fr, no_fr, abstention_fr))

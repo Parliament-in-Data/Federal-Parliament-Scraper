@@ -179,6 +179,8 @@ class Meeting:
         page = requests.get(self.get_notes_url())
         soup = BeautifulSoup(page.content, 'html.parser')
 
+        print('currently checking:', self.get_notes_url())
+
         def extract_title_by_vote(table: NavigableString, language: Language):
             class_name = Meeting.language_mapping[language][1]
 
@@ -191,85 +193,79 @@ class Meeting:
             return int(match.group(1))
 
         def get_name_votes():
-            votes_nominatifs = []
-            s3 = soup.find('div', {'class': 'Section3'})
-            if s3:
-                tags = s3.find_all(text=re.compile(
-                    'Vote\s*nominatif\s*-\s*Naamstemming:'))
-                for i, tag in enumerate(tags):
-                    vote_header = go_to_p(tag)
-                    yes = []
-                    no = []
-                    abstention = []
+                    votes_nominatifs = []
+                    s3 = soup.find('div', {'class': 'Section3'})
+                    if s3:
+                        tags = s3.find_all(text=re.compile('Vote\s*nominatif\s*-\s*Naamstemming:'))
+                        for i, tag in enumerate(tags):
+                                vote_header = go_to_p(tag)
+                                yes = []
+                                no = []
+                                abstention = []
 
-                    current_node = vote_header
+                                current_node = vote_header
+                                
+                                while not current_node.name == "table":
+                                    current_node = current_node.find_next_sibling()
+                                current_node = current_node.find_next_sibling()
+                                yes = clean_string(current_node.get_text())
+                                while not current_node.name == "table":
+                                    if current_node.get_text():
+                                        yes += ',' + clean_string(current_node.get_text())
+                                    current_node = current_node.find_next_sibling()
 
-                    while not current_node.name == "table":
-                        current_node = current_node.find_next_sibling()
-                    current_node = current_node.find_next_sibling()
-                    yes = clean_string(current_node.get_text())
-                    while not current_node.name == "table":
-                        if current_node.get_text():
-                            yes += clean_string(current_node.get_text())
-                        current_node = current_node.find_next_sibling()
+                                yes = clean_list(yes.split(','))
 
-                    yes = clean_list(yes.split(','))
+                                current_node = current_node.find_next_sibling()
+                                no = clean_string(current_node.get_text())
+                                while not current_node.name == "table":
+                                    if current_node.get_text():
+                                        no += ',' + clean_string(current_node.get_text())
+                                    current_node = current_node.find_next_sibling()
 
-                    current_node = current_node.find_next_sibling()
-                    no = clean_string(current_node.get_text())
-                    while not current_node.name == "table":
-                        if current_node.get_text():
-                            no += clean_string(current_node.get_text())
-                        current_node = current_node.find_next_sibling()
+                                no = clean_list(no.split(','))
 
-                    no = clean_list(no.split(','))
+                                next_vote = go_to_p(tags[i+1]).find_previous_sibling() if i + 1 < len(tags) else vote_header.parent.find_all('p')[-1]
+                                current_node = next_vote
+                                abstention = clean_string(current_node.get_text())
+                                while current_node and not current_node.name == "table":
+                                    if current_node.get_text():
+                                        abstention = clean_string(current_node.get_text()) + ',' + abstention
+                                    current_node = current_node.find_previous_sibling()
+                                abstention = clean_list(abstention.split(','))
 
-                    next_vote = go_to_p(tags[i+1]).find_previous_sibling() if i + 1 < len(
-                        tags) else vote_header.parent.find_all('p')[-1]
-                    current_node = next_vote
-                    abstention = clean_string(current_node.get_text())
-                    while not current_node.name == "table":
-                        if current_node.get_text():
-                            abstention = clean_string(
-                                current_node.get_text()) + abstention
-                        current_node = current_node.find_previous_sibling()
-                    abstention = clean_list(abstention.split(','))
-
-                    votes_nominatifs.append((yes, no, abstention))
-            return votes_nominatifs
+                                votes_nominatifs.append((yes, no, abstention))
+                    return votes_nominatifs
         name_votes = get_name_votes()
         for tag in soup.find_all(text=re.compile('Stemming/vote ([0-9]+)')):
-            vote_number = int(
-                re.match('\(?Stemming/vote ([0-9]+)\)?', tag).group(1))
-            table = tag.findParent('table')
-            if table:
-                agenda_item = extract_title_by_vote(table, Language.FR)
-                agenda_item1 = extract_title_by_vote(table, Language.NL)
-                assert(agenda_item1 == agenda_item)
-                rows = table.find_all('tr')
+                vote_number = int(re.match('\(?Stemming/vote ([0-9]+)\)?', tag).group(1))
+                table = tag.findParent('table')
+                if table:
+                    agenda_item = extract_title_by_vote(table, Language.FR)
+                    agenda_item1 = extract_title_by_vote(table, Language.NL)
+                    assert(agenda_item1 == agenda_item)
 
-                if len(rows) == 5:
-                    vote = Vote.from_table(vote_number, table)
-                elif len(rows) == 6:
-                    vote = LanguageGroupVote.from_table(vote_number, table)
-                else:
-                    continue
+                    # Some pages have a height="0" override tag to fix browser display issues.
+                    # We have to ignore these otherwise we would start interpreting the votes as the wrong type.
+                    rows = table.find_all('tr', attrs={'height': None})
 
-                if vote_number - 1 < len(name_votes):
-                    names = name_votes[vote_number - 1]
-                    vote.set_yes_voters(
-                        [self.parliamentary_session.find_member(name) for name in names[0]])
-                    vote.set_no_voters(
-                        [self.parliamentary_session.find_member(name) for name in names[1]])
-                    vote.set_abstention_voters(
-                        [self.parliamentary_session.find_member(name) for name in names[2]])
+                    if len(rows) == 5:
+                        vote = Vote.from_table(vote_number, rows)
+                    elif len(rows) == 6:
+                        vote = LanguageGroupVote.from_table(vote_number, rows)
+                    else:
+                        continue
 
-                self.topics[agenda_item].add_vote(vote)
+                    if vote_number - 1 < len(name_votes):
+                        names = name_votes[vote_number - 1]
+                        vote.set_yes_voters([self.parliamentary_session.find_member(name) for name in names[0]])
+                        vote.set_no_voters([self.parliamentary_session.find_member(name) for name in names[1]])
+                        vote.set_abstention_voters([self.parliamentary_session.find_member(name) for name in names[2]])
 
-    def get_meeting_topics(self, refresh=False):
+                    self.topics[agenda_item].add_vote(vote)
+    def get_meeting_topics(self, refresh = False):
         """Obtain the topics for this meeting.
 
-        Args:
             refresh (bool, optional): Force a refresh of the meeting notes. Defaults to False.
 
         Returns:
