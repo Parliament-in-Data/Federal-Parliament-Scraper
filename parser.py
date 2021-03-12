@@ -20,14 +20,14 @@ class ParliamentarySession:
         52: {'from': '10/06/2007', 'to': '6/5/2010'},
     }
 
-    def dump_json(self, output_path, base_URI="/"):
+    def dump_json(self, output_path: str, base_URI="/"):
         self.get_members()
         self.get_plenary_meetings()
 
         base_path = path.join(output_path, "sessions", f'{self.session}')
         base_URI = f'{base_URI}sessions/{self.session}/'
         makedirs(base_path, exist_ok=True)
-        
+
         with open(path.join(base_path, 'session.json'), 'w+') as fp:
             json.dump({
                 'id': self.session,
@@ -36,7 +36,7 @@ class ParliamentarySession:
                 'members': [member.dump_json(base_path, base_URI) for member in self.members],
                 'meetings': {'plenary': [meeting.dump_json(base_path, base_URI) for meeting in self.plenary_meetings]}}, fp)
 
-    def __init__(self, session):
+    def __init__(self, session: int):
         """Initialize a new instance of the scraper
 
         Args:
@@ -55,7 +55,7 @@ class ParliamentarySession:
         # TODO: remove
         self.undefined_members = set()
 
-    def find_member(self, query):
+    def find_member(self, query: str):
         """Using their name as listed in the meeting notes
         find the Member object related.
 

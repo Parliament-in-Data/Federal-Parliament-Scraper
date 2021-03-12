@@ -1,6 +1,7 @@
 import unicodedata
+from bs4 import NavigableString
 
-def normalize_str(text):
+def normalize_str(text: str):
     """Replace diacritical characters and normalize the string this way.
 
     Args:
@@ -12,7 +13,7 @@ def normalize_str(text):
     text = clean_string(text.strip())
     return unicodedata.normalize('NFKD', text).encode('ASCII', 'ignore')
 
-def clean_string(text):
+def clean_string(text: str):
     """Replace MS Office Special Characters from a String as well as double whitespace
 
     Args:
@@ -25,12 +26,12 @@ def clean_string(text):
     result = result.replace('\r', '').replace('.', '').replace('\n', ' ').replace(u'\xa0', u' ').replace(u'\xad', u'-').rstrip().lstrip()
     return result
 
-def clean_list(list):
+def clean_list(list: list):
     """Removes falsy items from a list
     """
     return [clean_string(item) for item in list if item]
 
-def go_to_p(tag):
+def go_to_p(tag: NavigableString):
     """Go to the nearest parent p tag of a NavigableString.
     """
     while tag.name != "p":
