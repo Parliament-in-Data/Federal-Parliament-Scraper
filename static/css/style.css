@@ -1,0 +1,370 @@
+/*
+	Georgia
+
+	Demo css to show basic, blog-like styling
+
+	Visit http://www.ulysses.app/styles for full reference
+
+*/
+
+body {
+	text-align:  center;
+	color:       #000;
+	font-family: georgia, serif;
+	font-size:   120%;
+	line-height: 1.6;
+	margin:      0;
+	padding:     2em 2em 5em;
+	background:  rgb(253, 253, 253);
+	margin:      auto;
+	max-width:   33em;
+	color:       rgb(10, 10, 10);
+}
+
+a {
+	outline:         none !important;
+	font-weight:     bold;
+	text-decoration: none;
+}
+
+a:link {
+	color: #c00;
+}
+
+a:visited {
+	color: #606;
+}
+
+a:hover {
+	color: #606;
+}
+
+a:active {
+	color:   #900;
+	outline: none;
+}
+
+h1 {
+	font-size:   300%;
+	line-height: 1.2;
+	font-style:  normal;
+	margin:      2.5em 0 1em;
+}
+
+h2 {
+	font-weight: bold;
+	font-size:   200%;
+	line-height: 140%;
+	margin:      1.5em 0 0.75em;
+}
+
+h3 {
+	font-weight:    normal;
+	text-transform: uppercase;
+	font-size:      150%;
+	letter-spacing: 0.15em;
+	margin:         1.75em 0 0.75em;
+}
+
+h4 {
+	font-weight:    normal;
+	font-size:      150%;
+	letter-spacing: 0.1em;
+	margin:         1.5em 0 0.75em;
+}
+
+h5 {
+	font-weight: normal;
+	font-style:  italic;
+	font-size:   150%;
+	margin:      1.5em 0 0.75em;
+}
+
+h6 {
+	font-weight:    bold;
+	font-size:      100%;
+	letter-spacing: 0.1em;
+	margin:         1.5em 0 0.75em;
+}
+
+p {
+	text-align: left;
+	font-size:  100%;
+	margin:     1em 0 0;
+}
+
+p + p {
+	margin:      0;
+	text-indent: 1.5em;
+}
+
+h1 + p {
+	text-indent: 0;
+}
+
+p + ul, p + ol, p + dl {
+	margin-bottom: 1.5em;
+}
+
+video {
+    width: 100%;
+    object-fit: scale-down;
+}
+
+img {
+	max-width: 100%;
+}
+
+figure {
+	margin:     2em 0 1.5em 0;
+	width:      100%;
+	text-align: center;
+}
+
+figure img {
+	border: 1px solid #ccc;
+}
+
+figcaption {
+	font-size:   66%;
+	padding:     1em;
+	padding-top: 0.5em;
+	color:       #aaa;
+}
+
+blockquote {
+	border-left:  5px solid #eee;
+	padding-left: 1.5em;
+	margin:       1em 0;
+}
+
+blockquote p {
+	text-indent: 0 !important;
+	font-style:  italic;
+}
+
+blockquote small {
+	display:     block;
+	line-height: 1.7em;
+}
+
+ul, ol, dl {
+	text-align: left;
+}
+
+ul, ol {
+	padding-left: 1.2em;
+}
+
+ul li, ol li {
+	padding-left: 0.3em;
+	margin-top:   0.6em;
+}
+
+li p {
+	margin-top:  0px;
+	text-indent: 0em;
+}
+
+li {
+	margin-bottom: 0.6em;
+}
+
+hr {
+	border:    none;
+	margin:    1.5em 0 1.5em;
+	font-size: 200%;
+	color:     #ddd;
+	height:    1em;
+}
+
+hr:after {
+	content: "❧"
+}
+
+h1 + hr {
+	margin:    -0.5em 0 1.5em;
+	font-size: 400%;
+}
+
+ol#footnotes {
+	margin-top:   4.5em;
+	border-top:   1px solid #eee;
+	padding-top:  1em;
+	font-size:    80%;
+	padding-left: 1.5em;
+}
+
+ol#footnotes p {
+	text-indent: 0px;
+}
+
+figure + p {
+	text-indent: 0em !important;
+}
+
+/* Code Highlighting */
+
+code {
+	font-family: 'Courier', monospace;
+	font-size:   80%;
+	color:       #f8f8f2;
+
+	padding:       0.5em 0.5em;
+	background:    #272822;
+	border-radius: 5px;
+}
+
+pre > code {
+	padding:		none;
+	background:     none;
+	border: 		none;
+}
+
+pre {
+	color:         #f8f8f2;
+	text-align:    left;
+	line-height:   1.2em;
+	overflow-x:    scroll;
+	background:    #272822;
+	padding:       20pt;
+	margin:        20pt 0;
+	border-radius: 3pt;
+	white-space:   pre-wrap;
+	tab-size:      4;
+}
+
+.syntax-all {
+}
+
+.syntax-entity {
+	color: #fd971f;
+}
+
+.syntax-tag {
+	color: #f92672;
+}
+
+.syntax-keyword {
+	color: #f92672;
+}
+
+.syntax-parameter {
+	color: #a6e22e;
+}
+
+.syntax-string {
+	color: #e6db74;
+}
+
+.syntax-constant {
+	color: #9effff;
+}
+
+.syntax-variable {
+	color: #a6e22e;
+}
+
+.syntax-escape {
+	color: #ae81ff;
+}
+
+.syntax-comment {
+	color: #75715e;
+}
+
+.syntax-error {
+	color:      #f8f8f0;
+	background: #f92672;
+	padding:    2px 6px;
+}
+
+/* Markup Highlighting */
+
+.syntax-heading {
+	font-weight: bold;
+	color:       #ae81ff;
+}
+
+.syntax-italic {
+	font-style: italic;
+}
+
+.syntax-bold {
+	font-weight: bold;
+}
+
+.syntax-deleted {
+	color:            #b31d28;
+	background-color: #ffeef0;
+}
+
+.syntax-inserted {
+	color:            #22863a;
+	background-color: #f0fff4;
+}
+
+.syntax-changed {
+	color:            #e36209;
+	background-color: #ffebda;
+}
+
+.syntax-link {
+	text-decoration: underline;
+	color:           #008fff;
+}
+
+.syntax-list {
+	color: #fd971f;
+}
+
+@keyframes highfade {
+	0% {
+		background-color: none;
+	}
+	20% {
+		background-color: yellow;
+	}
+	100% {
+		background-color: none;
+	}
+}
+
+@-webkit-keyframes highfade {
+	0% {
+		background-color: none;
+	}
+	20% {
+		background-color: yellow;
+	}
+	100% {
+		background-color: none;
+	}
+}
+
+a:target, ol#footnotes li:target, sup a:target {
+	animation-name:                    highfade;
+	animation-duration:                2s;
+	animation-iteration-count:         1;
+	animation-timing-function:         ease-in-out;
+	-webkit-animation-name:            highfade;
+	-webkit-animation-duration:        2s;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-timing-function: ease-in-out;
+}
+
+@media screen and (max-width: 736px) {
+	body {
+		padding:   1em 20px 1em 20px;
+		font-size: 120%;
+	}
+	h1 {
+		font-size: 250%;
+	}
+	h2 {
+		font-size: 150%;
+	}
+	h3, h4, h5 {
+		font-size: 140%;
+	}
+}

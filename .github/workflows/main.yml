@@ -35,7 +35,7 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Perform scraping and package a release
         run: |
-          python build.py "https://parlement.thundr.be/" 55
+          python build.py "https://parlement.thundr.be/" 55 54 53 52
 
       - name: Deploy to Netlify
         uses: jsmrcaga/action-netlify-deploy@v1.1.0

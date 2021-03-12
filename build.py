@@ -4,8 +4,10 @@ import os
 import sys
 import json
 from os import path, makedirs
+from distutils.dir_util import copy_tree
 
 OUTPUT_PATH = "build"
+STATIC_SITE_PATH = "static"
 
 def print_usage():
     print(f'{sys.argv[0]} <base_url> <session> <session> ...')
@@ -19,7 +21,7 @@ def main():
         parliamentary_session = ParliamentarySession(session)
         sessions[session] = parliamentary_session.dump_json(OUTPUT_PATH, sys.argv[1])
     makedirs(OUTPUT_PATH, exist_ok=True)
-
+    copy_tree("static", "build")
     with open(path.join(OUTPUT_PATH, 'index.json'), 'w+') as fp:
         json.dump(sessions, fp, ensure_ascii='false')
 if __name__ == "__main__":
