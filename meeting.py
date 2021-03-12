@@ -193,11 +193,15 @@ class Meeting:
             return int(match.group(1))
 
         def get_name_votes():
-                    votes_nominatifs = []
+                    votes_nominatifs = {}
                     s3 = soup.find('div', {'class': 'Section3'})
                     if s3:
                         tags = s3.find_all(text=re.compile('Vote\s*nominatif\s*-\s*Naamstemming:'))
                         for i, tag in enumerate(tags):
+                                header = clean_string(tag.parent.parent.get_text())
+                                numeric_values = [int(s) for s in header.split() if s.isdigit()]
+                                vote_number = numeric_values[0] if numeric_values else i 
+                                
                                 vote_header = go_to_p(tag)
                                 yes = []
                                 no = []
@@ -214,7 +218,6 @@ class Meeting:
                                         cancelled = True
                                     current_node = current_node.find_next_sibling()
                                 if cancelled:
-                                    votes_nominatifs.append(([], [], []))
                                     continue
                                 current_node = current_node.find_next_sibling()
                                 yes = clean_string(current_node.get_text())
@@ -247,7 +250,7 @@ class Meeting:
                                         current_node = current_node.find_previous_sibling()
                                     abstention = clean_list(abstention.split(','))
 
-                                votes_nominatifs.append((yes, no, abstention))
+                                votes_nominatifs[vote_number] = (yes, no, abstention)
                     return votes_nominatifs
         name_votes = get_name_votes()
         for tag in soup.find_all(text=re.compile('Stemming/vote ([0-9]+)')):
@@ -259,6 +262,7 @@ class Meeting:
                 # Fixes an issue where votes are incorrectly parsed because of the fact a quorum was not reached
                 # (in that case no table is present but the table encapsulating the report can be)
                 if table and table.name == 'table' and len(table.find_all('tr', attrs={'height': None})) <= 6:
+                    
                     print("Vote number: %d" % vote_number)
                     agenda_item = extract_title_by_vote(table, Language.FR)
                     agenda_item1 = extract_title_by_vote(table, Language.NL)
@@ -275,8 +279,8 @@ class Meeting:
                     else:
                         continue
 
-                    if vote_number - 1 < len(name_votes):
-                        names = name_votes[vote_number - 1]
+                    if vote_number in name_votes:
+                        names = name_votes[vote_number]
                         vote.set_yes_voters([self.parliamentary_session.find_member(name) for name in names[0]])
                         vote.set_no_voters([self.parliamentary_session.find_member(name) for name in names[1]])
                         vote.set_abstention_voters([self.parliamentary_session.find_member(name) for name in names[2]])
