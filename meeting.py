@@ -202,7 +202,7 @@ class Meeting:
                         yes = clean_string(current_node.get_text())
                         while not current_node.name == "table":
                             if current_node.get_text():
-                                yes += clean_string(current_node.get_text())
+                                yes += ',' + clean_string(current_node.get_text())
                             current_node = current_node.find_next_sibling()
 
                         yes = clean_list(yes.split(','))
@@ -211,7 +211,7 @@ class Meeting:
                         no = clean_string(current_node.get_text())
                         while not current_node.name == "table":
                             if current_node.get_text():
-                                no += clean_string(current_node.get_text())
+                                no += ',' + clean_string(current_node.get_text())
                             current_node = current_node.find_next_sibling()
 
                         no = clean_list(no.split(','))
@@ -221,11 +221,11 @@ class Meeting:
                         abstention = clean_string(current_node.get_text())
                         while not current_node.name == "table":
                             if current_node.get_text():
-                                abstention = clean_string(current_node.get_text()) + abstention
+                                abstention = clean_string(current_node.get_text()) + ',' + abstention
                             current_node = current_node.find_previous_sibling()
                         abstention = clean_list(abstention.split(','))
 
-                        votes_nominatifs.append(( yes, no, abstention))
+                        votes_nominatifs.append((yes, no, abstention))
             return votes_nominatifs
         name_votes = get_name_votes()
         for tag in soup.find_all(text=re.compile('Stemming/vote ([0-9]+)')):
