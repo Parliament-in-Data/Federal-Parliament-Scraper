@@ -205,11 +205,20 @@ class Meeting:
 
                                 current_node = vote_header
                                 
+                                cancelled = False
+
                                 while not current_node.name == "table":
+                                    # Sometimes votes get cancelled, apparently
+                                    # this check seems to be consistent
+                                    if 'annulé' in current_node.get_text().lower() or '42.5' in current_node.get_text().lower():
+                                        cancelled = True
                                     current_node = current_node.find_next_sibling()
+                                if cancelled:
+                                    votes_nominatifs.append(([], [], []))
+                                    continue
                                 current_node = current_node.find_next_sibling()
                                 yes = clean_string(current_node.get_text())
-                                while not current_node.name == "table":
+                                while not (current_node.name == "table" or 'naamstemming' in current_node.get_text().lower()):
                                     if current_node.get_text():
                                         yes += ',' + clean_string(current_node.get_text())
                                     current_node = current_node.find_next_sibling()
@@ -218,29 +227,39 @@ class Meeting:
 
                                 current_node = current_node.find_next_sibling()
                                 no = clean_string(current_node.get_text())
-                                while not current_node.name == "table":
+                                while not (current_node.name == "table" or 'naamstemming' in current_node.get_text().lower()):
                                     if current_node.get_text():
                                         no += ',' + clean_string(current_node.get_text())
                                     current_node = current_node.find_next_sibling()
 
                                 no = clean_list(no.split(','))
 
-                                next_vote = go_to_p(tags[i+1]).find_previous_sibling() if i + 1 < len(tags) else vote_header.parent.find_all('p')[-1]
-                                current_node = next_vote
-                                abstention = clean_string(current_node.get_text())
-                                while not current_node.name == "table": # FIXME: I've removed the null check here... this might break some things.
-                                    if current_node.get_text():
-                                        abstention = clean_string(current_node.get_text()) + ',' + abstention
-                                    current_node = current_node.find_previous_sibling()
-                                abstention = clean_list(abstention.split(','))
+                                abstention = []
+
+                                # Handles the case where the abstention box is missing (no abstentions)
+                                if 'onthoudingen' in current_node.get_text().lower() or 'abstentions' in current_node.get_text().lower():
+                                    next_vote = go_to_p(tags[i+1]).find_previous_sibling() if i + 1 < len(tags) else vote_header.parent.find_all('p')[-1]
+                                    current_node = next_vote
+                                    abstention = clean_string(current_node.get_text())
+                                    while not (current_node.name == "table" or 'naamstemming' in current_node.get_text().lower()): # FIXME: I've removed the null check here... this might break some things.
+                                        if current_node.get_text():
+                                            abstention = clean_string(current_node.get_text()) + ',' + abstention
+                                        current_node = current_node.find_previous_sibling()
+                                    abstention = clean_list(abstention.split(','))
 
                                 votes_nominatifs.append((yes, no, abstention))
                     return votes_nominatifs
         name_votes = get_name_votes()
         for tag in soup.find_all(text=re.compile('Stemming/vote ([0-9]+)')):
                 vote_number = int(re.match('\(?Stemming/vote ([0-9]+)\)?', tag).group(1))
-                table = tag.findParent('table')
-                if table:
+                table = tag
+                for _ in range(0, 6):
+                    if table:
+                        table = table.parent
+                # Fixes an issue where votes are incorrectly parsed because of the fact a quorum was not reached
+                # (in that case no table is present but the table encapsulating the report can be)
+                if table and table.name == 'table' and len(table.find_all('tr', attrs={'height': None})) <= 6:
+                    print("Vote number: %d" % vote_number)
                     agenda_item = extract_title_by_vote(table, Language.FR)
                     agenda_item1 = extract_title_by_vote(table, Language.NL)
                     assert(agenda_item1 == agenda_item)

@@ -48,6 +48,7 @@ class Vote:
         Returns:
             bool: Does this motion have the majority of votes
         """
+        # FIXME: No Quorum Check (rule 42.5 of parliament)
         return self.yes > self.no + self.abstention
     def from_table(vote_number:int, vote_rows:NavigableString):
         """Generate a new Vote from a parsed table.
@@ -71,6 +72,8 @@ class Vote:
         Args:
             l (List[Member]): A list of Members who voted for
         """
+        if len(l) != self.yes:
+            print(f'NOTE: The number of yes voters did not match the provided list: {len(l)} instead of {self.yes}')
         self.yes_voters = l
 
     def set_no_voters(self, l: List[Member]):
@@ -79,6 +82,8 @@ class Vote:
         Args:
             l (List[Member]): A list of Members who voted against
         """
+        if len(l) != self.no:
+            print(f'NOTE: The number of no voters did not match the provided list: {len(l)} instead of {self.no}')
         self.no_voters = l
 
     def set_abstention_voters(self, l: List[Member]):
@@ -87,6 +92,8 @@ class Vote:
         Args:
             l (List[Member]): A list of Members who abstained from the vote
         """
+        if len(l) != self.abstention:
+            print(f'NOTE: The number of abstention voters did not match the provided list: {len(l)} instead of {self.abstention}')
         self.abstention_voters = l
 
 

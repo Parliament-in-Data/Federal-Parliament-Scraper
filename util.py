@@ -29,8 +29,8 @@ def clean_string(text: str):
 
 banned_set = set([
     # No idea about this one, occurs in the dataset but has passed away before the time the dataset was made?
-    # Probably another person with the same name but can't find info about them.
-    #' Ramaekers Jef',
+    # Probably another person with the same name but can't find info about them. (see #10)
+    ' Ramaekers Jef',
     # Dataset error
     #'Vote nominatif - Naamstemming: 002'
 ])
