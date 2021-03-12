@@ -198,7 +198,7 @@ class Meeting:
                     if s3:
                         tags = s3.find_all(text=re.compile('Vote\s*nominatif\s*-\s*Naamstemming:'))
                         for i, tag in enumerate(tags):
-                                header = clean_string(tag.parent.parent.get_text())
+                                header = clean_string(tag.find_parent('p').get_text())
                                 numeric_values = [int(s) for s in header.split() if s.isdigit()]
                                 vote_number = numeric_values[0] if numeric_values else i 
                                 
