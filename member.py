@@ -5,6 +5,7 @@ import json
 import uuid
 from os import path, makedirs
 import hashlib
+from typing import List
 
 class Member:
     """
@@ -65,7 +66,7 @@ class Member:
                 if normalize_str(query) == normalize_str(n):
                     return True
         return normalize_str(query) == normalize_str(name)
-    def set_alternative_names(self, names: list(str)):
+    def set_alternative_names(self, names: List[str]):
         """Set alternative names by which the member should also
         be recognized in the meeting notes.
 

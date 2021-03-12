@@ -71,6 +71,7 @@ class ParliamentarySession:
         for member in self.members:
             if member.hasName(query):
                 return member
+        print("Undefined member: %s" % query)
         self.undefined_members.add(query)
 
     def get_plenary_meetings(self, refresh=False):

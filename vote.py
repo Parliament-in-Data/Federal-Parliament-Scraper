@@ -1,6 +1,7 @@
 from util import clean_string
 from member import Member
 from bs4 import NavigableString
+from typing import List
 
 class Vote:
     """A Vote represents a single vote in a meeting.
@@ -64,27 +65,27 @@ class Vote:
 
         return Vote(vote_number, yes, no, abstention)
 
-    def set_yes_voters(self, l: list(Member)):
+    def set_yes_voters(self, l: List[Member]):
         """Set the members who voted for
 
         Args:
-            l (list(Member)): A list of Members who voted for
+            l (List[Member]): A list of Members who voted for
         """
         self.yes_voters = l
 
-    def set_no_voters(self, l: list(Member)):
+    def set_no_voters(self, l: List[Member]):
         """Set the members who voted against
 
         Args:
-            l (list(Member)): A list of Members who voted against
+            l (List[Member]): A list of Members who voted against
         """
         self.no_voters = l
 
-    def set_abstention_voters(self, l: list(Member)):
+    def set_abstention_voters(self, l: List[Member]):
         """Set the members who abstained from voting for this motion
 
         Args:
-            l (list(Member)): A list of Members who abstained from the vote
+            l (List[Member]): A list of Members who abstained from the vote
         """
         self.abstention_voters = l
 

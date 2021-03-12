@@ -9,7 +9,7 @@ import re
 from os import path, makedirs
 import json
 from collections import defaultdict
-from parser import ParliamentarySession
+import parliament_parser
 import datetime
 
 
@@ -119,12 +119,12 @@ class Meeting:
         Language.FR: ('Titre1FR', 'Titre2FR'),
     }
 
-    def __init__(self, session: ParliamentarySession, id: int, time_of_day: TimeOfDay, date: datetime.datetime):
+    def __init__(self, session, id: int, time_of_day: TimeOfDay, date: datetime.datetime):
         """
         Initiate a new Meeting instance
 
         Args:
-            session (ParliamentarySession): The related session of the parliament
+            session (parliament_parser.ParliamentarySession): The related session of the parliament
             id (int): The number of the meeting (e.g. 1)
             time_of_day (TimeOfDay): The time of day this meeting occured at
             date (date): The date on which the meeting took place
@@ -228,7 +228,7 @@ class Meeting:
                                 next_vote = go_to_p(tags[i+1]).find_previous_sibling() if i + 1 < len(tags) else vote_header.parent.find_all('p')[-1]
                                 current_node = next_vote
                                 abstention = clean_string(current_node.get_text())
-                                while current_node and not current_node.name == "table":
+                                while not current_node.name == "table": # FIXME: I've removed the null check here... this might break some things.
                                     if current_node.get_text():
                                         abstention = clean_string(current_node.get_text()) + ',' + abstention
                                     current_node = current_node.find_previous_sibling()
@@ -314,12 +314,12 @@ class Meeting:
             self.__get_votes()
         return self.topics
 
-    def from_soup(meeting: NavigableString, session: ParliamentarySession):
+    def from_soup(meeting: NavigableString, session):
         """Generate a new Meeting instance from BeautifulSoup's objects
 
         Args:
             meeting (NavigableString): The table row representing the meeting
-            session (ParliamentarySession): The parliamentary session this meeting is a part of.
+            session (parliament_parser.ParliamentarySession): The parliamentary session this meeting is a part of.
 
         Returns:
             Meeting: A Meeting object representing this meeting.

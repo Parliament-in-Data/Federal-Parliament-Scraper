@@ -1,5 +1,6 @@
 import unicodedata
 from bs4 import NavigableString
+from typing import List
 
 def normalize_str(text: str):
     """Replace diacritical characters and normalize the string this way.
@@ -29,12 +30,12 @@ def clean_string(text: str):
 banned_set = set([
     # No idea about this one, occurs in the dataset but has passed away before the time the dataset was made?
     # Probably another person with the same name but can't find info about them.
-    ' Ramaekers Jef',
+    #' Ramaekers Jef',
     # Dataset error
-    'Vote nominatif - Naamstemming: 002'
+    #'Vote nominatif - Naamstemming: 002'
 ])
 
-def clean_list(list: list):
+def clean_list(list: List[any]):
     """Removes falsy items from a list
     """
     return [clean_string(item) for item in list if item and item not in banned_set]
