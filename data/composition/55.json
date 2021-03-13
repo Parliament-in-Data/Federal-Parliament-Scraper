@@ -160,6 +160,14 @@
         "wiki": "https://nl.wikipedia.org/wiki/Sophie_Th%C3%A9mont"
     },
     {
+        "first_name": "Laura",
+        "last_name": "Crapanzano",
+        "party": "PS",
+        "province": "Luik",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Laura_Crapanzano"
+    },
+    {
         "first_name": "Barbara",
         "last_name": "Creemers",
         "party": "Groen",
@@ -238,6 +246,10 @@
         "party": "Open Vld",
         "province": "Vlaams-Brabant",
         "language": "Nederlands",
+        "replaces": [{
+            "name": "Delvaux Bram",
+            "dates": [{ "from": "2020-03-17", "to": "2020-10-01" }]
+        }],
         "wiki": "https://nl.wikipedia.org/wiki/Maggie_De_Block"
     },
     {
@@ -253,6 +265,14 @@
         "wiki": "https://nl.wikipedia.org/wiki/Robby_De_Caluw%C3%A9"
     },
     {
+        "first_name": "Mathias",
+        "last_name": "De Clercq",
+        "party": "Open Vld",
+        "province": "Oost-Vlaanderen",
+        "language": "Nederlands",
+        "wiki": "https://nl.wikipedia.org/wiki/Mathias_De_Clercq"
+    },
+    {
         "first_name": "Jan",
         "last_name": "Briers",
         "party": "CD&V",
@@ -263,6 +283,14 @@
             "dates": [{ "from": "2019-06-20" }]
         }],
         "wiki": "https://nl.wikipedia.org/wiki/Jan_Briers_(1953)"
+    },
+    {
+        "first_name": "Pieter",
+        "last_name": "De Crem",
+        "party": "CD&V",
+        "province": "Oost-Vlaanderen",
+        "language": "Nederlands",
+        "wiki": "https://nl.wikipedia.org/wiki/Pieter_De_Crem"
     },
     {
         "first_name": "Tania",
@@ -425,6 +453,14 @@
         "wiki": "https://nl.wikipedia.org/wiki/Khalil_Aouasti"
     },
     {
+        "first_name": "Caroline",
+        "last_name": "Désir",
+        "party": "PS",
+        "province": "Brussel-Hoofdstad",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Caroline_D%C3%A9sir"
+    },
+    {
         "first_name": "Patrick",
         "last_name": "Dewael",
         "party": "Open Vld",
@@ -451,6 +487,14 @@
             "dates": [{ "from": "2019-09-19" }]
         }],
         "wiki": "https://nl.wikipedia.org/wiki/Philippe_Tison"
+    },
+    {
+        "first_name": "Elio",
+        "last_name": "Di Rupo",
+        "party": "PS",
+        "province": "Henegouwen",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Elio_Di_Rupo"
     },
     {
         "first_name": "Leen",
@@ -495,6 +539,15 @@
             "dates": [{ "from": "2019-06-20" }]
         }],
         "wiki": "https://nl.wikipedia.org/wiki/Malik_Ben_Achour"
+    },
+    {
+        "first_name": "Julie",
+        "last_name": "Fernandez-Fernandez",
+        "party": "PS",
+        "province": "Luik",
+        "language": "Frans",
+        "alternative_names": ["Fernandez Fernandez Julie", "Fernandez Fernandez Julia"],
+        "wiki": "https://nl.wikipedia.org/wiki/Julie_Fernandez-Fernandez"
     },
     {
         "first_name": "André",
@@ -808,6 +861,14 @@
             "dates": [{ "from": "2019-11-14" }]
         }],
         "wiki": "https://nl.wikipedia.org/wiki/Vincent_Scourneau"
+    },
+    {
+        "first_name": "Charles",
+        "last_name": "Michel",
+        "party": "MR",
+        "province": "Waals-Brabant",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Charles_Michel"
     },
     {
         "first_name": "Nadia",
@@ -1321,7 +1382,6 @@
         "party": "Groen",
         "province": "Vlaams-Brabant",
         "language": "Nederlands",
-        "active": false,
         "wiki": "https://nl.wikipedia.org/wiki/Jessika_Soors"
     },
     {
@@ -1330,7 +1390,6 @@
         "party": "sp.a",
         "province": "Antwerpen",
         "language": "Nederlands",
-        "active": false,
         "wiki": "https://nl.wikipedia.org/wiki/Jan_Bertels"
     },
     {
@@ -1339,7 +1398,6 @@
         "party": "Open Vld",
         "province": "West-Vlaanderen",
         "language": "Nederlands",
-        "active": false,
         "wiki": "https://nl.wikipedia.org/wiki/Vincent_Van_Quickenborne"
     },
     {
@@ -1348,7 +1406,6 @@
         "party": "Ecolo",
         "province": "Luik",
         "language": "Frans",
-        "active": false,
         "wiki": "https://nl.wikipedia.org/wiki/Sarah_Schlitz"
     },
     {
@@ -1357,7 +1414,6 @@
         "party": "sp.a",
         "province": "West-Vlaanderen",
         "language": "Nederlands",
-        "active": false,
         "wiki": "https://nl.wikipedia.org/wiki/John_Crombez"
     },
     {
@@ -1366,7 +1422,6 @@
         "party": "sp.a",
         "province": "Antwerpen",
         "language": "Nederlands",
-        "active": false,
         "wiki": "https://nl.wikipedia.org/wiki/Yasmine_Kherbache"
     },
     {
@@ -1375,7 +1430,6 @@
         "party": "Ecolo",
         "province": "Namen",
         "language": "Frans",
-        "active": false,
         "wiki": "https://nl.wikipedia.org/wiki/Georges_Gilkinet"
     },
     {
@@ -1384,7 +1438,6 @@
         "party": "Ecolo",
         "province": "Henegouwen",
         "language": "Frans",
-        "active": false,
         "wiki": "https://nl.wikipedia.org/wiki/Jean-Marc_Nollet"
     },
     {
@@ -1393,7 +1446,10 @@
         "party": "MR",
         "province": "Henegouwen",
         "language": "Frans",
-        "active": false,
+        "replaces": [{
+            "name": "Ducarme Denis",
+            "dates": [{ "from": "2020-03-17", "to": "2020-10-01" }]
+        }],
         "wiki": "https://nl.wikipedia.org/wiki/Benoît_Friart"
     },
     {
@@ -1402,7 +1458,6 @@
         "party": "N-VA",
         "province": "Limburg",
         "language": "Nederlands",
-        "active": false,
         "wiki": "https://nl.wikipedia.org/wiki/Zuhal_Demir"
     },
     {
@@ -1411,7 +1466,6 @@
         "party": "MR",
         "province": "Brussel-Hoofdstad",
         "language": "Frans",
-        "active": false,
         "wiki": "https://nl.wikipedia.org/wiki/Sophie_Wilmès"
     },
     {
@@ -1420,7 +1474,6 @@
         "party": "N-VA",
         "province": "Vlaams-Brabant",
         "language": "Nederlands",
-        "active": false,
         "wiki": "https://nl.wikipedia.org/wiki/Jan_Spooren"
     },
     {
@@ -1429,7 +1482,6 @@
         "party": "sp.a",
         "province": "Limburg",
         "language": "Nederlands",
-        "active": false,
         "wiki": "https://nl.wikipedia.org/wiki/Meryame_Kitir"
     },
     {
@@ -1438,7 +1490,6 @@
         "party": "N-VA",
         "province": "Antwerpen",
         "language": "Nederlands",
-        "active": false,
         "wiki": "https://nl.wikipedia.org/wiki/Jan_Jambon"
     },
     {
@@ -1447,7 +1498,10 @@
         "party": "MR",
         "province": "Henegouwen",
         "language": "Frans",
-        "active": false,
+        "replaces": [{
+            "name": "Marghem Marie-Christine",
+            "dates": [{ "from": "2020-03-17", "to": "2020-10-01" }]
+        }],
         "wiki": "https://nl.wikipedia.org/wiki/Isabelle_Galant"
     },
     {
@@ -1456,7 +1510,6 @@
         "party": "Open Vld",
         "province": "Oost-Vlaanderen",
         "language": "Nederlands",
-        "active": false,
         "wiki": "https://nl.wikipedia.org/wiki/Alexander_De_Croo"
     },
     {
@@ -1465,7 +1518,6 @@
         "party": "MR",
         "province": "Henegouwen",
         "language": "Frans",
-        "active": false,
         "wiki": "https://nl.wikipedia.org/wiki/Ludivine_Dedonder"
     },
     {
@@ -1474,7 +1526,10 @@
         "party": "MR",
         "province": "Luik",
         "language": "Frans",
-        "active": false,
+        "replaces": [{
+            "name": "Goffin Philippe",
+            "dates": [{ "from": "2020-03-17", "to": "2020-10-01" }]
+        }],
         "wiki": "https://nl.wikipedia.org/wiki/Magali_Dock"
     },
     {
@@ -1483,7 +1538,6 @@
         "party": "MR",
         "province": "Brussel-Hoofdstad",
         "language": "Frans",
-        "active": false,
         "wiki": "https://nl.wikipedia.org/wiki/Didier_Reynders"
     },
     {
@@ -1492,7 +1546,6 @@
         "party": "MR",
         "province": "Namen",
         "language": "Frans",
-        "active": false,
         "wiki": "https://nl.wikipedia.org/wiki/David_Clarinval"
     },
     {
@@ -1501,7 +1554,6 @@
         "party": "CD&V",
         "province": "Limburg",
         "language": "Nederlands",
-        "active": false,
         "wiki": "https://nl.wikipedia.org/wiki/Wouter_Beke"
     },
     {
@@ -1510,7 +1562,6 @@
         "party": "PS",
         "province": "Luik",
         "language": "Frans",
-        "active": false,
         "wiki": "https://nl.wikipedia.org/wiki/Frédéric_Daerden"
     },
     {
@@ -1519,7 +1570,10 @@
         "party": "MR",
         "province": "Luik",
         "language": "Frans",
-        "active": false,
+        "replaces": [{
+            "name": "Bacquelaine Daniel",
+            "dates": [{ "from": "2020-03-17", "to": "2020-10-01" }]
+        }],
         "wiki": "https://nl.wikipedia.org/wiki/Mathieu_Bihet"
     },
     {
@@ -1528,7 +1582,10 @@
         "party": "CD&V",
         "province": "West-Vlaanderen",
         "language": "Nederlands",
-        "active": false,
+        "replaces": [{
+            "name": "Muylle Nathalie",
+            "dates": [{ "from": "2020-03-17", "to": "2020-10-01" }]
+        }],
         "wiki": "https://nl.wikipedia.org/wiki/Bercy_Slegers"
     },
     {
@@ -1537,7 +1594,6 @@
         "party": "Groen",
         "province": "Brussel-Hoofdstad",
         "language": "Nederlands",
-        "active": false,
         "wiki": "https://nl.wikipedia.org/wiki/Tinne_Van_der_Straeten"
     },
     {
@@ -1546,7 +1602,10 @@
         "party": "CD&V",
         "province": "Vlaams-Brabant",
         "language": "Nederlands",
-        "active": false,
+        "replaces": [{
+            "name": "Geens Koen",
+            "dates": [{ "from": "2020-03-17", "to": "2020-10-01" }]
+        }],
         "wiki": "https://nl.wikipedia.org/wiki/Sammy_Mahdi"
     },
     {
@@ -1555,7 +1614,6 @@
         "party": "Open Vld",
         "province": "Vlaams-Brabant",
         "language": "Nederlands",
-        "active": false,
         "wiki": "https://nl.wikipedia.org/wiki/Bram_Delvaux"
     },
     {
@@ -1564,7 +1622,6 @@
         "party": "Ecolo",
         "province": "Brussel-Hoofdstad",
         "language": "Frans",
-        "active": false,
         "wiki": "https://nl.wikipedia.org/wiki/Zakia_Khattabi"
     }
 ]
