@@ -40,9 +40,10 @@ class Member:
         resource_name = f'{self.uuid}.json'
 
         makedirs(base_path, exist_ok=True)
-        
+
         with open(path.join(base_path, resource_name), 'w+') as fp:
-            json.dump({'id': str(self.uuid), 'first_name': self.first_name, 'last_name': self.last_name, 'language': self.language, 'province': self.province, 'party': self.party, 'wiki': self.url, 'replaces': self.replaces}, fp, ensure_ascii=False)
+            replaces = list(map(lambda replacement: {'member': f'{base_URI}{replacement["member"]}.json', 'dates': replacement['dates']}, self.replaces))
+            json.dump({'id': str(self.uuid), 'first_name': self.first_name, 'last_name': self.last_name, 'language': self.language, 'province': self.province, 'party': self.party, 'wiki': self.url, 'replaces': replaces}, fp, ensure_ascii=False)
 
         return f'{base_URI}{resource_name}'
     def __repr__(self):
