@@ -5,7 +5,12 @@ from member import Member
 from meeting import Meeting
 import json
 from os import path, makedirs
+import functools
 
+def member_to_URI(base_path, base_URI, member):
+    return member.dump_json(base_path, base_URI)
+def meeting_to_URI(base_path, base_URI, meeting):
+    return meeting.dump_json(base_path, base_URI)
 
 class ParliamentarySession:
     '''
@@ -21,6 +26,9 @@ class ParliamentarySession:
     }
 
     def dump_json(self, output_path: str, base_URI="/"):
+        from multiprocessing import Pool, cpu_count
+        pool_count = cpu_count() * 2
+
         self.get_members()
         self.get_plenary_meetings()
 
@@ -28,13 +36,17 @@ class ParliamentarySession:
         base_URI = f'{base_URI}sessions/{self.session}/'
         makedirs(base_path, exist_ok=True)
 
+        with Pool(pool_count) as p:
+            members_URIs = p.map(functools.partial(member_to_URI, base_path, base_URI), self.members)
+            meeting_URIs = p.map(functools.partial(meeting_to_URI, base_path, base_URI), self.plenary_meetings)
+
         with open(path.join(base_path, 'session.json'), 'w+') as fp:
             json.dump({
                 'id': self.session,
                 'start': self.start,
                 'end': self.end,
-                'members': [member.dump_json(base_path, base_URI) for member in self.members],
-                'meetings': {'plenary': [meeting.dump_json(base_path, base_URI) for meeting in self.plenary_meetings]}}, fp)
+                'members': members_URIs,
+                'meetings': {'plenary': meeting_URIs}}, fp)
         return path.join(base_URI, 'session.json')
     def __init__(self, session: int):
         """Initialize a new instance of the scraper

@@ -1,4 +1,4 @@
-# De Kamer - La Chambre Scraper
+# Belgian Federal Parliament Scraper & API
 This library provides a scraper based on the Python library Beautiful Soup for the website and meeting notes of the Belgian Federal Parliament. The scraper can currently provide information on the plenary meetings for the sessions between 2007 and now, details on the votes that occurred and the members.
 
 ## Functionality
@@ -15,8 +15,3 @@ This library provides a scraper based on the Python library Beautiful Soup for t
 
 ## Getting started
 Have a look at `demo.py` to get started.
-
-## Imminent To-Do's
-- [ ] Complete the files in /data/composition to also contain information on members who didn't serve a full term in the parliament
-- [ ] Improve the class structure of Votes
-- [ ] Additional documentation
