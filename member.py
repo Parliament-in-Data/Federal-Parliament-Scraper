@@ -28,6 +28,7 @@ class Member:
         self.province = province
         self.language = language
         self.alternative_names = []
+        self.replaces = None
         self.url = url
         sha_1 = hashlib.sha1()
         sha_1.update(self.first_name.encode('utf-8') + self.last_name.encode('utf-8') + self.party.encode('utf-8') + self.province.encode('utf-8'))
@@ -39,9 +40,10 @@ class Member:
         resource_name = f'{self.uuid}.json'
 
         makedirs(base_path, exist_ok=True)
-        
+
         with open(path.join(base_path, resource_name), 'w+') as fp:
-            json.dump({'id': str(self.uuid), 'first_name': self.first_name, 'last_name': self.last_name, 'language': self.language, 'province': self.province, 'part': self.party, 'wiki': self.url}, fp, ensure_ascii=False)
+            replaces = list(map(lambda replacement: {'member': f'{base_URI}{replacement["member"]}.json', 'dates': replacement['dates']}, self.replaces))
+            json.dump({'id': str(self.uuid), 'first_name': self.first_name, 'last_name': self.last_name, 'language': self.language, 'province': self.province, 'party': self.party, 'wiki': self.url, 'replaces': replaces}, fp, ensure_ascii=False)
 
         return f'{base_URI}{resource_name}'
     def __repr__(self):
@@ -74,6 +76,13 @@ class Member:
             names (list(str)): All the alternative names of the member
         """
         self.alternative_names = names
+    def set_replaces(self, replaces: List[any]):
+        """Set which members are replaces when by this member.
+
+        Args:
+            replaces (list): All the timespans a member was replaced
+        """
+        self.replaces = replaces
     def get_image(self):
         """If the Member has a Wikipedia page, this method will attempt to scrape
         their image from this website.

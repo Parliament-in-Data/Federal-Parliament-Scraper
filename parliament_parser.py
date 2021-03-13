@@ -127,4 +127,14 @@ class ParliamentarySession:
                         member.set_alternative_names(
                             entry['alternative_names'])
                     self.members.append(member)
+                # Now that we have all members, link them
+                for member, entry in zip(self.members, data):
+                    if 'replaces' in entry:
+                        replaces = entry['replaces']
+                        for replacement in replaces:
+                            referenced_member = self.find_member(replacement['name'])
+                            del replacement['name']
+                            replacement['member'] = referenced_member.uuid
+                        member.set_replaces(replaces)
+
         return self.members
