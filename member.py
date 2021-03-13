@@ -61,13 +61,14 @@ class Member:
         Returns:
             bool: Is this the name of this member
         """
-        name = "%s %s" % (self.last_name, self.first_name)
+        query = normalize_str(query)
+        name = normalize_str("%s %s" % (self.last_name, self.first_name))
         # Fallback for alternative names
         if self.alternative_names:
             for n in self.alternative_names:
-                if normalize_str(query) == normalize_str(n):
+                if query == normalize_str(n):
                     return True
-        return normalize_str(query) == normalize_str(name)
+        return query == name or query == normalize_str(f'{self.first_name} {self.last_name}')
     def set_alternative_names(self, names: List[str]):
         """Set alternative names by which the member should also
         be recognized in the meeting notes.
