@@ -28,7 +28,7 @@ class Member:
         self.province = province
         self.language = language
         self.alternative_names = []
-        self.replaces = None
+        self.replaces = []
         self.url = url
         sha_1 = hashlib.sha1()
         sha_1.update(self.first_name.encode('utf-8') + self.last_name.encode('utf-8') + self.party.encode('utf-8') + self.province.encode('utf-8'))
