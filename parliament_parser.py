@@ -26,8 +26,7 @@ class ParliamentarySession:
     }
 
     def dump_json(self, output_path: str, base_URI="/"):
-        from multiprocessing import Pool, cpu_count
-        pool_count = cpu_count() * 2
+        import concurrent.futures
 
         self.get_members()
         self.get_plenary_meetings()
@@ -36,9 +35,9 @@ class ParliamentarySession:
         base_URI = f'{base_URI}sessions/{self.session}/'
         makedirs(base_path, exist_ok=True)
 
-        with Pool(pool_count) as p:
-            members_URIs = p.map(functools.partial(member_to_URI, base_path, base_URI), self.members)
-            meeting_URIs = p.map(functools.partial(meeting_to_URI, base_path, base_URI), self.plenary_meetings)
+        with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
+            meeting_URIs = list(executor.map(functools.partial(meeting_to_URI, base_path, base_URI), self.plenary_meetings))
+            members_URIs = list(executor.map(functools.partial(member_to_URI, base_path, base_URI), self.members))
 
         with open(path.join(base_path, 'session.json'), 'w+') as fp:
             json.dump({

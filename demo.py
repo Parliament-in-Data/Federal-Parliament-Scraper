@@ -16,3 +16,19 @@ for idx in reversed(list(topics.keys())):
         print("Ja: %s" % ([str(voter) for voter in vote.yes_voters]))
         print("Nee: %s" % ([str(voter) for voter in vote.no_voters]))
         print("Onthouding: %s" % ([str(voter) for voter in vote.abstention_voters]))
+
+#%%
+for meeting in meetings:
+    meeting.get_meeting_topics()
+# %%
+result
+# %%
+[act for act in session.find_member("Calvo Kristof").activities]
+# %%
+i = 0
+for member in session.get_members():
+    if member.activities:
+        i+=1
+        print(member)
+# %%
+i
