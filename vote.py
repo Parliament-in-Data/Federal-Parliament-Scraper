@@ -51,6 +51,8 @@ class Vote:
         """
         # FIXME: No Quorum Check (rule 42.5 of parliament)
         return self.yes > self.no + self.abstention
+
+    @staticmethod
     def from_table(vote_number:int, vote_rows:NavigableString):
         """Generate a new Vote from a parsed table.
 
@@ -155,6 +157,7 @@ class LanguageGroupVote(Vote):
         """
         return self.vote_NL.has_passed() and self.vote_FR.has_passed()
 
+    @staticmethod
     def from_table(vote_number: int, vote_rows: NavigableString):
         """Generate a new Vote from a parsed table.
 
@@ -174,3 +177,50 @@ class LanguageGroupVote(Vote):
         abstention_nl = int(clean_string(vote_rows[4].find_all('td')[3].find('p').get_text()))
 
         return LanguageGroupVote(vote_number, Vote(vote_number, yes_nl, no_nl, abstention_nl), Vote(vote_number, yes_fr, no_fr, abstention_fr))
+
+
+class ElectronicVote(Vote):
+    """Some voting are anonymously organised electronically. We don't have the names in this case"""
+
+    def __init__(self, vote_number: int, yes: int, no: int):
+        """A Vote represents a single vote in a meeting.
+
+        Args:
+            vote_number (int): Number of the vote in this meeting (e.g. 1)
+            yes (int): Number of yes votes
+            no (int): Number of no votes
+        """
+        Vote.__init__(self, vote_number, yes, no, 0)
+
+    def __repr__(self):
+        return f"ElectronicVote({self.vote_number}, {self.yes}, {self.no})"
+
+    def to_dict(self, session_base_URI: str):
+        return {
+            'id': self.vote_number,
+            'type': 'electronic',
+            'yes': self.yes,
+            'no': self.no,
+            'passed': self.has_passed()
+        }
+
+    @staticmethod
+    def from_tables(vote_number: int, vote_start_node: NavigableString):
+        """Generate a new Vote from a parsed table.
+
+        Args:
+            vote_number (int): Number of the vote in this meeting (e.g. 1)
+            vote_start_node (NavigableString): Vote start node as obtained by BeautifulSoup
+
+        Returns:
+            Optional[Vote]: 
+        """
+
+        yes = int(clean_string(vote_start_node.find_all('td')[1].find('p').get_text()))
+        vote_end_node = vote_start_node.find_next_sibling().find_next_sibling()
+        if not vote_end_node or vote_end_node.name != 'table':
+            return None
+
+        no = int(clean_string(vote_end_node.find_all('td')[1].find('p').get_text()))
+
+        return ElectronicVote(vote_number, yes, no)
