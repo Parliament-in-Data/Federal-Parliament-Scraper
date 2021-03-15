@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup, NavigableString
 import dateparser
 import requests
 from util import clean_string, go_to_p, clean_list
-from vote import Vote, LanguageGroupVote, ElectronicVote
+from vote import Vote, LanguageGroupVote, ElectronicGenericVote
 import re
 from os import path, makedirs
 import json
@@ -225,30 +225,30 @@ class Meeting:
 
         for tag in soup.find_all(text=re.compile(r'(Stemming/vote|Vote/stemming) ([0-9]+)')):
             vote_number = int(re.match(r'\(?(Stemming/vote|Vote/stemming) ([0-9]+)\)?', tag).group(2))
-            table = tag
             is_electronic_vote = vote_number in electronic_votes
 
             # Structure for electronic votes is a little different. This case is not inside a table.
             if is_electronic_vote:
-                table = table.parent.parent
+                while tag.name != 'p':
+                    tag = tag.parent
             else:
                 for _ in range(0, 6):
-                    if table:
-                        table = table.parent
+                    if tag:
+                        tag = tag.parent
 
                 # Fixes an issue where votes are incorrectly parsed because of the fact a quorum was not reached
                 # (in that case no table is present but the table encapsulating the report can be)
-                if not table or table.name != 'table':
+                if not tag or tag.name != 'table':
                     continue
 
-            agenda_item = extract_title_by_vote(table, Language.FR)
-            agenda_item1 = extract_title_by_vote(table, Language.NL)
+            agenda_item = extract_title_by_vote(tag, Language.FR)
+            agenda_item1 = extract_title_by_vote(tag, Language.NL)
             assert agenda_item1 == agenda_item
 
-            if len(table.find_all('tr', attrs={'height': None})) <= 6:
+            if len(tag.find_all('tr', attrs={'height': None})) <= 6:
                 # Some pages have a height="0" override tag to fix browser display issues.
                 # We have to ignore these otherwise we would start interpreting the votes as the wrong type.
-                rows = table.find_all('tr', attrs={'height': None})
+                rows = tag.find_all('tr', attrs={'height': None})
 
                 if len(rows) == 5:
                     vote = Vote.from_table(self.topics[agenda_item], vote_number, rows)
@@ -265,7 +265,8 @@ class Meeting:
 
                 self.topics[agenda_item].add_vote(vote)
             elif is_electronic_vote:
-                vote = ElectronicVote.from_table(self.topics[agenda_item], vote_number, electronic_votes[vote_number])
+                # TODO: apart houden van de twee soorten stemmingen
+                vote = ElectronicGenericVote.from_table(self.topics[agenda_item], vote_number, electronic_votes[vote_number])
                 if vote:
                     self.topics[agenda_item].add_vote(vote)
 

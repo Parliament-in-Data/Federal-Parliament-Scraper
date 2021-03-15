@@ -190,7 +190,7 @@ class LanguageGroupVote(Vote):
         return LanguageGroupVote(meeting_topic, vote_number, Vote(meeting_topic, vote_number, yes_nl, no_nl, abstention_nl), Vote(meeting_topic, vote_number, yes_fr, no_fr, abstention_fr))
 
 
-class ElectronicVote(Vote):
+class ElectronicGenericVote(Vote):
     """Some voting are anonymously organised electronically. We don't have the names in this case"""
 
     def __init__(self, meeting_topic, vote_number: int, yes: int, no: int):
@@ -204,12 +204,12 @@ class ElectronicVote(Vote):
         Vote.__init__(self, meeting_topic, vote_number, yes, no, 0)
 
     def __repr__(self):
-        return f"ElectronicVote({self.vote_number}, {self.yes}, {self.no})"
+        return f"ElectronicGenericVote({self.vote_number}, {self.yes}, {self.no})"
 
     def to_dict(self, session_base_URI: str):
         return {
             'id': self.vote_number,
-            'type': 'electronic',
+            'type': 'electronic_generic',
             'yes': self.yes,
             'no': self.no,
             'passed': self.has_passed()
@@ -234,4 +234,5 @@ class ElectronicVote(Vote):
 
         no = int(clean_string(vote_end_node.find_all('td')[1].find('p').get_text()))
 
-        return ElectronicVote(meeting_topic, vote_number, yes, no)
+        return ElectronicGenericVote(meeting_topic, vote_number, yes, no)
+
