@@ -217,29 +217,35 @@ class Meeting:
                     if cancelled:
                         continue
 
-                    vote = ElectronicVote.from_tables(self.topics[vote_number], vote_number, current_node)
-                    if vote:
-                        electronic_votes[vote_number] = vote
+                    electronic_votes[vote_number] = current_node
 
             return name_votes, electronic_votes
 
         name_votes, electronic_votes = get_name_and_electronic_votes()
-        for vote_number, vote in electronic_votes.items():
-            self.topics[vote_number].add_vote(vote)
 
-        for tag in soup.find_all(text=re.compile(r'Stemming/vote ([0-9]+)')):
-            vote_number = int(re.match(r'\(?Stemming/vote ([0-9]+)\)?', tag).group(1))
+        for tag in soup.find_all(text=re.compile(r'(Stemming/vote|Vote/stemming) ([0-9]+)')):
+            vote_number = int(re.match(r'\(?(Stemming/vote|Vote/stemming) ([0-9]+)\)?', tag).group(2))
             table = tag
-            for _ in range(0, 6):
-                if table:
-                    table = table.parent
+            is_electronic_vote = vote_number in electronic_votes
+
+            # Structure for electronic votes is a little different. This case is not inside a table.
+            if is_electronic_vote:
+                table = table.parent.parent
+            else:
+                for _ in range(0, 6):
+                    if table:
+                        table = table.parent
+            
+            if not table:
+                continue
+
+            agenda_item = extract_title_by_vote(table, Language.FR)
+            agenda_item1 = extract_title_by_vote(table, Language.NL)
+            assert agenda_item1 == agenda_item
+
             # Fixes an issue where votes are incorrectly parsed because of the fact a quorum was not reached
             # (in that case no table is present but the table encapsulating the report can be)
-            if table and table.name == 'table' and len(table.find_all('tr', attrs={'height': None})) <= 6:
-                agenda_item = extract_title_by_vote(table, Language.FR)
-                agenda_item1 = extract_title_by_vote(table, Language.NL)
-                assert agenda_item1 == agenda_item
-
+            if table.name == 'table' and len(table.find_all('tr', attrs={'height': None})) <= 6:
                 # Some pages have a height="0" override tag to fix browser display issues.
                 # We have to ignore these otherwise we would start interpreting the votes as the wrong type.
                 rows = table.find_all('tr', attrs={'height': None})
@@ -258,6 +264,10 @@ class Meeting:
                     vote.set_abstention_voters([self.parliamentary_session.find_member(name) for name in names[2]])
 
                 self.topics[agenda_item].add_vote(vote)
+            elif is_electronic_vote:
+                vote = ElectronicVote.from_table(self.topics[agenda_item], vote_number, electronic_votes[vote_number])
+                if vote:
+                    self.topics[agenda_item].add_vote(vote)
 
     def get_meeting_topics(self, refresh = False):
         """Obtain the topics for this meeting.

@@ -216,7 +216,7 @@ class ElectronicVote(Vote):
         }
 
     @staticmethod
-    def from_tables(meeting_topic, vote_number: int, vote_start_node: NavigableString):
+    def from_table(meeting_topic, vote_number: int, vote_start_node: NavigableString):
         """Generate a new Vote from a parsed table.
 
         Args:
