@@ -184,7 +184,6 @@ class Meeting:
                 for i, tag in enumerate(tags):
                     vote_number = extract_vote_number_from_tag(tag, i)
                     vote_header = go_to_p(tag)
-
                     cancelled, current_node = is_vote_cancelled(vote_header)
                     if cancelled:
                         continue
