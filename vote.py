@@ -58,6 +58,7 @@ class Vote:
         """
         # FIXME: No Quorum Check (rule 42.5 of parliament)
         return self.yes > self.no + self.abstention
+
     @staticmethod
     def from_table(meeting_topic, vote_number:int, vote_rows:NavigableString):
         """Generate a new Vote from a parsed table.
@@ -215,24 +216,57 @@ class ElectronicGenericVote(Vote):
             'passed': self.has_passed()
         }
 
-    @staticmethod
-    def from_table(meeting_topic, vote_number: int, vote_start_node: NavigableString):
-        """Generate a new Vote from a parsed table.
+
+class ElectronicAdvisoryVote(Vote):
+    """Some voting are anonymously organised electronically to inquire whether more opinions are required.
+    We don't have the names in this case
+    """
+
+    def __init__(self, meeting_topic, vote_number: int, yes: int):
+        """A Vote represents a single vote in a meeting.
 
         Args:
             vote_number (int): Number of the vote in this meeting (e.g. 1)
-            vote_start_node (NavigableString): Vote start node as obtained by BeautifulSoup
+            yes (int): Number of yes votes
+        """
+        Vote.__init__(self, meeting_topic, vote_number, yes, 0, 0)
+
+    def __repr__(self):
+        return f"ElectronicAdvisoryVote({self.vote_number}, {self.yes})"
+
+    def has_passed(self):
+        """Does this advisory request reach more than the threshold of 1/3 of the yes votes to pass
 
         Returns:
-            Optional[Vote]: 
+            bool: Does this motion have the majority of votes
         """
+        return self.yes > 50
 
-        yes = int(clean_string(vote_start_node.find_all('td')[1].find('p').get_text()))
-        vote_end_node = vote_start_node.find_next_sibling().find_next_sibling()
-        if not vote_end_node or vote_end_node.name != 'table':
-            return None
+    def to_dict(self, session_base_URI: str):
+        return {
+            'id': self.vote_number,
+            'type': 'electronic_advisory',
+            'yes': self.yes,
+            'passed': self.has_passed()
+        }
 
-        no = int(clean_string(vote_end_node.find_all('td')[1].find('p').get_text()))
 
-        return ElectronicGenericVote(meeting_topic, vote_number, yes, no)
+def electronic_vote_from_table(meeting_topic, vote_number: int, vote_start_node: NavigableString):
+    """Generate a new electronic (advisory or generic) vote from a parsed table.
 
+    Args:
+        vote_number (int): Number of the vote in this meeting (e.g. 1)
+        vote_start_node (NavigableString): Vote start node as obtained by BeautifulSoup
+
+    Returns:
+        Vote: 
+    """
+
+    yes = int(clean_string(vote_start_node.find_all('td')[1].find('p').get_text()))
+    vote_end_node = vote_start_node.find_next_sibling().find_next_sibling()
+    if not vote_end_node or vote_end_node.name != 'table':
+        return ElectronicAdvisoryVote(meeting_topic, vote_number, yes)
+
+    no = int(clean_string(vote_end_node.find_all('td')[1].find('p').get_text()))
+
+    return ElectronicGenericVote(meeting_topic, vote_number, yes, no)

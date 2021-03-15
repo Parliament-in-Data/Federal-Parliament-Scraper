@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup, NavigableString
 import dateparser
 import requests
 from util import clean_string, go_to_p, clean_list
-from vote import Vote, LanguageGroupVote, ElectronicGenericVote
+from vote import Vote, LanguageGroupVote, electronic_vote_from_table
 import re
 from os import path, makedirs
 import json
@@ -214,6 +214,7 @@ class Meeting:
                     vote_number = extract_vote_number_from_tag(tag, i)
                     vote_header = go_to_p(tag)
                     cancelled, current_node = is_vote_cancelled(vote_header)
+
                     if cancelled:
                         continue
 
@@ -245,7 +246,7 @@ class Meeting:
             agenda_item1 = extract_title_by_vote(tag, Language.NL)
             assert agenda_item1 == agenda_item
 
-            if len(tag.find_all('tr', attrs={'height': None})) <= 6:
+            if not is_electronic_vote and len(tag.find_all('tr', attrs={'height': None})) <= 6:
                 # Some pages have a height="0" override tag to fix browser display issues.
                 # We have to ignore these otherwise we would start interpreting the votes as the wrong type.
                 rows = tag.find_all('tr', attrs={'height': None})
@@ -265,10 +266,8 @@ class Meeting:
 
                 self.topics[agenda_item].add_vote(vote)
             elif is_electronic_vote:
-                # TODO: apart houden van de twee soorten stemmingen
-                vote = ElectronicGenericVote.from_table(self.topics[agenda_item], vote_number, electronic_votes[vote_number])
-                if vote:
-                    self.topics[agenda_item].add_vote(vote)
+                vote = electronic_vote_from_table(self.topics[agenda_item], vote_number, electronic_votes[vote_number])
+                self.topics[agenda_item].add_vote(vote)
 
     def get_meeting_topics(self, refresh = False):
         """Obtain the topics for this meeting.
