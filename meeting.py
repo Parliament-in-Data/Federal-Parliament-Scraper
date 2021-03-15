@@ -235,17 +235,17 @@ class Meeting:
                 for _ in range(0, 6):
                     if table:
                         table = table.parent
-            
-            if not table:
-                continue
+
+                # Fixes an issue where votes are incorrectly parsed because of the fact a quorum was not reached
+                # (in that case no table is present but the table encapsulating the report can be)
+                if not table or table.name != 'table':
+                    continue
 
             agenda_item = extract_title_by_vote(table, Language.FR)
             agenda_item1 = extract_title_by_vote(table, Language.NL)
             assert agenda_item1 == agenda_item
 
-            # Fixes an issue where votes are incorrectly parsed because of the fact a quorum was not reached
-            # (in that case no table is present but the table encapsulating the report can be)
-            if table.name == 'table' and len(table.find_all('tr', attrs={'height': None})) <= 6:
+            if len(table.find_all('tr', attrs={'height': None})) <= 6:
                 # Some pages have a height="0" override tag to fix browser display issues.
                 # We have to ignore these otherwise we would start interpreting the votes as the wrong type.
                 rows = table.find_all('tr', attrs={'height': None})
