@@ -248,7 +248,6 @@ class Meeting:
                         abstention = clean_string(current_node.get_text())
                         current_node = current_node.find_previous_sibling()
 
-                        # FIXME: I've removed the null check here... this might break some things.
                         # TODO: merge with function
                         while not (current_node.name == "table" or 'naamstemming' in current_node.get_text().lower()): 
                             if current_node.get_text():
