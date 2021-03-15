@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup, NavigableString
 import dateparser
 import requests
 from util import clean_string, go_to_p, clean_list
-from vote import Vote, LanguageGroupVote, electronic_vote_from_table
+from vote import GenericVote, LanguageGroupVote, electronic_vote_from_table
 import re
 from os import path, makedirs
 import json
@@ -252,7 +252,7 @@ class Meeting:
                 rows = tag.find_all('tr', attrs={'height': None})
 
                 if len(rows) == 5:
-                    vote = Vote.from_table(self.topics[agenda_item], vote_number, rows)
+                    vote = GenericVote.from_table(self.topics[agenda_item], vote_number, rows)
                 elif len(rows) == 6:
                     vote = LanguageGroupVote.from_table(self.topics[agenda_item], vote_number, rows)
                 else:
