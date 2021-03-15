@@ -1282,6 +1282,7 @@
         "party": "Open Vld",
         "province": "Antwerpen",
         "language": "Nederlands",
+        "alternative_names": ["Marianne"],
         "wiki": "https://nl.wikipedia.org/wiki/Marianne_Verhaert"
     },
     {
@@ -1570,6 +1571,7 @@
         "party": "MR",
         "province": "Luik",
         "language": "Frans",
+        "alternative_names": ["Bihed Mathieu"],
         "replaces": [{
             "name": "Bacquelaine Daniel",
             "dates": [{ "from": "2020-03-17", "to": "2020-10-01" }]
