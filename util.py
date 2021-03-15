@@ -31,6 +31,18 @@ banned_set = set([
     # No idea about this one, occurs in the dataset but has passed away before the time the dataset was made?
     # Probably another person with the same name but can't find info about them. (see #10)
     ' Ramaekers Jef',
+    # Well, the string below was added because of some format issues in https://www.dekamer.be/doc/PCRI/html/52/ip078x.html, we should solve this better (by using a RegEx)
+    '(Ingevolge een technisch mankement werd de stemming van mevrouw Inge Vervotte',
+    ' afwezig',
+    ' opgenomen)',
+    '(A la suite d’une erreur technique',
+    ' le vote de Mme Inge Vervotte',
+    ' absente',
+    '(Om technische redenen is er geen stemming nr 2 / Pour raison technique',
+    " il n'y a pas de vote n° 2)",
+    '(De heer Guido De Padt heeft gestemd vanop de bank van de heer Ludo Van Campenhout',
+    ' afwezig)',
+    ' a été enregistré)'
     # Dataset error
     #'Vote nominatif - Naamstemming: 002'
 ])

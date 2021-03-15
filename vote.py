@@ -1,13 +1,17 @@
 from util import clean_string
-from member import Member
 from bs4 import NavigableString
 from typing import List
+import activity
+from common import Choice
 
+def post_vote_activity(vote, choice, members):
+    for member in members:
+        member.post_activity(activity.VoteActivity(member, vote, choice))
 class Vote:
     """A Vote represents a single vote in a meeting.
     """
 
-    def __init__(self, vote_number: int, yes: int, no: int, abstention: int):
+    def __init__(self, meeting_topic, vote_number: int, yes: int, no: int, abstention: int):
         """A Vote represents a single vote in a meeting.
 
         Args:
@@ -16,6 +20,8 @@ class Vote:
             no (int): Number of no votes
             abstention (int): Number of abstentions
         """
+        self.meeting = meeting_topic.meeting
+        self.meeting_topic = meeting_topic
         self.vote_number = vote_number
         self.yes = yes
         self.yes_voters = []
@@ -51,7 +57,8 @@ class Vote:
         """
         # FIXME: No Quorum Check (rule 42.5 of parliament)
         return self.yes > self.no + self.abstention
-    def from_table(vote_number:int, vote_rows:NavigableString):
+    @staticmethod
+    def from_table(meeting, vote_number:int, vote_rows:NavigableString):
         """Generate a new Vote from a parsed table.
 
         Args:
@@ -65,9 +72,9 @@ class Vote:
         no = int(clean_string(vote_rows[2].find_all('td')[1].find('p').get_text()))
         abstention = int(clean_string(vote_rows[3].find_all('td')[1].find('p').get_text()))
 
-        return Vote(vote_number, yes, no, abstention)
+        return Vote(meeting, vote_number, yes, no, abstention)
 
-    def set_yes_voters(self, l: List[Member]):
+    def set_yes_voters(self, l):
         """Set the members who voted for
 
         Args:
@@ -80,8 +87,9 @@ class Vote:
             self.unsure = True
         self.yes = len(l)
         self.yes_voters = l
+        post_vote_activity(self, Choice.YES, l)
 
-    def set_no_voters(self, l: List[Member]):
+    def set_no_voters(self, l):
         """Set the members who voted against
 
         Args:
@@ -94,8 +102,10 @@ class Vote:
             self.unsure = True
         self.no = len(l)
         self.no_voters = l
+        post_vote_activity(self, Choice.NO, l)
 
-    def set_abstention_voters(self, l: List[Member]):
+
+    def set_abstention_voters(self, l):
         """Set the members who abstained from voting for this motion
 
         Args:
@@ -108,12 +118,14 @@ class Vote:
             self.unsure = True
         self.abstention = len(l)
         self.abstention_voters = l
+        post_vote_activity(self, Choice.ABSTENTION, l)
+
 
 
 class LanguageGroupVote(Vote):
     """For some voting matters a majority in both Language Groups is needed"""
 
-    def __init__(self, vote_number: int, vote_NL: Vote, vote_FR: Vote):
+    def __init__(self, meeting_topic, vote_number: int, vote_NL: Vote, vote_FR: Vote):
         """For some voting matters a majority in both Language Groups is needed
 
         Args:
@@ -121,7 +133,7 @@ class LanguageGroupVote(Vote):
             vote_NL (Vote): The Vote in the Dutch-speaking part of the Parliament
             vote_FR (Vote): The Vote in the French-speaking part of the Parliament
         """
-        Vote.__init__(self, vote_number, vote_NL.yes + vote_FR.yes, vote_NL.no + vote_FR.no, vote_NL.abstention + vote_FR.abstention)
+        Vote.__init__(self, meeting_topic, vote_number, vote_NL.yes + vote_FR.yes, vote_NL.no + vote_FR.no, vote_NL.abstention + vote_FR.abstention)
         self.vote_NL = vote_NL
         self.vote_FR = vote_FR
 
@@ -155,7 +167,8 @@ class LanguageGroupVote(Vote):
         """
         return self.vote_NL.has_passed() and self.vote_FR.has_passed()
 
-    def from_table(vote_number: int, vote_rows: NavigableString):
+    @staticmethod
+    def from_table(meeting_topic, vote_number: int, vote_rows: NavigableString):
         """Generate a new Vote from a parsed table.
 
         Args:
@@ -173,4 +186,4 @@ class LanguageGroupVote(Vote):
         no_nl = int(clean_string(vote_rows[3].find_all('td')[3].find('p').get_text()))
         abstention_nl = int(clean_string(vote_rows[4].find_all('td')[3].find('p').get_text()))
 
-        return LanguageGroupVote(vote_number, Vote(vote_number, yes_nl, no_nl, abstention_nl), Vote(vote_number, yes_fr, no_fr, abstention_fr))
+        return LanguageGroupVote(meeting_topic, vote_number, Vote(meeting_topic, vote_number, yes_nl, no_nl, abstention_nl), Vote(meeting_topic, vote_number, yes_fr, no_fr, abstention_fr))

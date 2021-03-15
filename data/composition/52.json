@@ -5,7 +5,31 @@
         "party": "CD&V",
         "province": "Antwerpen",
         "language": "Nederlands",
-        "wiki": "https://nl.wikipedia.org/wiki/Inge_Vervotte"
+        "wiki": "https://nl.wikipedia.org/wiki/Inge_Vervotte",
+        "replaces": [{
+            "name": "Schryvers Katrien",
+            "dates": [
+                {
+                    "from": "2008-12-29"
+                }
+            ]
+        }]
+    },
+    {
+        "first_name": "Katrien",
+        "last_name": "Schryvers",
+        "party": "CD&V",
+        "province": "Antwerpen",
+        "language": "Nederlands",
+        "wiki": "https://nl.wikipedia.org/wiki/Katrien_Schryvers"
+    },
+    {
+        "first_name": "Rudy",
+        "last_name": "Demotte",
+        "party": "PS",
+        "province": "Henegouwen",
+        "language": "Frans",
+        "wiki": "https://nl.wikipedia.org/wiki/Rudy_Demotte"
     },
     {
         "first_name": "Luc",
@@ -25,8 +49,8 @@
     },
     {
         "first_name": "Bart",
-        "last_name": "De Wever (N-VA)",
-        "party": "CD&V",
+        "last_name": "De Wever",
+        "party": "N-VA",
         "province": "Antwerpen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Bart_De_Wever"
@@ -39,7 +63,7 @@
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Kristof_Waterschoot",
         "replaces": [{
-            "name": "De Wever (N-VA) Bart",
+            "name": "De Wever Bart",
             "dates": [
                 {
                     "from": "2009-07-02"
@@ -49,8 +73,8 @@
     },
     {
         "first_name": "Kris",
-        "last_name": "Peeters (CD&V)",
-        "party": "N-VA",
+        "last_name": "Peeters",
+        "party": "CD&V",
         "province": "Antwerpen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Kris_Peeters_(politicus)"
@@ -63,7 +87,7 @@
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Jan_Jambon",
         "replaces": [{
-            "name": "Peeters (CD&V) Kris",
+            "name": "Peeters Kris",
             "dates": [
                 {
                     "from": "2007-06-28"
@@ -113,8 +137,8 @@
     },
     {
         "first_name": "Herman",
-        "last_name": "Van Rompuy (CD&V)",
-        "party": "N-VA",
+        "last_name": "Van Rompuy",
+        "party": "CD&V",
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Herman_Van_Rompuy"
@@ -127,7 +151,7 @@
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Ben_Weyts",
         "replaces": [{
-            "name": "Van Rompuy (CD&V) Herman",
+            "name": "Van Rompuy Herman",
             "dates": [
                 {
                     "from": "2008-12-31"
@@ -257,8 +281,8 @@
     },
     {
         "first_name": "Jan",
-        "last_name": "Peumans (N-VA)",
-        "party": "CD&V",
+        "last_name": "Peumans",
+        "party": "N-VA",
         "province": "Limburg",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Jan_Peumans"
@@ -271,7 +295,7 @@
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Hil%C3%A2l_Yal%C3%A7in",
         "replaces": [{
-            "name": "Peumans (N-VA) Jan",
+            "name": "Peumans Jan",
             "dates": [
                 {
                     "from": "2007-06-28"
@@ -369,8 +393,8 @@
     },
     {
         "first_name": "Stefaan",
-        "last_name": "De Clerck (CD&V)",
-        "party": "N-VA",
+        "last_name": "De Clerck",
+        "party": "CD&V",
         "province": "West-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Stefaan_De_Clerck"
@@ -383,7 +407,7 @@
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Patrick_De_Groote",
         "replaces": [{
-            "name": "De Clerck (CD&V) Stefaan",
+            "name": "De Clerck Stefaan",
             "dates": [
                 {
                     "from": "2008-12-31"
@@ -1363,7 +1387,7 @@
         "wiki": "https://nl.wikipedia.org/wiki/Luk_Van_Biesen"
     },
     {
-        "first_name": "Rik",
+        "first_name": "Hendrik",
         "last_name": "Daems",
         "party": "Open Vld",
         "province": "Leuven",
@@ -1372,10 +1396,11 @@
     },
     {
         "first_name": "Katia",
-        "last_name": "della Faille-de Limburg Stirum",
+        "last_name": "della Faille de Leverghem",
         "party": "Open Vld",
         "province": "Leuven",
         "language": "Nederlands",
+        "alternative_names": ["della Faille de Leverghem Katia"],
         "wiki": "https://nl.wikipedia.org/wiki/Katia_della_Faille-de_Limburg_Stirum"
     },
     {
@@ -1812,6 +1837,7 @@
         "party": "Ecolo",
         "province": "Waals-Brabant",
         "language": "Frans",
+        "alternative_names": ["Snoy et d'Oppuers Thérèse", "Snoy et d'Oppuers"],
         "wiki": "https://nl.wikipedia.org/wiki/Th%C3%A9r%C3%A8se_Snoy"
     },
     {
@@ -1896,7 +1922,7 @@
     },
     {
         "first_name": "Hélène",
-        "last_name": "Couplet-Clément",
+        "last_name": "Clément",
         "party": "cdH",
         "province": "Henegouwen",
         "language": "Frans",
@@ -2016,6 +2042,7 @@
         "party": "cdH",
         "province": "Namen",
         "language": "Frans",
+        "alternative_names": ["Tasiaux-De Neys Isabelle"],
         "wiki": "https://nl.wikipedia.org/wiki/Isabelle_Tasiaux-De_Nys",
         "replaces": [{
             "name": "Prévot Maxime",
@@ -2059,7 +2086,7 @@
         "wiki": "https://nl.wikipedia.org/wiki/Jurgen_Verstrepen"
     },
     {
-        "first_name": "Rob",
+        "first_name": "Robert",
         "last_name": "Van de Velde",
         "party": "LDD",
         "province": "Antwerpen",
@@ -2083,7 +2110,7 @@
         "wiki": "https://nl.wikipedia.org/wiki/Martine_De_Maght"
     },
     {
-        "first_name": "Jean-Marie",
+        "first_name": "Jean Marie",
         "last_name": "Dedecker",
         "party": "LDD",
         "province": "West-Vlaanderen",

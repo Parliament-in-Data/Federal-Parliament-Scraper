@@ -11,6 +11,7 @@ import json
 from collections import defaultdict
 import parliament_parser
 import datetime
+from activity import TopicActivity
 
 
 class TimeOfDay(Enum):
@@ -22,92 +23,44 @@ class TimeOfDay(Enum):
     PM = 2
     EVENING = 3
 
+class TopicType(Enum):
+    GENERAL = 1 # Topics for which no further subclassification could be made
+    CURRENT_AFFAIRS = 2 # Discussion of current news or political affairs
+    BUDGET = 3 # Discussions concerning the budget
+    SECRET_VOTE = 4 # General secret votes
+    REVISION_OF_CONSTITUTION = 5 # Discussion regarding the revision of articles of the constitution
+    INTERPELLATION = 6 # Questions submitted by an MP to the Government
+    NAME_VOTE = 7 # Public name votes, mostly concerning legislation
+    DRAFT_BILL = 8 # Wetsontwerp, a legal initiative coming from the Government
+    BILL_PROPOSAL = 9 # Wetsvoorstel, a legal initiative coming from the parliament
+    LEGISLATION = 10 # No further distinction could be made if this is a DRAFT or PROPOSAL
+    QUESTIONS = 11
 
-class MeetingTopic:
-    """
-    A MeetingTopic represents a single agenda point
-    in a meeting of the parliament.
-    """
-
-    def __init__(self, session: int, id: int, item: int):
-        """Constructs a new instance of a MeetingTopic
-
-        Args:
-            session (int): Session number of the parliament (e.g. 55)
-            id (int): Number of the meeting this topic is part of (e.g. 89)
-            item (int): The number of the agenda item (e.g. 1)
-        """
-        self.session = session
-        self.id = id
-        self.item = item
-        self.votes = []
-
-    def to_dict(self, session_base_URI: str):
-        return {'id': self.item, 'title': {'NL': self.title_NL, 'FR': self.title_FR}, 'votes': [vote.to_dict(session_base_URI) for vote in self.votes]}
-
-    def __repr__(self):
-        return "MeetingTopic(%s, %s, %s)" % (self.session, self.id, self.item)
-
-    def set_title(self, language: Language, title: str):
-        """Set the title of this agenda item for a specific language
-
-        Args:
-            language (Language): The language of this title (e.g. Language.NL)
-            title (str): The actual title
-        """
-        if language == Language.NL:
-            self.title_NL = title
-        else:
-            self.title_FR = title
-
-    def set_section(self, language: Language, section_name: str):
-        """The meeting is also organized in sections, this method allows you to set
-        the section name.
-
-        Args:
-            language (Language): The language of this section name (e.g. Language.NL)
-            section_name (str): The actual section name
-        """
-        if language == Language.NL:
-            self.section_NL = section_name
-        else:
-            self.section_FR = section_name
-
-    def get_title(self):
-        """Returns the title of the agenda item
-
-        Returns:
-            (str, str): A pair of strings where the first element is
-                        the Dutch version of the title, the second is
-                        the French version.
-        """
-        return (self.title_NL, self.title_FR)
-
-    def get_section(self):
-        """Returns the section name of the agenda item
-
-        Returns:
-            (str, str): A pair of strings where the first element is
-                        the Dutch version of the title, the second is
-                        the French version.
-        """
-        return (self.section_NL, self.section_FR)
-
-    def add_vote(self, vote):
-        """Add votes to the agenda item
-
-        Args:
-            vote (Vote): Add a single vote to the agenda item 
-        """
-        self.votes.append(vote)
-
-    def get_votes(self):
-        """Get the votes for the agenda item.
-
-        Returns:
-            list(Vote): A list of all the votes related to the item.
-        """
-        return self.votes
+    @staticmethod
+    def from_section_and_title(title_NL: str, section_NL: str):
+        title_NL = title_NL.lower()
+        section_NL = section_NL.lower()
+        if 'begroting' in section_NL:
+            return TopicType.BUDGET
+        if 'actualiteitsdebat' in section_NL:
+            return TopicType.CURRENT_AFFAIRS
+        if 'naamstemming' in section_NL:
+            return TopicType.NAME_VOTE
+        if 'geheim' in section_NL and 'stemming' in section_NL:
+            return TopicType.SECRET_VOTE
+        if 'vragen' in section_NL or 'vragen' in title_NL or 'vraag' in title_NL:
+            return TopicType.QUESTIONS
+        if 'interpellatie' in section_NL:
+            return TopicType.INTERPELLATION
+        if 'herziening' in section_NL and 'grondwet' in section_NL:
+            return TopicType.REVISION_OF_CONSTITUTION
+        if 'ontwerp' in section_NL or 'voorstel' in section_NL:
+            if (not 'ontwerp' in section_NL) or 'voorstel' in title_NL:
+                return TopicType.BILL_PROPOSAL
+            if (not 'voorstel' in section_NL) or 'ontwerp' in title_NL:
+                return TopicType.DRAFT_BILL
+            return TopicType.GENERAL
+        return TopicType.GENERAL
 
 
 class Meeting:
@@ -135,7 +88,8 @@ class Meeting:
         self.time_of_day = time_of_day
         self.date = date
         self.topics = {}
-
+    def get_uri(self):
+        return f'meetings/{self.id}.json'
     def dump_json(self, base_path:str, base_URI="/"):
         base_meeting_path = path.join(base_path, "meetings")
         base_meeting_URI = f'{base_URI}meetings/'
@@ -146,10 +100,10 @@ class Meeting:
         if not self.topics:
             self.get_meeting_topics()
 
-        topics = defaultdict(list)
+        topics = defaultdict(dict)
         for key in self.topics:
             topic = self.topics[key]
-            topics[topic.get_section()[0]].append(topic.to_dict(base_URI))
+            topics[str(topic.topic_type)][topic.item] = topic.dump_json(base_path, base_URI)
 
         with open(path.join(base_meeting_path, resource_name), 'w+') as fp:
             json.dump({
@@ -197,6 +151,7 @@ class Meeting:
                     s3 = soup.find('div', {'class': 'Section3'})
                     if s3:
                         tags = s3.find_all(text=re.compile('Vote\s*nominatif\s*-\s*Naamstemming:'))
+                        tags += s3.find_all(text=re.compile('Naamstemming\s*-\s*Vote\s*nominatif:'))
                         for i, tag in enumerate(tags):
                                 header = clean_string(tag.find_parent('p').get_text())
                                 numeric_values = [int(s) for s in header.split() if s.isdigit()]
@@ -216,6 +171,7 @@ class Meeting:
                                     # this check seems to be consistent
                                     if 'annulé' in current_node.get_text().lower() or '42.5' in current_node.get_text().lower():
                                         cancelled = True
+                                        break
                                     current_node = current_node.find_next_sibling()
                                 if cancelled:
                                     continue
@@ -273,9 +229,9 @@ class Meeting:
                     rows = table.find_all('tr', attrs={'height': None})
 
                     if len(rows) == 5:
-                        vote = Vote.from_table(vote_number, rows)
+                        vote = Vote.from_table(self.topics[agenda_item], vote_number, rows)
                     elif len(rows) == 6:
-                        vote = LanguageGroupVote.from_table(vote_number, rows)
+                        vote = LanguageGroupVote.from_table(self.topics[agenda_item], vote_number, rows)
                     else:
                         continue
 
@@ -322,11 +278,16 @@ class Meeting:
                     item = int(m.group(1))
                     if not item in self.topics:
                         self.topics[item] = MeetingTopic(
-                            self.session, self.id, item)
+                            self.session, self, item)
                     self.topics[item].set_title(
                         language, current_title.rstrip())
                     self.topics[item].set_section(language, clean_string(section.text) if section else (
                         "Algemeen" if language == Language.NL else "Generale"))
+                    self.topics[item].complete_type()
+                    if language == Language.NL:
+                        for member in self.parliamentary_session.get_members():
+                            if member.normalized_name() in current_title.rstrip().lower():
+                                member.post_activity(TopicActivity(member, self, self.topics[item]))
                     current_title = ""
 
             # Parse Dutch Meeting Topics
@@ -337,6 +298,7 @@ class Meeting:
             self.__get_votes()
         return self.topics
 
+    @staticmethod
     def from_soup(meeting: NavigableString, session):
         """Generate a new Meeting instance from BeautifulSoup's objects
 
@@ -358,3 +320,105 @@ class Meeting:
 
         result = Meeting(session, meeting_id, tod, date)
         return result
+
+class MeetingTopic:
+    """
+    A MeetingTopic represents a single agenda point
+    in a meeting of the parliament.
+    """
+
+    def __init__(self, session: int, meeting: Meeting, item: int):
+        """Constructs a new instance of a MeetingTopic
+
+        Args:
+            session (int): Session number of the parliament (e.g. 55)
+            id (int): Number of the meeting this topic is part of (e.g. 89)
+            item (int): The number of the agenda item (e.g. 1)
+        """
+        self.session = session
+        self.meeting = meeting
+        self.id = meeting.id
+        self.item = item
+        self.topic_type = TopicType.GENERAL
+        self.votes = []
+    
+    def get_uri(self):
+        return f'meetings/{self.id}/{self.item}.json'
+
+    def dump_json(self, base_path: str, session_base_URI: str):
+        topic_path = path.join(base_path, 'meetings', str(self.id))
+        makedirs(topic_path, exist_ok=True)
+
+        with open(path.join(topic_path, f'{self.item}.json'), 'w+') as fp:
+            json.dump({'id': self.item, 'title': {'NL': self.title_NL, 'FR': self.title_FR}, 'votes': [vote.to_dict(session_base_URI) for vote in self.votes]}, fp, ensure_ascii=False)
+
+        return f'{session_base_URI}{self.get_uri()}'
+
+    def __repr__(self):
+        return "MeetingTopic(%s, %s, %s)" % (self.session, self.id, self.item)
+
+    def set_title(self, language: Language, title: str):
+        """Set the title of this agenda item for a specific language
+
+        Args:
+            language (Language): The language of this title (e.g. Language.NL)
+            title (str): The actual title
+        """
+        if language == Language.NL:
+            self.title_NL = title
+        else:
+            self.title_FR = title
+    def complete_type(self, type: TopicType = None):
+        if type:
+            self.topic_type = type
+        else:
+            self.topic_type = TopicType.from_section_and_title(self.title_NL, self.section_NL)
+
+    def set_section(self, language: Language, section_name: str):
+        """The meeting is also organized in sections, this method allows you to set
+        the section name.
+
+        Args:
+            language (Language): The language of this section name (e.g. Language.NL)
+            section_name (str): The actual section name
+        """
+        if language == Language.NL:
+            self.section_NL = section_name
+        else:
+            self.section_FR = section_name
+
+    def get_title(self):
+        """Returns the title of the agenda item
+
+        Returns:
+            (str, str): A pair of strings where the first element is
+                        the Dutch version of the title, the second is
+                        the French version.
+        """
+        return (self.title_NL, self.title_FR)
+
+    def get_section(self):
+        """Returns the section name of the agenda item
+
+        Returns:
+            (str, str): A pair of strings where the first element is
+                        the Dutch version of the title, the second is
+                        the French version.
+        """
+        return (self.section_NL, self.section_FR)
+
+    def add_vote(self, vote):
+        """Add votes to the agenda item
+
+        Args:
+            vote (Vote): Add a single vote to the agenda item 
+        """
+        self.votes.append(vote)
+
+    def get_votes(self):
+        """Get the votes for the agenda item.
+
+        Returns:
+            list(Vote): A list of all the votes related to the item.
+        """
+        return self.votes
