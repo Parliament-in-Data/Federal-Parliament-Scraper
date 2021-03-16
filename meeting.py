@@ -164,7 +164,7 @@ class Meeting:
         def is_vote_cancelled(current_node):
             cancelled = False
 
-            while not current_node.name == "table":
+            while current_node and not current_node.name == "table":
                 # Sometimes votes get cancelled, apparently
                 # this check seems to be consistent
                 if 'annulé' in current_node.get_text().lower() or '42.5' in current_node.get_text().lower():
@@ -213,6 +213,7 @@ class Meeting:
                 for i, tag in enumerate(tags):
                     vote_number = extract_vote_number_from_tag(tag, i)
                     vote_header = go_to_p(tag)
+                    print(vote_header)
                     cancelled, current_node = is_vote_cancelled(vote_header)
 
                     if cancelled:
