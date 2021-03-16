@@ -251,7 +251,8 @@ class Meeting:
                 # We have to ignore these otherwise we would start interpreting the votes as the wrong type.
                 rows = tag.find_all('tr', attrs={'height': None})
 
-                if len(rows) == 5:
+                # We can't always rely on the number of rows, since sometimes there's randomly an empty row.
+                if len(rows) == 5 or (len(rows) == 6 and rows[-1].get_text().strip() == ''):
                     vote = GenericVote.from_table(self.topics[agenda_item], vote_number, rows)
                 elif len(rows) == 6:
                     vote = LanguageGroupVote.from_table(self.topics[agenda_item], vote_number, rows)

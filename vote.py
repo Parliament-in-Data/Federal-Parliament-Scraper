@@ -185,6 +185,7 @@ class LanguageGroupVote(GenericVote):
         """Generate a new Vote from a parsed table.
 
         Args:
+            meeting_topic (MeetingTopic): The meeting topic
             vote_number (int): Number of the vote in this meeting (e.g. 1)
             vote_rows (NavigableString): Vote rows as obtained by BeautifulSoup
 
