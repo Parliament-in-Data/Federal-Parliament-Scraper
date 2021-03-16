@@ -199,7 +199,7 @@ class LanguageGroupVote(GenericVote):
         no_nl = int(clean_string(vote_rows[3].find_all('td')[3].find('p').get_text()))
         abstention_nl = int(clean_string(vote_rows[4].find_all('td')[3].find('p').get_text()))
 
-        return LanguageGroupVote(meeting_topic, vote_number, Vote(meeting_topic, vote_number, yes_nl, no_nl, abstention_nl), Vote(meeting_topic, vote_number, yes_fr, no_fr, abstention_fr))
+        return LanguageGroupVote(meeting_topic, vote_number, GenericVote(meeting_topic, vote_number, yes_nl, no_nl, abstention_nl), GenericVote(meeting_topic, vote_number, yes_fr, no_fr, abstention_fr))
 
 
 class ElectronicGenericVote(Vote):
