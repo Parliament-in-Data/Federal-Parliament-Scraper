@@ -220,7 +220,8 @@ class ElectronicGenericVote(Vote):
 
     def __repr__(self):
         return f"ElectronicGenericVote({self.vote_number}, {self.yes}, {self.no})"
-
+    def has_passed(self):
+        return self.yes > self.no and self.yes + self.no > 75
     def to_dict(self, session_base_URI: str):
         return {
             'id': self.vote_number,
