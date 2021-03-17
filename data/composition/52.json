@@ -16,7 +16,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1977-12-27"
+        "date_of_birth": "1977-12-27",
+        "wikibase_item": "Q456792",
+        "gender": "female"
     },
     {
         "first_name": "Katrien",
@@ -25,7 +27,9 @@
         "province": "Antwerpen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Katrien_Schryvers",
-        "date_of_birth": "1964-01-11"
+        "date_of_birth": "1964-01-11",
+        "wikibase_item": "Q2344465",
+        "gender": "female"
     },
     {
         "first_name": "Rudy",
@@ -34,7 +38,9 @@
         "province": "Henegouwen",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Rudy_Demotte",
-        "date_of_birth": "1963-06-03"
+        "date_of_birth": "1963-06-03",
+        "wikibase_item": "Q946066",
+        "gender": "male"
     },
     {
         "first_name": "Luc",
@@ -53,7 +59,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1964-01-14"
+        "date_of_birth": "1964-01-14",
+        "wikibase_item": "Q2754332",
+        "gender": "male"
     },
     {
         "first_name": "Bart",
@@ -62,7 +70,9 @@
         "province": "Antwerpen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Bart_De_Wever",
-        "date_of_birth": "1970-12-21"
+        "date_of_birth": "1970-12-21",
+        "wikibase_item": "Q336599",
+        "gender": "male"
     },
     {
         "first_name": "Kristof",
@@ -81,7 +91,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1981-08-09"
+        "date_of_birth": "1981-08-09",
+        "wikibase_item": "Q2655138",
+        "gender": "male"
     },
     {
         "first_name": "Kris",
@@ -90,7 +102,9 @@
         "province": "Antwerpen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Kris_Peeters_(politicus)",
-        "date_of_birth": "1962-05-18"
+        "date_of_birth": "1962-05-18",
+        "wikibase_item": "Q12869",
+        "gender": "male"
     },
     {
         "first_name": "Jan",
@@ -109,7 +123,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1960-04-26"
+        "date_of_birth": "1960-04-26",
+        "wikibase_item": "Q1865725",
+        "gender": "male"
     },
     {
         "first_name": "Servais",
@@ -118,7 +134,9 @@
         "province": "Antwerpen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Servais_Verherstraeten",
-        "date_of_birth": "1960-01-29"
+        "date_of_birth": "1960-01-29",
+        "wikibase_item": "Q2032311",
+        "gender": "male"
     },
     {
         "first_name": "Mia",
@@ -127,7 +145,9 @@
         "province": "Antwerpen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Mia_De_Schamphelaere",
-        "date_of_birth": "1961-05-28"
+        "date_of_birth": "1961-05-28",
+        "wikibase_item": "Q3307847",
+        "gender": "female"
     },
     {
         "first_name": "Jef",
@@ -136,7 +156,9 @@
         "province": "Antwerpen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Jef_Van_den_Bergh",
-        "date_of_birth": "1973-02-05"
+        "date_of_birth": "1973-02-05",
+        "wikibase_item": "Q1974298",
+        "gender": "male"
     },
     {
         "first_name": "Flor",
@@ -145,7 +167,9 @@
         "province": "Antwerpen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Flor_Van_Noppen",
-        "date_of_birth": "2014-09-22"
+        "date_of_birth": "2014-09-22",
+        "wikibase_item": "Q3073839",
+        "gender": "male"
     },
     {
         "first_name": "Mark",
@@ -154,7 +178,9 @@
         "province": "Antwerpen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Mark_Verhaegen",
-        "date_of_birth": "1954-12-04"
+        "date_of_birth": "1954-12-04",
+        "wikibase_item": "Q2194096",
+        "gender": "male"
     },
     {
         "first_name": "Herman",
@@ -163,7 +189,9 @@
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Herman_Van_Rompuy",
-        "date_of_birth": "1947-10-31"
+        "date_of_birth": "1947-10-31",
+        "wikibase_item": "Q12983",
+        "gender": "male"
     },
     {
         "first_name": "Ben",
@@ -182,7 +210,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1970-11-12"
+        "date_of_birth": "1970-11-12",
+        "wikibase_item": "Q2271035",
+        "gender": "male"
     },
     {
         "first_name": "Michel",
@@ -191,7 +221,9 @@
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Michel_Doomst",
-        "date_of_birth": "1953-11-13"
+        "date_of_birth": "1953-11-13",
+        "wikibase_item": "Q2267557",
+        "gender": "male"
     },
     {
         "first_name": "Sonja",
@@ -200,7 +232,9 @@
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Sonja_Becq",
-        "date_of_birth": "1957-12-08"
+        "date_of_birth": "1957-12-08",
+        "wikibase_item": "Q607864",
+        "gender": "female"
     },
     {
         "first_name": "Ingrid",
@@ -219,7 +253,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1968-04-14"
+        "date_of_birth": "1968-04-14",
+        "wikibase_item": "Q2895291",
+        "gender": "female"
     },
     {
         "first_name": "Katrien",
@@ -228,7 +264,9 @@
         "province": "Leuven",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Katrien_Partyka",
-        "date_of_birth": "1973-07-31"
+        "date_of_birth": "1973-07-31",
+        "wikibase_item": "Q2709142",
+        "gender": "female"
     },
     {
         "first_name": "Jo",
@@ -237,7 +275,9 @@
         "province": "Limburg",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Jo_Vandeurzen",
-        "date_of_birth": "1958-06-02"
+        "date_of_birth": "1958-06-02",
+        "wikibase_item": "Q16002",
+        "gender": "male"
     },
     {
         "first_name": "Peter",
@@ -265,7 +305,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1964-05-06"
+        "date_of_birth": "1964-05-06",
+        "wikibase_item": "Q3376731",
+        "gender": "male"
     },
     {
         "first_name": "Johan",
@@ -274,7 +316,9 @@
         "province": "Limburg",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Johan_Sauwens",
-        "date_of_birth": "1951-03-14"
+        "date_of_birth": "1951-03-14",
+        "wikibase_item": "Q2227111",
+        "gender": "male"
     },
     {
         "first_name": "Raf",
@@ -293,7 +337,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1972-07-12"
+        "date_of_birth": "1972-07-12",
+        "wikibase_item": "Q2962167",
+        "gender": "male"
     },
     {
         "first_name": "Liesbeth",
@@ -302,7 +348,9 @@
         "province": "Limburg",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Liesbeth_Van_der_Auwera",
-        "date_of_birth": "1968-11-16"
+        "date_of_birth": "1968-11-16",
+        "wikibase_item": "Q2168996",
+        "gender": "female"
     },
     {
         "first_name": "Gerald",
@@ -311,7 +359,9 @@
         "province": "Limburg",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Gerald_Kindermans",
-        "date_of_birth": "1957-07-08"
+        "date_of_birth": "1957-07-08",
+        "wikibase_item": "Q2585640",
+        "gender": "male"
     },
     {
         "first_name": "Jan",
@@ -320,7 +370,9 @@
         "province": "Limburg",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Jan_Peumans",
-        "date_of_birth": "1951-01-06"
+        "date_of_birth": "1951-01-06",
+        "wikibase_item": "Q951432",
+        "gender": "male"
     },
     {
         "first_name": "Hilâl",
@@ -339,7 +391,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1981-08-31"
+        "date_of_birth": "1981-08-31",
+        "wikibase_item": "Q2551804",
+        "gender": "female"
     },
     {
         "first_name": "Peter",
@@ -348,7 +402,9 @@
         "province": "Oost-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Peter_Leyman",
-        "date_of_birth": "1962-05-12"
+        "date_of_birth": "1962-05-12",
+        "wikibase_item": "Q2582376",
+        "gender": "male"
     },
     {
         "first_name": "Jenne",
@@ -367,7 +423,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1979-10-08"
+        "date_of_birth": "1979-10-08",
+        "wikibase_item": "Q2135372",
+        "gender": "male"
     },
     {
         "first_name": "Sarah",
@@ -376,7 +434,9 @@
         "province": "Oost-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Sarah_Smeyers",
-        "date_of_birth": "1980-10-08"
+        "date_of_birth": "1980-10-08",
+        "wikibase_item": "Q1866883",
+        "gender": "female"
     },
     {
         "first_name": "Pieter",
@@ -385,7 +445,9 @@
         "province": "Oost-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Pieter_De_Crem",
-        "date_of_birth": "1962-07-22"
+        "date_of_birth": "1962-07-22",
+        "wikibase_item": "Q1534851",
+        "gender": "male"
     },
     {
         "first_name": "Lieve",
@@ -404,7 +466,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1963-12-04"
+        "date_of_birth": "1963-12-04",
+        "wikibase_item": "Q1983428",
+        "gender": "female"
     },
     {
         "first_name": "Stefaan",
@@ -413,7 +477,9 @@
         "province": "Oost-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Stefaan_Vercamer",
-        "date_of_birth": "1961-06-09"
+        "date_of_birth": "1961-06-09",
+        "wikibase_item": "Q2586065",
+        "gender": "male"
     },
     {
         "first_name": "Leen",
@@ -422,7 +488,9 @@
         "province": "Oost-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Leen_Dierick",
-        "date_of_birth": "1978-05-02"
+        "date_of_birth": "1978-05-02",
+        "wikibase_item": "Q3228978",
+        "gender": "female"
     },
     {
         "first_name": "Ilse",
@@ -431,7 +499,9 @@
         "province": "Oost-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Ilse_Uyttersprot",
-        "date_of_birth": "2020-08-04"
+        "date_of_birth": "2020-08-04",
+        "wikibase_item": "Q2249806",
+        "gender": "female"
     },
     {
         "first_name": "Hendrik",
@@ -440,7 +510,9 @@
         "province": "West-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Hendrik_Bogaert",
-        "date_of_birth": "1968-08-30"
+        "date_of_birth": "1968-08-30",
+        "wikibase_item": "Q1819614",
+        "gender": "male"
     },
     {
         "first_name": "Stefaan",
@@ -449,7 +521,9 @@
         "province": "West-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Stefaan_De_Clerck",
-        "date_of_birth": "1951-12-12"
+        "date_of_birth": "1951-12-12",
+        "wikibase_item": "Q12498",
+        "gender": "male"
     },
     {
         "first_name": "Patrick",
@@ -468,7 +542,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1958-10-13"
+        "date_of_birth": "1958-10-13",
+        "wikibase_item": "Q2776780",
+        "gender": "male"
     },
     {
         "first_name": "Luc",
@@ -477,7 +553,9 @@
         "province": "West-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Luc_Goutry",
-        "date_of_birth": "1948-12-22"
+        "date_of_birth": "1948-12-22",
+        "wikibase_item": "Q1869929",
+        "gender": "male"
     },
     {
         "first_name": "Nathalie",
@@ -486,7 +564,9 @@
         "province": "West-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Nathalie_Muylle",
-        "date_of_birth": "1969-02-08"
+        "date_of_birth": "1969-02-08",
+        "wikibase_item": "Q524806",
+        "gender": "female"
     },
     {
         "first_name": "Roel",
@@ -495,7 +575,9 @@
         "province": "West-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Roel_Deseyn",
-        "date_of_birth": "1976-10-14"
+        "date_of_birth": "1976-10-14",
+        "wikibase_item": "Q3438541",
+        "gender": "male"
     },
     {
         "first_name": "Els",
@@ -504,7 +586,9 @@
         "province": "West-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Els_De_Rammelaere",
-        "date_of_birth": "1969-04-12"
+        "date_of_birth": "1969-04-12",
+        "wikibase_item": "Q2448683",
+        "gender": "female"
     },
     {
         "first_name": "Olivier",
@@ -513,7 +597,9 @@
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Olivier_Maingain",
-        "date_of_birth": "1958-08-03"
+        "date_of_birth": "1958-08-03",
+        "wikibase_item": "Q678494",
+        "gender": "male"
     },
     {
         "first_name": "Corinne",
@@ -522,7 +608,9 @@
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Corinne_De_Permentier",
-        "date_of_birth": "1960-04-05"
+        "date_of_birth": "1960-04-05",
+        "wikibase_item": "Q2997319",
+        "gender": "female"
     },
     {
         "first_name": "François-Xavier",
@@ -531,7 +619,9 @@
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Fran%C3%A7ois-Xavier_de_Donnea",
-        "date_of_birth": "1941-04-29"
+        "date_of_birth": "1941-04-29",
+        "wikibase_item": "Q479383",
+        "gender": "male"
     },
     {
         "first_name": "Bernard",
@@ -540,7 +630,9 @@
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Bernard_Clerfayt",
-        "date_of_birth": "1961-12-30"
+        "date_of_birth": "1961-12-30",
+        "wikibase_item": "Q822355",
+        "gender": "male"
     },
     {
         "first_name": "Xavier",
@@ -559,7 +651,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1972-09-20"
+        "date_of_birth": "1972-09-20",
+        "wikibase_item": "Q3570596",
+        "gender": "male"
     },
     {
         "first_name": "Daniel",
@@ -568,7 +662,9 @@
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Daniel_Ducarme",
-        "date_of_birth": "2010-08-28"
+        "date_of_birth": "2010-08-28",
+        "wikibase_item": "Q964403",
+        "gender": "male"
     },
     {
         "first_name": "Florence",
@@ -577,7 +673,9 @@
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Florence_Reuter",
-        "date_of_birth": "1969-12-20"
+        "date_of_birth": "1969-12-20",
+        "wikibase_item": "Q3074022",
+        "gender": "female"
     },
     {
         "first_name": "Eric",
@@ -596,7 +694,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1950-07-01"
+        "date_of_birth": "1950-07-01",
+        "wikibase_item": "Q3591244",
+        "gender": "male"
     },
     {
         "first_name": "Jean-Luc",
@@ -605,7 +705,9 @@
         "province": "Henegouwen",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Jean-Luc_Crucke",
-        "date_of_birth": "1962-10-22"
+        "date_of_birth": "1962-10-22",
+        "wikibase_item": "Q3167117",
+        "gender": "male"
     },
     {
         "first_name": "Françoise",
@@ -624,7 +726,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1957-01-08"
+        "date_of_birth": "1957-01-08",
+        "wikibase_item": "Q3086436",
+        "gender": "female"
     },
     {
         "first_name": "Jacqueline",
@@ -633,7 +737,9 @@
         "province": "Henegouwen",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Jacqueline_Galant",
-        "date_of_birth": "1974-03-18"
+        "date_of_birth": "1974-03-18",
+        "wikibase_item": "Q3157724",
+        "gender": "female"
     },
     {
         "first_name": "Marie-Christine",
@@ -642,7 +748,9 @@
         "province": "Henegouwen",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Marie-Christine_Marghem",
-        "date_of_birth": "1963-05-22"
+        "date_of_birth": "1963-05-22",
+        "wikibase_item": "Q3291646",
+        "gender": "female"
     },
     {
         "first_name": "Denis",
@@ -651,7 +759,9 @@
         "province": "Henegouwen",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Denis_Ducarme",
-        "date_of_birth": "1973-10-23"
+        "date_of_birth": "1973-10-23",
+        "wikibase_item": "Q3022653",
+        "gender": "male"
     },
     {
         "first_name": "Jean-Jacques",
@@ -660,7 +770,9 @@
         "province": "Henegouwen",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Jean-Jacques_Flahaux",
-        "date_of_birth": "1955-07-19"
+        "date_of_birth": "1955-07-19",
+        "wikibase_item": "Q3166258",
+        "gender": "male"
     },
     {
         "first_name": "Olivier",
@@ -669,7 +781,9 @@
         "province": "Henegouwen",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Olivier_Chastel",
-        "date_of_birth": "1964-11-22"
+        "date_of_birth": "1964-11-22",
+        "wikibase_item": "Q3143147",
+        "gender": "male"
     },
     {
         "first_name": "Olivier",
@@ -688,7 +802,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1965-03-21"
+        "date_of_birth": "1965-03-21",
+        "wikibase_item": "Q3350975",
+        "gender": "male"
     },
     {
         "first_name": "Didier",
@@ -697,7 +813,9 @@
         "province": "Luik",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Didier_Reynders",
-        "date_of_birth": "1958-08-06"
+        "date_of_birth": "1958-08-06",
+        "wikibase_item": "Q978208",
+        "gender": "male"
     },
     {
         "first_name": "Josée",
@@ -716,7 +834,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1959-04-24"
+        "date_of_birth": "1959-04-24",
+        "wikibase_item": "Q3186637",
+        "gender": "female"
     },
     {
         "first_name": "Kattrin",
@@ -725,7 +845,9 @@
         "province": "Luik",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Kattrin_Jadin",
-        "date_of_birth": "1980-07-01"
+        "date_of_birth": "1980-07-01",
+        "wikibase_item": "Q733266",
+        "gender": "female"
     },
     {
         "first_name": "Daniel",
@@ -734,7 +856,9 @@
         "province": "Luik",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Daniel_Bacquelaine",
-        "date_of_birth": "1952-10-30"
+        "date_of_birth": "1952-10-30",
+        "wikibase_item": "Q2949528",
+        "gender": "male"
     },
     {
         "first_name": "Pierre-Yves",
@@ -743,7 +867,9 @@
         "province": "Luik",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Pierre-Yves_Jeholet",
-        "date_of_birth": "1968-10-06"
+        "date_of_birth": "1968-10-06",
+        "wikibase_item": "Q3383564",
+        "gender": "male"
     },
     {
         "first_name": "Luc",
@@ -762,7 +888,9 @@
                 ]
             }
         ],
-        "date_of_birth": "2019-08-12"
+        "date_of_birth": "2019-08-12",
+        "wikibase_item": "Q3264833",
+        "gender": "male"
     },
     {
         "first_name": "Hervé",
@@ -771,7 +899,9 @@
         "province": "Luik",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Herv%C3%A9_Jamar",
-        "date_of_birth": "1965-01-01"
+        "date_of_birth": "1965-01-01",
+        "wikibase_item": "Q1915825",
+        "gender": "male"
     },
     {
         "first_name": "Olivier",
@@ -790,7 +920,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1959-07-30"
+        "date_of_birth": "1959-07-30",
+        "wikibase_item": "Q3351083",
+        "gender": "male"
     },
     {
         "first_name": "Philippe",
@@ -799,7 +931,9 @@
         "province": "Luxemburg",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Philippe_Collard",
-        "date_of_birth": "1957-03-19"
+        "date_of_birth": "1957-03-19",
+        "wikibase_item": "Q3379606",
+        "gender": "male"
     },
     {
         "first_name": "Carine",
@@ -808,7 +942,9 @@
         "province": "Luxemburg",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Carine_Lecomte",
-        "date_of_birth": "1960-02-05"
+        "date_of_birth": "1960-02-05",
+        "wikibase_item": "Q2938805",
+        "gender": "female"
     },
     {
         "first_name": "Sabine",
@@ -817,7 +953,9 @@
         "province": "Namen",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Sabine_Laruelle",
-        "date_of_birth": "1965-06-02"
+        "date_of_birth": "1965-06-02",
+        "wikibase_item": "Q508073",
+        "gender": "female"
     },
     {
         "first_name": "David",
@@ -836,7 +974,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1976-01-10"
+        "date_of_birth": "1976-01-10",
+        "wikibase_item": "Q3017667",
+        "gender": "male"
     },
     {
         "first_name": "François",
@@ -845,7 +985,9 @@
         "province": "Namen",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Fran%C3%A7ois_Bellot",
-        "date_of_birth": "1954-02-08"
+        "date_of_birth": "1954-02-08",
+        "wikibase_item": "Q2457970",
+        "gender": "male"
     },
     {
         "first_name": "Charles",
@@ -854,7 +996,9 @@
         "province": "Waals-Brabant",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Charles_Michel",
-        "date_of_birth": "1975-12-21"
+        "date_of_birth": "1975-12-21",
+        "wikibase_item": "Q950958",
+        "gender": "male"
     },
     {
         "first_name": "Jacques",
@@ -873,7 +1017,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1948-06-05"
+        "date_of_birth": "1948-06-05",
+        "wikibase_item": "Q3159691",
+        "gender": "male"
     },
     {
         "first_name": "Valérie",
@@ -882,7 +1028,9 @@
         "province": "Waals-Brabant",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Val%C3%A9rie_De_Bue",
-        "date_of_birth": "1966-10-07"
+        "date_of_birth": "1966-10-07",
+        "wikibase_item": "Q3554245",
+        "gender": "female"
     },
     {
         "first_name": "Laurette",
@@ -891,7 +1039,9 @@
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Laurette_Onkelinx",
-        "date_of_birth": "1958-10-02"
+        "date_of_birth": "1958-10-02",
+        "wikibase_item": "Q448224",
+        "gender": "female"
     },
     {
         "first_name": "Jean",
@@ -910,7 +1060,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1958-08-08"
+        "date_of_birth": "1958-08-08",
+        "wikibase_item": "Q3171427",
+        "gender": "male"
     },
     {
         "first_name": "Yvan",
@@ -919,7 +1071,9 @@
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Yvan_Mayeur",
-        "date_of_birth": "1960-01-24"
+        "date_of_birth": "1960-01-24",
+        "wikibase_item": "Q2118869",
+        "gender": "male"
     },
     {
         "first_name": "Charles",
@@ -928,7 +1082,9 @@
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Charles_Picqu%C3%A9",
-        "date_of_birth": "1948-11-01"
+        "date_of_birth": "1948-11-01",
+        "wikibase_item": "Q943256",
+        "gender": "male"
     },
     {
         "first_name": "Karine",
@@ -947,7 +1103,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1964-05-04"
+        "date_of_birth": "1964-05-04",
+        "wikibase_item": "Q3193292",
+        "gender": "female"
     },
     {
         "first_name": "Marie",
@@ -956,7 +1114,9 @@
         "province": "Henegouwen",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Marie_Arena",
-        "date_of_birth": "1966-12-17"
+        "date_of_birth": "1966-12-17",
+        "wikibase_item": "Q457117",
+        "gender": "female"
     },
     {
         "first_name": "Privé",
@@ -976,7 +1136,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1972-06-08"
+        "date_of_birth": "1972-06-08",
+        "wikibase_item": "Q3155016",
+        "gender": "female"
     },
     {
         "first_name": "Camille",
@@ -996,7 +1158,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1946-01-02"
+        "date_of_birth": "1946-01-02",
+        "wikibase_item": "Q2934910",
+        "gender": "female"
     },
     {
         "first_name": "Patrick",
@@ -1005,7 +1169,9 @@
         "province": "Henegouwen",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Patrick_Moriau",
-        "date_of_birth": "2013-07-20"
+        "date_of_birth": "2013-07-20",
+        "wikibase_item": "Q1939869",
+        "gender": "male"
     },
     {
         "first_name": "Colette",
@@ -1014,7 +1180,9 @@
         "province": "Henegouwen",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Colette_Burgeon",
-        "date_of_birth": "1957-02-11"
+        "date_of_birth": "1957-02-11",
+        "wikibase_item": "Q1838690",
+        "gender": "female"
     },
     {
         "first_name": "Sophie",
@@ -1023,7 +1191,9 @@
         "province": "Henegouwen",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Sophie_P%C3%A9criaux",
-        "date_of_birth": "1967-02-18"
+        "date_of_birth": "1967-02-18",
+        "wikibase_item": "Q2020669",
+        "gender": "female"
     },
     {
         "first_name": "Philippe",
@@ -1042,7 +1212,9 @@
                 ]
             }
         ],
-        "date_of_birth": "2019-12-26"
+        "date_of_birth": "2019-12-26",
+        "wikibase_item": "Q679155",
+        "gender": "male"
     },
     {
         "first_name": "Sophie",
@@ -1062,7 +1234,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1967-02-18"
+        "date_of_birth": "1967-02-18",
+        "wikibase_item": "Q2020669",
+        "gender": "female"
     },
     {
         "first_name": "Christian",
@@ -1071,7 +1245,9 @@
         "province": "Henegouwen",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Christian_Dupont",
-        "date_of_birth": "1947-05-03"
+        "date_of_birth": "1947-05-03",
+        "wikibase_item": "Q2694368",
+        "gender": "male"
     },
     {
         "first_name": "Eric",
@@ -1080,7 +1256,9 @@
         "province": "Henegouwen",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/%C3%89ric_Thi%C3%A9baut",
-        "date_of_birth": "1969-06-30"
+        "date_of_birth": "1969-06-30",
+        "wikibase_item": "Q2888701",
+        "gender": "male"
     },
     {
         "first_name": "Elio",
@@ -1089,7 +1267,9 @@
         "province": "Henegouwen",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Elio_Di_Rupo",
-        "date_of_birth": "1951-07-18"
+        "date_of_birth": "1951-07-18",
+        "wikibase_item": "Q15048",
+        "gender": "male"
     },
     {
         "first_name": "Bruno",
@@ -1126,7 +1306,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1953-04-18"
+        "date_of_birth": "1953-04-18",
+        "wikibase_item": "Q2927009",
+        "gender": "male"
     },
     {
         "first_name": "Michel",
@@ -1135,7 +1317,9 @@
         "province": "Luik",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Michel_Daerden",
-        "date_of_birth": "2012-08-05"
+        "date_of_birth": "2012-08-05",
+        "wikibase_item": "Q772642",
+        "gender": "male"
     },
     {
         "first_name": "Thierry",
@@ -1154,7 +1338,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1958-07-21"
+        "date_of_birth": "1958-07-21",
+        "wikibase_item": "Q1748916",
+        "gender": "male"
     },
     {
         "first_name": "Guy",
@@ -1163,7 +1349,9 @@
         "province": "Luik",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Guy_Co%C3%ABme",
-        "date_of_birth": "1946-08-21"
+        "date_of_birth": "1946-08-21",
+        "wikibase_item": "Q593302",
+        "gender": "male"
     },
     {
         "first_name": "Marie-Claire",
@@ -1172,7 +1360,9 @@
         "province": "Luik",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Marie-Claire_Lambert",
-        "date_of_birth": "1948-02-29"
+        "date_of_birth": "1948-02-29",
+        "wikibase_item": "Q2777049",
+        "gender": "female"
     },
     {
         "first_name": "Alain",
@@ -1181,7 +1371,9 @@
         "province": "Luik",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Alain_Mathot",
-        "date_of_birth": "1972-08-29"
+        "date_of_birth": "1972-08-29",
+        "wikibase_item": "Q1663490",
+        "gender": "male"
     },
     {
         "first_name": "André",
@@ -1190,7 +1382,9 @@
         "province": "Luik",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Andr%C3%A9_Fr%C3%A9d%C3%A9ric",
-        "date_of_birth": "1958-07-04"
+        "date_of_birth": "1958-07-04",
+        "wikibase_item": "Q2847784",
+        "gender": "male"
     },
     {
         "first_name": "Linda",
@@ -1199,7 +1393,9 @@
         "province": "Luik",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Linda_Musin",
-        "date_of_birth": "2017-08-14"
+        "date_of_birth": "2017-08-14",
+        "wikibase_item": "Q3241366",
+        "gender": "female"
     },
     {
         "first_name": "André",
@@ -1208,7 +1404,9 @@
         "province": "Luxemburg",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Andr%C3%A9_Perp%C3%A8te",
-        "date_of_birth": "1956-03-16"
+        "date_of_birth": "1956-03-16",
+        "wikibase_item": "Q2848420",
+        "gender": "male"
     },
     {
         "first_name": "Jean-Marc",
@@ -1217,7 +1415,9 @@
         "province": "Namen",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Jean-Marc_Deliz%C3%A9e",
-        "date_of_birth": "1959-07-30"
+        "date_of_birth": "1959-07-30",
+        "wikibase_item": "Q2107147",
+        "gender": "male"
     },
     {
         "first_name": "Valérie",
@@ -1245,7 +1445,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1967-06-27"
+        "date_of_birth": "1967-06-27",
+        "wikibase_item": "Q2182965",
+        "gender": "female"
     },
     {
         "first_name": "Claude",
@@ -1254,7 +1456,9 @@
         "province": "Namen",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Claude_Eerdekens",
-        "date_of_birth": "1948-05-13"
+        "date_of_birth": "1948-05-13",
+        "wikibase_item": "Q2016969",
+        "gender": "male"
     },
     {
         "first_name": "Guy",
@@ -1273,7 +1477,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1951-03-11"
+        "date_of_birth": "1951-03-11",
+        "wikibase_item": "Q3122014",
+        "gender": "male"
     },
     {
         "first_name": "André",
@@ -1282,7 +1488,9 @@
         "province": "Waals-Brabant",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Andr%C3%A9_Flahaut",
-        "date_of_birth": "1955-08-18"
+        "date_of_birth": "1955-08-18",
+        "wikibase_item": "Q518520",
+        "gender": "male"
     },
     {
         "first_name": "Gerolf",
@@ -1291,7 +1499,9 @@
         "province": "Antwerpen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Gerolf_Annemans",
-        "date_of_birth": "1958-11-08"
+        "date_of_birth": "1958-11-08",
+        "wikibase_item": "Q2294644",
+        "gender": "male"
     },
     {
         "first_name": "Alexandra",
@@ -1300,7 +1510,9 @@
         "province": "Antwerpen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Alexandra_Colen",
-        "date_of_birth": "1955-07-09"
+        "date_of_birth": "1955-07-09",
+        "wikibase_item": "Q2833256",
+        "gender": "female"
     },
     {
         "first_name": "Bruno",
@@ -1309,7 +1521,9 @@
         "province": "Antwerpen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Bruno_Valkeniers",
-        "date_of_birth": "1955-06-13"
+        "date_of_birth": "1955-06-13",
+        "wikibase_item": "Q2927014",
+        "gender": "male"
     },
     {
         "first_name": "Jan",
@@ -1318,7 +1532,9 @@
         "province": "Antwerpen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Jan_Mortelmans",
-        "date_of_birth": "1964-05-04"
+        "date_of_birth": "1964-05-04",
+        "wikibase_item": "Q3161725",
+        "gender": "male"
     },
     {
         "first_name": "Marijke",
@@ -1327,7 +1543,9 @@
         "province": "Antwerpen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Marijke_Dillen",
-        "date_of_birth": "1960-12-11"
+        "date_of_birth": "1960-12-11",
+        "wikibase_item": "Q3293055",
+        "gender": "female"
     },
     {
         "first_name": "Luc",
@@ -1346,7 +1564,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1954-09-06"
+        "date_of_birth": "1954-09-06",
+        "wikibase_item": "Q2277098",
+        "gender": "male"
     },
     {
         "first_name": "Rita",
@@ -1355,7 +1575,9 @@
         "province": "Antwerpen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Rita_De_Bont",
-        "date_of_birth": "1954-07-29"
+        "date_of_birth": "1954-07-29",
+        "wikibase_item": "Q3433236",
+        "gender": "female"
     },
     {
         "first_name": "Filip",
@@ -1364,7 +1586,9 @@
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Filip_De_Man",
-        "date_of_birth": "1955-11-11"
+        "date_of_birth": "1955-11-11",
+        "wikibase_item": "Q466236",
+        "gender": "male"
     },
     {
         "first_name": "Greet",
@@ -1373,7 +1597,9 @@
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Greet_Van_Linter",
-        "date_of_birth": "1956-07-06"
+        "date_of_birth": "1956-07-06",
+        "wikibase_item": "Q2101507",
+        "gender": "female"
     },
     {
         "first_name": "Bart",
@@ -1392,7 +1618,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1966-04-17"
+        "date_of_birth": "1966-04-17",
+        "wikibase_item": "Q2885864",
+        "gender": "male"
     },
     {
         "first_name": "Hagen",
@@ -1401,7 +1629,9 @@
         "province": "Leuven",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Hagen_Goyvaerts",
-        "date_of_birth": "1961-03-23"
+        "date_of_birth": "1961-03-23",
+        "wikibase_item": "Q2304984",
+        "gender": "male"
     },
     {
         "first_name": "Bert",
@@ -1410,7 +1640,9 @@
         "province": "Limburg",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Bert_Schoofs_(politicus)",
-        "date_of_birth": "1967-06-10"
+        "date_of_birth": "1967-06-10",
+        "wikibase_item": "Q2153006",
+        "gender": "male"
     },
     {
         "first_name": "Linda",
@@ -1419,7 +1651,9 @@
         "province": "Limburg",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Linda_Vissers",
-        "date_of_birth": "1961-02-05"
+        "date_of_birth": "1961-02-05",
+        "wikibase_item": "Q3241385",
+        "gender": "female"
     },
     {
         "first_name": "Annick",
@@ -1438,7 +1672,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1971-10-24"
+        "date_of_birth": "1971-10-24",
+        "wikibase_item": "Q2851594",
+        "gender": "female"
     },
     {
         "first_name": "Guy",
@@ -1447,7 +1683,9 @@
         "province": "Oost-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Guy_D%27haeseleer",
-        "date_of_birth": "1969-03-12"
+        "date_of_birth": "1969-03-12",
+        "wikibase_item": "Q2738899",
+        "gender": "male"
     },
     {
         "first_name": "Gerda",
@@ -1456,7 +1694,9 @@
         "province": "Oost-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Gerda_Van_Steenberge",
-        "date_of_birth": "1965-11-27"
+        "date_of_birth": "1965-11-27",
+        "wikibase_item": "Q2406092",
+        "gender": "female"
     },
     {
         "first_name": "Barbara",
@@ -1475,7 +1715,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1981-03-01"
+        "date_of_birth": "1981-03-01",
+        "wikibase_item": "Q2884009",
+        "gender": "female"
     },
     {
         "first_name": "Francis",
@@ -1484,7 +1726,9 @@
         "province": "Oost-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Francis_Van_den_Eynde",
-        "date_of_birth": "2021-03-04"
+        "date_of_birth": "2021-03-04",
+        "wikibase_item": "Q2588288",
+        "gender": "male"
     },
     {
         "first_name": "Bruno",
@@ -1493,7 +1737,9 @@
         "province": "Oost-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Bruno_Stevenheydens",
-        "date_of_birth": "1968-02-13"
+        "date_of_birth": "1968-02-13",
+        "wikibase_item": "Q2926990",
+        "gender": "male"
     },
     {
         "first_name": "Koen",
@@ -1502,7 +1748,9 @@
         "province": "West-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Koen_Bultinck",
-        "date_of_birth": "1964-03-21"
+        "date_of_birth": "1964-03-21",
+        "wikibase_item": "Q926173",
+        "gender": "male"
     },
     {
         "first_name": "Agnes",
@@ -1511,7 +1759,9 @@
         "province": "West-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Agnes_Bruyninckx-Vandenhoudt",
-        "date_of_birth": "1949-02-08"
+        "date_of_birth": "1949-02-08",
+        "wikibase_item": "Q2826924",
+        "gender": "female"
     },
     {
         "first_name": "Peter",
@@ -1530,7 +1780,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1959-03-20"
+        "date_of_birth": "1959-03-20",
+        "wikibase_item": "Q3376716",
+        "gender": "male"
     },
     {
         "first_name": "Bart",
@@ -1539,7 +1791,9 @@
         "province": "Antwerpen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Bart_Somers",
-        "date_of_birth": "1964-05-12"
+        "date_of_birth": "1964-05-12",
+        "wikibase_item": "Q15993",
+        "gender": "male"
     },
     {
         "first_name": "Yolande",
@@ -1548,7 +1802,9 @@
         "province": "Antwerpen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Yolande_Avontroodt",
-        "date_of_birth": "1950-03-09"
+        "date_of_birth": "1950-03-09",
+        "wikibase_item": "Q2555383",
+        "gender": "female"
     },
     {
         "first_name": "Willem-Frederik",
@@ -1557,7 +1813,9 @@
         "province": "Antwerpen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Willem-Frederik_Schiltz",
-        "date_of_birth": "1979-06-22"
+        "date_of_birth": "1979-06-22",
+        "wikibase_item": "Q2052744",
+        "gender": "male"
     },
     {
         "first_name": "Ludo",
@@ -1566,7 +1824,9 @@
         "province": "Antwerpen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Ludo_Van_Campenhout",
-        "date_of_birth": "1966-11-27"
+        "date_of_birth": "1966-11-27",
+        "wikibase_item": "Q2516062",
+        "gender": "male"
     },
     {
         "first_name": "Maggie",
@@ -1575,7 +1835,9 @@
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Maggie_De_Block",
-        "date_of_birth": "1962-04-28"
+        "date_of_birth": "1962-04-28",
+        "wikibase_item": "Q2800268",
+        "gender": "female"
     },
     {
         "first_name": "Luk",
@@ -1584,7 +1846,9 @@
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Luk_Van_Biesen",
-        "date_of_birth": "1960-06-26"
+        "date_of_birth": "1960-06-26",
+        "wikibase_item": "Q3266973",
+        "gender": "male"
     },
     {
         "first_name": "Hendrik",
@@ -1593,7 +1857,9 @@
         "province": "Leuven",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Rik_Daems",
-        "date_of_birth": "1959-08-18"
+        "date_of_birth": "1959-08-18",
+        "wikibase_item": "Q1382799",
+        "gender": "male"
     },
     {
         "first_name": "Katia",
@@ -1605,7 +1871,9 @@
             "della Faille de Leverghem Katia"
         ],
         "wiki": "https://nl.wikipedia.org/wiki/Katia_della_Faille_de_Leverghem",
-        "date_of_birth": "1969-01-13"
+        "date_of_birth": "1969-01-13",
+        "wikibase_item": "Q284071",
+        "gender": "female"
     },
     {
         "first_name": "Patrick",
@@ -1625,7 +1893,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1955-10-13"
+        "date_of_birth": "1955-10-13",
+        "wikibase_item": "Q15992",
+        "gender": "male"
     },
     {
         "first_name": "Bruno",
@@ -1634,7 +1904,9 @@
         "province": "Limburg",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Bruno_Steegen",
-        "date_of_birth": "1966-06-12"
+        "date_of_birth": "1966-06-12",
+        "wikibase_item": "Q2926994",
+        "gender": "male"
     },
     {
         "first_name": "Hilde",
@@ -1643,7 +1915,9 @@
         "province": "Limburg",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Hilde_Vautmans",
-        "date_of_birth": "1972-05-02"
+        "date_of_birth": "1972-05-02",
+        "wikibase_item": "Q2780443",
+        "gender": "female"
     },
     {
         "first_name": "Karel",
@@ -1652,7 +1926,9 @@
         "province": "Oost-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Karel_De_Gucht",
-        "date_of_birth": "1954-01-27"
+        "date_of_birth": "1954-01-27",
+        "wikibase_item": "Q381218",
+        "gender": "male"
     },
     {
         "first_name": "Mathias",
@@ -1671,7 +1947,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1981-12-26"
+        "date_of_birth": "1981-12-26",
+        "wikibase_item": "Q1939878",
+        "gender": "male"
     },
     {
         "first_name": "Herman",
@@ -1680,7 +1958,9 @@
         "province": "Oost-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Herman_De_Croo",
-        "date_of_birth": "1937-08-12"
+        "date_of_birth": "1937-08-12",
+        "wikibase_item": "Q1351926",
+        "gender": "male"
     },
     {
         "first_name": "Carina",
@@ -1689,7 +1969,9 @@
         "province": "Oost-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Carina_Van_Cauter",
-        "date_of_birth": "1962-06-27"
+        "date_of_birth": "1962-06-27",
+        "wikibase_item": "Q2938795",
+        "gender": "female"
     },
     {
         "first_name": "Geert",
@@ -1698,7 +1980,9 @@
         "province": "Oost-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Geert_Versnick",
-        "date_of_birth": "1956-12-15"
+        "date_of_birth": "1956-12-15",
+        "wikibase_item": "Q2439158",
+        "gender": "male"
     },
     {
         "first_name": "Guido",
@@ -1707,7 +1991,9 @@
         "province": "Oost-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Guido_De_Padt",
-        "date_of_birth": "1954-05-23"
+        "date_of_birth": "1954-05-23",
+        "wikibase_item": "Q936465",
+        "gender": "male"
     },
     {
         "first_name": "Ine",
@@ -1726,7 +2012,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1971-06-13"
+        "date_of_birth": "1971-06-13",
+        "wikibase_item": "Q3150668",
+        "gender": "female"
     },
     {
         "first_name": "Vincent",
@@ -1735,7 +2023,9 @@
         "province": "West-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Vincent_Van_Quickenborne",
-        "date_of_birth": "1973-08-01"
+        "date_of_birth": "1973-08-01",
+        "wikibase_item": "Q549887",
+        "gender": "male"
     },
     {
         "first_name": "Sofie",
@@ -1754,7 +2044,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1975-10-14"
+        "date_of_birth": "1975-10-14",
+        "wikibase_item": "Q2727660",
+        "gender": "female"
     },
     {
         "first_name": "Sabien",
@@ -1763,7 +2055,9 @@
         "province": "West-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Sabien_Lahaye-Battheu",
-        "date_of_birth": "1967-08-05"
+        "date_of_birth": "1967-08-05",
+        "wikibase_item": "Q2081580",
+        "gender": "female"
     },
     {
         "first_name": "Bart",
@@ -1772,7 +2066,9 @@
         "province": "West-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Bart_Tommelein",
-        "date_of_birth": "1962-05-04"
+        "date_of_birth": "1962-05-04",
+        "wikibase_item": "Q2701515",
+        "gender": "male"
     },
     {
         "first_name": "Roland",
@@ -1791,7 +2087,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1953-10-15"
+        "date_of_birth": "1953-10-15",
+        "wikibase_item": "Q3440024",
+        "gender": "male"
     },
     {
         "first_name": "Patrick",
@@ -1800,7 +2098,9 @@
         "province": "Antwerpen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Patrick_Janssens",
-        "date_of_birth": "1956-09-19"
+        "date_of_birth": "1956-09-19",
+        "wikibase_item": "Q12499",
+        "gender": "male"
     },
     {
         "first_name": "David",
@@ -1819,7 +2119,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1975-04-17"
+        "date_of_birth": "1975-04-17",
+        "wikibase_item": "Q3017951",
+        "gender": "male"
     },
     {
         "first_name": "Christine",
@@ -1828,7 +2130,9 @@
         "province": "Antwerpen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Christine_Van_Broeckhoven",
-        "date_of_birth": "1953-04-09"
+        "date_of_birth": "1953-04-09",
+        "wikibase_item": "Q2247235",
+        "gender": "female"
     },
     {
         "first_name": "Jan",
@@ -1837,7 +2141,9 @@
         "province": "Antwerpen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Jan_Peeters_(politicus)",
-        "date_of_birth": "1963-01-12"
+        "date_of_birth": "1963-01-12",
+        "wikibase_item": "Q556456",
+        "gender": "male"
     },
     {
         "first_name": "Maya",
@@ -1846,7 +2152,9 @@
         "province": "Antwerpen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Maya_Deti%C3%A8ge",
-        "date_of_birth": "1967-08-30"
+        "date_of_birth": "1967-08-30",
+        "wikibase_item": "Q2344602",
+        "gender": "female"
     },
     {
         "first_name": "Hans",
@@ -1855,7 +2163,9 @@
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Hans_Bonte",
-        "date_of_birth": "1962-01-20"
+        "date_of_birth": "1962-01-20",
+        "wikibase_item": "Q3126936",
+        "gender": "male"
     },
     {
         "first_name": "Bruno",
@@ -1864,7 +2174,9 @@
         "province": "Leuven",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Bruno_Tobback",
-        "date_of_birth": "1969-08-22"
+        "date_of_birth": "1969-08-22",
+        "wikibase_item": "Q960356",
+        "gender": "male"
     },
     {
         "first_name": "Peter",
@@ -1873,7 +2185,9 @@
         "province": "Limburg",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Peter_Vanvelthoven",
-        "date_of_birth": "1962-10-22"
+        "date_of_birth": "1962-10-22",
+        "wikibase_item": "Q2415346",
+        "gender": "male"
     },
     {
         "first_name": "Magda",
@@ -1892,7 +2206,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1947-05-24"
+        "date_of_birth": "1947-05-24",
+        "wikibase_item": "Q3276631",
+        "gender": "female"
     },
     {
         "first_name": "Meryame",
@@ -1901,7 +2217,9 @@
         "province": "Limburg",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Meryame_Kitir",
-        "date_of_birth": "1980-04-20"
+        "date_of_birth": "1980-04-20",
+        "wikibase_item": "Q2757876",
+        "gender": "female"
     },
     {
         "first_name": "Hilde",
@@ -1910,7 +2228,9 @@
         "province": "Limburg",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Hilde_Claes",
-        "date_of_birth": "1967-10-27"
+        "date_of_birth": "1967-10-27",
+        "wikibase_item": "Q2233127",
+        "gender": "female"
     },
     {
         "first_name": "Ludwig",
@@ -1929,7 +2249,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1959-12-10"
+        "date_of_birth": "1959-12-10",
+        "wikibase_item": "Q3266262",
+        "gender": "male"
     },
     {
         "first_name": "Freya",
@@ -1938,7 +2260,9 @@
         "province": "Oost-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Freya_Van_den_Bossche",
-        "date_of_birth": "1975-03-26"
+        "date_of_birth": "1975-03-26",
+        "wikibase_item": "Q448454",
+        "gender": "female"
     },
     {
         "first_name": "Cathy",
@@ -1957,7 +2281,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1964-10-31"
+        "date_of_birth": "1964-10-31",
+        "wikibase_item": "Q2942208",
+        "gender": "female"
     },
     {
         "first_name": "Dirk",
@@ -1966,7 +2292,9 @@
         "province": "Oost-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Dirk_Van_der_Maelen",
-        "date_of_birth": "1953-03-14"
+        "date_of_birth": "1953-03-14",
+        "wikibase_item": "Q3029701",
+        "gender": "male"
     },
     {
         "first_name": "Bruno",
@@ -1975,7 +2303,9 @@
         "province": "Oost-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Bruno_Tuybens",
-        "date_of_birth": "1961-11-10"
+        "date_of_birth": "1961-11-10",
+        "wikibase_item": "Q2197763",
+        "gender": "male"
     },
     {
         "first_name": "Renaat",
@@ -1984,7 +2314,9 @@
         "province": "West-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Renaat_Landuyt",
-        "date_of_birth": "1959-01-28"
+        "date_of_birth": "1959-01-28",
+        "wikibase_item": "Q2186628",
+        "gender": "male"
     },
     {
         "first_name": "Dalila",
@@ -1993,7 +2325,9 @@
         "province": "West-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Dalila_Douifi",
-        "date_of_birth": "1970-02-17"
+        "date_of_birth": "1970-02-17",
+        "wikibase_item": "Q726712",
+        "gender": "female"
     },
     {
         "first_name": "Zoé",
@@ -2002,7 +2336,9 @@
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Zo%C3%A9_Genot",
-        "date_of_birth": "1974-05-29"
+        "date_of_birth": "1974-05-29",
+        "wikibase_item": "Q2292686",
+        "gender": "female"
     },
     {
         "first_name": "Fouad",
@@ -2011,7 +2347,9 @@
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Fouad_Lahssaini",
-        "date_of_birth": "1957-03-19"
+        "date_of_birth": "1957-03-19",
+        "wikibase_item": "Q3079792",
+        "gender": "male"
     },
     {
         "first_name": "Tinne",
@@ -2020,7 +2358,9 @@
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Tinne_Van_der_Straeten",
-        "date_of_birth": "1978-04-01"
+        "date_of_birth": "1978-04-01",
+        "wikibase_item": "Q2613060",
+        "gender": "female"
     },
     {
         "first_name": "Jean-Marc",
@@ -2029,7 +2369,9 @@
         "province": "Henegouwen",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Jean-Marc_Nollet",
-        "date_of_birth": "1970-01-07"
+        "date_of_birth": "1970-01-07",
+        "wikibase_item": "Q2926869",
+        "gender": "male"
     },
     {
         "first_name": "Ronny",
@@ -2048,7 +2390,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1966-04-25"
+        "date_of_birth": "1966-04-25",
+        "wikibase_item": "Q3441807",
+        "gender": "male"
     },
     {
         "first_name": "Juliette",
@@ -2057,7 +2401,9 @@
         "province": "Henegouwen",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Juliette_Boulet",
-        "date_of_birth": "1981-01-14"
+        "date_of_birth": "1981-01-14",
+        "wikibase_item": "Q3189738",
+        "gender": "female"
     },
     {
         "first_name": "Muriel",
@@ -2066,7 +2412,9 @@
         "province": "Luik",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Muriel_Gerkens",
-        "date_of_birth": "1957-04-25"
+        "date_of_birth": "1957-04-25",
+        "wikibase_item": "Q587605",
+        "gender": "female"
     },
     {
         "first_name": "Philippe",
@@ -2075,7 +2423,9 @@
         "province": "Luik",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Philippe_Henry",
-        "date_of_birth": "1971-04-23"
+        "date_of_birth": "1971-04-23",
+        "wikibase_item": "Q3380006",
+        "gender": "male"
     },
     {
         "first_name": "Eric",
@@ -2094,7 +2444,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1972-03-28"
+        "date_of_birth": "1972-03-28",
+        "wikibase_item": "Q3056296",
+        "gender": "male"
     },
     {
         "first_name": "Georges",
@@ -2103,7 +2455,9 @@
         "province": "Namen",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Georges_Gilkinet",
-        "date_of_birth": "1971-01-25"
+        "date_of_birth": "1971-01-25",
+        "wikibase_item": "Q3102773",
+        "gender": "male"
     },
     {
         "first_name": "Thérèse",
@@ -2116,7 +2470,9 @@
             "Snoy et d'Oppuers"
         ],
         "wiki": "https://nl.wikipedia.org/wiki/Th%C3%A9r%C3%A8se_Snoy",
-        "date_of_birth": "1952-01-27"
+        "date_of_birth": "1952-01-27",
+        "wikibase_item": "Q3527372",
+        "gender": "female"
     },
     {
         "first_name": "Meyrem",
@@ -2125,7 +2481,9 @@
         "province": "Antwerpen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Meyrem_Almaci",
-        "date_of_birth": "1976-02-25"
+        "date_of_birth": "1976-02-25",
+        "wikibase_item": "Q1820692",
+        "gender": "female"
     },
     {
         "first_name": "Stefaan",
@@ -2134,7 +2492,9 @@
         "province": "Oost-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Stefaan_Van_Hecke",
-        "date_of_birth": "1973-01-04"
+        "date_of_birth": "1973-01-04",
+        "wikibase_item": "Q2025218",
+        "gender": "male"
     },
     {
         "first_name": "Wouter",
@@ -2143,7 +2503,9 @@
         "province": "West-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Wouter_De_Vriendt",
-        "date_of_birth": "1977-06-22"
+        "date_of_birth": "1977-06-22",
+        "wikibase_item": "Q2562437",
+        "gender": "male"
     },
     {
         "first_name": "Joëlle",
@@ -2152,7 +2514,9 @@
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Jo%C3%ABlle_Milquet",
-        "date_of_birth": "1961-02-17"
+        "date_of_birth": "1961-02-17",
+        "wikibase_item": "Q446756",
+        "gender": "female"
     },
     {
         "first_name": "Georges",
@@ -2171,7 +2535,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1958-01-17"
+        "date_of_birth": "1958-01-17",
+        "wikibase_item": "Q3102539",
+        "gender": "male"
     },
     {
         "first_name": "Benoît",
@@ -2180,7 +2546,9 @@
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Beno%C3%AEt_Cerexhe",
-        "date_of_birth": "1961-06-18"
+        "date_of_birth": "1961-06-18",
+        "wikibase_item": "Q2896451",
+        "gender": "male"
     },
     {
         "first_name": "Clotilde",
@@ -2199,7 +2567,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1953-06-07"
+        "date_of_birth": "1953-06-07",
+        "wikibase_item": "Q2979698",
+        "gender": "female"
     },
     {
         "first_name": "Catherine",
@@ -2208,7 +2578,9 @@
         "province": "Henegouwen",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Catherine_Fonck",
-        "date_of_birth": "1968-09-22"
+        "date_of_birth": "1968-09-22",
+        "wikibase_item": "Q2835834",
+        "gender": "female"
     },
     {
         "first_name": "Hélène",
@@ -2228,7 +2600,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1971-03-10"
+        "date_of_birth": "1971-03-10",
+        "wikibase_item": "Q3144731",
+        "gender": "female"
     },
     {
         "first_name": "Christian",
@@ -2237,7 +2611,9 @@
         "province": "Henegouwen",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Christian_Brotcorne",
-        "date_of_birth": "1953-12-09"
+        "date_of_birth": "1953-12-09",
+        "wikibase_item": "Q2965092",
+        "gender": "male"
     },
     {
         "first_name": "Véronique",
@@ -2246,7 +2622,9 @@
         "province": "Henegouwen",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/V%C3%A9ronique_Salvi",
-        "date_of_birth": "1973-04-19"
+        "date_of_birth": "1973-04-19",
+        "wikibase_item": "Q3564369",
+        "gender": "female"
     },
     {
         "first_name": "David",
@@ -2274,7 +2652,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1964-01-02"
+        "date_of_birth": "1964-01-02",
+        "wikibase_item": "Q2666578",
+        "gender": "male"
     },
     {
         "first_name": "Melchior",
@@ -2283,7 +2663,9 @@
         "province": "Luik",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Melchior_Wathelet_(1977)",
-        "date_of_birth": "1977-09-30"
+        "date_of_birth": "1977-09-30",
+        "wikibase_item": "Q212717",
+        "gender": "male"
     },
     {
         "first_name": "Marie-Martine",
@@ -2302,7 +2684,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1977-05-19"
+        "date_of_birth": "1977-05-19",
+        "wikibase_item": "Q3292145",
+        "gender": "female"
     },
     {
         "first_name": "Marie-Dominique",
@@ -2311,7 +2695,9 @@
         "province": "Luik",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Marie-Dominique_Simonet",
-        "date_of_birth": "1959-11-18"
+        "date_of_birth": "1959-11-18",
+        "wikibase_item": "Q744093",
+        "gender": "female"
     },
     {
         "first_name": "Joseph",
@@ -2330,7 +2716,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1954-11-21"
+        "date_of_birth": "1954-11-21",
+        "wikibase_item": "Q2405425",
+        "gender": "male"
     },
     {
         "first_name": "Josy",
@@ -2339,7 +2727,9 @@
         "province": "Luxemburg",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Joseph_Arens",
-        "date_of_birth": "1952-05-30"
+        "date_of_birth": "1952-05-30",
+        "wikibase_item": "Q2097477",
+        "gender": "male"
     },
     {
         "first_name": "Maxime",
@@ -2348,7 +2738,9 @@
         "province": "Namen",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Maxime_Pr%C3%A9vot",
-        "date_of_birth": "1978-04-09"
+        "date_of_birth": "1978-04-09",
+        "wikibase_item": "Q3302670",
+        "gender": "male"
     },
     {
         "first_name": "Isabelle",
@@ -2370,7 +2762,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1965-01-01"
+        "date_of_birth": "1965-01-01",
+        "wikibase_item": "Q3155043",
+        "gender": "female"
     },
     {
         "first_name": "André",
@@ -2379,7 +2773,9 @@
         "province": "Waals-Brabant",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Andr%C3%A9_Antoine",
-        "date_of_birth": "1960-02-03"
+        "date_of_birth": "1960-02-03",
+        "wikibase_item": "Q2030961",
+        "gender": "male"
     },
     {
         "first_name": "Brigitte",
@@ -2398,7 +2794,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1958-04-18"
+        "date_of_birth": "1958-04-18",
+        "wikibase_item": "Q2925488",
+        "gender": "female"
     },
     {
         "first_name": "Jurgen",
@@ -2407,7 +2805,9 @@
         "province": "Antwerpen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Jurgen_Verstrepen",
-        "date_of_birth": "1966-06-12"
+        "date_of_birth": "1966-06-12",
+        "wikibase_item": "Q3190171",
+        "gender": "male"
     },
     {
         "first_name": "Robert",
@@ -2426,7 +2826,9 @@
                 ]
             }
         ],
-        "date_of_birth": "1967-02-14"
+        "date_of_birth": "1967-02-14",
+        "wikibase_item": "Q2784190",
+        "gender": "male"
     },
     {
         "first_name": "Martine",
@@ -2435,7 +2837,9 @@
         "province": "Oost-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Martine_De_Maght",
-        "date_of_birth": "1965-11-09"
+        "date_of_birth": "1965-11-09",
+        "wikibase_item": "Q3295764",
+        "gender": "female"
     },
     {
         "first_name": "Jean Marie",
@@ -2444,7 +2848,9 @@
         "province": "West-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Jean-Marie_Dedecker",
-        "date_of_birth": "1952-06-13"
+        "date_of_birth": "1952-06-13",
+        "wikibase_item": "Q981442",
+        "gender": "male"
     },
     {
         "first_name": "Ulla",
@@ -2453,7 +2859,9 @@
         "province": "West-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Ulla_Werbrouck",
-        "date_of_birth": "1972-01-24"
+        "date_of_birth": "1972-01-24",
+        "wikibase_item": "Q466273",
+        "gender": "female"
     },
     {
         "first_name": "Paul",
@@ -2472,7 +2880,9 @@
                 ]
             }
         ],
-        "date_of_birth": "2011-05-25"
+        "date_of_birth": "2011-05-25",
+        "wikibase_item": "Q1950601",
+        "gender": "male"
     },
     {
         "first_name": "Dirk",
@@ -2481,7 +2891,9 @@
         "province": "Leuven",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Dirk_Vijnck",
-        "date_of_birth": "1972-08-22"
+        "date_of_birth": "1972-08-22",
+        "wikibase_item": "Q3029700",
+        "gender": "male"
     },
     {
         "first_name": "Patrick",
@@ -2490,7 +2902,9 @@
         "province": "Henegouwen",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Patrick_Cocriamont",
-        "date_of_birth": "1952-09-21"
+        "date_of_birth": "1952-09-21",
+        "wikibase_item": "Q2346541",
+        "gender": "male"
     },
     {
         "first_name": "Carl",
@@ -2499,6 +2913,8 @@
         "province": "Leuven",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Carl_Devlies",
-        "date_of_birth": "1953-01-23"
+        "date_of_birth": "1953-01-23",
+        "wikibase_item": "Q1037486",
+        "gender": "male"
     }
 ]

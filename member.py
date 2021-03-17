@@ -33,10 +33,17 @@ class Member:
         self.replaces = []
         self.activities = []
         self.url = url
+        self.date_of_birth = None
+        self.gender = None
         sha_1 = hashlib.sha1()
         sha_1.update(self.first_name.encode('utf-8') + self.last_name.encode('utf-8') + self.party.encode('utf-8') + self.province.encode('utf-8'))
         self.uuid = sha_1.hexdigest()[:10]# Should be sufficiently random
 
+    def set_gender(self, gender:str):
+        self.gender = gender
+    def set_date_of_birth(self, date:str):
+        import dateparser
+        self.date_of_birth = dateparser.parse(date)
     def dump_json(self, base_path: str, base_URI="/"):
         base_path = path.join(base_path, "members")
         base_URI_members = f'{base_URI}members/'
@@ -58,7 +65,7 @@ class Member:
                     json.dump(activity_dict[year], afp)
                 activity_uris[year] = f'{base_URI_members}{self.uuid}/{year}.json'
 
-            json.dump({'id': str(self.uuid), 'first_name': self.first_name, 'last_name': self.last_name, 'language': self.language, 'province': self.province, 'party': self.party, 'wiki': self.url, 'replaces': replaces, 'activities': activity_uris}, fp, ensure_ascii=False)
+            json.dump({'id': str(self.uuid), 'first_name': self.first_name, 'last_name': self.last_name, 'gender': self.gender, 'date_of_birth': self.date_of_birth.isoformat(), 'language': self.language, 'province': self.province, 'party': self.party, 'wiki': self.url, 'replaces': replaces, 'activities': activity_uris}, fp, ensure_ascii=False)
 
         return f'{base_URI_members}{resource_name}'
     def __repr__(self):

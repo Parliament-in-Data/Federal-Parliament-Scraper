@@ -125,6 +125,8 @@ class ParliamentarySession:
                     if 'alternative_names' in entry:
                         member.set_alternative_names(
                             entry['alternative_names'])
+                    member.set_gender(entry['gender'])
+                    member.set_date_of_birth(entry['date_of_birth'])
                     self.members.append(member)
                 # Now that we have all members, link them
                 for member, entry in zip(self.members, data):
