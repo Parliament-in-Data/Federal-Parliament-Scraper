@@ -1607,6 +1607,7 @@
         "party": "Open Vld",
         "province": "Antwerpen",
         "language": "Nederlands",
+        "alternative_names": ["Marianne"],
         "wiki": "https://nl.wikipedia.org/wiki/Marianne_Verhaert",
         "date_of_birth": "1984-04-25"
     },
@@ -1956,6 +1957,7 @@
         "party": "MR",
         "province": "Luik",
         "language": "Frans",
+        "alternative_names": ["Bihed Mathieu"],
         "replaces": [
             {
                 "name": "Bacquelaine Daniel",

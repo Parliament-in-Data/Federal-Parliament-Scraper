@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup, NavigableString
 import dateparser
 import requests
 from util import clean_string, go_to_p, clean_list
-from vote import Vote, LanguageGroupVote
+from vote import GenericVote, LanguageGroupVote, electronic_vote_from_table
 import re
 from os import path, makedirs
 import json
@@ -146,102 +146,130 @@ class Meeting:
             match = re.match(r"([0-9]+) (.*)", clean_string(next_line.text))
             return int(match.group(1))
 
-        def get_name_votes():
-                    votes_nominatifs = {}
-                    s3 = soup.find('div', {'class': 'Section3'})
-                    if s3:
-                        tags = s3.find_all(text=re.compile('Vote\s*nominatif\s*-\s*Naamstemming:'))
-                        tags += s3.find_all(text=re.compile('Naamstemming\s*-\s*Vote\s*nominatif:'))
-                        for i, tag in enumerate(tags):
-                                header = clean_string(tag.find_parent('p').get_text())
-                                numeric_values = [int(s) for s in header.split() if s.isdigit()]
-                                vote_number = numeric_values[0] if numeric_values else i 
-                                
-                                vote_header = go_to_p(tag)
-                                yes = []
-                                no = []
-                                abstention = []
+        def extract_vote_number_from_tag(tag, default):
+            header = clean_string(tag.find_parent('p').get_text())
+            numeric_values = [int(s) for s in header.split() if s.isdigit()]
+            return numeric_values[0] if numeric_values else default
 
-                                current_node = vote_header
-                                
-                                cancelled = False
+        def extract_name_list_from_under_table(current_node):
+            name_list = clean_string(current_node.get_text())
+            while not (current_node.name == "table" or 'naamstemming' in current_node.get_text().lower()):
+                if current_node.get_text():
+                    name_list += ',' + clean_string(current_node.get_text())
+                current_node = current_node.find_next_sibling()
 
-                                while not current_node.name == "table":
-                                    # Sometimes votes get cancelled, apparently
-                                    # this check seems to be consistent
-                                    if 'annulé' in current_node.get_text().lower() or '42.5' in current_node.get_text().lower():
-                                        cancelled = True
-                                        break
-                                    current_node = current_node.find_next_sibling()
-                                if cancelled:
-                                    continue
-                                current_node = current_node.find_next_sibling()
-                                yes = clean_string(current_node.get_text())
-                                while not (current_node.name == "table" or 'naamstemming' in current_node.get_text().lower()):
-                                    if current_node.get_text():
-                                        yes += ',' + clean_string(current_node.get_text())
-                                    current_node = current_node.find_next_sibling()
+            name_list = clean_list(name_list.split(','))
+            return name_list, current_node
 
-                                yes = clean_list(yes.split(','))
+        def is_vote_cancelled(current_node):
+            cancelled = False
 
-                                current_node = current_node.find_next_sibling()
-                                no = clean_string(current_node.get_text())
-                                while not (current_node.name == "table" or 'naamstemming' in current_node.get_text().lower()):
-                                    if current_node.get_text():
-                                        no += ',' + clean_string(current_node.get_text())
-                                    current_node = current_node.find_next_sibling()
+            while current_node and not current_node.name == "table":
+                # Sometimes votes get cancelled, apparently
+                # this check seems to be consistent
+                if 'annulé' in current_node.get_text().lower() or '42.5' in current_node.get_text().lower():
+                    cancelled = True
+                    break
+                current_node = current_node.find_next_sibling()
 
-                                no = clean_list(no.split(','))
+            return cancelled, current_node
 
-                                abstention = []
-
-                                # Handles the case where the abstention box is missing (no abstentions)
-                                if 'onthoudingen' in current_node.get_text().lower() or 'abstentions' in current_node.get_text().lower():
-                                    next_vote = go_to_p(tags[i+1]).find_previous_sibling() if i + 1 < len(tags) else vote_header.parent.find_all('p')[-1]
-                                    current_node = next_vote
-                                    abstention = clean_string(current_node.get_text())
-                                    current_node = current_node.find_previous_sibling()
-                                    while not (current_node.name == "table" or 'naamstemming' in current_node.get_text().lower()): # FIXME: I've removed the null check here... this might break some things.
-                                        if current_node.get_text():
-                                            abstention = clean_string(current_node.get_text()) + ',' + abstention
-                                        current_node = current_node.find_previous_sibling()
-                                    abstention = clean_list(abstention.split(','))
-
-                                votes_nominatifs[vote_number] = (yes, no, abstention)
-                    return votes_nominatifs
-        name_votes = get_name_votes()
-        for tag in soup.find_all(text=re.compile('Stemming/vote ([0-9]+)')):
-                vote_number = int(re.match('\(?Stemming/vote ([0-9]+)\)?', tag).group(1))
-                table = tag
-                for _ in range(0, 6):
-                    if table:
-                        table = table.parent
-                # Fixes an issue where votes are incorrectly parsed because of the fact a quorum was not reached
-                # (in that case no table is present but the table encapsulating the report can be)
-                if table and table.name == 'table' and len(table.find_all('tr', attrs={'height': None})) <= 6:
+        def get_name_and_electronic_votes():
+            name_votes = {}
+            electronic_votes = {}
+            s3 = soup.find('div', {'class': 'Section3'})
+            if s3:
+                tags = s3.find_all(text=re.compile(r'Vote\s*nominatif\s*-\s*Naamstemming:'))
+                tags += s3.find_all(text=re.compile(r'Naamstemming\s*-\s*Vote\s*nominatif:'))
+                for i, tag in enumerate(tags):
+                    vote_number = extract_vote_number_from_tag(tag, i)
+                    vote_header = go_to_p(tag)
+                    cancelled, current_node = is_vote_cancelled(vote_header)
+                    if cancelled:
+                        continue
                     
-                    agenda_item = extract_title_by_vote(table, Language.FR)
-                    agenda_item1 = extract_title_by_vote(table, Language.NL)
-                    assert(agenda_item1 == agenda_item)
+                    yes, current_node = extract_name_list_from_under_table(current_node.find_next_sibling())
+                    no, current_node = extract_name_list_from_under_table(current_node.find_next_sibling())
 
-                    # Some pages have a height="0" override tag to fix browser display issues.
-                    # We have to ignore these otherwise we would start interpreting the votes as the wrong type.
-                    rows = table.find_all('tr', attrs={'height': None})
+                    abstention = []
 
-                    if len(rows) == 5:
-                        vote = Vote.from_table(self.topics[agenda_item], vote_number, rows)
-                    elif len(rows) == 6:
-                        vote = LanguageGroupVote.from_table(self.topics[agenda_item], vote_number, rows)
-                    else:
+                    # Handles the case where the abstention box is missing (no abstentions)
+                    if 'onthoudingen' in current_node.get_text().lower() or 'abstentions' in current_node.get_text().lower():
+                        next_vote = go_to_p(tags[i+1]).find_previous_sibling() if i + 1 < len(tags) else vote_header.parent.find_all('p')[-1]
+                        current_node = next_vote
+                        abstention = clean_string(current_node.get_text())
+                        current_node = current_node.find_previous_sibling()
+
+                        # TODO: merge with function
+                        while not (current_node.name == "table" or 'naamstemming' in current_node.get_text().lower()): 
+                            if current_node.get_text():
+                                abstention = clean_string(current_node.get_text()) + ',' + abstention
+                            current_node = current_node.find_previous_sibling()
+                        abstention = clean_list(abstention.split(','))
+
+                    name_votes[vote_number] = (yes, no, abstention)
+
+                tags = s3.find_all(text=re.compile(r'Comptage\s*électronique\s*–\s*Elektronische telling:'))
+                for i, tag in enumerate(tags):
+                    vote_number = extract_vote_number_from_tag(tag, i)
+                    vote_header = go_to_p(tag)
+                    cancelled, current_node = is_vote_cancelled(vote_header)
+
+                    if cancelled:
                         continue
 
-                    if vote_number in name_votes:
-                        names = name_votes[vote_number]
-                        vote.set_yes_voters([self.parliamentary_session.find_member(name) for name in names[0]])
-                        vote.set_no_voters([self.parliamentary_session.find_member(name) for name in names[1]])
-                        vote.set_abstention_voters([self.parliamentary_session.find_member(name) for name in names[2]])
+                    electronic_votes[vote_number] = current_node
 
-                    self.topics[agenda_item].add_vote(vote)
+            return name_votes, electronic_votes
+
+        name_votes, electronic_votes = get_name_and_electronic_votes()
+
+        for tag in soup.find_all(text=re.compile(r'(Stemming/vote|Vote/stemming) ([0-9]+)')):
+            vote_number = int(re.match(r'\(?(Stemming/vote|Vote/stemming) ([0-9]+)\)?', tag).group(2))
+            is_electronic_vote = vote_number in electronic_votes
+
+            # Structure for electronic votes is a little different. This case is not inside a table.
+            if is_electronic_vote:
+                while tag.name != 'p':
+                    tag = tag.parent
+            else:
+                for _ in range(0, 6):
+                    if tag:
+                        tag = tag.parent
+
+                # Fixes an issue where votes are incorrectly parsed because of the fact a quorum was not reached
+                # (in that case no table is present but the table encapsulating the report can be)
+                if not tag or tag.name != 'table':
+                    continue
+
+            agenda_item = extract_title_by_vote(tag, Language.FR)
+            agenda_item1 = extract_title_by_vote(tag, Language.NL)
+            assert agenda_item1 == agenda_item
+
+            if not is_electronic_vote and len(tag.find_all('tr', attrs={'height': None})) <= 6:
+                # Some pages have a height="0" override tag to fix browser display issues.
+                # We have to ignore these otherwise we would start interpreting the votes as the wrong type.
+                rows = tag.find_all('tr', attrs={'height': None})
+
+                # We can't always rely on the number of rows, since sometimes there's randomly an empty row.
+                if len(rows) == 5 or (len(rows) == 6 and rows[-1].get_text().strip() == ''):
+                    vote = GenericVote.from_table(self.topics[agenda_item], vote_number, rows)
+                elif len(rows) == 6:
+                    vote = LanguageGroupVote.from_table(self.topics[agenda_item], vote_number, rows)
+                else:
+                    continue
+
+                if vote_number in name_votes:
+                    names = name_votes[vote_number]
+                    vote.set_yes_voters([self.parliamentary_session.find_member(name) for name in names[0]])
+                    vote.set_no_voters([self.parliamentary_session.find_member(name) for name in names[1]])
+                    vote.set_abstention_voters([self.parliamentary_session.find_member(name) for name in names[2]])
+
+                self.topics[agenda_item].add_vote(vote)
+            elif is_electronic_vote:
+                vote = electronic_vote_from_table(self.topics[agenda_item], vote_number, electronic_votes[vote_number])
+                self.topics[agenda_item].add_vote(vote)
+
     def get_meeting_topics(self, refresh = False):
         """Obtain the topics for this meeting.
 

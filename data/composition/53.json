@@ -1658,6 +1658,7 @@
         "province": "Brussel-Halle-Vilvoorde",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Luk_Van_Biesen",
+        "alternative_names": ["Van Biesen Luc"],
         "replaces": [
             {
                 "name": "De Block Maggie",

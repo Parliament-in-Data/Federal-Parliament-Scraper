@@ -4,10 +4,24 @@ from typing import List
 import activity
 from common import Choice
 
-def post_vote_activity(vote, choice, members):
-    for member in members:
-        member.post_activity(activity.VoteActivity(member, vote, choice))
+
 class Vote:
+    def __init__(self, meeting_topic, vote_number: int, yes: int):
+        """A Vote represents a single vote in a meeting.
+
+        Args:
+            meeting_topic (MeetingTopic): The meeting topic
+            vote_number (int): Number of the vote in this meeting (e.g. 1)
+            yes (int): Number of yes votes
+        """
+        self.meeting = meeting_topic.meeting
+        self.meeting_topic = meeting_topic
+        self.vote_number = vote_number
+        self.yes = yes
+        self.unsure = False
+
+
+class GenericVote(Vote):
     """A Vote represents a single vote in a meeting.
     """
 
@@ -15,24 +29,21 @@ class Vote:
         """A Vote represents a single vote in a meeting.
 
         Args:
+            meeting_topic (MeetingTopic): The meeting topic
             vote_number (int): Number of the vote in this meeting (e.g. 1)
             yes (int): Number of yes votes
             no (int): Number of no votes
             abstention (int): Number of abstentions
         """
-        self.meeting = meeting_topic.meeting
-        self.meeting_topic = meeting_topic
-        self.vote_number = vote_number
-        self.yes = yes
+        Vote.__init__(self, meeting_topic, vote_number, yes)
         self.yes_voters = []
         self.no = no
         self.no_voters = []
         self.abstention = abstention
         self.abstention_voters = []
-        self.unsure = False
 
     def __repr__(self):
-        return "Vote(%d, %d, %d, %d)" % (self.vote_number, self.yes, self.no, self.abstention)
+        return f"Vote({self.vote_number}, {self.yes}, {self.no}, {self.abstention})"
 
     def to_dict(self, session_base_URI: str):
         return {
@@ -57,8 +68,9 @@ class Vote:
         """
         # FIXME: No Quorum Check (rule 42.5 of parliament)
         return self.yes > self.no + self.abstention
+
     @staticmethod
-    def from_table(meeting, vote_number:int, vote_rows:NavigableString):
+    def from_table(meeting_topic, vote_number:int, vote_rows:NavigableString):
         """Generate a new Vote from a parsed table.
 
         Args:
@@ -72,7 +84,7 @@ class Vote:
         no = int(clean_string(vote_rows[2].find_all('td')[1].find('p').get_text()))
         abstention = int(clean_string(vote_rows[3].find_all('td')[1].find('p').get_text()))
 
-        return Vote(meeting, vote_number, yes, no, abstention)
+        return GenericVote(meeting_topic, vote_number, yes, no, abstention)
 
     def set_yes_voters(self, l):
         """Set the members who voted for
@@ -122,18 +134,19 @@ class Vote:
 
 
 
-class LanguageGroupVote(Vote):
+class LanguageGroupVote(GenericVote):
     """For some voting matters a majority in both Language Groups is needed"""
 
     def __init__(self, meeting_topic, vote_number: int, vote_NL: Vote, vote_FR: Vote):
         """For some voting matters a majority in both Language Groups is needed
 
         Args:
+            meeting_topic (MeetingTopic): The meeting topic
             vote_number (int): Number of the vote in this meeting (e.g. 1)
             vote_NL (Vote): The Vote in the Dutch-speaking part of the Parliament
             vote_FR (Vote): The Vote in the French-speaking part of the Parliament
         """
-        Vote.__init__(self, meeting_topic, vote_number, vote_NL.yes + vote_FR.yes, vote_NL.no + vote_FR.no, vote_NL.abstention + vote_FR.abstention)
+        GenericVote.__init__(self, meeting_topic, vote_number, vote_NL.yes + vote_FR.yes, vote_NL.no + vote_FR.no, vote_NL.abstention + vote_FR.abstention)
         self.vote_NL = vote_NL
         self.vote_FR = vote_FR
 
@@ -172,6 +185,7 @@ class LanguageGroupVote(Vote):
         """Generate a new Vote from a parsed table.
 
         Args:
+            meeting_topic (MeetingTopic): The meeting topic
             vote_number (int): Number of the vote in this meeting (e.g. 1)
             vote_rows (NavigableString): Vote rows as obtained by BeautifulSoup
 
@@ -186,4 +200,93 @@ class LanguageGroupVote(Vote):
         no_nl = int(clean_string(vote_rows[3].find_all('td')[3].find('p').get_text()))
         abstention_nl = int(clean_string(vote_rows[4].find_all('td')[3].find('p').get_text()))
 
-        return LanguageGroupVote(meeting_topic, vote_number, Vote(meeting_topic, vote_number, yes_nl, no_nl, abstention_nl), Vote(meeting_topic, vote_number, yes_fr, no_fr, abstention_fr))
+        return LanguageGroupVote(meeting_topic, vote_number, GenericVote(meeting_topic, vote_number, yes_nl, no_nl, abstention_nl), GenericVote(meeting_topic, vote_number, yes_fr, no_fr, abstention_fr))
+
+
+class ElectronicGenericVote(Vote):
+    """Some voting are anonymously organised electronically. We don't have the names in this case"""
+
+    def __init__(self, meeting_topic, vote_number: int, yes: int, no: int):
+        """A Vote represents a single vote in a meeting.
+
+        Args:
+            meeting_topic (MeetingTopic): The meeting topic
+            vote_number (int): Number of the vote in this meeting (e.g. 1)
+            yes (int): Number of yes votes
+            no (int): Number of no votes
+        """
+        Vote.__init__(self, meeting_topic, vote_number, yes)
+        self.no = no
+
+    def __repr__(self):
+        return f"ElectronicGenericVote({self.vote_number}, {self.yes}, {self.no})"
+
+    def to_dict(self, session_base_URI: str):
+        return {
+            'id': self.vote_number,
+            'type': 'electronic_generic',
+            'yes': self.yes,
+            'no': self.no,
+            'passed': self.has_passed()
+        }
+
+
+class ElectronicAdvisoryVote(Vote):
+    """Some voting are anonymously organised electronically to inquire whether more opinions are required.
+    We don't have the names in this case
+    """
+
+    def __init__(self, meeting_topic, vote_number: int, yes: int):
+        """A Vote represents a single vote in a meeting.
+
+        Args:
+            meeting_topic (MeetingTopic): The meeting topic
+            vote_number (int): Number of the vote in this meeting (e.g. 1)
+            yes (int): Number of yes votes
+        """
+        Vote.__init__(self, meeting_topic, vote_number, yes)
+
+    def __repr__(self):
+        return f"ElectronicAdvisoryVote({self.vote_number}, {self.yes})"
+
+    def has_passed(self):
+        """Does this advisory request reach more than the threshold of 1/3 of the yes votes to pass
+
+        Returns:
+            bool: Does this motion have the majority of votes
+        """
+        return self.yes > 50
+
+    def to_dict(self, session_base_URI: str):
+        return {
+            'id': self.vote_number,
+            'type': 'electronic_advisory',
+            'yes': self.yes,
+            'passed': self.has_passed()
+        }
+
+
+def electronic_vote_from_table(meeting_topic, vote_number: int, vote_start_node: NavigableString):
+    """Generate a new electronic (advisory or generic) vote from a parsed table.
+
+    Args:
+        meeting_topic (MeetingTopic): The meeting topic
+        vote_number (int): Number of the vote in this meeting (e.g. 1)
+        vote_start_node (NavigableString): Vote start node as obtained by BeautifulSoup
+
+    Returns:
+        Vote: 
+    """
+
+    yes = int(clean_string(vote_start_node.find_all('td')[1].find('p').get_text()))
+    vote_end_node = vote_start_node.find_next_sibling().find_next_sibling()
+    if not vote_end_node or vote_end_node.name != 'table':
+        return ElectronicAdvisoryVote(meeting_topic, vote_number, yes)
+
+    no = int(clean_string(vote_end_node.find_all('td')[1].find('p').get_text()))
+
+    return ElectronicGenericVote(meeting_topic, vote_number, yes, no)
+
+def post_vote_activity(vote: Vote, choice: Choice, members: List):
+    for member in members:
+        member.post_activity(activity.VoteActivity(member, vote, choice))
