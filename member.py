@@ -44,6 +44,8 @@ class Member:
     def set_date_of_birth(self, date:str):
         import dateparser
         self.date_of_birth = dateparser.parse(date)
+    def uri(self):
+        return f'members/{self.uuid}.json'
     def dump_json(self, base_path: str, base_URI="/"):
         base_path = path.join(base_path, "members")
         base_URI_members = f'{base_URI}members/'
@@ -54,7 +56,7 @@ class Member:
             replaces = list(map(lambda replacement: {'member': f'{base_URI_members}{replacement["member"]}.json', 'dates': replacement['dates']}, self.replaces))
             activity_dict = defaultdict(lambda: defaultdict(list))
             for activity in self.activities:
-                activity_dict[str(activity.meeting.date.year)][str(activity.meeting.date.isoformat())].append(activity.dict(base_URI))
+                activity_dict[str(activity.date.year)][str(activity.date.isoformat())].append(activity.dict(base_URI))
             activities_dir = path.join(base_path, str(self.uuid))
             makedirs(activities_dir, exist_ok=True)
 

@@ -22,7 +22,7 @@ def main():
         print_usage()
     os.makedirs(OUTPUT_PATH, exist_ok=True)
 
-    with Pool(processes = 2) as p:
+    with Pool(processes = 4) as p:
         urls = p.map(session_to_URL, sys.argv[2:])
     
     sessions = {value: urls[idx] for idx, value in enumerate(sys.argv[2:])}

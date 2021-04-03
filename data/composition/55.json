@@ -1568,9 +1568,11 @@
     },
     {
         "first_name": "Dominiek",
-        "last_name": "Spinnewyn-Sneppe",
+        "last_name": "Sneppe",
         "alternative_names": [
-            "Sneppe Dominiek"
+            "Sneppe Dominiek",
+            "Spinnewyn-Sneppe Dominiek",
+            "Dominiek Spinnewyn-Sneppe"
         ],
         "party": "Vlaams Belang",
         "province": "West-Vlaanderen",
@@ -1820,9 +1822,10 @@
     },
     {
         "first_name": "Dieter",
-        "last_name": "Van Besien",
+        "last_name": "Vanbesien",
         "alternative_names": [
-            "Vanbesien Dieter"
+            "Vanbesien Dieter",
+            "Van Besien Dieter"
         ],
         "party": "Groen",
         "province": "Vlaams-Brabant",

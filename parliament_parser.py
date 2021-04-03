@@ -39,6 +39,12 @@ class ParliamentarySession:
             meeting_URIs = list(executor.map(functools.partial(meeting_to_URI, base_path, base_URI), self.plenary_meetings))
             members_URIs = list(executor.map(functools.partial(member_to_URI, base_path, base_URI), self.members))
 
+        for question in self.questions:
+            self.questions[question].json(base_path, base_URI)
+
+        for document in self.documents:
+            self.documents[document].json(base_path, base_URI)
+
         with open(path.join(base_path, 'session.json'), 'w+') as fp:
             json.dump({
                 'id': self.session,
@@ -59,6 +65,9 @@ class ParliamentarySession:
                 51), 'Only sessions 52-55 are available via this API'
         self.session = session
         self.plenary_meetings = []
+        self.members_dict = {}
+        self.questions = {}
+        self.documents = {}
         self.members = []
         self.start = ParliamentarySession.sessions[session]['from']
         self.end = ParliamentarySession.sessions[session]['to']
@@ -84,6 +93,13 @@ class ParliamentarySession:
                 return member
         print("Undefined member: %s" % query)
         self.undefined_members.add(query)
+
+    def get_members_dict(self):
+        if not self.members_dict:
+            self.members_dict = {}
+            for member in self.members:
+                self.members_dict[f'{member.first_name}, {member.last_name}'] = member
+        return self.members_dict
 
     def get_plenary_meetings(self, refresh=False):
         """This API returns an overview of all Plenary meetings in the session.
