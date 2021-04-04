@@ -42,6 +42,7 @@ class ParliamentaryDocument:
             result['document_type'] = self.document_type
         if self.title:
             result['title'] = self.title
+        result['source'] = self.description_uri()
         result['date'] = self.date.isoformat()
         result['authors'] = [f'{base_URI}{author.uri()}' for author in self.authors]
         if self.descriptor:
@@ -114,6 +115,7 @@ class ParliamentaryQuestion:
         result['document_number'] = self.document_number
         result['title'] = self.title
         result['date'] = self.date.isoformat()
+        result['source'] = self.description_uri()
         if self.responding_minister:
             result['responding_minister'] = self.responding_minister
         result['authors'] = [f'{base_URI}{author.uri()}' for author in self.authors]
@@ -150,4 +152,4 @@ class ParliamentaryQuestion:
             self.title = title.parent.parent.parent.find_all('td')[1].get_text().strip()
         date = soup.find('i', text=re.compile('Datum bespreking'))
         if date:
-            self.date = dateparser.parse(date.parent.parent.parent.find_all('td')[1].get_text().strip())
+            self.date = dateparser.parse(date.parent.parent.find_all('td')[1].get_text().strip())
