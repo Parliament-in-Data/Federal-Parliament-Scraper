@@ -150,6 +150,7 @@ class ParliamentaryQuestion:
         title = soup.find('i', text=re.compile('Titel'))
         if title:
             self.title = title.parent.parent.parent.find_all('td')[1].get_text().strip()
+            self.title = "\n".join(item.strip() for item in self.title.split('\n') if item.strip())
         date = soup.find('i', text=re.compile('Datum bespreking'))
         if date:
             self.date = dateparser.parse(date.parent.parent.find_all('td')[1].get_text().strip())

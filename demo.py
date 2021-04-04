@@ -1,6 +1,6 @@
 #%%
 from parliament_parser import ParliamentarySession
-session = ParliamentarySession(54)
+session = ParliamentarySession(55)
 # Get an object containing all known members during the session
 session.get_members()
 # Get all plenary meeting
