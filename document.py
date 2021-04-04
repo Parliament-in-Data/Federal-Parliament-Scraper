@@ -15,7 +15,6 @@ def extract_name(name: str):
         res = match.group(1)
         if res[-1] == ',':
             res = res[:-1]
-        res.replace('-', ' ')
         return res
     else:
         return name
@@ -104,6 +103,8 @@ class ParliamentaryDocument:
                 elif extract_name(name) in self.session.get_members_dict():
                     self.authors.append(self.session.get_members_dict()[
                                         extract_name(name)])
+                else:
+                    print("D:" + name)
 
     def _register_activities(self):
         if not self.authors:
@@ -179,7 +180,7 @@ class ParliamentaryQuestion:
                 self.authors.append(self.session.get_members_dict()[
                                     extract_name(name)])
             else:
-                print(extract_name(name))
+                print("Q:" + name)
         responding_minister_cell = soup.find(
             'i', text=re.compile('Antwoordende minister'))
         if responding_minister_cell:

@@ -119,6 +119,9 @@ class ParliamentarySession:
             for member in self.members:
                 first_name = normalize_str(member.first_name).decode()
                 last_name = normalize_str(member.last_name).decode()
+                self.members_dict[f'{first_name}, {last_name}'] = member
+                self.members_dict[f'{first_name}, {last_name} {member.party}'] = member
+                self.members_dict[f'{first_name}, {last_name}, {member.party}'] = member
                 self.members_dict[f'{first_name}, {last_name}'.replace('-', ' ')] = member
         return self.members_dict
 

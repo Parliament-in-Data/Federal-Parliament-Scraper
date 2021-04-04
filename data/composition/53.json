@@ -2536,12 +2536,13 @@
     },
     {
         "first_name": "Thérèse",
-        "last_name": "Snoy",
+        "last_name": "Snoy et d'Oppuers",
         "party": "Ecolo",
         "province": "Waals-Brabant",
         "language": "Frans",
         "alternative_names": [
-            "Snoy et d'Oppuers Thérèse"
+            "Snoy Thérèse",
+            "Thérèse Snoy"
         ],
         "wiki": "https://nl.wikipedia.org/wiki/Th%C3%A9r%C3%A8se_Snoy",
         "date_of_birth": "1952-01-27",

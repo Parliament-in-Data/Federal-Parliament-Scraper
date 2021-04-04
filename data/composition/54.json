@@ -291,13 +291,13 @@
         "gender": "female"
     },
     {
-        "first_name": "Rob",
+        "first_name": "Robert",
         "last_name": "Van de Velde",
         "party": "N-VA",
         "province": "Antwerpen",
         "language": "Nederlands",
         "alternative_names": [
-            "Van de Velde Robert"
+            "Van de Velde Rob"
         ],
         "wiki": "https://nl.wikipedia.org/wiki/Rob_Van_de_Velde",
         "date_of_birth": "1967-02-14",
@@ -1805,7 +1805,7 @@
         "gender": "male"
     },
     {
-        "first_name": "Karine",
+        "first_name": "Karin",
         "last_name": "Jiroflée",
         "party": "sp.a",
         "province": "Vlaams-Brabant",

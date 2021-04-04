@@ -1185,17 +1185,6 @@
         "gender": "female"
     },
     {
-        "first_name": "Sophie",
-        "last_name": "Pécriaux",
-        "party": "PS",
-        "province": "Henegouwen",
-        "language": "Frans",
-        "wiki": "https://nl.wikipedia.org/wiki/Sophie_P%C3%A9criaux",
-        "date_of_birth": "1967-02-18",
-        "wikibase_item": "Q2020669",
-        "gender": "female"
-    },
-    {
         "first_name": "Philippe",
         "last_name": "Blanchart",
         "party": "PS",
@@ -2461,13 +2450,17 @@
     },
     {
         "first_name": "Thérèse",
-        "last_name": "Snoy",
+        "last_name": "Snoy et d'Oppuers",
         "party": "Ecolo",
         "province": "Waals-Brabant",
         "language": "Frans",
         "alternative_names": [
             "Snoy et d'Oppuers Thérèse",
-            "Snoy et d'Oppuers"
+            "Snoy et d'Oppuers",
+            "Snoy",
+            "Thérèse Snoy",
+            "Snoy Thérèse",
+            "Snoy, Thérèse"
         ],
         "wiki": "https://nl.wikipedia.org/wiki/Th%C3%A9r%C3%A8se_Snoy",
         "date_of_birth": "1952-01-27",
@@ -2744,12 +2737,13 @@
     },
     {
         "first_name": "Isabelle",
-        "last_name": "Tasiaux-De Nys",
+        "last_name": "Tasiaux-De Neys",
         "party": "cdH",
         "province": "Namen",
         "language": "Frans",
         "alternative_names": [
-            "Tasiaux-De Neys Isabelle"
+            "Tasiaux-De Neys Isabelle",
+            "Tasiaux-De Nys Isabelle"
         ],
         "wiki": "https://nl.wikipedia.org/wiki/Isabelle_Tasiaux-De_Neys",
         "replaces": [
