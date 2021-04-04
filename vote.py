@@ -70,7 +70,7 @@ class GenericVote(Vote):
         return self.yes > self.no + self.abstention
 
     @staticmethod
-    def from_table(meeting_topic, vote_number:int, vote_rows:NavigableString):
+    def from_table(meeting_topic, vote_number: int, vote_rows: NavigableString):
         """Generate a new Vote from a parsed table.
 
         Args:
@@ -80,9 +80,12 @@ class GenericVote(Vote):
         Returns:
             Vote: 
         """
-        yes = int(clean_string(vote_rows[1].find_all('td')[1].find('p').get_text()))
-        no = int(clean_string(vote_rows[2].find_all('td')[1].find('p').get_text()))
-        abstention = int(clean_string(vote_rows[3].find_all('td')[1].find('p').get_text()))
+        yes = int(clean_string(vote_rows[1].find_all(
+            'td')[1].find('p').get_text()))
+        no = int(clean_string(vote_rows[2].find_all(
+            'td')[1].find('p').get_text()))
+        abstention = int(clean_string(
+            vote_rows[3].find_all('td')[1].find('p').get_text()))
 
         return GenericVote(meeting_topic, vote_number, yes, no, abstention)
 
@@ -95,7 +98,8 @@ class GenericVote(Vote):
         if abs(len(l) - self.yes) > 2:
             # Sometimes there are some inconsistencies in the counts and the reported names
             # We allow some tolerance for this
-            print(f'NOTE: The number of yes voters did not match the provided list: {len(l)} instead of {self.yes}')
+            print(
+                f'NOTE: The number of yes voters did not match the provided list: {len(l)} instead of {self.yes}')
             self.unsure = True
         self.yes = len(l)
         self.yes_voters = l
@@ -110,12 +114,12 @@ class GenericVote(Vote):
         if abs(len(l) - self.no) > 2:
             # Sometimes there are some inconsistencies in the counts and the reported names
             # We allow some tolerance for this
-            print(f'NOTE: The number of no voters did not match the provided list: {len(l)} instead of {self.no}')
+            print(
+                f'NOTE: The number of no voters did not match the provided list: {len(l)} instead of {self.no}')
             self.unsure = True
         self.no = len(l)
         self.no_voters = l
         post_vote_activity(self, Choice.NO, l)
-
 
     def set_abstention_voters(self, l):
         """Set the members who abstained from voting for this motion
@@ -126,12 +130,12 @@ class GenericVote(Vote):
         if abs(len(l) - self.abstention) > 2:
             # Sometimes there are some inconsistencies in the counts and the reported names
             # We allow some tolerance for this
-            print(f'NOTE: The number of abstention voters did not match the provided list: {len(l)} instead of {self.abstention}')
+            print(
+                f'NOTE: The number of abstention voters did not match the provided list: {len(l)} instead of {self.abstention}')
             self.unsure = True
         self.abstention = len(l)
         self.abstention_voters = l
         post_vote_activity(self, Choice.ABSTENTION, l)
-
 
 
 class LanguageGroupVote(GenericVote):
@@ -146,7 +150,8 @@ class LanguageGroupVote(GenericVote):
             vote_NL (Vote): The Vote in the Dutch-speaking part of the Parliament
             vote_FR (Vote): The Vote in the French-speaking part of the Parliament
         """
-        GenericVote.__init__(self, meeting_topic, vote_number, vote_NL.yes + vote_FR.yes, vote_NL.no + vote_FR.no, vote_NL.abstention + vote_FR.abstention)
+        GenericVote.__init__(self, meeting_topic, vote_number, vote_NL.yes + vote_FR.yes,
+                             vote_NL.no + vote_FR.no, vote_NL.abstention + vote_FR.abstention)
         self.vote_NL = vote_NL
         self.vote_FR = vote_FR
 
@@ -192,13 +197,19 @@ class LanguageGroupVote(GenericVote):
         Returns:
             Vote: 
         """
-        yes_fr = int(clean_string(vote_rows[2].find_all('td')[1].find('p').get_text()))
-        no_fr = int(clean_string(vote_rows[3].find_all('td')[1].find('p').get_text()))
-        abstention_fr = int(clean_string(vote_rows[4].find_all('td')[1].find('p').get_text()))
+        yes_fr = int(clean_string(
+            vote_rows[2].find_all('td')[1].find('p').get_text()))
+        no_fr = int(clean_string(
+            vote_rows[3].find_all('td')[1].find('p').get_text()))
+        abstention_fr = int(clean_string(
+            vote_rows[4].find_all('td')[1].find('p').get_text()))
 
-        yes_nl = int(clean_string(vote_rows[2].find_all('td')[3].find('p').get_text()))
-        no_nl = int(clean_string(vote_rows[3].find_all('td')[3].find('p').get_text()))
-        abstention_nl = int(clean_string(vote_rows[4].find_all('td')[3].find('p').get_text()))
+        yes_nl = int(clean_string(
+            vote_rows[2].find_all('td')[3].find('p').get_text()))
+        no_nl = int(clean_string(
+            vote_rows[3].find_all('td')[3].find('p').get_text()))
+        abstention_nl = int(clean_string(
+            vote_rows[4].find_all('td')[3].find('p').get_text()))
 
         return LanguageGroupVote(meeting_topic, vote_number, GenericVote(meeting_topic, vote_number, yes_nl, no_nl, abstention_nl), GenericVote(meeting_topic, vote_number, yes_fr, no_fr, abstention_fr))
 
@@ -220,8 +231,10 @@ class ElectronicGenericVote(Vote):
 
     def __repr__(self):
         return f"ElectronicGenericVote({self.vote_number}, {self.yes}, {self.no})"
+
     def has_passed(self):
         return self.yes > self.no and self.yes + self.no > 75
+
     def to_dict(self, session_base_URI: str):
         return {
             'id': self.vote_number,
@@ -279,14 +292,17 @@ def electronic_vote_from_table(meeting_topic, vote_number: int, vote_start_node:
         Vote: 
     """
 
-    yes = int(clean_string(vote_start_node.find_all('td')[1].find('p').get_text()))
+    yes = int(clean_string(vote_start_node.find_all(
+        'td')[1].find('p').get_text()))
     vote_end_node = vote_start_node.find_next_sibling().find_next_sibling()
     if not vote_end_node or vote_end_node.name != 'table':
         return ElectronicAdvisoryVote(meeting_topic, vote_number, yes)
 
-    no = int(clean_string(vote_end_node.find_all('td')[1].find('p').get_text()))
+    no = int(clean_string(vote_end_node.find_all(
+        'td')[1].find('p').get_text()))
 
     return ElectronicGenericVote(meeting_topic, vote_number, yes, no)
+
 
 def post_vote_activity(vote: Vote, choice: Choice, members: List):
     for member in members:

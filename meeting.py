@@ -3,7 +3,7 @@ from common import Language
 from bs4 import BeautifulSoup, NavigableString
 import dateparser
 import requests
-from util import clean_string, go_to_p, clean_list
+from util import clean_string, go_to_p, clean_list, normalize_str
 from vote import GenericVote, LanguageGroupVote, electronic_vote_from_table
 import re
 from os import path, makedirs
@@ -333,8 +333,9 @@ class Meeting:
                         "Algemeen" if language == Language.NL else "Generale"))
                     self.topics[item].complete_type()
                     if language == Language.NL:
+                        title = normalize_str(current_title.rstrip().lower()).decode()
                         for member in self.parliamentary_session.get_members():
-                            if member.normalized_name() in current_title.rstrip().lower():
+                            if member.normalized_name() in title:
                                 member.post_activity(TopicActivity(
                                     member, self, self.topics[item]))
                     current_title = ""
@@ -370,10 +371,15 @@ class Meeting:
         result = Meeting(session, meeting_id, tod, date)
         return result
 
+
 def create_or_get_doc(session, number):
     return ParliamentaryDocument(session, number) if number not in session.documents else session.documents[number]
+
+
 def create_or_get_question(session, number):
     return ParliamentaryQuestion(session, number) if number not in session.questions else session.questions[number]
+
+
 class MeetingTopic:
     """
     A MeetingTopic represents a single agenda point
@@ -442,7 +448,8 @@ class MeetingTopic:
                     match = re.match(".*\(([0-9]+)\/.*\)", line)
                     if match and match.group(1):
                         bill_numbers.append(match.group(1))
-                self.related_documents = list(executor.map(functools.partial(create_or_get_doc, self.parliamentary_session), bill_numbers))
+                self.related_documents = list(executor.map(functools.partial(
+                    create_or_get_doc, self.parliamentary_session), bill_numbers))
             elif self.topic_type == TopicType.QUESTIONS:
                 questions_numbers = []
                 for line in self.title_NL.split('\n'):
@@ -450,10 +457,13 @@ class MeetingTopic:
                     if new_format_match and new_format_match.group(1):
                         questions_numbers.append(new_format_match.group(1))
                     else:
-                        old_format_match = re.match(".*\(nr\.? (P[0-9]{4})\)", line)
+                        old_format_match = re.match(
+                            ".*\(nr\.? (P[0-9]{4})\)", line)
                         if old_format_match and old_format_match.group(1):
-                            questions_numbers.append(f'{self.session}{old_format_match.group(1)}')
-                self.related_questions = list(executor.map(functools.partial(create_or_get_question, self.parliamentary_session), questions_numbers))
+                            questions_numbers.append(
+                                f'{self.session}{old_format_match.group(1)}')
+                self.related_questions = list(executor.map(functools.partial(
+                    create_or_get_question, self.parliamentary_session), questions_numbers))
 
     def set_section(self, language: Language, section_name: str):
         """The meeting is also organized in sections, this method allows you to set

@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class Language(Enum):
     '''
     Enum used to differentiate between the two languages used in the meetings
@@ -7,6 +8,7 @@ class Language(Enum):
     '''
     NL = 0
     FR = 1
+
 
 class Choice(Enum):
     '''

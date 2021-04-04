@@ -5,10 +5,9 @@ import dateparser
 from activity import LegislativeActivity, QuestionActivity
 import re
 import json
+from util import normalize_str
 from os import path, makedirs
 
-# TODO: AuthorshipActivity: Post to members
-# TODO: Add URL to export
 
 def extract_name(name: str):
     match = re.match("(.+, .+) (\S+)$", name)
@@ -31,10 +30,13 @@ class ParliamentaryDocument:
         self._initialize()
         self.session.documents[document_number] = self
         self._register_activities()
+
     def description_uri(self):
         return f'https://www.dekamer.be/kvvcr/showpage.cfm?section=/flwb&language=nl&cfm=/site/wwwcfm/flwb/flwbn.cfm?lang=N&legislat={self.session.session}&dossierID={self.document_number}'
+
     def uri(self):
         return f'legislation/{self.document_number}.json'
+
     def json(self, base_path, base_URI="/"):
         result = {}
         result['document_number'] = self.document_number
@@ -44,7 +46,8 @@ class ParliamentaryDocument:
             result['title'] = self.title
         result['source'] = self.description_uri()
         result['date'] = self.date.isoformat()
-        result['authors'] = [f'{base_URI}{author.uri()}' for author in self.authors]
+        result['authors'] = [
+            f'{base_URI}{author.uri()}' for author in self.authors]
         if self.descriptor:
             result['descriptor'] = self.descriptor
         if self.keywords:
@@ -54,6 +57,7 @@ class ParliamentaryDocument:
         with open(path.join(base_path, f'{self.document_number}.json'), 'w+') as fp:
             json.dump(result, fp, ensure_ascii=False)
         return f'{base_URI}{self.uri}'
+
     def _initialize(self):
         page = requests.get(self.description_uri())
         soup = BeautifulSoup(page.content, 'html.parser')
@@ -64,32 +68,46 @@ class ParliamentaryDocument:
 
         proposal_date = soup.find('td', text=re.compile('Indieningsdatum'))
         if not proposal_date:
-            self.date = dateparser.parse(soup.find('td', text=re.compile('[0-9]+/[0-9]+/[0-9]+')).get_text())
+            self.date = dateparser.parse(
+                soup.find('td', text=re.compile('[0-9]+/[0-9]+/[0-9]+')).get_text())
         else:
-            self.date = dateparser.parse(proposal_date.parent.find_all('td')[-1].get_text())
-        descriptor = soup.find('td', text=re.compile('Eurovoc-hoofddescriptor'))
+            self.date = dateparser.parse(
+                proposal_date.parent.find_all('td')[-1].get_text())
+        descriptor = soup.find(
+            'td', text=re.compile('Eurovoc-hoofddescriptor'))
         if descriptor:
             self.descriptor = descriptor.parent.find_all('td')[-1].get_text()
         keywords = soup.find('td', text=re.compile('Eurovoc descriptoren'))
         if keywords:
-            self.keywords = keywords.parent.find_all('td')[-1].get_text().split(' | ')
+            self.keywords = keywords.parent.find_all(
+                'td')[-1].get_text().split(' | ')
         self.title = content.find('h4').get_text().strip()
-        doc_type_row = [tag for tag in soup.find_all('td', {'class':"td1x"}) if 'Document type' in tag.get_text()]
-        self.document_type = doc_type_row[0].parent.find('td', {'class': 'td0x'}).find_all(text=True)[0][3:]
+        doc_type_row = [tag for tag in soup.find_all(
+            'td', {'class': "td1x"}) if 'Document type' in tag.get_text()]
+        self.document_type = doc_type_row[0].parent.find(
+            'td', {'class': 'td0x'}).find_all(text=True)[0][3:]
         if self.document_type == 'WETSVOORSTEL':
-            authors = [tag for tag in soup.find_all('td', {'class':"td1x"}) if 'Auteur(s)' in tag.get_text()]
-            authors = authors[0].parent.find('td', {'class': 'td0x'}).find_all(text=True)
-            authors = [text.strip() for text in authors if (not str(text).isspace()) and ', ' in text]
+            authors = [tag for tag in soup.find_all(
+                'td', {'class': "td1x"}) if 'Auteur(s)' in tag.get_text()]
+            authors = authors[0].parent.find(
+                'td', {'class': 'td0x'}).find_all(text=True)
+            authors = [text.strip() for text in authors if (
+                not str(text).isspace()) and ', ' in text]
             for name in authors:
+                name = normalize_str(name).decode()
                 if name in self.session.get_members_dict():
                     self.authors.append(self.session.get_members_dict()[name])
                 elif extract_name(name) in self.session.get_members_dict():
-                    self.authors.append(self.session.get_members_dict()[extract_name(name)])
+                    self.authors.append(self.session.get_members_dict()[
+                                        extract_name(name)])
+
     def _register_activities(self):
         if not self.authors:
             return
         for author in self.authors:
             author.post_activity(LegislativeActivity(author, self.date, self))
+
+
 class ParliamentaryQuestion:
     def __init__(self, session, document_number: str):
         from datetime import datetime
@@ -103,13 +121,16 @@ class ParliamentaryQuestion:
         self._initialize()
         self.session.questions[document_number] = self
         self._register_activities()
+
     def _register_activities(self):
         if not self.authors:
             return
         for author in self.authors:
             author.post_activity(QuestionActivity(author, self.date, self))
+
     def uri(self):
         return f'questions/{self.document_number}.json'
+
     def json(self, base_path, base_URI="/"):
         result = {}
         result['document_number'] = self.document_number
@@ -118,15 +139,19 @@ class ParliamentaryQuestion:
         result['source'] = self.description_uri()
         if self.responding_minister:
             result['responding_minister'] = self.responding_minister
-        result['authors'] = [f'{base_URI}{author.uri()}' for author in self.authors]
-        
+            result['responding_department'] = self.responding_department
+        result['authors'] = [
+            f'{base_URI}{author.uri()}' for author in self.authors]
+
         base_path = path.join(base_path, "questions")
         makedirs(base_path, exist_ok=True)
         with open(path.join(base_path, f'{self.document_number}.json'), 'w+') as fp:
             json.dump(result, fp, ensure_ascii=False)
         return f'{base_URI}{self.uri}'
+
     def description_uri(self):
         return f'https://www.dekamer.be/kvvcr/showpage.cfm?section=inqo&language=nl&cfm=inqoXml.cfm?db=INQO&legislat={self.session.session}&dossierID=Q{self.document_number}'
+
     def _initialize(self):
         page = requests.get(self.description_uri())
         soup = BeautifulSoup(page.content, 'html.parser')
@@ -134,23 +159,34 @@ class ParliamentaryQuestion:
         if (not body) or "not exist" in body.get_text():
             return
 
-        authors = [tag for tag in soup.find_all('td') if 'Auteur(s)' in tag.get_text()]
+        authors = [tag for tag in soup.find_all(
+            'td') if 'Auteur(s)' in tag.get_text()]
         if authors:
-            authors = authors[0].parent.find_all('td')[1].get_text().split('\n')
-            authors = [','.join(text.strip().split(',')[:-1]) for text in authors if (not str(text).isspace()) and ', ' in text]
-            
+            authors = authors[0].parent.find_all(
+                'td')[1].get_text().split('\n')
+            authors = [','.join(text.strip().split(
+                ',')[:-1]) for text in authors if (not str(text).isspace()) and ', ' in text]
+
         for name in authors:
+            name = normalize_str(name).decode()
             if name in self.session.get_members_dict():
                 self.authors.append(self.session.get_members_dict()[name])
             elif extract_name(name) in self.session.get_members_dict():
-                self.authors.append(self.session.get_members_dict()[extract_name(name)])
-        responding_minister_cell = soup.find('i', text=re.compile('Antwoordende minister'))
+                self.authors.append(self.session.get_members_dict()[
+                                    extract_name(name)])
+        responding_minister_cell = soup.find(
+            'i', text=re.compile('Antwoordende minister'))
         if responding_minister_cell:
-            self.responding_minister = responding_minister_cell.parent.parent.parent.find_all('td')[1].get_text().strip()[:-1]
+            self.responding_minister = responding_minister_cell.find_parent('tr').find_all('td')[
+                1].get_text().strip()[:-1]
+            self.responding_department = responding_minister_cell.find_parent('tr').find_next('tr').get_text().strip()
         title = soup.find('i', text=re.compile('Titel'))
         if title:
-            self.title = title.parent.parent.parent.find_all('td')[1].get_text().strip()
-            self.title = "\n".join(item.strip() for item in self.title.split('\n') if item.strip())
+            self.title = title.find_parent('tr').find_all('td')[
+                1].get_text().strip()
+            self.title = "\n".join(item.strip()
+                                   for item in self.title.split('\n') if item.strip())
         date = soup.find('i', text=re.compile('Datum bespreking'))
         if date:
-            self.date = dateparser.parse(date.parent.parent.find_all('td')[1].get_text().strip())
+            self.date = dateparser.parse(
+                date.find_parent('tr').find_all('td')[1].get_text().strip())

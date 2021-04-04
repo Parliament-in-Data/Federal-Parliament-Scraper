@@ -9,11 +9,13 @@ from typing import List
 from activity import Activity
 from collections import defaultdict
 
+
 class Member:
     """
     Class representing a single member of the parliament
     """
-    def __init__(self, first_name: str, last_name: str, party: str, province: str, language: str, url: str=None):
+
+    def __init__(self, first_name: str, last_name: str, party: str, province: str, language: str, url: str = None):
         """Class representing a single member of the parliament
 
         Args:
@@ -36,16 +38,20 @@ class Member:
         self.date_of_birth = None
         self.gender = None
         sha_1 = hashlib.sha1()
-        sha_1.update(self.first_name.encode('utf-8') + self.last_name.encode('utf-8') + self.party.encode('utf-8') + self.province.encode('utf-8'))
-        self.uuid = sha_1.hexdigest()[:10]# Should be sufficiently random
+        sha_1.update(self.first_name.encode('utf-8') + self.last_name.encode('utf-8') +
+                     self.party.encode('utf-8') + self.province.encode('utf-8'))
+        self.uuid = sha_1.hexdigest()[:10]  # Should be sufficiently random
 
-    def set_gender(self, gender:str):
+    def set_gender(self, gender: str):
         self.gender = gender
-    def set_date_of_birth(self, date:str):
+
+    def set_date_of_birth(self, date: str):
         import dateparser
         self.date_of_birth = dateparser.parse(date)
+
     def uri(self):
         return f'members/{self.uuid}.json'
+
     def dump_json(self, base_path: str, base_URI="/"):
         base_path = path.join(base_path, "members")
         base_URI_members = f'{base_URI}members/'
@@ -53,10 +59,12 @@ class Member:
         makedirs(base_path, exist_ok=True)
 
         with open(path.join(base_path, resource_name), 'w+') as fp:
-            replaces = list(map(lambda replacement: {'member': f'{base_URI_members}{replacement["member"]}.json', 'dates': replacement['dates']}, self.replaces))
+            replaces = list(map(lambda replacement: {
+                            'member': f'{base_URI_members}{replacement["member"]}.json', 'dates': replacement['dates']}, self.replaces))
             activity_dict = defaultdict(lambda: defaultdict(list))
             for activity in self.activities:
-                activity_dict[str(activity.date.year)][str(activity.date.isoformat())].append(activity.dict(base_URI))
+                activity_dict[str(activity.date.year)][str(
+                    activity.date.isoformat())].append(activity.dict(base_URI))
             activities_dir = path.join(base_path, str(self.uuid))
             makedirs(activities_dir, exist_ok=True)
 
@@ -67,17 +75,23 @@ class Member:
                     json.dump(activity_dict[year], afp)
                 activity_uris[year] = f'{base_URI_members}{self.uuid}/{year}.json'
 
-            json.dump({'id': str(self.uuid), 'first_name': self.first_name, 'last_name': self.last_name, 'gender': self.gender, 'date_of_birth': self.date_of_birth.isoformat(), 'language': self.language, 'province': self.province, 'party': self.party, 'wiki': self.url, 'replaces': replaces, 'activities': activity_uris}, fp, ensure_ascii=False)
+            json.dump({'id': str(self.uuid), 'first_name': self.first_name, 'last_name': self.last_name, 'gender': self.gender, 'date_of_birth': self.date_of_birth.isoformat(
+            ), 'language': self.language, 'province': self.province, 'party': self.party, 'wiki': self.url, 'replaces': replaces, 'activities': activity_uris}, fp, ensure_ascii=False)
 
         return f'{base_URI_members}{resource_name}'
+
     def __repr__(self):
         return "Member(\"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\")" % (self.first_name, self.last_name, self.party, self.province, self.language, self.url)
+
     def __str__(self):
         return "%s, %s" % (self.first_name, self.last_name)
+
     def normalized_name(self):
-        return ("%s %s" % (self.first_name, self.last_name)).lower()
+        return normalize_str(("%s %s" % (self.first_name, self.last_name)).lower()).decode()
+
     def post_activity(self, activity: Activity):
         self.activities.append(activity)
+
     def hasName(self, query: str):
         """Compare the query string with the "{last_name} {first_name}" combination of
         this member, ignoring any diactritical characters. Alternative names are also possible for
@@ -100,6 +114,7 @@ class Member:
         if query == normalize_str(self.last_name):
             return True
         return query == name or query == normalize_str(f'{self.first_name} {self.last_name}')
+
     def set_alternative_names(self, names: List[str]):
         """Set alternative names by which the member should also
         be recognized in the meeting notes.
@@ -108,6 +123,7 @@ class Member:
             names (list(str)): All the alternative names of the member
         """
         self.alternative_names = names
+
     def set_replaces(self, replaces: List[any]):
         """Set which members are replaces when by this member.
 
@@ -115,6 +131,7 @@ class Member:
             replaces (list): All the timespans a member was replaced
         """
         self.replaces = replaces
+
     def get_image(self):
         """If the Member has a Wikipedia page, this method will attempt to scrape
         their image from this website.
@@ -130,5 +147,6 @@ class Member:
         result = None
         infobox = soup.find("table", {"class": "infobox"})
         if infobox:
-            result = "https:%s" % infobox.find('img')['src'] if infobox.find('img') else None
+            result = "https:%s" % infobox.find(
+                'img')['src'] if infobox.find('img') else None
         return result

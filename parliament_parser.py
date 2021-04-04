@@ -6,11 +6,16 @@ from meeting import Meeting
 import json
 from os import path, makedirs
 import functools
+from util import normalize_str
+
 
 def member_to_URI(base_path, base_URI, member):
     return member.dump_json(base_path, base_URI)
+
+
 def meeting_to_URI(base_path, base_URI, meeting):
     return meeting.dump_json(base_path, base_URI)
+
 
 class ParliamentarySession:
     '''
@@ -36,14 +41,20 @@ class ParliamentarySession:
         makedirs(base_path, exist_ok=True)
 
         with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
-            meeting_URIs = list(executor.map(functools.partial(meeting_to_URI, base_path, base_URI), self.plenary_meetings))
-            members_URIs = list(executor.map(functools.partial(member_to_URI, base_path, base_URI), self.members))
+            meeting_URIs = list(executor.map(functools.partial(
+                meeting_to_URI, base_path, base_URI), self.plenary_meetings))
+            members_URIs = list(executor.map(functools.partial(
+                member_to_URI, base_path, base_URI), self.members))
 
-        for question in self.questions:
-            self.questions[question].json(base_path, base_URI)
+        questions_uris = [self.questions[question].json(
+            base_path, base_URI) for question in self.questions]
+        documents_uris = [self.documents[document].json(
+            base_path, base_URI) for document in self.documents]
 
-        for document in self.documents:
-            self.documents[document].json(base_path, base_URI)
+        with open(path.join(base_path, 'legislation', 'index.json'), 'w+') as fp:
+            json.dump({document.document_number: f'{base_URI}{document.uri()}' for _, document in self.documents.items()}, fp)
+        with open(path.join(base_path, 'questions', 'index.json'), 'w+') as fp:
+            json.dump({question.document_number: f'{base_URI}{question.uri()}' for _, question in self.questions.items()}, fp)
 
         with open(path.join(base_path, 'session.json'), 'w+') as fp:
             json.dump({
@@ -51,8 +62,11 @@ class ParliamentarySession:
                 'start': self.start,
                 'end': self.end,
                 'members': members_URIs,
+                'legislation': f'{base_URI}legislation/index.json',
+                'questions': f'{base_URI}questions/index.json',
                 'meetings': {'plenary': meeting_URIs}}, fp)
         return path.join(base_URI, 'session.json')
+
     def __init__(self, session: int):
         """Initialize a new instance of the scraper
 
@@ -71,7 +85,8 @@ class ParliamentarySession:
         self.members = []
         self.start = ParliamentarySession.sessions[session]['from']
         self.end = ParliamentarySession.sessions[session]['to']
-
+        self._members_fn_ln = {}
+        self._members_ln_fn = {}
         # TODO: remove
         self.undefined_members = set()
 
@@ -87,6 +102,10 @@ class ParliamentarySession:
         """
         if not self.members:
             self.get_members()
+        normalized = normalize_str(query)
+
+        if normalized in self._members_fn_ln:
+            return self._members_fn_ln[normalized]
 
         for member in self.members:
             if member.hasName(query):
@@ -98,7 +117,9 @@ class ParliamentarySession:
         if not self.members_dict:
             self.members_dict = {}
             for member in self.members:
-                self.members_dict[f'{member.first_name}, {member.last_name}'] = member
+                first_name = normalize_str(member.first_name).decode()
+                last_name = normalize_str(member.last_name).decode()
+                self.members_dict[f'{first_name}, {last_name}'] = member
         return self.members_dict
 
     def get_plenary_meetings(self, refresh=False):
@@ -149,9 +170,12 @@ class ParliamentarySession:
                     if 'replaces' in entry:
                         replaces = entry['replaces']
                         for replacement in replaces:
-                            referenced_member = self.find_member(replacement['name'])
+                            referenced_member = self.find_member(
+                                replacement['name'])
                             del replacement['name']
                             replacement['member'] = referenced_member.uuid
                         member.set_replaces(replaces)
+            self._members_fn_ln = {normalize_str(
+                f'{member.last_name} {member.first_name}'): member for member in self.members}
 
         return self.members
