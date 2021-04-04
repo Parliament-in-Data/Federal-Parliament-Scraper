@@ -12,7 +12,11 @@ from os import path, makedirs
 def extract_name(name: str):
     match = re.match("(.+, .+) (\S+)$", name)
     if match and match.group(1):
-        return match.group(1)
+        res = match.group(1)
+        if res[-1] == ',':
+            res = res[:-1]
+        res.replace('-', ' ')
+        return res
     else:
         return name
 
@@ -174,6 +178,8 @@ class ParliamentaryQuestion:
             elif extract_name(name) in self.session.get_members_dict():
                 self.authors.append(self.session.get_members_dict()[
                                     extract_name(name)])
+            else:
+                print(extract_name(name))
         responding_minister_cell = soup.find(
             'i', text=re.compile('Antwoordende minister'))
         if responding_minister_cell:
