@@ -37,6 +37,7 @@ class Member:
         self.url = url
         self.date_of_birth = None
         self.gender = None
+        self.photo_url = None
         sha_1 = hashlib.sha1()
         sha_1.update(self.first_name.encode('utf-8') + self.last_name.encode('utf-8') +
                      self.party.encode('utf-8') + self.province.encode('utf-8'))
@@ -44,6 +45,9 @@ class Member:
 
     def set_gender(self, gender: str):
         self.gender = gender
+
+    def set_photo_url(self, photo_url: str):
+        self.photo_url = photo_url
 
     def set_date_of_birth(self, date: str):
         import dateparser
@@ -76,7 +80,7 @@ class Member:
                 activity_uris[year] = f'{base_URI_members}{self.uuid}/{year}.json'
 
             json.dump({'id': str(self.uuid), 'first_name': self.first_name, 'last_name': self.last_name, 'gender': self.gender, 'date_of_birth': self.date_of_birth.isoformat(
-            ), 'language': self.language, 'province': self.province, 'party': self.party, 'wiki': self.url, 'replaces': replaces, 'activities': activity_uris}, fp, ensure_ascii=False)
+            ), 'language': self.language, 'province': self.province, 'party': self.party, 'wiki': self.url, 'replaces': replaces, 'activities': activity_uris, 'photo_url': self.photo_url}, fp, ensure_ascii=False)
 
         return f'{base_URI_members}{resource_name}'
 
