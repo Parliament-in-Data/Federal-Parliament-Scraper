@@ -18,7 +18,8 @@
         ],
         "date_of_birth": "1977-12-27",
         "wikibase_item": "Q456792",
-        "gender": "female"
+        "gender": "female",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Inge-vervotte-1389846079.jpg"
     },
     {
         "first_name": "Katrien",
@@ -40,7 +41,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Rudy_Demotte",
         "date_of_birth": "1963-06-03",
         "wikibase_item": "Q946066",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Rudy_demotte.jpg"
     },
     {
         "first_name": "Luc",
@@ -72,7 +74,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Bart_De_Wever",
         "date_of_birth": "1970-12-21",
         "wikibase_item": "Q336599",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/BartDeWever.jpg"
     },
     {
         "first_name": "Kristof",
@@ -104,7 +107,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Kris_Peeters_(politicus)",
         "date_of_birth": "1962-05-18",
         "wikibase_item": "Q12869",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Kris_peeters-1522338324.jpg"
     },
     {
         "first_name": "Jan",
@@ -125,7 +129,8 @@
         ],
         "date_of_birth": "1960-04-26",
         "wikibase_item": "Q1865725",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Jan_jambon-1529408527.jpg"
     },
     {
         "first_name": "Servais",
@@ -136,7 +141,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Servais_Verherstraeten",
         "date_of_birth": "1960-01-29",
         "wikibase_item": "Q2032311",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Servais-verherstraeten-1381144012.jpg"
     },
     {
         "first_name": "Mia",
@@ -158,7 +164,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Jef_Van_den_Bergh",
         "date_of_birth": "1973-02-05",
         "wikibase_item": "Q1974298",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Jef_Van_den_Bergh.jpg"
     },
     {
         "first_name": "Flor",
@@ -191,7 +198,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Herman_Van_Rompuy",
         "date_of_birth": "1947-10-31",
         "wikibase_item": "Q12983",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Herman_Van_Rompuy_675.jpg"
     },
     {
         "first_name": "Ben",
@@ -212,7 +220,8 @@
         ],
         "date_of_birth": "1970-11-12",
         "wikibase_item": "Q2271035",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Ben-weyts-1426439822.jpg"
     },
     {
         "first_name": "Michel",
@@ -223,7 +232,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Michel_Doomst",
         "date_of_birth": "1953-11-13",
         "wikibase_item": "Q2267557",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Michel-doomst.jpg"
     },
     {
         "first_name": "Sonja",
@@ -234,7 +244,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Sonja_Becq",
         "date_of_birth": "1957-12-08",
         "wikibase_item": "Q607864",
-        "gender": "female"
+        "gender": "female",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Sonja_Becq.jpg"
     },
     {
         "first_name": "Ingrid",
@@ -255,7 +266,8 @@
         ],
         "date_of_birth": "1968-04-14",
         "wikibase_item": "Q2895291",
-        "gender": "female"
+        "gender": "female",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Ingrid-claes.jpg"
     },
     {
         "first_name": "Katrien",
@@ -266,7 +278,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Katrien_Partyka",
         "date_of_birth": "1973-07-31",
         "wikibase_item": "Q2709142",
-        "gender": "female"
+        "gender": "female",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Katrien_Partyka_6.jpg"
     },
     {
         "first_name": "Jo",
@@ -277,7 +290,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Jo_Vandeurzen",
         "date_of_birth": "1958-06-02",
         "wikibase_item": "Q16002",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Jo_Vandeurzen_2014.jpg"
     },
     {
         "first_name": "Peter",
@@ -307,7 +321,8 @@
         ],
         "date_of_birth": "1964-05-06",
         "wikibase_item": "Q3376731",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Kamerlid_Peter_Luykx.jpg"
     },
     {
         "first_name": "Johan",
@@ -318,7 +333,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Johan_Sauwens",
         "date_of_birth": "1951-03-14",
         "wikibase_item": "Q2227111",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/JohanSauwens.jpg"
     },
     {
         "first_name": "Raf",
@@ -372,7 +388,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Jan_Peumans",
         "date_of_birth": "1951-01-06",
         "wikibase_item": "Q951432",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Jan_Peumans.jpg"
     },
     {
         "first_name": "Hilâl",
@@ -447,7 +464,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Pieter_De_Crem",
         "date_of_birth": "1962-07-22",
         "wikibase_item": "Q1534851",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Pieter_De_Crem_(2017).jpg"
     },
     {
         "first_name": "Lieve",
@@ -490,7 +508,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Leen_Dierick",
         "date_of_birth": "1978-05-02",
         "wikibase_item": "Q3228978",
-        "gender": "female"
+        "gender": "female",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Leen_Dierick_20171109.jpg"
     },
     {
         "first_name": "Ilse",
@@ -523,7 +542,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Stefaan_De_Clerck",
         "date_of_birth": "1951-12-12",
         "wikibase_item": "Q12498",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Stefaan_De_Clerck_(politician)_cropped_version.jpg"
     },
     {
         "first_name": "Patrick",
@@ -566,7 +586,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Nathalie_Muylle",
         "date_of_birth": "1969-02-08",
         "wikibase_item": "Q524806",
-        "gender": "female"
+        "gender": "female",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Nathalie_muylle-1614760934.jpg"
     },
     {
         "first_name": "Roel",
@@ -577,7 +598,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Roel_Deseyn",
         "date_of_birth": "1976-10-14",
         "wikibase_item": "Q3438541",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Profielfoto_Roel_Deseyn_(2).jpg"
     },
     {
         "first_name": "Els",
@@ -588,7 +610,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Els_De_Rammelaere",
         "date_of_birth": "1969-04-12",
         "wikibase_item": "Q2448683",
-        "gender": "female"
+        "gender": "female",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Els_de_rammelaere-1451832456.jpg"
     },
     {
         "first_name": "Olivier",
@@ -599,7 +622,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Olivier_Maingain",
         "date_of_birth": "1958-08-03",
         "wikibase_item": "Q678494",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Maingain_(2).jpg"
     },
     {
         "first_name": "Corinne",
@@ -610,7 +634,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Corinne_De_Permentier",
         "date_of_birth": "1960-04-05",
         "wikibase_item": "Q2997319",
-        "gender": "female"
+        "gender": "female",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Corinne_De_Permentier.jpg"
     },
     {
         "first_name": "François-Xavier",
@@ -621,7 +646,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Fran%C3%A7ois-Xavier_de_Donnea",
         "date_of_birth": "1941-04-29",
         "wikibase_item": "Q479383",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Chair_of_the_Transparency_Committee_Francois-Xavier_de_Donnea_(Belgium)_addresses_the_Standing_Committee_(9164015683).jpg"
     },
     {
         "first_name": "Bernard",
@@ -632,7 +658,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Bernard_Clerfayt",
         "date_of_birth": "1961-12-30",
         "wikibase_item": "Q822355",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/BernardClerfayt.JPG"
     },
     {
         "first_name": "Xavier",
@@ -707,7 +734,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Jean-Luc_Crucke",
         "date_of_birth": "1962-10-22",
         "wikibase_item": "Q3167117",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Jean-Luc_Crucke_J1.jpg"
     },
     {
         "first_name": "Françoise",
@@ -750,7 +778,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Marie-Christine_Marghem",
         "date_of_birth": "1963-05-22",
         "wikibase_item": "Q3291646",
-        "gender": "female"
+        "gender": "female",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Marie-Christine_Marghem.jpg"
     },
     {
         "first_name": "Denis",
@@ -761,7 +790,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Denis_Ducarme",
         "date_of_birth": "1973-10-23",
         "wikibase_item": "Q3022653",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/DenisDucarme.JPG"
     },
     {
         "first_name": "Jean-Jacques",
@@ -783,7 +813,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Olivier_Chastel",
         "date_of_birth": "1964-11-22",
         "wikibase_item": "Q3143147",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Olivier_chastel.jpg"
     },
     {
         "first_name": "Olivier",
@@ -804,7 +835,8 @@
         ],
         "date_of_birth": "1965-03-21",
         "wikibase_item": "Q3350975",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/OlivierDestrebecq.jpg"
     },
     {
         "first_name": "Didier",
@@ -815,7 +847,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Didier_Reynders",
         "date_of_birth": "1958-08-06",
         "wikibase_item": "Q978208",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Didier_Reynders_in_Iranian_Parliament_02.jpg"
     },
     {
         "first_name": "Josée",
@@ -847,7 +880,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Kattrin_Jadin",
         "date_of_birth": "1980-07-01",
         "wikibase_item": "Q733266",
-        "gender": "female"
+        "gender": "female",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/15_03_02_CONSEIL_BORSUS_BACQUELAINE_BOUCHEZ_195.jpg"
     },
     {
         "first_name": "Daniel",
@@ -858,7 +892,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Daniel_Bacquelaine",
         "date_of_birth": "1952-10-30",
         "wikibase_item": "Q2949528",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Daniel_Bacquelaine,_2014-12-02_DB_Wavre.jpg"
     },
     {
         "first_name": "Pierre-Yves",
@@ -933,7 +968,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Philippe_Collard",
         "date_of_birth": "1957-03-19",
         "wikibase_item": "Q3379606",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Philippe_Collard_07655.jpg"
     },
     {
         "first_name": "Carine",
@@ -955,7 +991,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Sabine_Laruelle",
         "date_of_birth": "1965-06-02",
         "wikibase_item": "Q508073",
-        "gender": "female"
+        "gender": "female",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Sabine_Laruelle_2011.jpg"
     },
     {
         "first_name": "David",
@@ -976,7 +1013,8 @@
         ],
         "date_of_birth": "1976-01-10",
         "wikibase_item": "Q3017667",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/David-clarinval.jpg"
     },
     {
         "first_name": "François",
@@ -987,7 +1025,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Fran%C3%A7ois_Bellot",
         "date_of_birth": "1954-02-08",
         "wikibase_item": "Q2457970",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/François_Bellot.jpg"
     },
     {
         "first_name": "Charles",
@@ -998,7 +1037,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Charles_Michel",
         "date_of_birth": "1975-12-21",
         "wikibase_item": "Q950958",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Charles_Michel_(49467991288).jpg"
     },
     {
         "first_name": "Jacques",
@@ -1041,7 +1081,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Laurette_Onkelinx",
         "date_of_birth": "1958-10-02",
         "wikibase_item": "Q448224",
-        "gender": "female"
+        "gender": "female",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Laurette_Onkelinx.JPG"
     },
     {
         "first_name": "Jean",
@@ -1073,7 +1114,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Yvan_Mayeur",
         "date_of_birth": "1960-01-24",
         "wikibase_item": "Q2118869",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Yvan_Mayeur,_alcalde_de_Bruselas,_en_el_Foro_Mundial_sobre_Violencias_Urbanas_en_Madrid_(2017).jpg"
     },
     {
         "first_name": "Charles",
@@ -1084,7 +1126,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Charles_Picqu%C3%A9",
         "date_of_birth": "1948-11-01",
         "wikibase_item": "Q943256",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Charles_Picqué.jpg"
     },
     {
         "first_name": "Karine",
@@ -1116,7 +1159,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Marie_Arena",
         "date_of_birth": "1966-12-17",
         "wikibase_item": "Q457117",
-        "gender": "female"
+        "gender": "female",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Marie_Arena_-_Citizens’_Corner_debate_on_European_Citizens’_Initiatives-_Time_for_ECI_review?_(30214109881).jpg"
     },
     {
         "first_name": "Privé",
@@ -1182,7 +1226,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Colette_Burgeon",
         "date_of_birth": "1957-02-11",
         "wikibase_item": "Q1838690",
-        "gender": "female"
+        "gender": "female",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Colette_Burgeon.jpg"
     },
     {
         "first_name": "Philippe",
@@ -1258,7 +1303,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Elio_Di_Rupo",
         "date_of_birth": "1951-07-18",
         "wikibase_item": "Q15048",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Elio_Di_Rupo_PES-Kongress_2014.jpg"
     },
     {
         "first_name": "Bruno",
@@ -1308,7 +1354,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Michel_Daerden",
         "date_of_birth": "2012-08-05",
         "wikibase_item": "Q772642",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Michel_Daerden675.jpg"
     },
     {
         "first_name": "Thierry",
@@ -1329,7 +1376,8 @@
         ],
         "date_of_birth": "1958-07-21",
         "wikibase_item": "Q1748916",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Thierry_Giet_-_avril_2012_(1).jpg"
     },
     {
         "first_name": "Guy",
@@ -1479,7 +1527,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Andr%C3%A9_Flahaut",
         "date_of_birth": "1955-08-18",
         "wikibase_item": "Q518520",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Flahaut_010618-D-2987S-093_screen.jpg"
     },
     {
         "first_name": "Gerolf",
@@ -1490,7 +1539,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Gerolf_Annemans",
         "date_of_birth": "1958-11-08",
         "wikibase_item": "Q2294644",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Gerolf-annemans-1398165754.jpg"
     },
     {
         "first_name": "Alexandra",
@@ -1501,7 +1551,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Alexandra_Colen",
         "date_of_birth": "1955-07-09",
         "wikibase_item": "Q2833256",
-        "gender": "female"
+        "gender": "female",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/AlexandraColen1996.jpg"
     },
     {
         "first_name": "Bruno",
@@ -1566,7 +1617,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Rita_De_Bont",
         "date_of_birth": "1954-07-29",
         "wikibase_item": "Q3433236",
-        "gender": "female"
+        "gender": "female",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Rita_de_bont.jpg"
     },
     {
         "first_name": "Filip",
@@ -1577,7 +1629,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Filip_De_Man",
         "date_of_birth": "1955-11-11",
         "wikibase_item": "Q466236",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Filipdeman0001.jpg"
     },
     {
         "first_name": "Greet",
@@ -1631,7 +1684,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Bert_Schoofs_(politicus)",
         "date_of_birth": "1967-06-10",
         "wikibase_item": "Q2153006",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Alexander_de_Croo_-_Lode_Vereeck_-_Bert_Schoofs.jpg"
     },
     {
         "first_name": "Linda",
@@ -1706,7 +1760,8 @@
         ],
         "date_of_birth": "1981-03-01",
         "wikibase_item": "Q2884009",
-        "gender": "female"
+        "gender": "female",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Barbara_pas-1496696589.jpg"
     },
     {
         "first_name": "Francis",
@@ -1782,7 +1837,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Bart_Somers",
         "date_of_birth": "1964-05-12",
         "wikibase_item": "Q15993",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Bart_Somers.jpg"
     },
     {
         "first_name": "Yolande",
@@ -1826,7 +1882,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Maggie_De_Block",
         "date_of_birth": "1962-04-28",
         "wikibase_item": "Q2800268",
-        "gender": "female"
+        "gender": "female",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Maggie_De_Block_2016.jpg"
     },
     {
         "first_name": "Luk",
@@ -1837,7 +1894,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Luk_Van_Biesen",
         "date_of_birth": "1960-06-26",
         "wikibase_item": "Q3266973",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Luk_van_biesen-1557944074.jpg"
     },
     {
         "first_name": "Hendrik",
@@ -1848,7 +1906,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Rik_Daems",
         "date_of_birth": "1959-08-18",
         "wikibase_item": "Q1382799",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/2021_Rik_Daems.jpg"
     },
     {
         "first_name": "Katia",
@@ -1906,7 +1965,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Hilde_Vautmans",
         "date_of_birth": "1972-05-02",
         "wikibase_item": "Q2780443",
-        "gender": "female"
+        "gender": "female",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Hilde_Vautmans_(2019_A).jpg"
     },
     {
         "first_name": "Karel",
@@ -1917,7 +1977,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Karel_De_Gucht",
         "date_of_birth": "1954-01-27",
         "wikibase_item": "Q381218",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Degucht01.jpg"
     },
     {
         "first_name": "Mathias",
@@ -1938,7 +1999,8 @@
         ],
         "date_of_birth": "1981-12-26",
         "wikibase_item": "Q1939878",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/DeClercq_Mathias_04.jpg"
     },
     {
         "first_name": "Herman",
@@ -1949,7 +2011,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Herman_De_Croo",
         "date_of_birth": "1937-08-12",
         "wikibase_item": "Q1351926",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Herman_de_croo_675.jpg"
     },
     {
         "first_name": "Carina",
@@ -1960,7 +2023,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Carina_Van_Cauter",
         "date_of_birth": "1962-06-27",
         "wikibase_item": "Q2938795",
-        "gender": "female"
+        "gender": "female",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Carina-van-tittelboom-van-cauter-1359732140.jpg"
     },
     {
         "first_name": "Geert",
@@ -1982,7 +2046,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Guido_De_Padt",
         "date_of_birth": "1954-05-23",
         "wikibase_item": "Q936465",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Guido_De_Padt2.jpg"
     },
     {
         "first_name": "Ine",
@@ -2014,7 +2079,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Vincent_Van_Quickenborne",
         "date_of_birth": "1973-08-01",
         "wikibase_item": "Q549887",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Vincent_Van_Quickenborne_-_Annual_Meeting_of_the_New_Champions_Dalian_2009.jpg"
     },
     {
         "first_name": "Sofie",
@@ -2057,7 +2123,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Bart_Tommelein",
         "date_of_birth": "1962-05-04",
         "wikibase_item": "Q2701515",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Bart_Tommelein_verkiezingen2018.jpg"
     },
     {
         "first_name": "Roland",
@@ -2089,7 +2156,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Patrick_Janssens",
         "date_of_birth": "1956-09-19",
         "wikibase_item": "Q12499",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Patrick_janssens.jpg"
     },
     {
         "first_name": "David",
@@ -2154,7 +2222,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Hans_Bonte",
         "date_of_birth": "1962-01-20",
         "wikibase_item": "Q3126936",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Hans-bonte-1422781823.png"
     },
     {
         "first_name": "Bruno",
@@ -2165,7 +2234,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Bruno_Tobback",
         "date_of_birth": "1969-08-22",
         "wikibase_item": "Q960356",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Bruno_Tobback_Leuven_1_mei_2007.jpg"
     },
     {
         "first_name": "Peter",
@@ -2176,7 +2246,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Peter_Vanvelthoven",
         "date_of_birth": "1962-10-22",
         "wikibase_item": "Q2415346",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Peter_Vanvelthoven.jpg"
     },
     {
         "first_name": "Magda",
@@ -2208,7 +2279,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Meryame_Kitir",
         "date_of_birth": "1980-04-20",
         "wikibase_item": "Q2757876",
-        "gender": "female"
+        "gender": "female",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Meryame_Kitir.jpg"
     },
     {
         "first_name": "Hilde",
@@ -2251,7 +2323,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Freya_Van_den_Bossche",
         "date_of_birth": "1975-03-26",
         "wikibase_item": "Q448454",
-        "gender": "female"
+        "gender": "female",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Freya_Van_den_Bossche.jpg"
     },
     {
         "first_name": "Cathy",
@@ -2305,7 +2378,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Renaat_Landuyt",
         "date_of_birth": "1959-01-28",
         "wikibase_item": "Q2186628",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Renaat_Landuyt_2008.jpg"
     },
     {
         "first_name": "Dalila",
@@ -2327,7 +2401,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Zo%C3%A9_Genot",
         "date_of_birth": "1974-05-29",
         "wikibase_item": "Q2292686",
-        "gender": "female"
+        "gender": "female",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Zoé_Genot.jpg"
     },
     {
         "first_name": "Fouad",
@@ -2349,7 +2424,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Tinne_Van_der_Straeten",
         "date_of_birth": "1978-04-01",
         "wikibase_item": "Q2613060",
-        "gender": "female"
+        "gender": "female",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Tinne_van_der_straeten-1573744677.jpeg"
     },
     {
         "first_name": "Jean-Marc",
@@ -2360,7 +2436,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Jean-Marc_Nollet",
         "date_of_birth": "1970-01-07",
         "wikibase_item": "Q2926869",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Jean-Marc_Nollet_Portrait.jpg"
     },
     {
         "first_name": "Ronny",
@@ -2403,7 +2480,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Muriel_Gerkens",
         "date_of_birth": "1957-04-25",
         "wikibase_item": "Q587605",
-        "gender": "female"
+        "gender": "female",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Muriel-gerkens.JPG"
     },
     {
         "first_name": "Philippe",
@@ -2446,7 +2524,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Georges_Gilkinet",
         "date_of_birth": "1971-01-25",
         "wikibase_item": "Q3102773",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Georges_Gilkinet.jpg"
     },
     {
         "first_name": "Thérèse",
@@ -2476,7 +2555,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Meyrem_Almaci",
         "date_of_birth": "1976-02-25",
         "wikibase_item": "Q1820692",
-        "gender": "female"
+        "gender": "female",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Meyrem-almaci-1349265092.jpg"
     },
     {
         "first_name": "Stefaan",
@@ -2487,7 +2567,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Stefaan_Van_Hecke",
         "date_of_birth": "1973-01-04",
         "wikibase_item": "Q2025218",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Stefaan_Van_Hecke_(2).jpg"
     },
     {
         "first_name": "Wouter",
@@ -2498,7 +2579,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Wouter_De_Vriendt",
         "date_of_birth": "1977-06-22",
         "wikibase_item": "Q2562437",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Wouter_7_klein.jpg"
     },
     {
         "first_name": "Joëlle",
@@ -2509,7 +2591,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Jo%C3%ABlle_Milquet",
         "date_of_birth": "1961-02-17",
         "wikibase_item": "Q446756",
-        "gender": "female"
+        "gender": "female",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Flickr_-_europeanpeoplesparty_-_EPP_Congress_Brussels_4-5_February_2004_(29).jpg"
     },
     {
         "first_name": "Georges",
@@ -2530,7 +2613,8 @@
         ],
         "date_of_birth": "1958-01-17",
         "wikibase_item": "Q3102539",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Georges_Dallemagne_20171109.jpg"
     },
     {
         "first_name": "Benoît",
@@ -2541,7 +2625,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Beno%C3%AEt_Cerexhe",
         "date_of_birth": "1961-06-18",
         "wikibase_item": "Q2896451",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Benoit_Cerexhe.jpg"
     },
     {
         "first_name": "Clotilde",
@@ -2658,7 +2743,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Melchior_Wathelet_(1977)",
         "date_of_birth": "1977-09-30",
         "wikibase_item": "Q212717",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Melchior_Wathelet_junior.png"
     },
     {
         "first_name": "Marie-Martine",
@@ -2733,7 +2819,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Maxime_Pr%C3%A9vot",
         "date_of_birth": "1978-04-09",
         "wikibase_item": "Q3302670",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Leonardo_García_Alarcón_Remise_du_titre_d'Ambassadeur_de_Namur_4_juillet_2018.jpg"
     },
     {
         "first_name": "Isabelle",
@@ -2769,7 +2856,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Andr%C3%A9_Antoine",
         "date_of_birth": "1960-02-03",
         "wikibase_item": "Q2030961",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/André_Antoine.jpg"
     },
     {
         "first_name": "Brigitte",
@@ -2801,7 +2889,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Jurgen_Verstrepen",
         "date_of_birth": "1966-06-12",
         "wikibase_item": "Q3190171",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Jurgen-verstrepen-1354028813.jpg"
     },
     {
         "first_name": "Robert",
@@ -2844,7 +2933,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Jean-Marie_Dedecker",
         "date_of_birth": "1952-06-13",
         "wikibase_item": "Q981442",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Jean_marie_dedecker_675.jpg"
     },
     {
         "first_name": "Ulla",
@@ -2855,7 +2945,8 @@
         "wiki": "https://nl.wikipedia.org/wiki/Ulla_Werbrouck",
         "date_of_birth": "1972-01-24",
         "wikibase_item": "Q466273",
-        "gender": "female"
+        "gender": "female",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/LDD_-_Ulla_Werbrouck.jpg"
     },
     {
         "first_name": "Paul",
@@ -2909,6 +3000,7 @@
         "wiki": "https://nl.wikipedia.org/wiki/Carl_Devlies",
         "date_of_birth": "1953-01-23",
         "wikibase_item": "Q1037486",
-        "gender": "male"
+        "gender": "male",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Carl_devlies-1514561803.jpg"
     }
 ]
