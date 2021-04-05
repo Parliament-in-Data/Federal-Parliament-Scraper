@@ -13,6 +13,7 @@ def extract_name(name: str):
     match = re.match("(.+, .+) (\S+)$", name)
     if match and match.group(1):
         res = match.group(1)
+        res = res.replace(' CD&V -', '') # Fixes a bug caused by "het kartel"
         if res[-1] == ',':
             res = res[:-1]
         return res
@@ -79,7 +80,7 @@ class ParliamentaryDocument:
         descriptor = soup.find(
             'td', text=re.compile('Eurovoc-hoofddescriptor'))
         if descriptor:
-            self.descriptor = descriptor.parent.find_all('td')[-1].get_text()
+            self.descriptor = descriptor.parent.find_all('td')[-1].get_text().split(' | ')
         keywords = soup.find('td', text=re.compile('Eurovoc descriptoren'))
         if keywords:
             self.keywords = keywords.parent.find_all(

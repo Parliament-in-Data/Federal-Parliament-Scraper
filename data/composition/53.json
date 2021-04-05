@@ -2325,13 +2325,15 @@
     },
     {
         "first_name": "Annick",
-        "last_name": "Van Den Ende-Chapellier",
+        "last_name": "Van Den Ende",
         "party": "cdH",
         "province": "Luxemburg",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Annick_Van_Den_Ende-Chapellier",
         "alternative_names": [
-            "Van Den Ende Annick"
+            "Van Den Ende Annick",
+            "Van Den Ende-Chapellier Annick",
+            "Annick Van Den Ende-Chapellier"
         ],
         "replaces": [
             {
