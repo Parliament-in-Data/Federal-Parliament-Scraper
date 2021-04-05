@@ -160,6 +160,7 @@ class ParliamentarySession:
             with open('data/composition/%d.json' % self.session) as json_file:
                 data = json.load(json_file)
                 for entry in data:
+                    # TODO: member should probably take entry at construction time instaed of using these setters
                     member = Member(entry['first_name'], entry['last_name'], entry['party'],
                                     entry['province'], entry['language'], entry['wiki'])
                     if 'alternative_names' in entry:
@@ -167,6 +168,8 @@ class ParliamentarySession:
                             entry['alternative_names'])
                     member.set_gender(entry['gender'])
                     member.set_date_of_birth(entry['date_of_birth'])
+                    if 'photo_url' in entry:
+                        member.set_photo_url(entry['photo_url'])
                     self.members.append(member)
                 # Now that we have all members, link them
                 for member, entry in zip(self.members, data):
