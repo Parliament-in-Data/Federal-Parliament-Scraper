@@ -1,7 +1,6 @@
 import json
 import requests
 import pywikibot
-import urllib
 import tqdm
 site = pywikibot.Site("nl", "wikipedia")
 repo = site.data_repository()
