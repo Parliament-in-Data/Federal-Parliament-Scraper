@@ -30,7 +30,7 @@ def main():
             item = pywikibot.ItemPage(repo, member['wikibase_item'])
             image_object = item.page_image()
             if image_object:
-                member['photo_url'] = image_object.full_url()
+                member['photo_url'] = image_object.get_file_url()
 
         #if 'photo_url' in member:
         #    print(member['photo_url'])
