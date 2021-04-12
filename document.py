@@ -29,7 +29,7 @@ class ParliamentaryDocument:
         self.keywords = None
         self.title = None
         self.document_type = None
-        self.date = dateparser.parse(session.start)
+        self.date = dateparser.parse(session.start, languages=['nl'])
         self.authors = []
         self._initialize()
         self.session.documents[document_number] = self
@@ -73,10 +73,10 @@ class ParliamentaryDocument:
         proposal_date = soup.find('td', text=re.compile('Indieningsdatum'))
         if not proposal_date:
             self.date = dateparser.parse(
-                soup.find('td', text=re.compile('[0-9]+/[0-9]+/[0-9]+')).get_text())
+                soup.find('td', text=re.compile('[0-9]+/[0-9]+/[0-9]+')).get_text(), languages=['nl'])
         else:
             self.date = dateparser.parse(
-                proposal_date.parent.find_all('td')[-1].get_text())
+                proposal_date.parent.find_all('td')[-1].get_text(), languages=['nl'])
         descriptor = soup.find(
             'td', text=re.compile('Eurovoc-hoofddescriptor'))
         if descriptor:
@@ -123,7 +123,7 @@ class ParliamentaryQuestion:
         self.authors = []
         self.title = None
         self.responding_minister = None
-        self.date = dateparser.parse(session.start)
+        self.date = dateparser.parse(session.start, languages=['nl'])
         self._initialize()
         self.session.questions[document_number] = self
         self._register_activities()
@@ -197,4 +197,4 @@ class ParliamentaryQuestion:
         date = soup.find('i', text=re.compile('Datum bespreking'))
         if date:
             self.date = dateparser.parse(
-                date.find_parent('tr').find_all('td')[1].get_text().strip())
+                date.find_parent('tr').find_all('td')[1].get_text().strip(), languages=['nl'])
