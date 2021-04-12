@@ -75,8 +75,9 @@ class ParliamentaryDocument:
 
         proposal_date = soup.find('td', text=re.compile('Indieningsdatum'))
         if not proposal_date:
-            self.date = dateparser.parse(
-                soup.find('td', text=re.compile('[0-9]+/[0-9]+/[0-9]+')).get_text(), languages=['nl'])
+            proposal_date = soup.find('td', text=re.compile('[0-9]+/[0-9]+/[0-9]+')
+            if proposal_date:
+               self.date = dateparser.parse(proposal_date.get_text(), languages=['nl'])
         else:
             self.date = dateparser.parse(
                 proposal_date.parent.find_all('td')[-1].get_text(), languages=['nl'])
