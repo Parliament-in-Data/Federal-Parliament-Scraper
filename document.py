@@ -62,13 +62,16 @@ class ParliamentaryDocument:
             json.dump(result, fp, ensure_ascii=False)
         return f'{base_URI}{self.uri}'
 
-    def _initialize(self):
+    def _initialize(self, retry=False):
         page = requests.get(self.description_uri())
         soup = BeautifulSoup(page.content, 'html.parser')
         content = soup.find('div', {'id': 'Story'})
 
         if (not content) or "not found" in content.get_text():
-            return
+            if retry:
+                return
+            else:
+                self._initialize(retry=True)
 
         proposal_date = soup.find('td', text=re.compile('Indieningsdatum'))
         if not proposal_date:
@@ -158,12 +161,15 @@ class ParliamentaryQuestion:
     def description_uri(self):
         return f'https://www.dekamer.be/kvvcr/showpage.cfm?section=inqo&language=nl&cfm=inqoXml.cfm?db=INQO&legislat={self.session.session}&dossierID=Q{self.document_number}'
 
-    def _initialize(self):
+    def _initialize(self, retry=False):
         page = requests.get(self.description_uri())
         soup = BeautifulSoup(page.content, 'html.parser')
         body = soup.find('body')
         if (not body) or "not exist" in body.get_text():
-            return
+            if retry:
+                return
+            else:
+                self._initialize(retry=True)
 
         authors = [tag for tag in soup.find_all(
             'td') if 'Auteur(s)' in tag.get_text()]
