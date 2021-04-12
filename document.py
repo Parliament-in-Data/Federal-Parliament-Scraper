@@ -72,6 +72,7 @@ class ParliamentaryDocument:
                 return
             else:
                 self._initialize(retry=True)
+                return
 
         proposal_date = soup.find('td', text=re.compile('Indieningsdatum'))
         if not proposal_date:
@@ -173,6 +174,7 @@ class ParliamentaryQuestion:
                 return
             else:
                 self._initialize(retry=True)
+                return
 
         authors = [tag for tag in soup.find_all(
             'td') if 'Auteur(s)' in tag.get_text()]
