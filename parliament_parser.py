@@ -123,6 +123,9 @@ class ParliamentarySession:
                 self.members_dict[f'{first_name}, {last_name} {member.party}'] = member
                 self.members_dict[f'{first_name}, {last_name}, {member.party}'] = member
                 self.members_dict[f'{first_name}, {last_name}'.replace('-', ' ')] = member
+                if member.party == "Vooruit":
+                    self.members_dict[f'{first_name}, {last_name}, sp.a'] = member
+                    self.members_dict[f'{first_name}, {last_name} sp.a'] = member
         return self.members_dict
 
     def get_plenary_meetings(self, refresh=False):
