@@ -69,7 +69,7 @@
     {
         "first_name": "Gitta",
         "last_name": "Vanpeborgh",
-        "party": "sp.a",
+        "party": "Vooruit",
         "province": "Antwerpen",
         "language": "Nederlands",
         "replaces": [
@@ -275,7 +275,7 @@
     {
         "first_name": "Vicky",
         "last_name": "Reynaert",
-        "party": "sp.a",
+        "party": "Vooruit",
         "province": "West-Vlaanderen",
         "language": "Nederlands",
         "replaces": [
@@ -665,7 +665,7 @@
     {
         "first_name": "Melissa",
         "last_name": "Depraetere",
-        "party": "sp.a",
+        "party": "Vooruit",
         "province": "West-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Melissa_Depraetere",
@@ -1065,7 +1065,7 @@
     {
         "first_name": "Karin",
         "last_name": "Jiroflée",
-        "party": "sp.a",
+        "party": "Vooruit",
         "province": "Vlaams-Brabant",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Karin_Jirofl%C3%A9e",
@@ -1097,7 +1097,7 @@
     {
         "first_name": "Ben",
         "last_name": "Segers",
-        "party": "sp.a",
+        "party": "Vooruit",
         "province": "Antwerpen",
         "language": "Nederlands",
         "replaces": [
@@ -1130,7 +1130,7 @@
     {
         "first_name": "Bert",
         "last_name": "Moyaers",
-        "party": "sp.a",
+        "party": "Vooruit",
         "province": "Limburg",
         "language": "Nederlands",
         "replaces": [
@@ -1900,7 +1900,7 @@
     {
         "first_name": "Joris",
         "last_name": "Vandenbroucke",
-        "party": "sp.a",
+        "party": "Vooruit",
         "province": "Oost-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Joris_Vandenbroucke",
@@ -1923,7 +1923,7 @@
     {
         "first_name": "Anja",
         "last_name": "Vanrobaeys",
-        "party": "sp.a",
+        "party": "Vooruit",
         "province": "Oost-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Anja_Vanrobaeys",
@@ -1934,7 +1934,7 @@
     {
         "first_name": "Kris",
         "last_name": "Verduyckt",
-        "party": "sp.a",
+        "party": "Vooruit",
         "province": "Limburg",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Kris_Verduyckt",
@@ -2103,7 +2103,7 @@
     {
         "first_name": "Jan",
         "last_name": "Bertels",
-        "party": "sp.a",
+        "party": "Vooruit",
         "province": "Antwerpen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Jan_Bertels",
@@ -2137,7 +2137,7 @@
     {
         "first_name": "John",
         "last_name": "Crombez",
-        "party": "sp.a",
+        "party": "Vooruit",
         "province": "West-Vlaanderen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/John_Crombez",
@@ -2149,7 +2149,7 @@
     {
         "first_name": "Yasmine",
         "last_name": "Kherbache",
-        "party": "sp.a",
+        "party": "Vooruit",
         "province": "Antwerpen",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Yasmine_Kherbache",
@@ -2242,7 +2242,7 @@
     {
         "first_name": "Meryame",
         "last_name": "Kitir",
-        "party": "sp.a",
+        "party": "Vooruit",
         "province": "Limburg",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Meryame_Kitir",
