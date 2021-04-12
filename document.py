@@ -89,7 +89,9 @@ class ParliamentaryDocument:
         if keywords:
             self.keywords = keywords.parent.find_all(
                 'td')[-1].get_text().split(' | ')
-        self.title = content.find('h4').get_text().strip()
+        title = content.find('h4')
+        if title:
+            self.title = title.get_text().strip()
         doc_type_row = [tag for tag in soup.find_all(
             'td', {'class': "td1x"}) if 'Document type' in tag.get_text()]
         self.document_type = doc_type_row[0].parent.find(
