@@ -441,7 +441,7 @@ class MeetingTopic:
         else:
             self.topic_type = TopicType.from_section_and_title(
                 self.title_NL, self.section_NL)
-        with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
             if self.topic_type == TopicType.BILL_PROPOSAL or self.topic_type == TopicType.DRAFT_BILL or self.topic_type == TopicType.LEGISLATION or self.topic_type == TopicType.NAME_VOTE or self.topic_type == TopicType.SECRET_VOTE:
                 bill_numbers = []
                 for line in self.title_NL.split('\n'):
