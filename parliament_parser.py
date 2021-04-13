@@ -24,10 +24,10 @@ class ParliamentarySession:
     From there information can be obtained on the members of the parliament in that session and its meetings.
     '''
     sessions = {
-        55: {'from': '20/06/2019', 'to': '19/6/2024'},
-        54: {'from': '19/06/2014', 'to': '25/4/2019'},
-        53: {'from': '13/06/2010', 'to': '24/4/2014'},
-        52: {'from': '10/06/2007', 'to': '6/5/2010'},
+        55: {'from': '2019-06-20', 'to': '2024-6-19'},
+        54: {'from': '2014-06-19', 'to': '2019-04-25'},
+        53: {'from': '2010-06-13', 'to': '2014-04-24'},
+        52: {'from': '2007-06-10', 'to': '2010-05-06'},
     }
 
     def dump_json(self, output_path: str, base_URI="/"):
