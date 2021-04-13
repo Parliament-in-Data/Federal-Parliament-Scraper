@@ -29,7 +29,7 @@ class ParliamentaryDocument:
         self.keywords = None
         self.title = None
         self.document_type = None
-        self.date = dateparser.parse(session.start, languages=['nl'])
+        self.date = dateparser.parse(session.start)
         self.authors = []
         self._initialize()
         self.session.documents[document_number] = self
@@ -49,6 +49,8 @@ class ParliamentaryDocument:
         if self.title:
             result['title'] = self.title
         result['source'] = self.description_uri()
+        if not self.date:
+            self.date = dateparser.parse(self.session.start)
         result['date'] = self.date.isoformat()
         result['authors'] = [
             f'{base_URI}{author.uri()}' for author in self.authors]
@@ -130,7 +132,7 @@ class ParliamentaryQuestion:
         self.authors = []
         self.title = None
         self.responding_minister = None
-        self.date = dateparser.parse(session.start, languages=['nl'])
+        self.date = dateparser.parse(session.start)
         self._initialize()
         self.session.questions[document_number] = self
         self._register_activities()
@@ -148,6 +150,8 @@ class ParliamentaryQuestion:
         result = {}
         result['document_number'] = self.document_number
         result['title'] = self.title
+        if not self.date:
+            self.date = dateparser.parse(self.session.start)
         result['date'] = self.date.isoformat()
         result['source'] = self.description_uri()
         if self.responding_minister:

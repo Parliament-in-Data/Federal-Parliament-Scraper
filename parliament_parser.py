@@ -24,7 +24,7 @@ class ParliamentarySession:
     From there information can be obtained on the members of the parliament in that session and its meetings.
     '''
     sessions = {
-        55: {'from': '2019-06-20', 'to': '2024-6-19'},
+        55: {'from': '2019-06-20', 'to': '2024-06-19'},
         54: {'from': '2014-06-19', 'to': '2019-04-25'},
         53: {'from': '2010-06-13', 'to': '2014-04-24'},
         52: {'from': '2007-06-10', 'to': '2010-05-06'},
