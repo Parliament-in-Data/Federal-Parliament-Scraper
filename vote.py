@@ -167,9 +167,9 @@ class LanguageGroupVote(GenericVote):
             'abstention': self.vote_NL.abstention + self.vote_FR.abstention,
             'passed': self.has_passed(),
             'voters': {
-                "yes": [f'{session_base_URI}members/{member.uuid}' for member in self.yes_voters],
-                "no": [f'{session_base_URI}members/{member.uuid}' for member in self.no_voters],
-                "abstention": [f'{session_base_URI}members/{member.uuid}' for member in self.abstention_voters]
+                "yes": [f'{session_base_URI}members/{member.uuid}.json' for member in self.yes_voters],
+                "no": [f'{session_base_URI}members/{member.uuid}.json' for member in self.no_voters],
+                "abstention": [f'{session_base_URI}members/{member.uuid}.json' for member in self.abstention_voters]
             },
             'detail': {
                 "NL": self.vote_NL.to_dict(session_base_URI),
