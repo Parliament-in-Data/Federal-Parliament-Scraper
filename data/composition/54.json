@@ -2268,6 +2268,16 @@
         "province": "Waals-Brabant",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/St%C3%A9phane_Crusni%C3%A8re",
+        "replaces": [
+            {
+                "name": "Flahaut André",
+                "dates": [
+                    {
+                        "from": "2014-07-30"
+                    }
+                ]
+            }
+        ],
         "date_of_birth": "1967-07-10",
         "wikibase_item": "Q17639552",
         "gender": "male",
@@ -2286,14 +2296,6 @@
                 "dates": [
                     {
                         "from": "2018-10-04"
-                    }
-                ]
-            },
-            {
-                "name": "Flahaut André",
-                "dates": [
-                    {
-                        "from": "2014-07-30"
                     }
                 ]
             }

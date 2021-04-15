@@ -14,7 +14,7 @@
     {
         "first_name": "Joëlle",
         "last_name": "Milquet",
-        "party": "PS",
+        "party": "cdH",
         "province": "Henegouwen",
         "language": "Frans",
         "wiki": "https://fr.wikipedia.org/wiki/Jo%C3%ABlle_Milquet",
@@ -452,18 +452,6 @@
         "gender": "male"
     },
     {
-        "first_name": "Christophe",
-        "last_name": "Collignon",
-        "party": "PS",
-        "province": "Luik",
-        "language": "Frans",
-        "wiki": "https://nl.wikipedia.org/wiki/Christophe_Collignon",
-        "date_of_birth": "1969-07-21",
-        "wikibase_item": "Q2966163",
-        "gender": "male",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a4/CHRISTOPHE-COLLIGNON1.jpg"
-    },
-    {
         "first_name": "Philippe",
         "last_name": "Blanchart",
         "party": "PS",
@@ -659,15 +647,6 @@
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Bruno_Van_Grootenbrulle",
         "replaces": [
-            {
-                "name": "Meire Laurence",
-                "dates": [
-                    {
-                        "from": "2011-12-07",
-                        "to": "2013-01-10"
-                    }
-                ]
-            },
             {
                 "name": "Dufrane Anthony",
                 "dates": [
