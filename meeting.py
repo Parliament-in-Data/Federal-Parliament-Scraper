@@ -112,7 +112,7 @@ class Meeting:
 
         with open(path.join(base_meeting_path, 'unfolded.json'), 'w+') as fp:
             json.dump({
-                    topic_type: {
+                topic_type: {
                     topic_item: topic_value.json_representation(base_URI)
                     for topic_item, topic_value in topic_type_dict.items()
                 }
