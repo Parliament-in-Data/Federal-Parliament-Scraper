@@ -124,7 +124,10 @@ class Meeting:
                 },
             }, fp, ensure_ascii=False)
 
-        with open(path.join(path.join(base_meeting_path, str(self.id)), 'unfolded.json'), 'w+') as fp:
+        meeting_dir_path = path.join(base_meeting_path, str(self.id))
+        makedirs(meeting_dir_path, exist_ok=True)
+
+        with open(path.join(meeting_dir_path, 'unfolded.json'), 'w+') as fp:
             json.dump({
                 topic_type: {
                     topic_item: topic_value.json_representation(base_URI)
