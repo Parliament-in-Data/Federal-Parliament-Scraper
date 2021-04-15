@@ -2474,6 +2474,17 @@
         "province": "Luik",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Marie-Martine_Schyns",
+        "replaces": [
+            {
+                "name": "Wathelet Melchior",
+                "dates": [
+                    {
+                        "from": "2011-12-07",
+                        "to": "2013-07-06"
+                    }
+                ]
+            }
+        ],
         "date_of_birth": "1977-05-19",
         "wikibase_item": "Q3292145",
         "gender": "female"
