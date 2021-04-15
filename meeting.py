@@ -110,15 +110,6 @@ class Meeting:
             topic = self.topics[key]
             topics[str(topic.topic_type)][topic.item] = topic
 
-        with open(path.join(base_meeting_path, 'unfolded.json'), 'w+') as fp:
-            json.dump({
-                topic_type: {
-                    topic_item: topic_value.json_representation(base_URI)
-                    for topic_item, topic_value in topic_type_dict.items()
-                }
-                for topic_type, topic_type_dict in topics.items()
-            }, fp, ensure_ascii=False)
-
         with open(path.join(base_meeting_path, resource_name), 'w+') as fp:
             json.dump({
                 'id': self.id,
@@ -131,6 +122,15 @@ class Meeting:
                     }
                     for topic_type, topic_type_dict in topics.items()
                 },
+            }, fp, ensure_ascii=False)
+
+        with open(path.join(path.join(base_meeting_path, str(self.id)), 'unfolded.json'), 'w+') as fp:
+            json.dump({
+                topic_type: {
+                    topic_item: topic_value.json_representation(base_URI)
+                    for topic_item, topic_value in topic_type_dict.items()
+                }
+                for topic_type, topic_type_dict in topics.items()
             }, fp, ensure_ascii=False)
 
         return f'{base_meeting_URI}{resource_name}'
