@@ -35,6 +35,11 @@ banned_set = set([
     # No idea about this one, occurs in the dataset but has passed away before the time the dataset was made?
     # Probably another person with the same name but can't find info about them. (see #10)
     ' Ramaekers Jef',
+    # Again, this person voted but was in the senate
+    # No records show him being elected to the House of Representatives.
+    ' Collignon Christophe',
+    'Collignon Christophe',
+    'Christophe Collignon',
     # Well, the string below was added because of some format issues in https://www.dekamer.be/doc/PCRI/html/52/ip078x.html, we should solve this better (by using a RegEx)
     '(Ingevolge een technisch mankement werd de stemming van mevrouw Inge Vervotte',
     ' afwezig',
