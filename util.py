@@ -41,6 +41,7 @@ banned_set = set([
     'Collignon Christophe',
     'Christophe Collignon',
     # This member wasn't a part of the House of Representatives
+    ' Annane Jihane',
     'Annane Jihane',
     'Jihane Annane',
     # Well, the string below was added because of some format issues in https://www.dekamer.be/doc/PCRI/html/52/ip078x.html, we should solve this better (by using a RegEx)
