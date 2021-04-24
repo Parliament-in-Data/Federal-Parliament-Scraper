@@ -41,7 +41,7 @@ class ParliamentaryDocument:
     def uri(self):
         return f'legislation/{self.document_number}.json'
 
-    def json(self, base_path, base_URI="/"):
+    def json_representation(self, base_URI="/"):
         result = {}
         result['document_number'] = self.document_number
         if self.document_type:
@@ -58,10 +58,13 @@ class ParliamentaryDocument:
             result['descriptor'] = self.descriptor
         if self.keywords:
             result['keywords'] = self.keywords
+        return result
+
+    def json(self, base_path, base_URI="/"):
         base_path = path.join(base_path, "legislation")
         makedirs(base_path, exist_ok=True)
         with open(path.join(base_path, f'{self.document_number}.json'), 'w+') as fp:
-            json.dump(result, fp, ensure_ascii=False)
+            json.dump(self.json_representation(base_URI), fp, ensure_ascii=False)
         return f'{base_URI}{self.uri}'
 
     def _initialize(self, retry=False):
