@@ -148,7 +148,7 @@ class ParliamentaryQuestion:
     def uri(self):
         return f'questions/{self.document_number}.json'
 
-    def json(self, base_path, base_URI="/"):
+    def json_representation(self, base_URI="/"):
         result = {}
         result['document_number'] = self.document_number
         result['title'] = self.title
@@ -161,10 +161,12 @@ class ParliamentaryQuestion:
             result['responding_department'] = self.responding_department
         result['authors'] = [
             f'{base_URI}{author.uri()}' for author in self.authors]
+        return result
 
+    def json(self, base_path, base_URI="/"):
         base_path = path.join(base_path, "questions")
         with open(path.join(base_path, f'{self.document_number}.json'), 'w+') as fp:
-            json.dump(result, fp, ensure_ascii=False)
+            json.dump(self.json_representation(base_URI), fp, ensure_ascii=False)
         return f'{base_URI}{self.uri}'
 
     def description_uri(self):

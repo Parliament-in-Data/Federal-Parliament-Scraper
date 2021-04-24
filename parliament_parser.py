@@ -49,11 +49,25 @@ class ParliamentarySession:
         makedirs(path.join(base_path, "legislation"), exist_ok=True)
         makedirs(path.join(base_path, "questions"), exist_ok=True)
 
+        for question in self.questions.values():
+            question.json(base_path, base_URI)
+        for document in self.documents.values():
+            document.json(base_path, base_URI)
+
         with open(path.join(base_path, 'legislation', 'unfolded.json'), 'w') as fp:
             json.dump(
                 {
                     document.document_number: document.json_representation(base_URI)
                     for document in self.documents.values()
+                },
+                fp
+            )
+
+        with open(path.join(base_path, 'questions', 'unfolded.json'), 'w') as fp:
+            json.dump(
+                {
+                    document.document_number: document.json_representation(base_URI)
+                    for document in self.questions.values()
                 },
                 fp
             )
