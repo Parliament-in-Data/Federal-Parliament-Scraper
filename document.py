@@ -10,7 +10,7 @@ from os import path, makedirs
 
 
 def extract_name(name: str):
-    match = re.match("(.+, .+) (\S+)$", name)
+    match = re.match(r"(.+, .+) (\S+)$", name)
     if match and match.group(1):
         res = match.group(1)
         res = res.replace(' CD&V -', '') # Fixes a bug caused by "het kartel"
