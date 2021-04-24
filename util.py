@@ -56,8 +56,6 @@ banned_set = set([
     '(De heer Guido De Padt heeft gestemd vanop de bank van de heer Ludo Van Campenhout',
     ' afwezig)',
     ' a été enregistré)'
-    # Dataset error
-    #'Vote nominatif - Naamstemming: 002'
 ])
 
 
