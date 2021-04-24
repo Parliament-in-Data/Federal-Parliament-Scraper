@@ -46,6 +46,9 @@ class ParliamentarySession:
             members_URIs = list(executor.map(functools.partial(
                 member_to_URI, base_path, base_URI), self.members))
 
+        makedirs(path.join(base_path, "legislation"), exist_ok=True)
+        makedirs(path.join(base_path, "questions"), exist_ok=True)
+
         with open(path.join(base_path, 'legislation', 'unfolded.json'), 'w') as fp:
             json.dump(
                 {

@@ -6,7 +6,7 @@ from activity import LegislativeActivity, QuestionActivity
 import re
 import json
 from util import normalize_str
-from os import path, makedirs
+from os import path
 
 
 def extract_name(name: str):
@@ -62,7 +62,6 @@ class ParliamentaryDocument:
 
     def json(self, base_path, base_URI="/"):
         base_path = path.join(base_path, "legislation")
-        makedirs(base_path, exist_ok=True)
         with open(path.join(base_path, f'{self.document_number}.json'), 'w+') as fp:
             json.dump(self.json_representation(base_URI), fp, ensure_ascii=False)
         return f'{base_URI}{self.uri}'
@@ -164,7 +163,6 @@ class ParliamentaryQuestion:
             f'{base_URI}{author.uri()}' for author in self.authors]
 
         base_path = path.join(base_path, "questions")
-        makedirs(base_path, exist_ok=True)
         with open(path.join(base_path, f'{self.document_number}.json'), 'w+') as fp:
             json.dump(result, fp, ensure_ascii=False)
         return f'{base_URI}{self.uri}'
