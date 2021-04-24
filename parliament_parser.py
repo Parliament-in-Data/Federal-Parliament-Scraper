@@ -46,11 +46,6 @@ class ParliamentarySession:
             members_URIs = list(executor.map(functools.partial(
                 member_to_URI, base_path, base_URI), self.members))
 
-        questions_uris = [self.questions[question].json(
-            base_path, base_URI) for question in self.questions]
-        documents_uris = [self.documents[document].json(
-            base_path, base_URI) for document in self.documents]
-
         with open(path.join(base_path, 'legislation', 'index.json'), 'w+') as fp:
             json.dump({document.document_number: f'{base_URI}{document.uri()}' for _, document in self.documents.items()}, fp)
         with open(path.join(base_path, 'questions', 'index.json'), 'w+') as fp:
