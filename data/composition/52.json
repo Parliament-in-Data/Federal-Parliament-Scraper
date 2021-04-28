@@ -1281,8 +1281,7 @@
                 "name": "Dupont Christian",
                 "dates": [
                     {
-                        "from": "2007-12-21",
-                        "to": "2009-06-25"
+                        "from": "2007-12-21"
                     }
                 ]
             }
@@ -1949,17 +1948,6 @@
         "province": "Limburg",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Patrick_Dewael",
-        "replaces": [
-            {
-                "name": "Steegen Bruno",
-                "dates": [
-                    {
-                        "from": "2007-12-21",
-                        "to": "2008-12-31"
-                    }
-                ]
-            }
-        ],
         "date_of_birth": "1955-10-13",
         "wikibase_item": "Q15992",
         "gender": "male"
@@ -1970,6 +1958,17 @@
         "party": "Open Vld",
         "province": "Limburg",
         "language": "Nederlands",
+        "replaces": [
+            {
+                "name": "Dewael Patrick",
+                "dates": [
+                    {
+                        "from": "2007-12-21",
+                        "to": "2008-12-31"
+                    }
+                ]
+            }
+        ],
         "wiki": "https://nl.wikipedia.org/wiki/Bruno_Steegen",
         "date_of_birth": "1966-06-12",
         "wikibase_item": "Q2926994",
