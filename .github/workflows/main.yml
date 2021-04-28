@@ -6,7 +6,7 @@ name: Build the API, Create Release and Deploy to Netlify
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   schedule:
-    - cron: 0 7 * * 1-5
+    - cron: 0 9 * * 1-5
   push:
     branches: [ main ]
     paths:

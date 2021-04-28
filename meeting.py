@@ -108,15 +108,32 @@ class Meeting:
         topics = defaultdict(dict)
         for key in self.topics:
             topic = self.topics[key]
-            topics[str(topic.topic_type)][topic.item] = topic.dump_json(
-                base_path, base_URI)
+            topics[str(topic.topic_type)][topic.item] = topic
 
         with open(path.join(base_meeting_path, resource_name), 'w+') as fp:
             json.dump({
                 'id': self.id,
                 'time_of_day': str(self.time_of_day),
                 'date': self.date.isoformat(),
-                'topics': topics
+                'topics': {
+                    topic_type: {
+                        topic_item: topic_value.dump_json(base_path, base_URI)
+                        for topic_item, topic_value in topic_type_dict.items()
+                    }
+                    for topic_type, topic_type_dict in topics.items()
+                },
+            }, fp, ensure_ascii=False)
+
+        meeting_dir_path = path.join(base_meeting_path, str(self.id))
+        makedirs(meeting_dir_path, exist_ok=True)
+
+        with open(path.join(meeting_dir_path, 'unfolded.json'), 'w+') as fp:
+            json.dump({
+                topic_type: {
+                    topic_item: topic_value.json_representation(base_URI)
+                    for topic_item, topic_value in topic_type_dict.items()
+                }
+                for topic_type, topic_type_dict in topics.items()
             }, fp, ensure_ascii=False)
 
         return f'{base_meeting_URI}{resource_name}'
@@ -406,13 +423,16 @@ class MeetingTopic:
     def get_uri(self):
         return f'meetings/{self.id}/{self.item}.json'
 
+    def json_representation(self, session_base_URI: str):
+        return {'id': self.item, 'title': {'NL': self.title_NL, 'FR': self.title_FR}, 'votes': [
+                      vote.to_dict(session_base_URI) for vote in self.votes], 'questions': [f'{session_base_URI}{question.uri()}' for question in self.related_questions], 'legislation': [f'{session_base_URI}{document.uri()}' for document in self.related_documents]}
+
     def dump_json(self, base_path: str, session_base_URI: str):
         topic_path = path.join(base_path, 'meetings', str(self.id))
         makedirs(topic_path, exist_ok=True)
 
         with open(path.join(topic_path, f'{self.item}.json'), 'w+') as fp:
-            json.dump({'id': self.item, 'title': {'NL': self.title_NL, 'FR': self.title_FR}, 'votes': [
-                      vote.to_dict(session_base_URI) for vote in self.votes], 'questions': [f'{session_base_URI}{question.uri()}' for question in self.related_questions], 'legislation': [f'{session_base_URI}{document.uri()}' for document in self.related_documents]}, fp, ensure_ascii=False)
+            json.dump(self.json_representation(session_base_URI), fp, ensure_ascii=False)
 
         return f'{session_base_URI}{self.get_uri()}'
 

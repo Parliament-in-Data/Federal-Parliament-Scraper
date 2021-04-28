@@ -40,6 +40,10 @@ banned_set = set([
     ' Collignon Christophe',
     'Collignon Christophe',
     'Christophe Collignon',
+    # This member wasn't a part of the House of Representatives
+    ' Annane Jihane',
+    'Annane Jihane',
+    'Jihane Annane',
     # Well, the string below was added because of some format issues in https://www.dekamer.be/doc/PCRI/html/52/ip078x.html, we should solve this better (by using a RegEx)
     '(Ingevolge een technisch mankement werd de stemming van mevrouw Inge Vervotte',
     ' afwezig',
@@ -52,8 +56,6 @@ banned_set = set([
     '(De heer Guido De Padt heeft gestemd vanop de bank van de heer Ludo Van Campenhout',
     ' afwezig)',
     ' a été enregistré)'
-    # Dataset error
-    #'Vote nominatif - Naamstemming: 002'
 ])
 
 

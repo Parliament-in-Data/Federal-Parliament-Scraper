@@ -46,17 +46,39 @@ class ParliamentarySession:
             members_URIs = list(executor.map(functools.partial(
                 member_to_URI, base_path, base_URI), self.members))
 
-        questions_uris = [self.questions[question].json(
-            base_path, base_URI) for question in self.questions]
-        documents_uris = [self.documents[document].json(
-            base_path, base_URI) for document in self.documents]
+        makedirs(path.join(base_path, "legislation"), exist_ok=True)
+        makedirs(path.join(base_path, "questions"), exist_ok=True)
 
-        with open(path.join(base_path, 'legislation', 'index.json'), 'w+') as fp:
-            json.dump({document.document_number: f'{base_URI}{document.uri()}' for _, document in self.documents.items()}, fp)
-        with open(path.join(base_path, 'questions', 'index.json'), 'w+') as fp:
-            json.dump({question.document_number: f'{base_URI}{question.uri()}' for _, question in self.questions.items()}, fp)
+        for question in self.questions.values():
+            question.json(base_path, base_URI)
+        for document in self.documents.values():
+            document.json(base_path, base_URI)
 
-        with open(path.join(base_path, 'session.json'), 'w+') as fp:
+        with open(path.join(base_path, 'legislation', 'unfolded.json'), 'w') as fp:
+            json.dump(
+                {
+                    document.document_number: document.json_representation(base_URI)
+                    for document in self.documents.values()
+                },
+                fp
+            )
+
+        with open(path.join(base_path, 'questions', 'unfolded.json'), 'w') as fp:
+            json.dump(
+                {
+                    document.document_number: document.json_representation(base_URI)
+                    for document in self.questions.values()
+                },
+                fp
+            )
+
+        with open(path.join(base_path, 'legislation', 'index.json'), 'w') as fp:
+            json.dump({document.document_number: f'{base_URI}{document.uri()}' for document in self.documents.values()}, fp)
+
+        with open(path.join(base_path, 'questions', 'index.json'), 'w') as fp:
+            json.dump({question.document_number: f'{base_URI}{question.uri()}' for question in self.questions.values()}, fp)
+
+        with open(path.join(base_path, 'session.json'), 'w') as fp:
             json.dump({
                 'id': self.session,
                 'start': self.start,

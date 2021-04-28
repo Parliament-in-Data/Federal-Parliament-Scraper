@@ -6,11 +6,11 @@ from activity import LegislativeActivity, QuestionActivity
 import re
 import json
 from util import normalize_str
-from os import path, makedirs
+from os import path
 
 
 def extract_name(name: str):
-    match = re.match("(.+, .+) (\S+)$", name)
+    match = re.match(r"(.+, .+) (\S+)$", name)
     if match and match.group(1):
         res = match.group(1)
         res = res.replace(' CD&V -', '') # Fixes a bug caused by "het kartel"
@@ -41,7 +41,7 @@ class ParliamentaryDocument:
     def uri(self):
         return f'legislation/{self.document_number}.json'
 
-    def json(self, base_path, base_URI="/"):
+    def json_representation(self, base_URI="/"):
         result = {}
         result['document_number'] = self.document_number
         if self.document_type:
@@ -58,10 +58,12 @@ class ParliamentaryDocument:
             result['descriptor'] = self.descriptor
         if self.keywords:
             result['keywords'] = self.keywords
+        return result
+
+    def json(self, base_path, base_URI="/"):
         base_path = path.join(base_path, "legislation")
-        makedirs(base_path, exist_ok=True)
         with open(path.join(base_path, f'{self.document_number}.json'), 'w+') as fp:
-            json.dump(result, fp, ensure_ascii=False)
+            json.dump(self.json_representation(base_URI), fp, ensure_ascii=False)
         return f'{base_URI}{self.uri}'
 
     def _initialize(self, retry=False):
@@ -146,7 +148,7 @@ class ParliamentaryQuestion:
     def uri(self):
         return f'questions/{self.document_number}.json'
 
-    def json(self, base_path, base_URI="/"):
+    def json_representation(self, base_URI="/"):
         result = {}
         result['document_number'] = self.document_number
         result['title'] = self.title
@@ -159,11 +161,12 @@ class ParliamentaryQuestion:
             result['responding_department'] = self.responding_department
         result['authors'] = [
             f'{base_URI}{author.uri()}' for author in self.authors]
+        return result
 
+    def json(self, base_path, base_URI="/"):
         base_path = path.join(base_path, "questions")
-        makedirs(base_path, exist_ok=True)
         with open(path.join(base_path, f'{self.document_number}.json'), 'w+') as fp:
-            json.dump(result, fp, ensure_ascii=False)
+            json.dump(self.json_representation(base_URI), fp, ensure_ascii=False)
         return f'{base_URI}{self.uri}'
 
     def description_uri(self):
