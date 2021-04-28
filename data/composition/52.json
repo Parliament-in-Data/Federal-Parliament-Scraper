@@ -99,6 +99,17 @@
         "gender": "male"
     },
     {
+        "first_name": "Jan",
+        "last_name": "Peeters",
+        "party": "sp.a",
+        "province": "Antwerpen",
+        "language": "Nederlands",
+        "wiki": "https://nl.wikipedia.org/wiki/Jan_Peeters_(politicus)",
+        "date_of_birth": "1963-01-12",
+        "wikibase_item": "Q556456",
+        "gender": "male"
+    },
+    {
         "first_name": "Kris",
         "last_name": "Peeters",
         "party": "CD&V",
@@ -1202,7 +1213,7 @@
                 ]
             },
             {
-                "name": "Rudy Demotte",
+                "name": "Demotte Rudy",
                 "dates": [
                     {
                         "from": "2007-07-19"
@@ -2197,17 +2208,6 @@
         "date_of_birth": "1953-04-09",
         "wikibase_item": "Q2247235",
         "gender": "female"
-    },
-    {
-        "first_name": "Jan",
-        "last_name": "Peeters",
-        "party": "sp.a",
-        "province": "Antwerpen",
-        "language": "Nederlands",
-        "wiki": "https://nl.wikipedia.org/wiki/Jan_Peeters_(politicus)",
-        "date_of_birth": "1963-01-12",
-        "wikibase_item": "Q556456",
-        "gender": "male"
     },
     {
         "first_name": "Maya",
