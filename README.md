@@ -1,5 +1,8 @@
-# De Kamer - La Chambre Scraper
-This library provides a scraper based on the Python library Beautiful Soup for the website and meeting notes of the Belgian Federal Parliament. The scraper can currently provide information on the plenary meetings for the sessions between 2007 and now, details on the votes that occurred and the members.
+# Belgian Federal Parliament Scraper & API
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2cbbf08b-eacf-400e-9fcd-ebaafd7ebb5e/deploy-status)](https://app.netlify.com/sites/sleepy-albattani-62fa38/deploys)
+[![Build the API, Create Release and Deploy to Netlify](https://github.com/laurensdeb/Federal-Parliament-Scraper/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/laurensdeb/Federal-Parliament-Scraper/actions/workflows/main.yml)
+
+This library provides a scraper based on the Python library Beautiful Soup for the website and meeting notes of the Belgian Federal Parliament. The scraper can currently provide information on the plenary meetings for the sessions between 2007 and now, details on the votes that occurred and the members. We also provide a [hosted version](https://parlement.thundr.be) of the JSON API generated using this library, documentation on this API still is a work-in-progress but the code can serve as documentation if necessary?
 
 ## Functionality
 - Obtain an overview of all the plenary meetings for a given session
@@ -15,8 +18,3 @@ This library provides a scraper based on the Python library Beautiful Soup for t
 
 ## Getting started
 Have a look at `demo.py` to get started.
-
-## Imminent To-Do's
-- [ ] Complete the files in /data/composition to also contain information on members who didn't serve a full term in the parliament
-- [ ] Improve the class structure of Votes
-- [ ] Additional documentation
