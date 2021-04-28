@@ -237,9 +237,9 @@ class Meeting:
 
         name_votes, electronic_votes = get_name_and_electronic_votes()
 
-        for tag in soup.find_all(text=re.compile(r'(Stemming/vote|Vote/stemming) ([0-9]+)')):
+        for tag in soup.find_all(text=re.compile(r'(Stemming/vote|Vote/stemming)\s+([0-9]+)')):
             vote_number = int(
-                re.match(r'\(?(Stemming/vote|Vote/stemming) ([0-9]+)\)?', tag).group(2))
+                re.match(r'\(?(Stemming/vote|Vote/stemming)\s+([0-9]+)\)?', tag).group(2))
             is_electronic_vote = vote_number in electronic_votes
 
             # Structure for electronic votes is a little different. This case is not inside a table.
@@ -274,7 +274,6 @@ class Meeting:
                         self.topics[agenda_item], vote_number, rows)
                 else:
                     continue
-
                 if vote_number in name_votes:
                     names = name_votes[vote_number]
                     vote.set_yes_voters(
