@@ -369,17 +369,6 @@
         "party": "Open Vld",
         "province": "Vlaams-Brabant",
         "language": "Nederlands",
-        "replaces": [
-            {
-                "name": "Delvaux Bram",
-                "dates": [
-                    {
-                        "from": "2020-03-17",
-                        "to": "2020-10-01"
-                    }
-                ]
-            }
-        ],
         "wiki": "https://nl.wikipedia.org/wiki/Maggie_De_Block",
         "date_of_birth": "1962-04-28",
         "wikibase_item": "Q2800268",
@@ -2467,6 +2456,17 @@
         "party": "Open Vld",
         "province": "Vlaams-Brabant",
         "language": "Nederlands",
+        "replaces": [
+            {
+                "name": "Maggie De Block",
+                "dates": [
+                    {
+                        "from": "2020-03-17",
+                        "to": "2020-10-01"
+                    }
+                ]
+            }
+        ],
         "wiki": "https://nl.wikipedia.org/wiki/Bram_Delvaux",
         "date_of_birth": "1977-09-19",
         "wikibase_item": "Q91117714",
