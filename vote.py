@@ -80,8 +80,12 @@ class GenericVote(Vote):
         Returns:
             Vote: 
         """
-        yes = int(clean_string(vote_rows[1].find_all(
-            'td')[1].find('p').get_text()))
+        yes_str = clean_string(vote_rows[1].find_all(
+            'td')[1].find('p').get_text())
+        if not yes_str:
+            # Sometimes, tables are empty... example: https://www.dekamer.be/doc/PCRI/html/55/ip100x.html
+            return None
+        yes = int(yes_str)
         no = int(clean_string(vote_rows[2].find_all(
             'td')[1].find('p').get_text()))
         abstention = int(clean_string(

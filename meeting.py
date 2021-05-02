@@ -281,6 +281,7 @@ class Meeting:
                 # Some pages have a height="0" override tag to fix browser display issues.
                 # We have to ignore these otherwise we would start interpreting the votes as the wrong type.
                 rows = tag.find_all('tr', attrs={'height': None})
+                vote = None
 
                 # We can't always rely on the number of rows, since sometimes there's randomly an empty row.
                 if len(rows) == 5 or (len(rows) == 6 and rows[-1].get_text().strip() == ''):
@@ -289,7 +290,7 @@ class Meeting:
                 elif len(rows) == 6:
                     vote = LanguageGroupVote.from_table(
                         self.topics[agenda_item], vote_number, rows)
-                else:
+                if not vote:
                     continue
                 if vote_number in name_votes:
                     names = name_votes[vote_number]
