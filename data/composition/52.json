@@ -2932,11 +2932,14 @@
         "gender": "female"
     },
     {
-        "first_name": "Jean Marie",
+        "first_name": "Jean-Marie",
         "last_name": "Dedecker",
         "party": "LDD",
         "province": "West-Vlaanderen",
         "language": "Nederlands",
+        "alternative_names": [
+            "Dedecker Jean Marie"
+        ],
         "wiki": "https://nl.wikipedia.org/wiki/Jean-Marie_Dedecker",
         "date_of_birth": "1952-06-13",
         "wikibase_item": "Q981442",

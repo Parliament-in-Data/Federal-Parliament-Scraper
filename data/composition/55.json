@@ -559,6 +559,9 @@
         "party": "Onafhankelijk",
         "province": "West-Vlaanderen",
         "language": "Nederlands",
+        "alternative_names": [
+            "Dedecker Jean Marie"
+        ],
         "wiki": "https://nl.wikipedia.org/wiki/Jean-Marie_Dedecker",
         "date_of_birth": "1952-06-13",
         "wikibase_item": "Q981442",
