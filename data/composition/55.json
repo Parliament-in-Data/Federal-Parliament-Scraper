@@ -2065,6 +2065,9 @@
         "party": "N-VA",
         "province": "Antwerpen",
         "language": "Nederlands",
+        "alternative_names": [
+            "Wollants Ber"
+        ],
         "wiki": "https://nl.wikipedia.org/wiki/Bert_Wollants",
         "date_of_birth": "1979-08-30",
         "wikibase_item": "Q2417142",
