@@ -135,22 +135,3 @@ class Member:
             replaces (list): All the timespans a member was replaced
         """
         self.replaces = replaces
-
-    def get_image(self):
-        """If the Member has a Wikipedia page, this method will attempt to scrape
-        their image from this website.
-
-        Returns:
-            str: URI to the image or None if no image was found.
-        """
-        if not self.url:
-            return None
-        page = requests.get(self.url)
-
-        soup = BeautifulSoup(page.content, 'html.parser')
-        result = None
-        infobox = soup.find("table", {"class": "infobox"})
-        if infobox:
-            result = "https:%s" % infobox.find(
-                'img')['src'] if infobox.find('img') else None
-        return result
