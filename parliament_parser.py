@@ -190,7 +190,7 @@ class ParliamentarySession:
             list(Member): list of all known members within the session
         """
         if not self.members:
-            with open('data/composition/%d.json' % self.session) as json_file:
+            with open(f'data/composition/{self.session}.json') as json_file:
                 data = json.load(json_file)
                 for entry in data:
                     # TODO: member should probably take entry at construction time instaed of using these setters
