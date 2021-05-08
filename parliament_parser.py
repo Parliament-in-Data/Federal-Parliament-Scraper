@@ -1,5 +1,6 @@
 import json
 import requests
+from requests.packages.urllib3.util.retry import Retry
 from bs4 import BeautifulSoup
 from member import Member
 from meeting import Meeting
@@ -40,7 +41,9 @@ class ParliamentarySession:
         base_URI = f'{base_URI}sessions/{self.session}/'
         makedirs(base_path, exist_ok=True)
 
-        with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
+        # Limiting the workers helps with reducing the lock contention.
+        # With more workers there is little to gain.
+        with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
             meeting_URIs = list(executor.map(functools.partial(
                 meeting_to_URI, base_path, base_URI), self.plenary_meetings))
             members_URIs = list(executor.map(functools.partial(
@@ -109,8 +112,13 @@ class ParliamentarySession:
         self.end = ParliamentarySession.sessions[session]['to']
         self._members_fn_ln = {}
         self._members_ln_fn = {}
-        # TODO: remove
-        self.undefined_members = set()
+        self._requests_session = requests.Session()
+        retry_strategy = Retry(total=5, backoff_factor=1)
+        self._requests_session.mount('https://', requests.adapters.HTTPAdapter(pool_connections=10, pool_maxsize=10, max_retries=retry_strategy))
+
+    @property
+    def requests_session(self):
+        return self._requests_session
 
     def find_member(self, query: str):
         """Using their name as listed in the meeting notes
@@ -132,8 +140,7 @@ class ParliamentarySession:
         for member in self.members:
             if member.has_name(query):
                 return member
-        print("Undefined member: %s" % query)
-        self.undefined_members.add(query)
+        print(f'Undefined member: {query}')
 
     def get_members_dict(self):
         if not self.members_dict:
@@ -164,8 +171,8 @@ class ParliamentarySession:
         if refresh or not self.plenary_meetings:
             URL = 'https://www.dekamer.be/kvvcr/showpage.cfm?section=/cricra&language=nl&cfm=dcricra.cfm?type=plen&cricra=cri&count=all&legislat=%02d' % (
                 self.session)
-            page = requests.get(URL)
-            soup = BeautifulSoup(page.content, 'html.parser')
+            page = self.requests_session.get(URL)
+            soup = BeautifulSoup(page.content, 'lxml')
             meetings = soup.find_all('tr')
 
             self.plenary_meetings = []
@@ -173,6 +180,7 @@ class ParliamentarySession:
             for meeting in meetings:
                 self.plenary_meetings.append(Meeting.from_soup(meeting, self))
 
+        #self.plenary_meetings = self.plenary_meetings[:10]
         return self.plenary_meetings
 
     def get_members(self):

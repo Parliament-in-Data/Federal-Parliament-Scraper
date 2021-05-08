@@ -67,11 +67,11 @@ class ParliamentaryDocument:
         return f'{base_URI}{self.uri}'
 
     def _initialize(self, retry=False):
-        page = requests.get(self.description_uri())
-        soup = BeautifulSoup(page.content, 'html.parser')
+        page = self.session.requests_session.get(self.description_uri())
+        soup = BeautifulSoup(page.content, 'lxml', from_encoding=page.encoding)
         content = soup.find('div', {'id': 'Story'})
 
-        if (not content) or "not found" in content.get_text():
+        if not content or "not found" in content.get_text() or "Er heeft zich een fout voorgedaan" in content.get_text():
             if retry:
                 return
             else:
@@ -172,15 +172,18 @@ class ParliamentaryQuestion:
     def description_uri(self):
         return f'https://www.dekamer.be/kvvcr/showpage.cfm?section=inqo&language=nl&cfm=inqoXml.cfm?db=INQO&legislat={self.session.session}&dossierID=Q{self.document_number}'
 
-    def _initialize(self, retry=False):
-        page = requests.get(self.description_uri())
-        soup = BeautifulSoup(page.content, 'html.parser')
+    def _initialize(self, retry=0):
+        page = self.session.requests_session.get(self.description_uri())
+        soup = BeautifulSoup(page.content, 'lxml', from_encoding=page.encoding)
         body = soup.find('body')
-        if (not body) or "not exist" in body.get_text():
-            if retry:
+        if not body or "does not exist" in body.get_text():
+            return
+        if not body or "Er heeft zich een fout voorgedaan" in body.get_text():
+            if retry >= 10:
+                print('Gave up on', self.description_uri())
                 return
             else:
-                self._initialize(retry=True)
+                self._initialize(retry=retry + 1)
                 return
 
         authors = [tag for tag in soup.find_all(
@@ -206,6 +209,7 @@ class ParliamentaryQuestion:
             self.responding_minister = responding_minister_cell.find_parent('tr').find_all('td')[
                 1].get_text().strip()[:-1]
             self.responding_department = responding_minister_cell.find_parent('tr').find_next('tr').get_text().strip()
+        
         title = soup.find('i', text=re.compile('Titel'))
         if title:
             self.title = title.find_parent('tr').find_all('td')[

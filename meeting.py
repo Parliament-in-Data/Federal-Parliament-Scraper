@@ -13,6 +13,8 @@ import parliament_parser
 import datetime
 from activity import TopicActivity
 from document import ParliamentaryDocument, ParliamentaryQuestion
+import concurrent.futures
+import functools
 
 
 class TimeOfDay(Enum):
@@ -153,8 +155,8 @@ class Meeting:
         '''
         This internal method adds information on the votes to MeetingTopics
         '''
-        page = requests.get(self.get_notes_url())
-        soup = BeautifulSoup(page.content, 'html.parser')
+        page = self.parliamentary_session.requests_session.get(self.get_notes_url())
+        soup = BeautifulSoup(page.content, 'lxml', from_encoding='windows-1252')
 
         print('currently checking:', self.get_notes_url())
 
@@ -317,8 +319,8 @@ class Meeting:
         """
         if refresh or not self.topics:
             # Obtain the meeting notes
-            page = requests.get(self.get_notes_url())
-            soup = BeautifulSoup(page.content, 'html.parser')
+            page = self.parliamentary_session.requests_session.get(self.get_notes_url())
+            soup = BeautifulSoup(page.content, 'lxml', from_encoding='windows-1252')
             self.topics = {}
 
             def parse_topics(language):
@@ -453,15 +455,15 @@ class MeetingTopic:
             self.title_FR = title
 
     def complete_type(self, type: TopicType = None):
-        import concurrent.futures
-        import functools
-
         if type:
             self.topic_type = type
         else:
             self.topic_type = TopicType.from_section_and_title(
                 self.title_NL, self.section_NL)
-        with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+        # TODO: perhaps not multithread this at all since it causes more fetch failures...
+        # Don't multithread this too much, since that causes more load to the site
+        # which means we get blocked, and it also increases the lock contention.
+        with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
             if self.topic_type == TopicType.BILL_PROPOSAL or self.topic_type == TopicType.DRAFT_BILL or self.topic_type == TopicType.LEGISLATION or self.topic_type == TopicType.NAME_VOTE or self.topic_type == TopicType.SECRET_VOTE:
                 bill_numbers = []
                 for line in self.title_NL.split('\n'):
