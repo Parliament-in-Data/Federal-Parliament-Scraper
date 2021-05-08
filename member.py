@@ -96,7 +96,7 @@ class Member:
     def post_activity(self, activity: Activity):
         self.activities.append(activity)
 
-    def hasName(self, query: str):
+    def has_name(self, query: str):
         """Compare the query string with the "{last_name} {first_name}" combination of
         this member, ignoring any diactritical characters. Alternative names are also possible for
         the member, this is sometimes necessary.

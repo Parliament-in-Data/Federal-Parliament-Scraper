@@ -130,7 +130,7 @@ class ParliamentarySession:
             return self._members_fn_ln[normalized]
 
         for member in self.members:
-            if member.hasName(query):
+            if member.has_name(query):
                 return member
         print("Undefined member: %s" % query)
         self.undefined_members.add(query)
