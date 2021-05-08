@@ -29,6 +29,7 @@ def main():
     with Pool(processes=min(cpu_count(), len(sys.argv[2:]))) as p:
         urls = p.map(session_to_URL, sys.argv[2:])
 
+    #urls = list(map(session_to_URL, sys.argv[2:])) # single-threaded version
     sessions = {value: urls[idx] for idx, value in enumerate(sys.argv[2:])}
 
     makedirs(OUTPUT_PATH, exist_ok=True)
