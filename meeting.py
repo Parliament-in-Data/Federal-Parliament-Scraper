@@ -93,6 +93,7 @@ class Meeting:
         self.time_of_day = time_of_day
         self.date = date
         self.topics = {}
+        self._cached_soup = None
 
     def get_uri(self):
         return f'meetings/{self.id}.json'
@@ -151,12 +152,17 @@ class Meeting:
         """
         return 'https://www.dekamer.be/doc/PCRI/html/%d/ip%03dx.html' % (self.session, self.id)
 
+    def __get_soup(self):
+        if not self._cached_soup:
+            page = self.parliamentary_session.requests_session.get(self.get_notes_url())
+            self._cached_soup = BeautifulSoup(page.content, 'lxml', from_encoding='windows-1252')
+        return self._cached_soup
+
     def __get_votes(self):
         '''
         This internal method adds information on the votes to MeetingTopics
         '''
-        page = self.parliamentary_session.requests_session.get(self.get_notes_url())
-        soup = BeautifulSoup(page.content, 'lxml', from_encoding='windows-1252')
+        soup = self.__get_soup()
 
         print('currently checking:', self.get_notes_url())
 
@@ -319,8 +325,7 @@ class Meeting:
         """
         if refresh or not self.topics:
             # Obtain the meeting notes
-            page = self.parliamentary_session.requests_session.get(self.get_notes_url())
-            soup = BeautifulSoup(page.content, 'lxml', from_encoding='windows-1252')
+            soup = self.__get_soup()
             self.topics = {}
 
             def parse_topics(language):
