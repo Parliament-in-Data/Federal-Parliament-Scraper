@@ -465,32 +465,30 @@ class MeetingTopic:
         else:
             self.topic_type = TopicType.from_section_and_title(
                 self.title_NL, self.section_NL)
-        # TODO: perhaps not multithread this at all since it causes more fetch failures...
         # Don't multithread this too much, since that causes more load to the site
         # which means we get blocked, and it also increases the lock contention.
-        with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
-            if self.topic_type == TopicType.BILL_PROPOSAL or self.topic_type == TopicType.DRAFT_BILL or self.topic_type == TopicType.LEGISLATION or self.topic_type == TopicType.NAME_VOTE or self.topic_type == TopicType.SECRET_VOTE:
-                bill_numbers = []
-                for line in self.title_NL.split('\n'):
-                    match = re.match(".*\(([0-9]+)\/.*\)", line)
-                    if match and match.group(1):
-                        bill_numbers.append(match.group(1))
-                self.related_documents = list(executor.map(functools.partial(
-                    create_or_get_doc, self.parliamentary_session), bill_numbers))
-            elif self.topic_type == TopicType.QUESTIONS:
-                questions_numbers = []
-                for line in self.title_NL.split('\n'):
-                    new_format_match = re.match(".*\(([0-9]{8}(P|C))\)", line)
-                    if new_format_match and new_format_match.group(1):
-                        questions_numbers.append(new_format_match.group(1))
-                    else:
-                        old_format_match = re.match(
-                            ".*\(nr\.? (P[0-9]{4})\)", line)
-                        if old_format_match and old_format_match.group(1):
-                            questions_numbers.append(
-                                f'{self.session}{old_format_match.group(1)}')
-                self.related_questions = list(executor.map(functools.partial(
-                    create_or_get_question, self.parliamentary_session), questions_numbers))
+        if self.topic_type == TopicType.BILL_PROPOSAL or self.topic_type == TopicType.DRAFT_BILL or self.topic_type == TopicType.LEGISLATION or self.topic_type == TopicType.NAME_VOTE or self.topic_type == TopicType.SECRET_VOTE:
+            bill_numbers = []
+            for line in self.title_NL.split('\n'):
+                match = re.match(".*\(([0-9]+)\/.*\)", line)
+                if match and match.group(1):
+                    bill_numbers.append(match.group(1))
+            self.related_documents = list(map(functools.partial(
+                create_or_get_doc, self.parliamentary_session), bill_numbers))
+        elif self.topic_type == TopicType.QUESTIONS:
+            questions_numbers = []
+            for line in self.title_NL.split('\n'):
+                new_format_match = re.match(".*\(([0-9]{8}(P|C))\)", line)
+                if new_format_match and new_format_match.group(1):
+                    questions_numbers.append(new_format_match.group(1))
+                else:
+                    old_format_match = re.match(
+                        ".*\(nr\.? (P[0-9]{4})\)", line)
+                    if old_format_match and old_format_match.group(1):
+                        questions_numbers.append(
+                            f'{self.session}{old_format_match.group(1)}')
+            self.related_questions = list(map(functools.partial(
+                create_or_get_question, self.parliamentary_session), questions_numbers))
 
     def set_section(self, language: Language, section_name: str):
         """The meeting is also organized in sections, this method allows you to set
