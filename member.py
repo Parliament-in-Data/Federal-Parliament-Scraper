@@ -41,6 +41,7 @@ class Member:
         sha_1 = hashlib.sha1()
         sha_1.update(self.first_name.encode('utf-8') + self.last_name.encode('utf-8') +
                      self.province.encode('utf-8'))
+        # TODO: add defensive mechanism that can detect a collision, even though it is extremely unlikely
         self.uuid = sha_1.hexdigest()[:10]  # Should be sufficiently random
 
     def set_gender(self, gender: str):
