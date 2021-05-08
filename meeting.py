@@ -465,7 +465,7 @@ class MeetingTopic:
         else:
             self.topic_type = TopicType.from_section_and_title(
                 self.title_NL, self.section_NL)
-        # Don't multithread this too much, since that causes more load to the site
+        # No multithreading here, since that causes more load to the site
         # which means we get blocked, and it also increases the lock contention.
         if self.topic_type == TopicType.BILL_PROPOSAL or self.topic_type == TopicType.DRAFT_BILL or self.topic_type == TopicType.LEGISLATION or self.topic_type == TopicType.NAME_VOTE or self.topic_type == TopicType.SECRET_VOTE:
             bill_numbers = []
