@@ -99,6 +99,17 @@
         "gender": "male"
     },
     {
+        "first_name": "Jan",
+        "last_name": "Peeters",
+        "party": "sp.a",
+        "province": "Antwerpen",
+        "language": "Nederlands",
+        "wiki": "https://nl.wikipedia.org/wiki/Jan_Peeters_(politicus)",
+        "date_of_birth": "1963-01-12",
+        "wikibase_item": "Q556456",
+        "gender": "male"
+    },
+    {
         "first_name": "Kris",
         "last_name": "Peeters",
         "party": "CD&V",
@@ -1200,6 +1211,14 @@
                         "to": "2007-07-19"
                     }
                 ]
+            },
+            {
+                "name": "Demotte Rudy",
+                "dates": [
+                    {
+                        "from": "2007-07-19"
+                    }
+                ]
             }
         ],
         "date_of_birth": "1946-01-02",
@@ -1262,8 +1281,7 @@
                 "name": "Dupont Christian",
                 "dates": [
                     {
-                        "from": "2007-12-21",
-                        "to": "2009-06-25"
+                        "from": "2007-12-21"
                     }
                 ]
             }
@@ -1352,7 +1370,7 @@
         "province": "Luik",
         "language": "Frans",
         "wiki": "https://nl.wikipedia.org/wiki/Michel_Daerden",
-        "date_of_birth": "2012-08-05",
+        "date_of_birth": "1949-11-16",
         "wikibase_item": "Q772642",
         "gender": "male",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/87/Michel_Daerden675.jpg"
@@ -1930,17 +1948,6 @@
         "province": "Limburg",
         "language": "Nederlands",
         "wiki": "https://nl.wikipedia.org/wiki/Patrick_Dewael",
-        "replaces": [
-            {
-                "name": "Steegen Bruno",
-                "dates": [
-                    {
-                        "from": "2007-12-21",
-                        "to": "2008-12-31"
-                    }
-                ]
-            }
-        ],
         "date_of_birth": "1955-10-13",
         "wikibase_item": "Q15992",
         "gender": "male"
@@ -1951,6 +1958,17 @@
         "party": "Open Vld",
         "province": "Limburg",
         "language": "Nederlands",
+        "replaces": [
+            {
+                "name": "Dewael Patrick",
+                "dates": [
+                    {
+                        "from": "2007-12-21",
+                        "to": "2008-12-31"
+                    }
+                ]
+            }
+        ],
         "wiki": "https://nl.wikipedia.org/wiki/Bruno_Steegen",
         "date_of_birth": "1966-06-12",
         "wikibase_item": "Q2926994",
@@ -2190,17 +2208,6 @@
         "date_of_birth": "1953-04-09",
         "wikibase_item": "Q2247235",
         "gender": "female"
-    },
-    {
-        "first_name": "Jan",
-        "last_name": "Peeters",
-        "party": "sp.a",
-        "province": "Antwerpen",
-        "language": "Nederlands",
-        "wiki": "https://nl.wikipedia.org/wiki/Jan_Peeters_(politicus)",
-        "date_of_birth": "1963-01-12",
-        "wikibase_item": "Q556456",
-        "gender": "male"
     },
     {
         "first_name": "Maya",
@@ -2925,11 +2932,14 @@
         "gender": "female"
     },
     {
-        "first_name": "Jean Marie",
+        "first_name": "Jean-Marie",
         "last_name": "Dedecker",
         "party": "LDD",
         "province": "West-Vlaanderen",
         "language": "Nederlands",
+        "alternative_names": [
+            "Dedecker Jean Marie"
+        ],
         "wiki": "https://nl.wikipedia.org/wiki/Jean-Marie_Dedecker",
         "date_of_birth": "1952-06-13",
         "wikibase_item": "Q981442",

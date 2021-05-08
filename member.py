@@ -40,7 +40,7 @@ class Member:
         self.photo_url = None
         sha_1 = hashlib.sha1()
         sha_1.update(self.first_name.encode('utf-8') + self.last_name.encode('utf-8') +
-                     self.party.encode('utf-8') + self.province.encode('utf-8'))
+                     self.province.encode('utf-8'))
         self.uuid = sha_1.hexdigest()[:10]  # Should be sufficiently random
 
     def set_gender(self, gender: str):

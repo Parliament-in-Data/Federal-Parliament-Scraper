@@ -101,9 +101,9 @@ class ParliamentaryDocument:
             'td', {'class': "td1x"}) if 'Document type' in tag.get_text()]
         self.document_type = doc_type_row[0].parent.find(
             'td', {'class': 'td0x'}).find_all(text=True)[0][3:]
-        if self.document_type == 'WETSVOORSTEL':
-            authors = [tag for tag in soup.find_all(
-                'td', {'class': "td1x"}) if 'Auteur(s)' in tag.get_text()]
+        authors = [tag for tag in soup.find_all(
+            'td', {'class': "td1x"}) if 'Auteur(s)' in tag.get_text()]
+        if authors:
             authors = authors[0].parent.find(
                 'td', {'class': 'td0x'}).find_all(text=True)
             authors = [text.strip() for text in authors if (

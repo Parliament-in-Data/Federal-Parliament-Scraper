@@ -734,8 +734,7 @@
                 "name": "Daerden Michel",
                 "dates": [
                     {
-                        "from": "2010-07-06",
-                        "to": "2013-06-24"
+                        "from": "2010-07-06"
                     }
                 ]
             }
@@ -987,8 +986,7 @@
                 "name": "Picqué Charles",
                 "dates": [
                     {
-                        "from": "2010-07-06",
-                        "to": "2012-12-13"
+                        "from": "2010-07-06"
                     }
                 ]
             }
@@ -1603,10 +1601,10 @@
         "wiki": "https://nl.wikipedia.org/wiki/Bercy_Slegers",
         "replaces": [
             {
-                "name": "De Clerck Stefaan",
+                "name": "Bogaert Hendrik",
                 "dates": [
                     {
-                        "from": "2013-10-08"
+                        "from": "2011-12-01"
                     }
                 ]
             }
@@ -2270,7 +2268,7 @@
         "wiki": "https://nl.wikipedia.org/wiki/Jeanne_Nyanga-Lumbala",
         "replaces": [
             {
-                "name": "Dallemagne Georges",
+                "name": "Delacroix-Rolin Myriam",
                 "dates": [
                     {
                         "from": "2013-05-16"
@@ -2305,10 +2303,10 @@
         "wiki": "https://nl.wikipedia.org/wiki/Georges_Dallemagne",
         "replaces": [
             {
-                "name": "Delacroix-Rolin Myriam",
+                "name": "Milquet Joëlle",
                 "dates": [
                     {
-                        "from": "2013-05-16"
+                        "from": "2011-12-01"
                     }
                 ]
             }
@@ -2469,8 +2467,7 @@
                 "name": "Wathelet Melchior",
                 "dates": [
                     {
-                        "from": "2011-12-07",
-                        "to": "2013-07-06"
+                        "from": "2011-12-07"
                     }
                 ]
             }
