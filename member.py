@@ -5,9 +5,10 @@ import json
 import uuid
 from os import path, makedirs
 import hashlib
-from typing import List
+from typing import List, Optional
 from activity import Activity
 from collections import defaultdict
+from datetime import datetime
 
 
 class Member:
@@ -15,7 +16,19 @@ class Member:
     Class representing a single member of the parliament
     """
 
-    def __init__(self, first_name: str, last_name: str, party: str, province: str, language: str, url: str = None):
+    def __init__(
+        self,
+        first_name: str,
+        last_name: str,
+        party: str,
+        province: str,
+        language: str,
+        url: Optional[str],
+        alternative_names: Optional[List[str]],
+        gender: str,
+        date_of_birth: datetime,
+        photo_url: Optional[str],
+    ):
         """Class representing a single member of the parliament
 
         Args:
@@ -25,34 +38,51 @@ class Member:
             province (str): Province the member ran in
             language (str): Language of the member
             url (str, optional): URL to the wikipedia page of the member. Defaults to None.
+            alternative_names (List[str], optional): Alternative spellings of the member name. This deals with typos and short variants of names.
+            gender (str): The gender of the member
+            date_of_birth (datetime): The date of birth of the member
+            photo_url (str, optional): The url of a photo of the member
         """
         self.first_name = first_name
         self.last_name = last_name
         self.party = party
         self.province = province
         self.language = language
-        self.alternative_names = []
+        self.alternative_names = alternative_names
         self.replaces = []
         self.activities = []
         self.url = url
-        self.date_of_birth = None
-        self.gender = None
-        self.photo_url = None
+        self.date_of_birth = date_of_birth
+        self.gender = gender
+        self.photo_url = photo_url
         sha_1 = hashlib.sha1()
         sha_1.update(self.first_name.encode('utf-8') + self.last_name.encode('utf-8') +
                      self.province.encode('utf-8'))
         # TODO: add defensive mechanism that can detect a collision, even though it is extremely unlikely
         self.uuid = sha_1.hexdigest()[:10]  # Should be sufficiently random
 
-    def set_gender(self, gender: str):
-        self.gender = gender
+    @staticmethod
+    def from_json(json_entry):
+        """Constructs a member from its static json representation.
+        
+        Args:
+            json_entry: The static json representation
+        """
 
-    def set_photo_url(self, photo_url: str):
-        self.photo_url = photo_url
-
-    def set_date_of_birth(self, date: str):
         import dateparser
-        self.date_of_birth = dateparser.parse(date)
+        date_of_birth = dateparser.parse(json_entry['date_of_birth'])
+        return Member(
+            json_entry['first_name'],
+            json_entry['last_name'],
+            json_entry['party'],
+            json_entry['province'],
+            json_entry['language'],
+            json_entry['wiki'],
+            json_entry.get('alternative_names'),
+            json_entry['gender'],
+            date_of_birth,
+            json_entry.get('photo_url')
+        )
 
     def uri(self):
         return f'members/{self.uuid}.json'
@@ -119,15 +149,6 @@ class Member:
         if query == normalize_str(self.last_name):
             return True
         return query == name or query == normalize_str(f'{self.first_name} {self.last_name}')
-
-    def set_alternative_names(self, names: List[str]):
-        """Set alternative names by which the member should also
-        be recognized in the meeting notes.
-
-        Args:
-            names (list(str)): All the alternative names of the member
-        """
-        self.alternative_names = names
 
     def set_replaces(self, replaces: List[any]):
         """Set which members are replaces when by this member.
