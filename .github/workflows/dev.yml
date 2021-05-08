@@ -1,19 +1,12 @@
-# This workflow is used for production deploys
+# This is our workflow for deploying code from the dev branch to a separate environment
 
-name: Build the API, Create Release and Deploy to Netlify
+name: Create a Development Build of the API and publish it to Dev
 
 # Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
-  schedule:
-    - cron: 0 9 * * 1-5
+  # Triggers the workflow on push or pull request events but only for the dev branch
   push:
-    branches: [ main ]
-    paths:
-    - '**.py'
-    - '**.json'
-
-  # Allows you to run this workflow manually from the Actions tab
+    branches: [ dev ]
   workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -38,12 +31,12 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Perform scraping and package a release
         run: |
-          python build.py "https://parlement.thundr.be/" 55 54 53 52
+          python build.py "https://parlement-dev.thundr.be/" 55 54 53 52
 
       - name: Deploy to Netlify
         uses: jsmrcaga/action-netlify-deploy@v1.1.0
         with:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_API_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          NETLIFY_DEPLOY_MESSAGE: "Prod deploy v${{ github.ref }}"
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_API_TOKEN_DEV }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID_DEV }}
+          NETLIFY_DEPLOY_MESSAGE: "Dev deploy v${{ github.ref }}"
           NETLIFY_DEPLOY_TO_PROD: true
