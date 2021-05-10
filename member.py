@@ -84,37 +84,6 @@ class Member:
             json_entry.get('photo_url')
         )
 
-    def uri(self):
-        return f'members/{self.uuid}.json'
-
-    def dump_json(self, base_path: str, base_URI="/"):
-        base_path = path.join(base_path, "members")
-        base_URI_members = f'{base_URI}members/'
-        resource_name = f'{self.uuid}.json'
-        makedirs(base_path, exist_ok=True)
-
-        with open(path.join(base_path, resource_name), 'w+') as fp:
-            replaces = list(map(lambda replacement: {
-                            'member': f'{base_URI_members}{replacement["member"]}.json', 'dates': replacement['dates']}, self.replaces))
-            activity_dict = defaultdict(lambda: defaultdict(list))
-            for activity in self.activities:
-                activity_dict[str(activity.date.year)][str(
-                    activity.date.isoformat())].append(activity.dict(base_URI))
-            activities_dir = path.join(base_path, str(self.uuid))
-            makedirs(activities_dir, exist_ok=True)
-
-            activity_uris = {}
-
-            for year in activity_dict:
-                with open(path.join(activities_dir, f'{year}.json'), 'w+') as afp:
-                    json.dump(activity_dict[year], afp)
-                activity_uris[year] = f'{base_URI_members}{self.uuid}/{year}.json'
-
-            json.dump({'id': str(self.uuid), 'first_name': self.first_name, 'last_name': self.last_name, 'gender': self.gender, 'date_of_birth': self.date_of_birth.isoformat(
-            ), 'language': self.language, 'province': self.province, 'party': self.party, 'wiki': self.url, 'replaces': replaces, 'activities': activity_uris, 'photo_url': self.photo_url}, fp, ensure_ascii=False)
-
-        return f'{base_URI_members}{resource_name}'
-
     def __repr__(self):
         return "Member(\"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\")" % (self.first_name, self.last_name, self.party, self.province, self.language, self.url)
 

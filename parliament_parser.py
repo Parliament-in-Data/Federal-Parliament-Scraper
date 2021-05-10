@@ -8,6 +8,7 @@ import json
 from os import path, makedirs
 import functools
 from util import normalize_str
+from data_store import JsonDataStore, CompoundDataStore
 
 
 def member_to_URI(base_path, base_URI, member):
@@ -39,15 +40,20 @@ class ParliamentarySession:
 
         base_path = path.join(output_path, "sessions", f'{self.session}')
         base_URI = f'{base_URI}sessions/{self.session}/'
-        makedirs(base_path, exist_ok=True)
+        data_store = CompoundDataStore([JsonDataStore(base_path, base_URI)])
+
+        #members_URIs = list(map(functools.partial(member_to_URI, base_path, base_URI), self.members))
+        for member in self.members:
+            data_store.store_member(member)
+
+        # TODO
+        assert False, "Stop here because only converted up until this part of the code"
 
         # Limiting the workers helps with reducing the lock contention.
         # With more workers there is little to gain.
         with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
             meeting_URIs = list(executor.map(functools.partial(
                 meeting_to_URI, base_path, base_URI), self.plenary_meetings))
-            members_URIs = list(executor.map(functools.partial(
-                member_to_URI, base_path, base_URI), self.members))
 
         makedirs(path.join(base_path, "legislation"), exist_ok=True)
         makedirs(path.join(base_path, "questions"), exist_ok=True)
@@ -81,15 +87,15 @@ class ParliamentarySession:
         with open(path.join(base_path, 'questions', 'index.json'), 'w') as fp:
             json.dump({question.document_number: f'{base_URI}{question.uri()}' for question in self.questions.values()}, fp)
 
-        with open(path.join(base_path, 'session.json'), 'w') as fp:
-            json.dump({
-                'id': self.session,
-                'start': self.start,
-                'end': self.end,
-                'members': members_URIs,
-                'legislation': f'{base_URI}legislation/index.json',
-                'questions': f'{base_URI}questions/index.json',
-                'meetings': {'plenary': meeting_URIs}}, fp)
+        #with open(path.join(base_path, 'session.json'), 'w') as fp:
+        #    json.dump({
+        #        'id': self.session,
+        #        'start': self.start,
+        #        'end': self.end,
+        #        'members': members_URIs,
+        #        'legislation': f'{base_URI}legislation/index.json',
+        #        'questions': f'{base_URI}questions/index.json',
+        #        'meetings': {'plenary': meeting_URIs}}, fp)
         return path.join(base_URI, 'session.json')
 
     def __init__(self, session: int):
@@ -180,7 +186,8 @@ class ParliamentarySession:
             for meeting in meetings:
                 self.plenary_meetings.append(Meeting.from_soup(meeting, self))
 
-        #self.plenary_meetings = self.plenary_meetings[:10]
+        # TODO
+        self.plenary_meetings = self.plenary_meetings[:5]
         return self.plenary_meetings
 
     def get_members(self):
