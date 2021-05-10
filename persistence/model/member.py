@@ -1,9 +1,10 @@
-from mongoengine.fields import StringField, ListField, ReferenceField, URLField, DateTimeField
+from mongoengine.fields import StringField, ListField, ReferenceField, URLField, DateTimeField, UUIDField
 
 from persistence.model.model import Model
 from persistence.model.activity import Activity
 
 class Member(Model):
+    id = UUIDField(required=True, unique=True, primary_key=True)
     first_name = StringField(required=True)
     last_name = StringField(required=True)
     party = StringField(required=True)

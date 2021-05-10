@@ -1,8 +1,8 @@
-from extras_mongoengine.fields import EnumField
+#from extras_mongoengine.fields import EnumField
 from mongoengine.fields import ReferenceField, DateField, StringField
 
 from persistence.model.model import Model
-from persistence.model.member import Member
+import persistence.model.member
 from persistence.model.vote import Vote
 from persistence.model.meeting import MeetingTopic
 from persistence.model.question import Question
@@ -17,7 +17,7 @@ class Activity(Model):
 
 class VoteActivity(Activity):
     vote = ReferenceField(Vote, required=True)
-    choice = EnumField(Choice)
+    #choice = EnumField(Choice)
 
 class TopicActivity(Activity):
     meeting_topic = ReferenceField(MeetingTopic)
