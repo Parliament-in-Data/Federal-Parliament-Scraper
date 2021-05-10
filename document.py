@@ -66,16 +66,19 @@ class ParliamentaryDocument:
             json.dump(self.json_representation(base_URI), fp, ensure_ascii=False)
         return f'{base_URI}{self.uri}'
 
-    def _initialize(self, retry=False):
+    def _initialize(self, retry=0):
         page = self.session.requests_session.get(self.description_uri())
         soup = BeautifulSoup(page.content, 'lxml', from_encoding=page.encoding)
         content = soup.find('div', {'id': 'Story'})
 
-        if not content or "not found" in content.get_text() or "Er heeft zich een fout voorgedaan" in content.get_text():
-            if retry:
+        if not content or "not found" in content.get_text():
+            return
+        if "Er heeft zich een fout voorgedaan" in content.get_text():
+            if retry >= 10:
+                print('Gave up on', self.description_uri())
                 return
             else:
-                self._initialize(retry=True)
+                self._initialize(retry=retry + 1)
                 return
 
         proposal_date = soup.find('td', text=re.compile('Indieningsdatum'))
@@ -178,7 +181,7 @@ class ParliamentaryQuestion:
         body = soup.find('body')
         if not body or "does not exist" in body.get_text():
             return
-        if not body or "Er heeft zich een fout voorgedaan" in body.get_text():
+        if "Er heeft zich een fout voorgedaan" in body.get_text():
             if retry >= 10:
                 print('Gave up on', self.description_uri())
                 return
