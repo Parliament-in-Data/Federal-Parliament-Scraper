@@ -13,64 +13,15 @@ import parliament_parser
 import datetime
 from activity import TopicActivity
 from document import ParliamentaryDocument, ParliamentaryQuestion
+from models.enums import TimeOfDay, TopicType
+from models import Meeting
 import concurrent.futures
 import functools
 
 
-class TimeOfDay(Enum):
-    '''
-    Meetings of the Parliament can occurr in the Morning, Afternoon or Evening.
-    This Enum allows for differentiating between them.
-    '''
-    AM = 1
-    PM = 2
-    EVENING = 3
-
-
-class TopicType(Enum):
-    GENERAL = 1  # Topics for which no further subclassification could be made
-    CURRENT_AFFAIRS = 2  # Discussion of current news or political affairs
-    BUDGET = 3  # Discussions concerning the budget
-    SECRET_VOTE = 4  # General secret votes
-    # Discussion regarding the revision of articles of the constitution
-    REVISION_OF_CONSTITUTION = 5
-    INTERPELLATION = 6  # Questions submitted by an MP to the Government
-    NAME_VOTE = 7  # Public name votes, mostly concerning legislation
-    DRAFT_BILL = 8  # Wetsontwerp, a legal initiative coming from the Government
-    BILL_PROPOSAL = 9  # Wetsvoorstel, a legal initiative coming from the parliament
-    LEGISLATION = 10  # No further distinction could be made if this is a DRAFT or PROPOSAL
-    QUESTIONS = 11
-
-    @staticmethod
-    def from_section_and_title(title_NL: str, section_NL: str):
-        title_NL = title_NL.lower()
-        section_NL = section_NL.lower()
-        if 'begroting' in section_NL:
-            return TopicType.BUDGET
-        if 'actualiteitsdebat' in section_NL:
-            return TopicType.CURRENT_AFFAIRS
-        if 'naamstemming' in section_NL:
-            return TopicType.NAME_VOTE
-        if 'geheim' in section_NL and 'stemming' in section_NL:
-            return TopicType.SECRET_VOTE
-        if 'vragen' in section_NL or 'vragen' in title_NL or 'vraag' in title_NL:
-            return TopicType.QUESTIONS
-        if 'interpellatie' in section_NL:
-            return TopicType.INTERPELLATION
-        if 'herziening' in section_NL and 'grondwet' in section_NL:
-            return TopicType.REVISION_OF_CONSTITUTION
-        if 'ontwerp' in section_NL or 'voorstel' in section_NL:
-            if (not 'ontwerp' in section_NL) or 'voorstel' in title_NL:
-                return TopicType.BILL_PROPOSAL
-            if (not 'voorstel' in section_NL) or 'ontwerp' in title_NL:
-                return TopicType.DRAFT_BILL
-            return TopicType.GENERAL
-        return TopicType.GENERAL
-
-
-class Meeting:
+class MeetingBuilder:
     """
-    A Meeting represents the meeting notes for a gathering of the federal parliament.
+    A MeetingBuilder builds the meeting notes for a gathering of the federal parliament.
     """
     language_mapping = {
         Language.NL: ('Titre1NL', 'Titre2NL'),
@@ -95,54 +46,8 @@ class Meeting:
         self.topics = {}
         self._cached_soup = None
 
-    def get_uri(self):
-        return f'meetings/{self.id}.json'
-
-    def dump_json(self, base_path: str, base_URI="/"):
-        base_meeting_path = path.join(base_path, "meetings")
-        base_meeting_URI = f'{base_URI}meetings/'
-        resource_name = f'{self.id}.json'
-
-        makedirs(base_meeting_path, exist_ok=True)
-
-        if not self.topics:
-            self.get_meeting_topics()
-
-        topics = defaultdict(dict)
-        for key in self.topics:
-            topic = self.topics[key]
-            topics[str(topic.topic_type)][topic.item] = topic
-
-        with open(path.join(base_meeting_path, resource_name), 'w+') as fp:
-            json.dump({
-                'id': self.id,
-                'time_of_day': str(self.time_of_day),
-                'date': self.date.isoformat(),
-                'topics': {
-                    topic_type: {
-                        topic_item: topic_value.dump_json(base_path, base_URI)
-                        for topic_item, topic_value in topic_type_dict.items()
-                    }
-                    for topic_type, topic_type_dict in topics.items()
-                },
-            }, fp, ensure_ascii=False)
-
-        meeting_dir_path = path.join(base_meeting_path, str(self.id))
-        makedirs(meeting_dir_path, exist_ok=True)
-
-        with open(path.join(meeting_dir_path, 'unfolded.json'), 'w+') as fp:
-            json.dump({
-                topic_type: {
-                    topic_item: topic_value.json_representation(base_URI)
-                    for topic_item, topic_value in topic_type_dict.items()
-                }
-                for topic_type, topic_type_dict in topics.items()
-            }, fp, ensure_ascii=False)
-
-        return f'{base_meeting_URI}{resource_name}'
-
-    def __repr__(self):
-        return 'Meeting(%s, %s, %s, %s)' % (self.session, self.id, self.time_of_day, repr(self.date))
+    def to_data(self):
+        return Meeting(self.id, self.time_of_day, self.date, self.topics)
 
     def get_notes_url(self):
         """Obtain the URL of the meeting notes.
@@ -167,7 +72,7 @@ class Meeting:
         print('currently checking:', self.get_notes_url())
 
         def extract_title_by_vote(table: NavigableString, language: Language):
-            class_name = Meeting.language_mapping[language][1]
+            class_name = MeetingBuilder.language_mapping[language][1]
 
             next_line = table.find_previous_sibling("p", {"class": class_name})
             while not re.match(r"([0-9]+) (.)*", clean_string(next_line.text)):
@@ -329,7 +234,7 @@ class Meeting:
             self.topics = {}
 
             def parse_topics(language):
-                classes = Meeting.language_mapping[language]
+                classes = MeetingBuilder.language_mapping[language]
                 titles = soup.find_all('p', {'class': classes[1]})
                 current_title = ""
 
@@ -372,29 +277,28 @@ class Meeting:
             self.__get_votes()
         return self.topics
 
-    @staticmethod
-    def from_soup(meeting: NavigableString, session):
-        """Generate a new Meeting instance from BeautifulSoup's objects
+def meeting_from_soup(meeting: NavigableString, session):
+    """Generate a new Meeting instance from BeautifulSoup's objects
 
-        Args:
-            meeting (NavigableString): The table row representing the meeting
-            session (parliament_parser.ParliamentarySession): The parliamentary session this meeting is a part of.
+    Args:
+        meeting (NavigableString): The table row representing the meeting
+        session (parliament_parser.ParliamentarySession): The parliamentary session this meeting is a part of.
 
-        Returns:
-            Meeting: A Meeting object representing this meeting.
-        """
-        meeting = meeting.find_all('td')
-        meeting_id = int(meeting[0].text.strip())
-        date = dateparser.parse(meeting[2].text.strip())
-        tod = TimeOfDay.AM
-        if 'PM' in meeting[1].text:
-            tod = TimeOfDay.PM
-        elif 'Avond' in meeting[1].text:
-            tod = TimeOfDay.EVENING
+    Returns:
+        Meeting: A Meeting object representing this meeting.
+    """
+    meeting = meeting.find_all('td')
+    meeting_id = int(meeting[0].text.strip())
+    date = dateparser.parse(meeting[2].text.strip())
+    tod = TimeOfDay.AM
+    if 'PM' in meeting[1].text:
+        tod = TimeOfDay.PM
+    elif 'Avond' in meeting[1].text:
+        tod = TimeOfDay.EVENING
 
-        result = Meeting(session, meeting_id, tod, date)
-        return result
-
+    result = MeetingBuilder(session, meeting_id, tod, date)
+    result.get_meeting_topics()
+    return result.to_data()
 
 def create_or_get_doc(session, number):
     return ParliamentaryDocument(session, number) if number not in session.documents else session.documents[number]

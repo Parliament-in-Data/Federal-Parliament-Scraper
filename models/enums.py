@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class TimeOfDay(Enum):
     '''
     Meetings of the Parliament can occurr in the Morning, Afternoon or Evening.
@@ -21,6 +22,32 @@ class TopicType(Enum):
     BILL_PROPOSAL = 9  # Wetsvoorstel, a legal initiative coming from the parliament
     LEGISLATION = 10  # No further distinction could be made if this is a DRAFT or PROPOSAL
     QUESTIONS = 11
+
+    @staticmethod
+    def from_section_and_title(title_NL: str, section_NL: str):
+        title_NL = title_NL.lower()
+        section_NL = section_NL.lower()
+        if 'begroting' in section_NL:
+            return TopicType.BUDGET
+        if 'actualiteitsdebat' in section_NL:
+            return TopicType.CURRENT_AFFAIRS
+        if 'naamstemming' in section_NL:
+            return TopicType.NAME_VOTE
+        if 'geheim' in section_NL and 'stemming' in section_NL:
+            return TopicType.SECRET_VOTE
+        if 'vragen' in section_NL or 'vragen' in title_NL or 'vraag' in title_NL:
+            return TopicType.QUESTIONS
+        if 'interpellatie' in section_NL:
+            return TopicType.INTERPELLATION
+        if 'herziening' in section_NL and 'grondwet' in section_NL:
+            return TopicType.REVISION_OF_CONSTITUTION
+        if 'ontwerp' in section_NL or 'voorstel' in section_NL:
+            if (not 'ontwerp' in section_NL) or 'voorstel' in title_NL:
+                return TopicType.BILL_PROPOSAL
+            if (not 'voorstel' in section_NL) or 'ontwerp' in title_NL:
+                return TopicType.DRAFT_BILL
+            return TopicType.GENERAL
+        return TopicType.GENERAL
 
 class Language(Enum):
     '''

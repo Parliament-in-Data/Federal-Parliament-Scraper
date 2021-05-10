@@ -3,20 +3,12 @@ import requests
 from requests.packages.urllib3.util.retry import Retry
 from bs4 import BeautifulSoup
 from member import Member
-from meeting import Meeting
+from meeting import meeting_from_soup
 import json
 from os import path, makedirs
 import functools
 from util import normalize_str
 from data_store import JsonDataStore, CompoundDataStore
-
-
-def member_to_URI(base_path, base_URI, member):
-    return member.dump_json(base_path, base_URI)
-
-
-def meeting_to_URI(base_path, base_URI, meeting):
-    return meeting.dump_json(base_path, base_URI)
 
 
 class ParliamentarySession:
@@ -46,14 +38,15 @@ class ParliamentarySession:
         for member in self.members:
             data_store.store_member(member)
 
-        # TODO
-        assert False, "Stop here because only converted up until this part of the code"
-
         # Limiting the workers helps with reducing the lock contention.
         # With more workers there is little to gain.
         with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
-            meeting_URIs = list(executor.map(functools.partial(
-                meeting_to_URI, base_path, base_URI), self.plenary_meetings))
+            #meeting_URIs = list(executor.map(functools.partial(
+            #    meeting_to_URI, base_path, base_URI), self.plenary_meetings))
+            executor.map(functools.partial(lambda meeting: data_store.store_meeting(meeting)), self.plenary_meetings)
+
+        # TODO
+        assert False, "Stop here because only converted up until this part of the code"
 
         makedirs(path.join(base_path, "legislation"), exist_ok=True)
         makedirs(path.join(base_path, "questions"), exist_ok=True)
@@ -181,13 +174,12 @@ class ParliamentarySession:
             soup = BeautifulSoup(page.content, 'lxml')
             meetings = soup.find_all('tr')
 
+            # TODO: this should be multithreaded instead of the thing above...
             self.plenary_meetings = []
 
-            for meeting in meetings:
-                self.plenary_meetings.append(Meeting.from_soup(meeting, self))
+            for meeting in meetings[:5]:#TODO
+                self.plenary_meetings.append(meeting_from_soup(meeting, self))
 
-        # TODO
-        self.plenary_meetings = self.plenary_meetings[:5]
         return self.plenary_meetings
 
     def get_members(self):
