@@ -12,8 +12,12 @@ class JsonDataStore(DataStore):
     The JSON file data store.
     '''
 
-    def __init__(self, base_path: str, base_URI: str):
+    def __init__(self, session, start_date, end_date, base_path: str, base_URI: str):
         super().__init__()
+        self._session = session
+        self._start_date = start_date
+        self._end_date = end_date
+
         self._base_path = base_path
         self._base_URI = base_URI
         makedirs(base_path, exist_ok=True)
@@ -24,11 +28,43 @@ class JsonDataStore(DataStore):
         self._vote_type_to_handler[ElectronicGenericVote] = self._json_representation_electronic_generic_vote
         self._vote_type_to_handler[ElectronicAdvisoryVote] = self._json_representation_electronic_advisory_vote
 
+        self._legislation_index = dict()
+        self._legislation_unfolded = dict()
+        self._question_index = dict()
+        self._question_unfolded = dict()
+        self._meeting_URIs = []
+        self._member_URIs = []
+
+    def finish(self):
+        with open(path.join(self._base_path, 'legislation', 'index.json'), 'w') as fp:
+            json.dump(self._legislation_index, fp)
+
+        with open(path.join(self._base_path, 'questions', 'index.json'), 'w') as fp:
+            json.dump(self._question_index, fp)
+
+        with open(path.join(self._base_path, 'legislation', 'unfolded.json'), 'w') as fp:
+            json.dump(self._legislation_unfolded, fp)
+
+        with open(path.join(self._base_path, 'questions', 'unfolded.json'), 'w') as fp:
+            json.dump(self._question_unfolded, fp)
+
+        with open(path.join(self._base_path, 'session.json'), 'w') as fp:
+            json.dump({
+                'id': self._session,
+                'start': self._start_date,
+                'end': self._end_date,
+                'members': self._member_URIs,
+                'legislation': f'{self._base_URI}legislation/index.json',
+                'questions': f'{self._base_URI}questions/index.json',
+                'meetings': {'plenary': self._meeting_URIs}}, fp)
+
     def store_member(self, member):
         base_path = path.join(self._base_path, "members")
         base_URI_members = f'{self._base_URI}members/'
         resource_name = f'{member.uuid}.json'
         makedirs(base_path, exist_ok=True)
+
+        self._member_URIs.append(f'{base_URI_members}{resource_name}')
 
         with open(path.join(base_path, resource_name), 'w') as fp:
             replaces = list(map(lambda replacement: {
@@ -113,37 +149,45 @@ class JsonDataStore(DataStore):
     def store_legislation(self, legislation):
         legislation_dir_path = path.join(self._base_path, 'legislation')
         makedirs(legislation_dir_path, exist_ok=True)
+        data = {
+            'document_number': legislation.document_nr,
+            'document_type': legislation.document_type,
+            'title': legislation.title,
+            'source': legislation.source,
+            'date': legislation.date.isoformat(),
+            'authors': list(map(self._get_member_uri, legislation.authors)),
+            'descriptor': legislation.descriptor,
+            'keywords': legislation.keywords,
+        }
+        self._legislation_unfolded[legislation.document_nr] = data
         with open(path.join(legislation_dir_path, f'{legislation.document_nr}.json'), 'w') as fp:
-            json.dump({
-                'document_number': legislation.document_nr,
-                'document_type': legislation.document_type,
-                'title': legislation.title,
-                'source': legislation.source,
-                'date': legislation.date.isoformat(),
-                'authors': list(map(self._get_member_uri, legislation.authors)),
-                'descriptor': legislation.descriptor,
-                'keywords': legislation.keywords,
-            }, fp, ensure_ascii=False)
+            json.dump(data, fp, ensure_ascii=False)
 
     def store_question(self, question):
         question_dir_path = path.join(self._base_path, 'questions')
         makedirs(question_dir_path, exist_ok=True)
+        data = {
+            'document_number': question.document_nr,
+            'title': question.title,
+            'source': question.source,
+            'date': question.date.isoformat(),
+            'responding_minister': question.responding_minister,
+            'responding_department': question.responding_department,
+            'authors': list(map(self._get_member_uri, question.authors)),
+        }
+        self._question_unfolded[question.document_nr] = data
         with open(path.join(question_dir_path, f'{question.document_nr}.json'), 'w') as fp:
-            json.dump({
-                'document_number': question.document_nr,
-                'title': question.title,
-                'source': question.source,
-                'date': question.date.isoformat(),
-                'responding_minister': question.responding_minister,
-                'responding_department': question.responding_department,
-                'authors': list(map(self._get_member_uri, question.authors)),
-            }, fp, ensure_ascii=False)
+            json.dump(data, fp, ensure_ascii=False)
 
     def _legislation_uri(self, legislation):
-        return f'{self._base_URI}legislation/{legislation.document_nr}.json'
+        uri = f'{self._base_URI}legislation/{legislation.document_nr}.json'
+        self._legislation_index[legislation.document_nr] = uri
+        return uri
 
     def _question_uri(self, question):
-        return f'{self._base_URI}questions/{question.document_nr}.json'
+        uri = f'{self._base_URI}questions/{question.document_nr}.json'
+        self._question_index[question.document_nr] = uri
+        return uri
 
     def _json_representation_meeting_topic(self, meeting_topic):
         return {
@@ -169,6 +213,8 @@ class JsonDataStore(DataStore):
         resource_name = f'{meeting.id}.json'
 
         makedirs(base_meeting_path, exist_ok=True)
+
+        self._meeting_URIs.append(f'{base_meeting_URI}{resource_name}')
 
         def map_topics_dict(f):
             return {

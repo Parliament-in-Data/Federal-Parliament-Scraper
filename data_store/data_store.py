@@ -14,3 +14,6 @@ class DataStore:
 
     def store_question(self, question):
         raise NotImplementedError()
+
+    def finish(self):
+        raise NotImplementedError()

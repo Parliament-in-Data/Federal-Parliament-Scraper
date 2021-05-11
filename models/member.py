@@ -45,7 +45,6 @@ class Member:
         self.language = language
         self.alternative_names = alternative_names
         self.replaces = []
-        self.activities = []
         self.url = url
         self.date_of_birth = date_of_birth
         self.gender = gender
@@ -53,7 +52,6 @@ class Member:
         sha_1 = hashlib.sha1()
         sha_1.update(self.first_name.encode('utf-8') + self.last_name.encode('utf-8') +
                      self.province.encode('utf-8'))
-        # TODO: add defensive mechanism that can detect a collision, even though it is extremely unlikely
         self.uuid = sha_1.hexdigest()[:10] # Should be sufficiently random
 
     @staticmethod
@@ -87,10 +85,6 @@ class Member:
 
     def normalized_name(self):
         return normalize_str(f'{self.first_name} {self.last_name}'.lower()).decode()
-
-    # TODO: figure out what to do with this
-    #def post_activity(self, activity: Activity):
-    #    self.activities.append(activity)
 
     def has_name(self, query: str):
         """Compare the query string with the "{last_name} {first_name}" combination of

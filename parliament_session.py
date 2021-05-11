@@ -6,11 +6,11 @@ from models import Member
 from meeting import meeting_from_soup
 from document import parliamentary_document_from_nr, parliamentary_question_from_nr
 import json
-from os import path, makedirs
+from os import path
 import functools
 from util import normalize_str
 import concurrent.futures
-from data_store import JsonDataStore, CompoundDataStore
+from data_store import DataStore
 
 
 class ParliamentarySession:
@@ -26,7 +26,7 @@ class ParliamentarySession:
         52: {'from': '2007-06-10', 'to': '2010-05-06'},
     }
 
-    def __init__(self, session: int):
+    def __init__(self, session: int, data_store: DataStore):
         """Initialize a new instance of the scraper
 
         Args:
@@ -34,27 +34,18 @@ class ParliamentarySession:
         Note:
             Only sessions 55 to 52 are supported for now.
         """
-        assert (session < 56 and session >
-                51), 'Only sessions 52-55 are available via this API'
         self.session = session
         self.plenary_meetings = []
         self.members_dict = {}
         self.questions = {}
         self.documents = {}
         self.members = []
-        self.start = ParliamentarySession.sessions[session]['from']
-        self.end = ParliamentarySession.sessions[session]['to']
         self._members_fn_ln = {}
         self._members_ln_fn = {}
         self._requests_session = requests.Session()
         retry_strategy = Retry(total=5, backoff_factor=1)
         self._requests_session.mount('https://', requests.adapters.HTTPAdapter(pool_connections=10, pool_maxsize=10, max_retries=retry_strategy))
-
-        base_URI = '/' # TODO
-        output_path = 'build' # TODO
-        base_path = path.join(output_path, "sessions", f'{self.session}')
-        base_URI = f'{base_URI}sessions/{self.session}/'
-        self.data_store = CompoundDataStore([JsonDataStore(base_path, base_URI)])
+        self.data_store = data_store
 
     @property
     def requests_session(self):
@@ -78,7 +69,7 @@ class ParliamentarySession:
             self.questions[number] = question
         return self.questions[number]
 
-    def dump_json(self, output_path: str, base_URI="/"): # TODO: rename method
+    def store(self):
         self.get_members()
 
         for member in self.members:
@@ -89,43 +80,7 @@ class ParliamentarySession:
         for meeting in self.plenary_meetings:
             self.data_store.store_meeting(meeting)
 
-        # TODO
-        assert False, "Stop here because only converted up until this part of the code"
-
-        with open(path.join(base_path, 'legislation', 'unfolded.json'), 'w') as fp:
-            json.dump(
-                {
-                    document.document_number: document.json_representation(base_URI)
-                    for document in self.documents.values()
-                },
-                fp
-            )
-
-        with open(path.join(base_path, 'questions', 'unfolded.json'), 'w') as fp:
-            json.dump(
-                {
-                    document.document_number: document.json_representation(base_URI)
-                    for document in self.questions.values()
-                },
-                fp
-            )
-
-        with open(path.join(base_path, 'legislation', 'index.json'), 'w') as fp:
-            json.dump({document.document_number: f'{base_URI}{document.uri()}' for document in self.documents.values()}, fp)
-
-        with open(path.join(base_path, 'questions', 'index.json'), 'w') as fp:
-            json.dump({question.document_number: f'{base_URI}{question.uri()}' for question in self.questions.values()}, fp)
-
-        #with open(path.join(base_path, 'session.json'), 'w') as fp:
-        #    json.dump({
-        #        'id': self.session,
-        #        'start': self.start,
-        #        'end': self.end,
-        #        'members': members_URIs,
-        #        'legislation': f'{base_URI}legislation/index.json',
-        #        'questions': f'{base_URI}questions/index.json',
-        #        'meetings': {'plenary': meeting_URIs}}, fp)
-        return path.join(base_URI, 'session.json')
+        self.data_store.finish()
 
     def find_member(self, query: str):
         """Using their name as listed in the meeting notes
@@ -184,7 +139,7 @@ class ParliamentarySession:
 
             # Limiting the workers helps with reducing the lock contention.
             # With more workers there is little to gain.
-            #meetings = meetings[:5] # TODO
+            meetings = meetings[:5] # TODO
             with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
                 self.plenary_meetings = list(executor.map(functools.partial(lambda meeting: meeting_from_soup(meeting, self)), meetings))
 
@@ -197,11 +152,15 @@ class ParliamentarySession:
             list(Member): list of all known members within the session
         """
         if not self.members:
+            uuid_set = set()
+
             with open(f'data/composition/{self.session}.json') as json_file:
                 data = json.load(json_file)
                 for entry in data:
                     member = Member.from_json(entry)
+                    assert not member.uuid in uuid_set, "UUID of member is not unique!"
                     self.members.append(member)
+                    uuid_set.add(member.uuid)
                 # Now that we have all members, link them
                 for member, entry in zip(self.members, data):
                     if 'replaces' in entry:

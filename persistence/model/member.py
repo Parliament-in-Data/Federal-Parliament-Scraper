@@ -4,6 +4,7 @@ from persistence.model.model import Model
 from persistence.model.activity import Activity
 
 class Member(Model):
+    # TODO: het is geen uuid wat we hebben, slechts een 10-karakter lang unieke string
     id = UUIDField(required=True, unique=True, primary_key=True)
     first_name = StringField(required=True)
     last_name = StringField(required=True)
@@ -12,6 +13,7 @@ class Member(Model):
     language = StringField(required=True)
     alternative_names = ListField(StringField())
     replaces = ListField(ReferenceField(Member))
+    # TODO: we willen dit allicht niet storen in member, want je kan gewoon queryen in Mongo of een member ergens in zit als auteur etc als we de activiteiten willen
     activities = ListField(ReferenceField(Activity))
     url = URLField()
     date_of_birth = DateTimeField(required=True)

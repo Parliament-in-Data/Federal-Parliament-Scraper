@@ -26,3 +26,7 @@ class CompoundDataStore(DataStore):
     def store_question(self, question):
         for data_store in self._data_stores:
             data_store.store_question(question)
+
+    def finish(self):
+        for data_store in self._data_stores:
+            data_store.finish()

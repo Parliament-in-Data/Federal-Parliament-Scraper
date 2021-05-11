@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 from parliament_session import ParliamentarySession
-import os
 import sys
 import json
 from os import path, makedirs
 from distutils.dir_util import copy_tree
+from data_store import DataStore, JsonDataStore, CompoundDataStore
 
 OUTPUT_PATH = "build"
 STATIC_SITE_PATH = "static"
@@ -12,8 +12,16 @@ STATIC_SITE_PATH = "static"
 
 def session_to_URL(session):
     session = int(session)
-    parliamentary_session = ParliamentarySession(session)
-    return parliamentary_session.dump_json(OUTPUT_PATH, sys.argv[1])
+    assert session < 56 and session > 51, 'Only sessions 52-55 are available via this API'
+    session_info = ParliamentarySession.sessions[session]
+    base_URI = sys.argv[1]
+    output_path = 'build'
+    base_path = path.join(output_path, "sessions", str(session))
+    base_URI = f'{base_URI}sessions/{session}/'
+    data_store = CompoundDataStore([JsonDataStore(session, session_info['from'], session_info['to'], base_path, base_URI)])
+    parliamentary_session = ParliamentarySession(session, data_store)
+    parliamentary_session.store()
+    return path.join(base_URI, 'session.json')
 
 
 def print_usage():
@@ -24,12 +32,12 @@ def main():
     from multiprocessing import Pool, cpu_count
     if len(sys.argv) > 1 and sys.argv[1] == "--help":
         print_usage()
-    os.makedirs(OUTPUT_PATH, exist_ok=True)
+    makedirs(OUTPUT_PATH, exist_ok=True)
 
-    with Pool(processes=min(cpu_count(), len(sys.argv[2:]))) as p:
-        urls = p.map(session_to_URL, sys.argv[2:])
+    #with Pool(processes=min(cpu_count(), len(sys.argv[2:]))) as p:
+    #    urls = p.map(session_to_URL, sys.argv[2:])
 
-    #urls = list(map(session_to_URL, sys.argv[2:])) # single-threaded version
+    urls = list(map(session_to_URL, sys.argv[2:])) # single-threaded version
     sessions = {value: urls[idx] for idx, value in enumerate(sys.argv[2:])}
 
     makedirs(OUTPUT_PATH, exist_ok=True)
