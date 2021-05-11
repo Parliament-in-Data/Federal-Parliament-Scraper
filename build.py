@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from parliament_session import ParliamentarySession
+from scraper.parliament_session import ParliamentarySession
 import sys
 import json
 from os import path, makedirs

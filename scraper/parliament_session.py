@@ -3,12 +3,11 @@ import requests
 from requests.packages.urllib3.util.retry import Retry
 from bs4 import BeautifulSoup
 from models import Member
-from meeting import meeting_from_soup
-from document import parliamentary_document_from_nr, parliamentary_question_from_nr
+from .meeting import meeting_from_soup
+from .document import parliamentary_document_from_nr, parliamentary_question_from_nr
+from .util import normalize_str
 import json
-from os import path
 import functools
-from util import normalize_str
 import concurrent.futures
 from data_store import DataStore
 

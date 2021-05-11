@@ -1,7 +1,7 @@
 import json
 import uuid
 import hashlib
-from util import normalize_str
+from scraper.util import normalize_str
 from typing import List, Optional
 from datetime import datetime
 

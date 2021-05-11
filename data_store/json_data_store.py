@@ -3,7 +3,7 @@ from os import path, makedirs
 from collections import defaultdict
 from models.enums import TopicType, Choice
 from models import GenericVote, LanguageGroupVote, ElectronicGenericVote, ElectronicAdvisoryVote, TopicActivity, LegislativeActivity, QuestionActivity, VoteActivity
-from util import normalize_str
+from scraper.util import normalize_str
 import json
 
 

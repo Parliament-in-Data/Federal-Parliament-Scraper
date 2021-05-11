@@ -3,8 +3,8 @@ from models.enums import Language
 from bs4 import BeautifulSoup, NavigableString
 import dateparser
 import requests
-from util import clean_string, go_to_p, clean_list
-from vote import electronic_vote_from_table, generic_vote_from_table, language_group_vote_from_table
+from .util import clean_string, go_to_p, clean_list
+from .vote import electronic_vote_from_table, generic_vote_from_table, language_group_vote_from_table
 import re
 from collections import defaultdict
 import datetime

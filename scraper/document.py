@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import dateparser
 import re
-from util import normalize_str
+from .util import normalize_str
 from models import ParliamentaryDocument, ParliamentaryQuestion
 
 

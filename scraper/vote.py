@@ -1,7 +1,6 @@
-from util import clean_string
+from .util import clean_string
 from bs4 import NavigableString
 from typing import List
-import activity
 from models.enums import Choice
 from models import MeetingTopic, GenericVote, LanguageGroupVote, ElectronicGenericVote, ElectronicAdvisoryVote
 
