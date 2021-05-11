@@ -17,3 +17,10 @@ This library provides a scraper based on the Python library Beautiful Soup for t
 
 ## Getting started
 Have a look at `demo.py` to get started.
+
+## Sponsors
+The Federal Parliament API is hosted by Netlify and Cloudflare, without the free services provided by these valued partners we wouldn't be able to exist.
+
+  <a href="https://www.netlify.com">
+    <img src="https://www.netlify.com/img/global/badges/netlify-color-accent.svg" alt="Deploys by Netlify" />
+  </a>
