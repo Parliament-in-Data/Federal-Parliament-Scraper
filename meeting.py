@@ -6,11 +6,8 @@ import requests
 from util import clean_string, go_to_p, clean_list
 from vote import electronic_vote_from_table, generic_vote_from_table, language_group_vote_from_table
 import re
-from os import path, makedirs
-import json
 from collections import defaultdict
 import datetime
-#from activity import TopicActivity
 from models.enums import TimeOfDay, TopicType
 from models import Meeting, MeetingTopic, NlFrTitle
 import concurrent.futures

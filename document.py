@@ -1,11 +1,8 @@
 from bs4 import BeautifulSoup
 import requests
 import dateparser
-#from activity import LegislativeActivity, QuestionActivity
 import re
-import json
 from util import normalize_str
-from os import path
 from models import ParliamentaryDocument, ParliamentaryQuestion
 
 
