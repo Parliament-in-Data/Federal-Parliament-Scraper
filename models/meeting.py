@@ -1,6 +1,6 @@
 from dataclasses import dataclass
-from typing import List, Optional
-from models.enums import TimeOfDay
+from typing import Dict
+from models.enums import TimeOfDay, TopicType
 from models import MeetingTopic
 from datetime import datetime
 
@@ -10,4 +10,4 @@ class Meeting:
     id: int
     time_of_day: TimeOfDay
     date: datetime
-    topics: List[MeetingTopic]
+    topics: Dict[TopicType, Dict[int, MeetingTopic]]

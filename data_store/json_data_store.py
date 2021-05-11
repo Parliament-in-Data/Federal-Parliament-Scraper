@@ -1,6 +1,7 @@
 from data_store import DataStore
 from os import path, makedirs
 from collections import defaultdict
+from models.enums import TopicType
 import json
 
 
@@ -54,6 +55,27 @@ class JsonDataStore(DataStore):
                 'photo_url': member.photo_url
             }, fp, ensure_ascii=False)
 
+    def _json_representation_meeting_topic(self, meeting_topic):
+        return {
+            'id': meeting_topic.id,
+            'title': {'NL': meeting_topic.title.NL, 'FR': meeting_topic.title.FR},
+            'votes': [], # TODO
+            'questions': [], # TODO
+            'legislation': [], # TODO
+            #'votes': [vote.to_dict(session_base_URI) for vote in self.votes],
+            #'questions': [f'{session_base_URI}{question.uri()}' for question in self.related_questions],
+            #'legislation': [f'{session_base_URI}{document.uri()}' for document in self.related_documents]
+        }
+
+    def _store_meeting_topic(self, meeting_topic):
+        topic_path = path.join(self._base_path, 'meetings', str(meeting_topic.meeting_id))
+        makedirs(topic_path, exist_ok=True)
+
+        with open(path.join(topic_path, f'{meeting_topic.id}.json'), 'w') as fp:
+            json.dump(self._json_representation_meeting_topic(meeting_topic), fp, ensure_ascii=False)
+
+        return f'{self._base_URI}meetings/{meeting_topic.meeting_id}/{meeting_topic.id}.json'
+
     def store_meeting(self, meeting):
         base_meeting_path = path.join(self._base_path, "meetings")
         base_meeting_URI = f'{self._base_URI}meetings/'
@@ -61,35 +83,25 @@ class JsonDataStore(DataStore):
 
         makedirs(base_meeting_path, exist_ok=True)
 
-        topics = defaultdict(dict)
-        #for key in self.topics:
-        #    topic = self.topics[key]
-        #    topics[str(topic.topic_type)][topic.item] = topic
+        def map_topics_dict(f):
+            return {
+                str(TopicType(topic_type)): {
+                    topic_id: f(topic)
+                    for topic_id, topic in topic_type_dict.items()
+                }
+                for topic_type, topic_type_dict in meeting.topics.items()
+            }
 
         with open(path.join(base_meeting_path, resource_name), 'w') as fp:
             json.dump({
                 'id': meeting.id,
                 'time_of_day': str(meeting.time_of_day),
                 'date': meeting.date.isoformat(),
-                'topics': {}, # TODO
-                #'topics': {
-                #    topic_type: {
-                #        topic_item: topic_value.dump_json(base_path, base_URI)
-                #        for topic_item, topic_value in topic_type_dict.items()
-                #    }
-                #    for topic_type, topic_type_dict in topics.items()
-                #},
+                'topics': map_topics_dict(self._store_meeting_topic),
             }, fp, ensure_ascii=False)
 
         meeting_dir_path = path.join(base_meeting_path, str(meeting.id))
-        makedirs(meeting_dir_path, exist_ok=True)
+        #makedirs(meeting_dir_path, exist_ok=True) # TODO: not necessary?
 
-        # TODO
-        #with open(path.join(meeting_dir_path, 'unfolded.json'), 'w') as fp:
-        #    json.dump({
-        #        topic_type: {
-        #            topic_item: topic_value.json_representation(base_URI)
-        #            for topic_item, topic_value in topic_type_dict.items()
-        #        }
-        #        for topic_type, topic_type_dict in topics.items()
-        #    }, fp, ensure_ascii=False)
+        with open(path.join(meeting_dir_path, 'unfolded.json'), 'w') as fp:
+            json.dump(map_topics_dict(self._json_representation_meeting_topic), fp, ensure_ascii=False)

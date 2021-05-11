@@ -8,6 +8,7 @@ import json
 from os import path, makedirs
 import functools
 from util import normalize_str
+import concurrent.futures
 from data_store import JsonDataStore, CompoundDataStore
 
 
@@ -25,8 +26,6 @@ class ParliamentarySession:
     }
 
     def dump_json(self, output_path: str, base_URI="/"):
-        import concurrent.futures
-
         self.get_members()
         self.get_plenary_meetings()
 
@@ -34,16 +33,11 @@ class ParliamentarySession:
         base_URI = f'{base_URI}sessions/{self.session}/'
         data_store = CompoundDataStore([JsonDataStore(base_path, base_URI)])
 
-        #members_URIs = list(map(functools.partial(member_to_URI, base_path, base_URI), self.members))
         for member in self.members:
             data_store.store_member(member)
 
-        # Limiting the workers helps with reducing the lock contention.
-        # With more workers there is little to gain.
-        with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
-            #meeting_URIs = list(executor.map(functools.partial(
-            #    meeting_to_URI, base_path, base_URI), self.plenary_meetings))
-            executor.map(functools.partial(lambda meeting: data_store.store_meeting(meeting)), self.plenary_meetings)
+        for meeting in self.plenary_meetings:
+            data_store.store_meeting(meeting)
 
         # TODO
         assert False, "Stop here because only converted up until this part of the code"
@@ -174,11 +168,11 @@ class ParliamentarySession:
             soup = BeautifulSoup(page.content, 'lxml')
             meetings = soup.find_all('tr')
 
-            # TODO: this should be multithreaded instead of the thing above...
-            self.plenary_meetings = []
-
-            for meeting in meetings[:5]:#TODO
-                self.plenary_meetings.append(meeting_from_soup(meeting, self))
+            # Limiting the workers helps with reducing the lock contention.
+            # With more workers there is little to gain.
+            meetings = meetings[:5] # TODO
+            with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+                self.plenary_meetings = list(executor.map(functools.partial(lambda meeting: meeting_from_soup(meeting, self)), meetings))
 
         return self.plenary_meetings
 

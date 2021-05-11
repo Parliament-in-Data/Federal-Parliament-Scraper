@@ -14,3 +14,7 @@ class CompoundDataStore(DataStore):
     def store_member(self, member):
         for data_store in self._data_stores:
             data_store.store_member(member)
+
+    def store_meeting(self, meeting):
+        for data_store in self._data_stores:
+            data_store.store_meeting(meeting)

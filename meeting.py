@@ -14,7 +14,7 @@ import datetime
 from activity import TopicActivity
 from document import ParliamentaryDocument, ParliamentaryQuestion
 from models.enums import TimeOfDay, TopicType
-from models import Meeting
+from models import Meeting, MeetingTopic, NlFrTitle
 import concurrent.futures
 import functools
 
@@ -47,7 +47,21 @@ class MeetingBuilder:
         self._cached_soup = None
 
     def to_data(self):
-        return Meeting(self.id, self.time_of_day, self.date, self.topics)
+        topics = defaultdict(dict)
+        for topic in self.topics.values():
+            topics[topic.topic_type][topic.item] = topic
+        return Meeting(
+            self.id,
+            self.time_of_day,
+            self.date,
+            {
+                topic_type: {
+                    id: topic.to_data()
+                    for id, topic in topics.items()
+                }
+                for topic_type, topics in topics.items()
+            }
+        )
 
     def get_notes_url(self):
         """Obtain the URL of the meeting notes.
@@ -65,7 +79,7 @@ class MeetingBuilder:
 
     def __get_votes(self):
         '''
-        This internal method adds information on the votes to MeetingTopics
+        This internal method adds information on the votes to MeetingTopicBuilders
         '''
         soup = self.__get_soup()
 
@@ -226,7 +240,7 @@ class MeetingBuilder:
             refresh (bool, optional): Force a refresh of the meeting notes. Defaults to False.
 
         Returns:
-            dict(MeetingTopic): The topics discussed in this meeting
+            dict(MeetingTopicBuilder): The topics discussed in this meeting
         """
         if refresh or not self.topics:
             # Obtain the meeting notes
@@ -254,7 +268,7 @@ class MeetingBuilder:
 
                     item = int(m.group(1))
                     if not item in self.topics:
-                        self.topics[item] = MeetingTopic(
+                        self.topics[item] = MeetingTopicBuilder(
                             self.parliamentary_session, self, item)
                     self.topics[item].set_title(
                         language, current_title.rstrip())
@@ -308,14 +322,14 @@ def create_or_get_question(session, number):
     return ParliamentaryQuestion(session, number) if number not in session.questions else session.questions[number]
 
 
-class MeetingTopic:
+class MeetingTopicBuilder:
     """
-    A MeetingTopic represents a single agenda point
+    A MeetingTopicBuilder builds a single agenda point
     in a meeting of the parliament.
     """
 
-    def __init__(self, session, meeting: Meeting, item: int):
-        """Constructs a new instance of a MeetingTopic
+    def __init__(self, session, meeting: MeetingBuilder, item: int):
+        """Constructs a new instance of a MeetingTopicBuilder
 
         Args:
             session (ParliamentarySession): Session of the parliament
@@ -325,31 +339,15 @@ class MeetingTopic:
         self.parliamentary_session = session
         self.session = session.session
         self.meeting = meeting
-        self.id = meeting.id
+        self.id = meeting.id # TODO: this is extremely confusing naming
         self.item = item
         self.topic_type = TopicType.GENERAL
         self.votes = []
         self.related_documents = []
         self.related_questions = []
 
-    def get_uri(self):
-        return f'meetings/{self.id}/{self.item}.json'
-
-    def json_representation(self, session_base_URI: str):
-        return {'id': self.item, 'title': {'NL': self.title_NL, 'FR': self.title_FR}, 'votes': [
-                      vote.to_dict(session_base_URI) for vote in self.votes], 'questions': [f'{session_base_URI}{question.uri()}' for question in self.related_questions], 'legislation': [f'{session_base_URI}{document.uri()}' for document in self.related_documents]}
-
-    def dump_json(self, base_path: str, session_base_URI: str):
-        topic_path = path.join(base_path, 'meetings', str(self.id))
-        makedirs(topic_path, exist_ok=True)
-
-        with open(path.join(topic_path, f'{self.item}.json'), 'w+') as fp:
-            json.dump(self.json_representation(session_base_URI), fp, ensure_ascii=False)
-
-        return f'{session_base_URI}{self.get_uri()}'
-
-    def __repr__(self):
-        return "MeetingTopic(%s, %s, %s)" % (self.session, self.id, self.item)
+    def to_data(self):
+        return MeetingTopic(self.id, self.item, NlFrTitle(self.title_NL, self.title_FR), [], [], []) # TODO
 
     def set_title(self, language: Language, title: str):
         """Set the title of this agenda item for a specific language
