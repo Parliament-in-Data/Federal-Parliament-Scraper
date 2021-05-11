@@ -66,7 +66,7 @@ class JsonDataStore(DataStore):
         #    topic = self.topics[key]
         #    topics[str(topic.topic_type)][topic.item] = topic
 
-        with open(path.join(base_meeting_path, resource_name), 'w+') as fp:
+        with open(path.join(base_meeting_path, resource_name), 'w') as fp:
             json.dump({
                 'id': meeting.id,
                 'time_of_day': str(meeting.time_of_day),
@@ -85,7 +85,7 @@ class JsonDataStore(DataStore):
         makedirs(meeting_dir_path, exist_ok=True)
 
         # TODO
-        #with open(path.join(meeting_dir_path, 'unfolded.json'), 'w+') as fp:
+        #with open(path.join(meeting_dir_path, 'unfolded.json'), 'w') as fp:
         #    json.dump({
         #        topic_type: {
         #            topic_item: topic_value.json_representation(base_URI)
