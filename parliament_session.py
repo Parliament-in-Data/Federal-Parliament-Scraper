@@ -1,5 +1,3 @@
-# TODO: rename this file
-
 import json
 import requests
 from requests.packages.urllib3.util.retry import Retry
@@ -82,24 +80,17 @@ class ParliamentarySession:
 
     def dump_json(self, output_path: str, base_URI="/"): # TODO: rename method
         self.get_members()
-        self.get_plenary_meetings()
 
         for member in self.members:
             self.data_store.store_member(member)
+
+        self.get_plenary_meetings()
 
         for meeting in self.plenary_meetings:
             self.data_store.store_meeting(meeting)
 
         # TODO
         assert False, "Stop here because only converted up until this part of the code"
-
-        makedirs(path.join(base_path, "legislation"), exist_ok=True)
-        makedirs(path.join(base_path, "questions"), exist_ok=True)
-
-        for question in self.questions.values():
-            question.json(base_path, base_URI)
-        for document in self.documents.values():
-            document.json(base_path, base_URI)
 
         with open(path.join(base_path, 'legislation', 'unfolded.json'), 'w') as fp:
             json.dump(

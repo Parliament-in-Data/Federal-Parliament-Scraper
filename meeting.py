@@ -9,7 +9,6 @@ import re
 from os import path, makedirs
 import json
 from collections import defaultdict
-import parliament_parser
 import datetime
 #from activity import TopicActivity
 from models.enums import TimeOfDay, TopicType
@@ -32,7 +31,7 @@ class MeetingBuilder:
         Initiate a new Meeting instance
 
         Args:
-            session (parliament_parser.ParliamentarySession): The related session of the parliament
+            session (ParliamentarySession): The related session of the parliament
             id (int): The number of the meeting (e.g. 1)
             time_of_day (TimeOfDay): The time of day this meeting occured at
             date (date): The date on which the meeting took place
@@ -294,7 +293,7 @@ def meeting_from_soup(meeting: NavigableString, session):
 
     Args:
         meeting (NavigableString): The table row representing the meeting
-        session (parliament_parser.ParliamentarySession): The parliamentary session this meeting is a part of.
+        session (ParliamentarySession): The parliamentary session this meeting is a part of.
 
     Returns:
         Meeting: A Meeting object representing this meeting.

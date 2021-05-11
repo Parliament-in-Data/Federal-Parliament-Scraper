@@ -1,5 +1,4 @@
 from bs4 import BeautifulSoup
-import parliament_parser
 import requests
 import dateparser
 #from activity import LegislativeActivity, QuestionActivity
