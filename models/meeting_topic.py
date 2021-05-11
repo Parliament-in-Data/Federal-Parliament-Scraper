@@ -12,7 +12,7 @@ class NlFrTitle:
 
 @dataclass
 class MeetingTopic:
-    meeting_id: int
+    meeting: 'Meeting'
     id: int
     title: NlFrTitle
     votes: List['Vote']

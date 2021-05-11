@@ -23,17 +23,6 @@ def extract_name(name: str):
     else:
         return name
 
-"""
-
-    def _register_activities(self):
-        if not self.authors:
-            return
-        # TODO
-        #for author in self.authors:
-        #    author.post_activity(LegislativeActivity(author, self.date, self))
-
-"""
-
 def parliamentary_document_from_nr(session, document_nr, retry=0):
     description_uri = f'https://www.dekamer.be/kvvcr/showpage.cfm?section=/flwb&language=nl&cfm=/site/wwwcfm/flwb/flwbn.cfm?lang=N&legislat={session.session}&dossierID={document_nr}'
     page = session.requests_session.get(description_uri)
@@ -142,12 +131,3 @@ def parliamentary_question_from_nr(session, document_nr, retry=0):
                 date_element.find_parent('tr').find_all('td')[1].get_text().strip(), languages=['nl'])
 
     return ParliamentaryQuestion(document_nr, title, description_uri, date, responding_minister, responding_department, authors)
-
-"""
-    def _register_activities(self):
-        if not self.authors:
-            return
-        # TODO
-        #for author in self.authors:
-        #    author.post_activity(QuestionActivity(author, self.date, self))
-"""

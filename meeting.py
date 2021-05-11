@@ -3,7 +3,7 @@ from models.enums import Language
 from bs4 import BeautifulSoup, NavigableString
 import dateparser
 import requests
-from util import clean_string, go_to_p, clean_list, normalize_str
+from util import clean_string, go_to_p, clean_list
 from vote import electronic_vote_from_table, generic_vote_from_table, language_group_vote_from_table
 import re
 from os import path, makedirs
@@ -271,13 +271,6 @@ class MeetingBuilder:
                     self.topics[item].set_section(language, clean_string(section.text) if section else (
                         "Algemeen" if language == Language.NL else "Generale"))
                     self.topics[item].complete_type()
-                    if language == Language.NL:
-                        title = normalize_str(current_title.rstrip().lower()).decode()
-                        # TODO
-                        #for member in self.parliamentary_session.get_members():
-                        #    if member.normalized_name() in title:
-                        #        member.post_activity(TopicActivity(
-                        #            member, self, self.topics[item]))
                     current_title = ""
 
             # Parse Dutch Meeting Topics
@@ -335,7 +328,7 @@ class MeetingTopicBuilder:
         self.related_questions = []
 
     def to_data(self):
-        return MeetingTopic(self.meeting.id, self.id, NlFrTitle(self.title_NL, self.title_FR), self.votes, self.related_documents, self.related_questions)
+        return MeetingTopic(self.meeting, self.id, NlFrTitle(self.title_NL, self.title_FR), self.votes, self.related_documents, self.related_questions)
 
     def set_title(self, language: Language, title: str):
         """Set the title of this agenda item for a specific language

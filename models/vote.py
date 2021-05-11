@@ -43,8 +43,6 @@ class GenericVote(Vote):
             self.unsure = True
         self.yes = len(l)
         self.yes_voters = l
-        # TODO
-        #post_vote_activity(self, Choice.YES, l)
 
     def set_no_voters(self, l: List[Member]):
         """Set the members who voted against
@@ -60,8 +58,6 @@ class GenericVote(Vote):
             self.unsure = True
         self.no = len(l)
         self.no_voters = l
-        # TODO
-        #post_vote_activity(self, Choice.NO, l)
 
     def set_abstention_voters(self, l: List[Member]):
         """Set the members who abstained from voting for this motion
@@ -77,8 +73,6 @@ class GenericVote(Vote):
             self.unsure = True
         self.abstention = len(l)
         self.abstention_voters = l
-        # TODO
-        #post_vote_activity(self, Choice.ABSTENTION, l)
 
 class LanguageGroupVote(GenericVote):
     def __init__(self, meeting_topic: MeetingTopic, vote_number: int, vote_NL: Vote, vote_FR: Vote):

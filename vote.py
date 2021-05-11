@@ -80,8 +80,3 @@ def language_group_vote_from_table(meeting_topic: MeetingTopic, vote_number: int
         vote_rows[4].find_all('td')[3].find('p').get_text()))
 
     return LanguageGroupVote(meeting_topic, vote_number, GenericVote(meeting_topic, vote_number, yes_nl, no_nl, abstention_nl), GenericVote(meeting_topic, vote_number, yes_fr, no_fr, abstention_fr))
-
-#  TODO
-#def post_vote_activity(vote: Vote, choice: Choice, members: List):
-#    for member in members:
-#        member.post_activity(activity.VoteActivity(member, vote, choice))
