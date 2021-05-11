@@ -6,7 +6,6 @@ from models import GenericVote, LanguageGroupVote, ElectronicGenericVote, Electr
 import json
 
 
-# TODO: multiple session support
 # TODO: split this class using multiple inheritance
 class JsonDataStore(DataStore):
     '''
