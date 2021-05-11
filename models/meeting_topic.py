@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from typing import List
 from models.enums import TimeOfDay
+from models import ParliamentaryDocument, ParliamentaryQuestion
 from datetime import datetime
 
 
@@ -14,6 +15,6 @@ class MeetingTopic:
     meeting_id: int
     id: int
     title: NlFrTitle
-    votes: List[any] # TODO
-    questions: List[any] # TODO
-    legislations: List[any] # TODO
+    votes: List['Vote']
+    legislations: List[ParliamentaryDocument]
+    questions: List[ParliamentaryQuestion]

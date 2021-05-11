@@ -2,9 +2,12 @@ from data_store import DataStore
 from os import path, makedirs
 from collections import defaultdict
 from models.enums import TopicType
+from models import GenericVote, LanguageGroupVote, ElectronicGenericVote, ElectronicAdvisoryVote
 import json
 
 
+# TODO: multiple session support
+# TODO: split this class using multiple inheritance
 class JsonDataStore(DataStore):
     '''
     The JSON file data store.
@@ -15,6 +18,12 @@ class JsonDataStore(DataStore):
         self._base_path = base_path
         self._base_URI = base_URI
         makedirs(base_path, exist_ok=True)
+
+        self._vote_type_to_handler = dict()
+        self._vote_type_to_handler[GenericVote] = self._json_representation_generic_vote
+        self._vote_type_to_handler[LanguageGroupVote] = self._json_representation_language_group_vote
+        self._vote_type_to_handler[ElectronicGenericVote] = self._json_representation_electronic_generic_vote
+        self._vote_type_to_handler[ElectronicAdvisoryVote] = self._json_representation_electronic_advisory_vote
 
     def store_member(self, member):
         base_path = path.join(self._base_path, "members")
@@ -55,16 +64,95 @@ class JsonDataStore(DataStore):
                 'photo_url': member.photo_url
             }, fp, ensure_ascii=False)
 
+    def _get_member_uri(self, member):
+        return f'{self._base_URI}members/{member.uuid}.json'
+
+    def _json_representation_generic_vote(self, vote):
+        return {
+            'id': vote.vote_number,
+            'type': 'generic',
+            'yes': vote.yes,
+            'no': vote.no,
+            'abstention': vote.abstention,
+            'unsure': vote.unsure,
+            'passed': vote.has_passed(),
+            'voters': {
+                'yes': list(map(self._get_member_uri, vote.yes_voters)),
+                'no': list(map(self._get_member_uri, vote.yes_voters)),
+                'abstention': list(map(self._get_member_uri, vote.yes_voters)),
+            }
+        }
+
+    def _json_representation_language_group_vote(self, vote):
+        data = self._json_representation_generic_vote(vote)
+        data['detail'] = {
+            'NL': self._json_representation_generic_vote(vote.vote_NL),
+            'FR': self._json_representation_generic_vote(vote.vote_FR),
+        }
+        return data
+
+    def _json_representation_electronic_generic_vote(self, vote):
+        return {
+            'id': vote.vote_number,
+            'type': 'electronic_generic',
+            'yes': vote.yes,
+            'no': vote.no,
+            'passed': vote.has_passed(),
+        }
+
+    def _json_representation_electronic_advisory_vote(self, vote):
+        return {
+            'id': vote.vote_number,
+            'type': 'electronic_advisory',
+            'yes': vote.yes,
+            'passed': vote.has_passed(),
+        }
+
+    def _json_representation_votes(self, vote):
+        return self._vote_type_to_handler[type(vote)](vote)
+
+    def store_legislation(self, legislation):
+        legislation_dir_path = path.join(self._base_path, 'legislation')
+        makedirs(legislation_dir_path, exist_ok=True)
+        with open(path.join(legislation_dir_path, f'{legislation.document_nr}.json'), 'w') as fp:
+            json.dump({
+                'document_number': legislation.document_nr,
+                'document_type': legislation.document_type,
+                'title': legislation.title,
+                'source': legislation.source,
+                'date': legislation.date.isoformat(),
+                'authors': list(map(self._get_member_uri, legislation.authors)),
+                'descriptor': legislation.descriptor,
+                'keywords': legislation.keywords,
+            }, fp, ensure_ascii=False)
+
+    def store_question(self, question):
+        question_dir_path = path.join(self._base_path, 'questions')
+        makedirs(question_dir_path, exist_ok=True)
+        with open(path.join(question_dir_path, f'{question.document_nr}.json'), 'w') as fp:
+            json.dump({
+                'document_number': question.document_nr,
+                'title': question.title,
+                'source': question.source,
+                'date': question.date.isoformat(),
+                'responding_minister': question.responding_minister,
+                'responding_department': question.responding_department,
+                'authors': list(map(self._get_member_uri, question.authors)),
+            }, fp, ensure_ascii=False)
+
+    def _legislation_uri(self, legislation):
+        return f'{self._base_URI}legislation/{legislation.document_nr}.json'
+
+    def _question_uri(self, question):
+        return f'{self._base_URI}questions/{question.document_nr}.json'
+
     def _json_representation_meeting_topic(self, meeting_topic):
         return {
             'id': meeting_topic.id,
             'title': {'NL': meeting_topic.title.NL, 'FR': meeting_topic.title.FR},
-            'votes': [], # TODO
-            'questions': [], # TODO
-            'legislation': [], # TODO
-            #'votes': [vote.to_dict(session_base_URI) for vote in self.votes],
-            #'questions': [f'{session_base_URI}{question.uri()}' for question in self.related_questions],
-            #'legislation': [f'{session_base_URI}{document.uri()}' for document in self.related_documents]
+            'votes': list(map(self._json_representation_votes, meeting_topic.votes)),
+            'questions': list(map(self._question_uri, meeting_topic.questions)),
+            'legislation': list(map(self._legislation_uri, meeting_topic.legislations)),
         }
 
     def _store_meeting_topic(self, meeting_topic):
@@ -101,7 +189,5 @@ class JsonDataStore(DataStore):
             }, fp, ensure_ascii=False)
 
         meeting_dir_path = path.join(base_meeting_path, str(meeting.id))
-        #makedirs(meeting_dir_path, exist_ok=True) # TODO: not necessary?
-
         with open(path.join(meeting_dir_path, 'unfolded.json'), 'w') as fp:
             json.dump(map_topics_dict(self._json_representation_meeting_topic), fp, ensure_ascii=False)

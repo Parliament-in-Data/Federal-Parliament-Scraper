@@ -1,9 +1,12 @@
+# TODO: rename this file
+
 import json
 import requests
 from requests.packages.urllib3.util.retry import Retry
 from bs4 import BeautifulSoup
-from member import Member
+from models import Member
 from meeting import meeting_from_soup
+from document import parliamentary_document_from_nr, parliamentary_question_from_nr
 import json
 from os import path, makedirs
 import functools
@@ -25,19 +28,67 @@ class ParliamentarySession:
         52: {'from': '2007-06-10', 'to': '2010-05-06'},
     }
 
-    def dump_json(self, output_path: str, base_URI="/"):
+    def __init__(self, session: int):
+        """Initialize a new instance of the scraper
+
+        Args:
+            session (int): Specify the session for which the scraper should be constructed
+        Note:
+            Only sessions 55 to 52 are supported for now.
+        """
+        assert (session < 56 and session >
+                51), 'Only sessions 52-55 are available via this API'
+        self.session = session
+        self.plenary_meetings = []
+        self.members_dict = {}
+        self.questions = {}
+        self.documents = {}
+        self.members = []
+        self.start = ParliamentarySession.sessions[session]['from']
+        self.end = ParliamentarySession.sessions[session]['to']
+        self._members_fn_ln = {}
+        self._members_ln_fn = {}
+        self._requests_session = requests.Session()
+        retry_strategy = Retry(total=5, backoff_factor=1)
+        self._requests_session.mount('https://', requests.adapters.HTTPAdapter(pool_connections=10, pool_maxsize=10, max_retries=retry_strategy))
+
+        base_URI = '/' # TODO
+        output_path = 'build' # TODO
+        base_path = path.join(output_path, "sessions", f'{self.session}')
+        base_URI = f'{base_URI}sessions/{self.session}/'
+        self.data_store = CompoundDataStore([JsonDataStore(base_path, base_URI)])
+
+    @property
+    def requests_session(self):
+        return self._requests_session
+
+    def create_or_get_document(self, number):
+        if number not in self.documents:
+            document = parliamentary_document_from_nr(self, number)
+            if not document:
+                return None
+            self.data_store.store_legislation(document)
+            self.documents[number] = document
+        return self.documents[number]
+
+    def create_or_get_question(self, number):
+        if number not in self.questions:
+            question = parliamentary_question_from_nr(self, number)
+            if not question:
+                return None
+            self.data_store.store_question(question)
+            self.questions[number] = question
+        return self.questions[number]
+
+    def dump_json(self, output_path: str, base_URI="/"): # TODO: rename method
         self.get_members()
         self.get_plenary_meetings()
 
-        base_path = path.join(output_path, "sessions", f'{self.session}')
-        base_URI = f'{base_URI}sessions/{self.session}/'
-        data_store = CompoundDataStore([JsonDataStore(base_path, base_URI)])
-
         for member in self.members:
-            data_store.store_member(member)
+            self.data_store.store_member(member)
 
         for meeting in self.plenary_meetings:
-            data_store.store_meeting(meeting)
+            self.data_store.store_meeting(meeting)
 
         # TODO
         assert False, "Stop here because only converted up until this part of the code"
@@ -84,34 +135,6 @@ class ParliamentarySession:
         #        'questions': f'{base_URI}questions/index.json',
         #        'meetings': {'plenary': meeting_URIs}}, fp)
         return path.join(base_URI, 'session.json')
-
-    def __init__(self, session: int):
-        """Initialize a new instance of the scraper
-
-        Args:
-            session (int): Specify the session for which the scraper should be constructed
-        Note:
-            Only sessions 55 to 52 are supported for now.
-        """
-        assert (session < 56 and session >
-                51), 'Only sessions 52-55 are available via this API'
-        self.session = session
-        self.plenary_meetings = []
-        self.members_dict = {}
-        self.questions = {}
-        self.documents = {}
-        self.members = []
-        self.start = ParliamentarySession.sessions[session]['from']
-        self.end = ParliamentarySession.sessions[session]['to']
-        self._members_fn_ln = {}
-        self._members_ln_fn = {}
-        self._requests_session = requests.Session()
-        retry_strategy = Retry(total=5, backoff_factor=1)
-        self._requests_session.mount('https://', requests.adapters.HTTPAdapter(pool_connections=10, pool_maxsize=10, max_retries=retry_strategy))
-
-    @property
-    def requests_session(self):
-        return self._requests_session
 
     def find_member(self, query: str):
         """Using their name as listed in the meeting notes
@@ -170,7 +193,7 @@ class ParliamentarySession:
 
             # Limiting the workers helps with reducing the lock contention.
             # With more workers there is little to gain.
-            meetings = meetings[:5] # TODO
+            #meetings = meetings[:5] # TODO
             with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
                 self.plenary_meetings = list(executor.map(functools.partial(lambda meeting: meeting_from_soup(meeting, self)), meetings))
 

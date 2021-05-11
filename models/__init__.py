@@ -1,4 +1,8 @@
 from .enums import *
-from .meeting_topic import MeetingTopic, NlFrTitle
-from .meeting import Meeting
-from .member import Member
+from .member import *
+from .parliamentary_document import *
+from .parliamentary_question import *
+from .meeting_topic import *
+from .meeting import *
+from .vote import *
+from .activity import *

@@ -1,18 +1,17 @@
 from enum import Enum
-from common import Language
+from models.enums import Language
 from bs4 import BeautifulSoup, NavigableString
 import dateparser
 import requests
 from util import clean_string, go_to_p, clean_list, normalize_str
-from vote import GenericVote, LanguageGroupVote, electronic_vote_from_table
+from vote import electronic_vote_from_table, generic_vote_from_table, language_group_vote_from_table
 import re
 from os import path, makedirs
 import json
 from collections import defaultdict
 import parliament_parser
 import datetime
-from activity import TopicActivity
-from document import ParliamentaryDocument, ParliamentaryQuestion
+#from activity import TopicActivity
 from models.enums import TimeOfDay, TopicType
 from models import Meeting, MeetingTopic, NlFrTitle
 import concurrent.futures
@@ -49,7 +48,7 @@ class MeetingBuilder:
     def to_data(self):
         topics = defaultdict(dict)
         for topic in self.topics.values():
-            topics[topic.topic_type][topic.item] = topic
+            topics[topic.topic_type][topic.id] = topic
         return Meeting(
             self.id,
             self.time_of_day,
@@ -212,11 +211,9 @@ class MeetingBuilder:
 
                 # We can't always rely on the number of rows, since sometimes there's randomly an empty row.
                 if len(rows) == 5 or (len(rows) == 6 and rows[-1].get_text().strip() == ''):
-                    vote = GenericVote.from_table(
-                        self.topics[agenda_item], vote_number, rows)
+                    vote = generic_vote_from_table(self.topics[agenda_item], vote_number, rows)
                 elif len(rows) == 6:
-                    vote = LanguageGroupVote.from_table(
-                        self.topics[agenda_item], vote_number, rows)
+                    vote = language_group_vote_from_table(self.topics[agenda_item], vote_number, rows)
                 if not vote:
                     continue
                 if vote_number in name_votes:
@@ -277,10 +274,11 @@ class MeetingBuilder:
                     self.topics[item].complete_type()
                     if language == Language.NL:
                         title = normalize_str(current_title.rstrip().lower()).decode()
-                        for member in self.parliamentary_session.get_members():
-                            if member.normalized_name() in title:
-                                member.post_activity(TopicActivity(
-                                    member, self, self.topics[item]))
+                        # TODO
+                        #for member in self.parliamentary_session.get_members():
+                        #    if member.normalized_name() in title:
+                        #        member.post_activity(TopicActivity(
+                        #            member, self, self.topics[item]))
                     current_title = ""
 
             # Parse Dutch Meeting Topics
@@ -314,40 +312,31 @@ def meeting_from_soup(meeting: NavigableString, session):
     result.get_meeting_topics()
     return result.to_data()
 
-def create_or_get_doc(session, number):
-    return ParliamentaryDocument(session, number) if number not in session.documents else session.documents[number]
-
-
-def create_or_get_question(session, number):
-    return ParliamentaryQuestion(session, number) if number not in session.questions else session.questions[number]
-
-
 class MeetingTopicBuilder:
     """
     A MeetingTopicBuilder builds a single agenda point
     in a meeting of the parliament.
     """
 
-    def __init__(self, session, meeting: MeetingBuilder, item: int):
+    def __init__(self, session, meeting: MeetingBuilder, id: int):
         """Constructs a new instance of a MeetingTopicBuilder
 
         Args:
             session (ParliamentarySession): Session of the parliament
             id (int): Number of the meeting this topic is part of (e.g. 89)
-            item (int): The number of the agenda item (e.g. 1)
+            id (int): The number of the agenda item (e.g. 1)
         """
         self.parliamentary_session = session
         self.session = session.session
         self.meeting = meeting
-        self.id = meeting.id # TODO: this is extremely confusing naming
-        self.item = item
+        self.id = id
         self.topic_type = TopicType.GENERAL
         self.votes = []
         self.related_documents = []
         self.related_questions = []
 
     def to_data(self):
-        return MeetingTopic(self.id, self.item, NlFrTitle(self.title_NL, self.title_FR), [], [], []) # TODO
+        return MeetingTopic(self.meeting.id, self.id, NlFrTitle(self.title_NL, self.title_FR), self.votes, self.related_documents, self.related_questions)
 
     def set_title(self, language: Language, title: str):
         """Set the title of this agenda item for a specific language
@@ -375,8 +364,8 @@ class MeetingTopicBuilder:
                 match = re.match(".*\(([0-9]+)\/.*\)", line)
                 if match and match.group(1):
                     bill_numbers.append(match.group(1))
-            self.related_documents = list(map(functools.partial(
-                create_or_get_doc, self.parliamentary_session), bill_numbers))
+            self.related_documents = [x for x in map(
+                self.parliamentary_session.create_or_get_document, bill_numbers) if x]
         elif self.topic_type == TopicType.QUESTIONS:
             questions_numbers = []
             for line in self.title_NL.split('\n'):
@@ -389,8 +378,8 @@ class MeetingTopicBuilder:
                     if old_format_match and old_format_match.group(1):
                         questions_numbers.append(
                             f'{self.session}{old_format_match.group(1)}')
-            self.related_questions = list(map(functools.partial(
-                create_or_get_question, self.parliamentary_session), questions_numbers))
+            self.related_questions = [x for x in map(
+                self.parliamentary_session.create_or_get_question, questions_numbers) if x]
 
     def set_section(self, language: Language, section_name: str):
         """The meeting is also organized in sections, this method allows you to set

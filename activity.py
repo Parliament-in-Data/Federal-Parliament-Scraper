@@ -1,5 +1,7 @@
-from vote import Vote
-from common import Choice
+# TODO: remove me
+'''
+from models import Vote
+from models.enums import Choice
 
 
 class Activity:
@@ -38,7 +40,7 @@ class VoteActivity(Activity):
 
 class TopicActivity(Activity):
     """
-    A VoteActivity represents the fact that the member
+    A TopicActivity represents the fact that the member
     has taken an action in the meeting, in this case the
     this means their name has appeared in a topic in
     the meeting. The section in which this topic appeared
@@ -88,3 +90,4 @@ class LegislativeActivity(Activity):
             "type": "legislation",
             "document": f'{base_URI}{self.document.uri()}'
         }
+'''
