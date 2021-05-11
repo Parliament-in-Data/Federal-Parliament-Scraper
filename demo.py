@@ -1,5 +1,5 @@
 #%%
-from parliament_session import ParliamentarySession
+from scraper.parliament_session import ParliamentarySession
 from data_store import CompoundDataStore
 from models.enums import TopicType
 #%%
