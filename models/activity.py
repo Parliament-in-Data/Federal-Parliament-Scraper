@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from models import Vote, Member, MeetingTopic
 from datetime import datetime
 from models.enums import Choice
+from models import ParliamentaryQuestion, ParliamentaryDocument
 
 
 @dataclass
@@ -40,7 +41,7 @@ class QuestionActivity(Activity):
     A QuestionActivity represents the fact that the member
     has asked a question (orally or written), a li
     """
-    question: any # TODO
+    question: ParliamentaryQuestion
 
 @dataclass
 class LegislativeActivity(Activity):
@@ -48,4 +49,4 @@ class LegislativeActivity(Activity):
     A LegislativeActivity represents the fact that the member
     has been the author of a Bill or Bill Proposal.
     """
-    document: any # TODO
+    document: ParliamentaryDocument
