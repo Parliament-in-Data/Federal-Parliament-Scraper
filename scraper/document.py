@@ -76,7 +76,7 @@ def parliamentary_document_from_nr(session, document_nr, retry=0):
             else:
                 print("D:" + name)
     
-    return ParliamentaryDocument(document_nr, document_type, title, description_uri, date, descriptor, keywords, authors)
+    return ParliamentaryDocument(session.session, document_nr, document_type, title, description_uri, date, descriptor, keywords, authors)
 
 def parliamentary_question_from_nr(session, document_nr, retry=0):
     description_uri = f'https://www.dekamer.be/kvvcr/showpage.cfm?section=inqo&language=nl&cfm=inqoXml.cfm?db=INQO&legislat={session.session}&dossierID=Q{document_nr}'
@@ -127,4 +127,4 @@ def parliamentary_question_from_nr(session, document_nr, retry=0):
         date = dateparser.parse(
                 date_element.find_parent('tr').find_all('td')[1].get_text().strip(), languages=['nl'])
 
-    return ParliamentaryQuestion(document_nr, title, description_uri, date, responding_minister, responding_department, authors)
+    return ParliamentaryQuestion(session.session, document_nr, title, description_uri, date, responding_minister, responding_department, authors)

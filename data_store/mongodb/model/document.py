@@ -1,9 +1,11 @@
-from mongoengine.fields import ReferenceField, IntField, StringField, ListField, DateTimeField
+from mongoengine.fields import ReferenceField, IntField, StringField, ListField, DateTimeField, EmbeddedDocumentField
+from mongoengine import EmbeddedDocument
 
 from data_store.mongodb.model import Model
 from data_store.mongodb.model import Member
 
 class Document(Model):
+    id = StringField(primary_key=True)
     document_nr = StringField()
     document_type = StringField()
     title = StringField()
@@ -16,6 +18,7 @@ class Document(Model):
 def wrap_document(func):
     def wrapper(self, document):
         wrapped_document = Document(
+            id = str(document.session_nr) + ' ' + document.document_nr,
             document_nr = document.document_nr,
             document_type = document.document_type,
             title = document.title,

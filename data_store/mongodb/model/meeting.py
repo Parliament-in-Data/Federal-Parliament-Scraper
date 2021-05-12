@@ -40,8 +40,10 @@ def wrap_meeting(func):
                         titleNL = topic.title.NL,
                         titleFR = topic.title.FR,
                         votes = [], #TODO: list(map(lambda vote: vote.id, topic.votes))
-                        legislations = [], #TODO list(map(lambda document: document.id, topic.legislations)),
-                        questions = [] #TODO: list(map(lambda question: question.id, topic.questions))
+                        legislations = list(map(lambda document: 
+                            str(document.session_nr) + ' ' + document.document_nr, topic.legislations)),
+                        questions = list(map(lambda question: 
+                            str(question.session_nr) + ' ' + question.document_nr, topic.questions))
                     )
                 )
                 topic_ids.append(topic.id)

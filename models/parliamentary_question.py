@@ -6,6 +6,7 @@ from datetime import datetime
 
 @dataclass
 class ParliamentaryQuestion:
+    session_nr: int
     document_nr: str
     title: Optional[str]
     source: str
