@@ -4,6 +4,7 @@ from data_store import DataStore
 from data_store.mongodb.model import wrap_member
 from data_store.mongodb.model import wrap_question
 from data_store.mongodb.model import wrap_document
+from data_store.mongodb.model import wrap_meeting
 
 class MongoDBDataStore(DataStore):
     '''
@@ -21,8 +22,11 @@ class MongoDBDataStore(DataStore):
     def store_member(self, member):
         member.save()
 
+    @wrap_meeting
     def store_meeting(self, meeting):
-        pass
+        for topic in meeting['topics']:
+            topic.save()
+        meeting['meeting'].save()
 
     @wrap_document
     def store_legislation(self, legislation):
