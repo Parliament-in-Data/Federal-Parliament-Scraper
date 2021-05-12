@@ -1,6 +1,6 @@
 from mongoengine.fields import StringField, ListField, ReferenceField, URLField, DateTimeField, UUIDField
 
-from persistence.model.model import Model
+from data_store.mongodb.model import Model
 
 class Member(Model):
     id = StringField(required=True, primary_key=True)
