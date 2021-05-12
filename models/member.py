@@ -13,6 +13,7 @@ class Member:
 
     def __init__(
         self,
+        session_nr: int,
         first_name: str,
         last_name: str,
         party: str,
@@ -38,6 +39,7 @@ class Member:
             date_of_birth (datetime): The date of birth of the member
             photo_url (str, optional): The url of a photo of the member
         """
+        self.session_nr = session_nr
         self.first_name = first_name
         self.last_name = last_name
         self.party = party
@@ -65,6 +67,7 @@ class Member:
         import dateparser
         date_of_birth = dateparser.parse(json_entry['date_of_birth'])
         return Member(
+            json_entry['session_nr'],
             json_entry['first_name'],
             json_entry['last_name'],
             json_entry['party'],

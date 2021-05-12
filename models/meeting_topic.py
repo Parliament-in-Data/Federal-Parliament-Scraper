@@ -12,8 +12,9 @@ class NlFrTitle:
 
 @dataclass
 class MeetingTopic:
-    meeting: 'Meeting'
     id: int
+    session_nr: int
+    meeting: 'Meeting'
     title: NlFrTitle
     votes: List['Vote']
     legislations: List[ParliamentaryDocument]

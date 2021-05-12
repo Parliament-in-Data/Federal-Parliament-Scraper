@@ -8,6 +8,7 @@ from data_store.mongodb.model import Question
 
 class Meeting(Model):
     id = IntField(required=True, primary_key=True)
+    session_nr = IntField()
     time_of_day = StringField()
     date = DateTimeField()
     topics = ListField(ReferenceField('MeetingTopic'))
@@ -18,6 +19,7 @@ class Meeting(Model):
 # OR use embedded documents (maybe with lazy loading)
 class MeetingTopic(Model):
     id = IntField(required=True, primary_key=True)
+    session_nr = IntField()
     topic_type = StringField()
     meeting = ReferenceField(Meeting)
     titleNL = StringField()
@@ -35,6 +37,7 @@ def wrap_meeting(func):
                 meeting_topics.append(
                     MeetingTopic(
                         id = topic.id,
+                        session_nr = topic.session_nr,
                         topic_type = str(topic_type),
                         meeting = topic.meeting.id,
                         titleNL = topic.title.NL,
@@ -50,6 +53,7 @@ def wrap_meeting(func):
 
         wrapped_meeting = Meeting(
             id = meeting.id,
+            session_nr = meeting.session_nr,
             time_of_day = str(meeting.time_of_day),
             date = meeting.date,
             topics = topic_ids

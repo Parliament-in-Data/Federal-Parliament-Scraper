@@ -8,6 +8,7 @@ from datetime import datetime
 @dataclass
 class Meeting:
     id: int
+    session_nr: int
     time_of_day: TimeOfDay
     date: datetime
     topics: Dict[TopicType, Dict[int, MeetingTopic]]

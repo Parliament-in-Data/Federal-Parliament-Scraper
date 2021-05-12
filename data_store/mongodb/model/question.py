@@ -6,6 +6,7 @@ from data_store.mongodb.model import Member
 
 class Question(Model):
     id = StringField(primary_key=True)
+    session_nr = IntField()
     document_nr = StringField()
     title = StringField()
     source = StringField()
@@ -17,7 +18,10 @@ class Question(Model):
 def wrap_question(func):
     def wrapper(self, question):
         wrapped_question = Question(
+            # TODO: once references are done correct, by querying them first
+            # Change this to  a compund key
             id = str(question.session_nr) + ' ' + question.document_nr,
+            session_nr = question.session_nr,
             document_nr = question.document_nr,
             title = question.title,
             source = question.source,

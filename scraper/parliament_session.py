@@ -156,6 +156,7 @@ class ParliamentarySession:
             with open(f'data/composition/{self.session}.json') as json_file:
                 data = json.load(json_file)
                 for entry in data:
+                    entry['session_nr'] = self.session
                     member = Member.from_json(entry)
                     assert not member.uuid in uuid_set, "UUID of member is not unique!"
                     self.members.append(member)

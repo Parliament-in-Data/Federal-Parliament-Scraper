@@ -1,9 +1,10 @@
-from mongoengine.fields import StringField, ListField, ReferenceField, URLField, DateTimeField, UUIDField
+from mongoengine.fields import StringField, ListField, ReferenceField, URLField, DateTimeField, IntField
 
 from data_store.mongodb.model import Model
 
 class Member(Model):
     id = StringField(required=True, primary_key=True)
+    session_nr = IntField()
     first_name = StringField(required=True)
     last_name = StringField(required=True)
     party = StringField(required=True)
@@ -20,6 +21,7 @@ def wrap_member(func):
     def wrapper(self, member):
         wrapped_member = Member(
             id = member.uuid,
+            session_nr = member.session_nr,
             first_name = member.first_name,
             last_name = member.last_name,
             party = member.party,
