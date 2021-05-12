@@ -3,6 +3,7 @@ from mongoengine import connect, disconnect
 from data_store import DataStore
 from data_store.mongodb.model import wrap_member
 from data_store.mongodb.model import wrap_question
+from data_store.mongodb.model import wrap_document
 
 class MongoDBDataStore(DataStore):
     '''
@@ -23,8 +24,9 @@ class MongoDBDataStore(DataStore):
     def store_meeting(self, meeting):
         pass
 
+    @wrap_document
     def store_legislation(self, legislation):
-        pass
+        legislation.save()
 
     @wrap_question
     def store_question(self, question):
