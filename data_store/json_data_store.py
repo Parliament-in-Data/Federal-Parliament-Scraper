@@ -84,16 +84,22 @@ class JsonDataStore(DataStore):
                     'photo_url': member.photo_url
                 }, fp, ensure_ascii=False)
 
-        with open(path.join(self._base_path, 'legislation', 'index.json'), 'w') as fp:
+        legislation_dir_path = path.join(self._base_path, 'legislation')
+        questions_dir_path = path.join(self._base_path, 'questions')
+
+        makedirs(legislation_dir_path, exist_ok=True)
+        makedirs(questions_dir_path, exist_ok=True)
+
+        with open(path.join(legislation_dir_path, 'index.json'), 'w') as fp:
             json.dump(self._legislation_index, fp)
 
-        with open(path.join(self._base_path, 'questions', 'index.json'), 'w') as fp:
+        with open(path.join(questions_dir_path, 'index.json'), 'w') as fp:
             json.dump(self._question_index, fp)
 
-        with open(path.join(self._base_path, 'legislation', 'unfolded.json'), 'w') as fp:
+        with open(path.join(legislation_dir_path, 'unfolded.json'), 'w') as fp:
             json.dump(self._legislation_unfolded, fp)
 
-        with open(path.join(self._base_path, 'questions', 'unfolded.json'), 'w') as fp:
+        with open(path.join(questions_dir_path, 'unfolded.json'), 'w') as fp:
             json.dump(self._question_unfolded, fp)
 
         with open(path.join(self._base_path, 'session.json'), 'w') as fp:
