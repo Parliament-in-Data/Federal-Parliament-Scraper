@@ -4,11 +4,13 @@ import sys
 import json
 from os import path, makedirs
 from distutils.dir_util import copy_tree
-from data_store import DataStore, JsonDataStore, CompoundDataStore
+from data_store import DataStore, JsonDataStore, MongoDBDataStore, CompoundDataStore
 
 OUTPUT_PATH = 'build'
 STATIC_SITE_PATH = 'static'
 
+# TODO: shouldn't be here
+DB_PATH = 'mongodb://127.0.0.1:27017'
 
 def session_to_URL(session):
     session = int(session)
@@ -18,7 +20,10 @@ def session_to_URL(session):
     output_path = 'build'
     base_path = path.join(output_path, 'sessions', str(session))
     base_URI = f'{base_URI}sessions/{session}/'
-    data_store = CompoundDataStore([JsonDataStore(session, session_info['from'], session_info['to'], base_path, base_URI)])
+    data_store = CompoundDataStore([
+        JsonDataStore(session, session_info['from'], session_info['to'], base_path, base_URI),
+        MongoDBDataStore(DB_PATH)
+    ])
     parliamentary_session = ParliamentarySession(session, data_store)
     parliamentary_session.store()
     return path.join(base_URI, 'session.json')
