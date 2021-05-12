@@ -240,7 +240,7 @@ class JsonDataStore(DataStore):
         }
 
         for author in question.authors:
-            self._post_activity(QuestionActivity(author, question.date, legislation))
+            self._post_activity(QuestionActivity(author, question.date, question))
 
         self._question_unfolded[question.document_nr] = data
         with open(path.join(question_dir_path, f'{question.document_nr}.json'), 'w') as fp:
