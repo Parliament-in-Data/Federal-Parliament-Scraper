@@ -1,5 +1,4 @@
-from mongoengine.fields import ReferenceField, IntField, StringField, ListField, DateTimeField, EmbeddedDocumentField
-from mongoengine import EmbeddedDocument
+from mongoengine.fields import ReferenceField, IntField, StringField, ListField, DateTimeField
 
 from data_store.mongodb.model import Model
 from data_store.mongodb.model import Member

@@ -1,15 +1,17 @@
 #from extras_mongoengine.fields import EnumField
-from mongoengine.fields import ReferenceField, DateTimeField, IntField, ListField, StringField
+from mongoengine.fields import ReferenceField, DateTimeField, IntField, ListField, StringField, EnumField
 
 from data_store.mongodb.model import Model
 from data_store.mongodb.model import Vote
 from data_store.mongodb.model import Document
 from data_store.mongodb.model import Question
 
+from models.enums import TopicType, TimeOfDay
+
 class Meeting(Model):
     id = IntField(required=True, primary_key=True)
     session_nr = IntField()
-    time_of_day = StringField()
+    time_of_day = EnumField(TimeOfDay)
     date = DateTimeField()
     topics = ListField(ReferenceField('MeetingTopic'))
 
@@ -18,9 +20,9 @@ class Meeting(Model):
 # Link to meeting in votes, documents, questions
 # OR use embedded documents (maybe with lazy loading)
 class MeetingTopic(Model):
-    id = IntField(required=True, primary_key=True)
+    id = StringField(required=True, primary_key=True)
     session_nr = IntField()
-    topic_type = StringField()
+    topic_type = EnumField(TopicType)
     meeting = ReferenceField(Meeting)
     titleNL = StringField()
     titleFR = StringField()
@@ -33,12 +35,12 @@ def wrap_meeting(func):
         meeting_topics = []
         topic_ids = []
         for topic_type, topic_dict in meeting.topics.items():
-            for topic in topic_dict.values():
+            for i, topic in topic_dict.items():
                 meeting_topics.append(
                     MeetingTopic(
-                        id = topic.id,
+                        id = str(topic.session_nr) + ' ' + str(topic.meeting.id) + ' ' + str(topic.id),
                         session_nr = topic.session_nr,
-                        topic_type = str(topic_type),
+                        topic_type = topic_type,
                         meeting = topic.meeting.id,
                         titleNL = topic.title.NL,
                         titleFR = topic.title.FR,
@@ -54,7 +56,7 @@ def wrap_meeting(func):
         wrapped_meeting = Meeting(
             id = meeting.id,
             session_nr = meeting.session_nr,
-            time_of_day = str(meeting.time_of_day),
+            time_of_day = meeting.time_of_day,
             date = meeting.date,
             topics = topic_ids
         )

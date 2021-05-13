@@ -326,7 +326,7 @@ class MeetingTopicBuilder:
         self.related_questions = []
 
     def to_data(self):
-        return MeetingTopic(self.session, self.id, self.meeting, NlFrTitle(self.title_NL, self.title_FR), self.votes, self.related_documents, self.related_questions)
+        return MeetingTopic(self.id, self.session, self.meeting, NlFrTitle(self.title_NL, self.title_FR), self.votes, self.related_documents, self.related_questions)
 
     def set_title(self, language: Language, title: str):
         """Set the title of this agenda item for a specific language
