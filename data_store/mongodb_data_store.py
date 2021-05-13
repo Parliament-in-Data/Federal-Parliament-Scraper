@@ -22,25 +22,27 @@ class MongoDBDataStore(DataStore):
 
     @wrap_meeting
     def store_meeting(self, meeting):
+        # Save all the topics, so we can access them
         for topic in meeting['topics']:
             topic.save()
+        
+        # Update the topics list
+        meeting['meeting'].topics = list(map(lambda topic_id: MeetingTopic.objects.get(id = topic_id), meeting['topic_ids']))
         meeting['meeting'].save()
 
     @wrap_document
     def store_legislation(self, legislation):
-        if not self.contains_document({ 'session_nr': legislation.session_nr, 'document_nr': legislation.document_nr }):
-            legislation.save()
+        legislation.save()
 
     @wrap_question
     def store_question(self, question):
-        if not self.contains_question({ 'session_nr': question.session_nr, 'document_nr': question.document_nr }):
-            question.save()
+        question.save()
 
     def contains_meeting(self, id):
         return Meeting.objects(id = id).count() >= 1
 
     def contains_meeting_topic(self, id):
-        pass
+        return True
 
     def contains_document(self, id):
         return Document.objects(
