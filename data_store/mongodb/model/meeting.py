@@ -42,9 +42,11 @@ def wrap_meeting(func):
                         titleFR = topic.title.FR,
                         votes = [], #TODO: list(map(lambda vote: vote.id, topic.votes))
                         legislations = list(map(lambda document: 
-                            str(document.session_nr) + ' ' + document.document_nr, topic.legislations)),
+                            Document.objects.get(session_nr = document.session_nr, document_nr = document.document_nr), 
+                            topic.legislations)),
                         questions = list(map(lambda question: 
-                            str(question.session_nr) + ' ' + question.document_nr, topic.questions))
+                            Question.objects.get(session_nr = question.session_nr, document_nr = question.document_nr), 
+                            topic.questions))
                     )
                 )
                 topic_ids.append(topic.id)

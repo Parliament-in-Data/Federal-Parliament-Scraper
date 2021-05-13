@@ -49,6 +49,13 @@ class TopicType(Enum):
             return TopicType.GENERAL
         return TopicType.GENERAL
 
+class VoteType(Enum):
+    VOTE = 1
+    GENERIC_VOTE = 2
+    LANGUAGE_GROUP_VOTE = 3
+    ELECTRONIC_GENERIC_VOTE = 4
+    ELECTRONI_ADVISORY_VOTE = 5
+
 class Language(Enum):
     '''
     Enum used to differentiate between the two languages used in the meetings
