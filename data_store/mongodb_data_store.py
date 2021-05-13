@@ -42,16 +42,20 @@ class MongoDBDataStore(DataStore):
         return Meeting.objects(id = id).count() >= 1
 
     def contains_meeting_topic(self, id):
-        return True
+        return MeetingTopic.objects(id = MeetingTopicID(
+            session_nr = id['session_nr'],
+            meeting_id = id['meeting_id'],
+            topic_id = id['topic_id']
+        )).count() >= 1
 
     def contains_document(self, id):
-        return Document.objects(
+        return Document.objects(id = DocumentID(
             session_nr = id['session_nr'],
             document_nr = id['document_nr']
-        ).count() >= 1
+        )).count() >= 1
 
     def contains_question(self, id):
-        return Question.objects(
+        return Question.objects(id = QuestionID(
             session_nr = id['session_nr'],
             document_nr = id['document_nr']
-        ).count() >= 1
+        )).count() >= 1
