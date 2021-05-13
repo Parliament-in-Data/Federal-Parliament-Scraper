@@ -1,11 +1,7 @@
 #from extras_mongoengine.fields import EnumField
 from mongoengine.fields import ReferenceField, DateTimeField, IntField, ListField, StringField, EnumField
 
-from data_store.mongodb.model import Model
-from data_store.mongodb.model import Vote
-from data_store.mongodb.model import Document
-from data_store.mongodb.model import Question
-
+from data_store.mongodb.model import Model, Vote, Document, Question
 from models.enums import TopicType, TimeOfDay
 
 class Meeting(Model):

@@ -1,10 +1,7 @@
 from mongoengine import connect, disconnect
 
 from data_store import DataStore
-from data_store.mongodb.model import wrap_member
-from data_store.mongodb.model import wrap_question
-from data_store.mongodb.model import wrap_document
-from data_store.mongodb.model import wrap_meeting
+from data_store.mongodb.model import wrap_member, wrap_question, wrap_document, wrap_meeting
 
 class MongoDBDataStore(DataStore):
     '''

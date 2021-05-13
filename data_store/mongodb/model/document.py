@@ -1,7 +1,6 @@
 from mongoengine.fields import ReferenceField, IntField, StringField, ListField, DateTimeField
 
-from data_store.mongodb.model import Model
-from data_store.mongodb.model import Member
+from data_store.mongodb.model import Model, Member
 
 class Document(Model):
     id = StringField(primary_key=True)
