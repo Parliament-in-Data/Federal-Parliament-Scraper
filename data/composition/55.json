@@ -671,6 +671,9 @@
         "party": "PS",
         "province": "Brussel-Hoofdstad",
         "language": "Frans",
+        "alternative_names": [
+            "A ouasti Khalil"
+        ],
         "replaces": [
             {
                 "name": "Désir Caroline",
