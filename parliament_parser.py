@@ -114,7 +114,7 @@ class ParliamentarySession:
         self._members_ln_fn = {}
         self._requests_session = requests.Session()
         retry_strategy = Retry(total=5, backoff_factor=1)
-        self._requests_session.mount('https://', requests.adapters.HTTPAdapter(pool_connections=10, pool_maxsize=10, max_retries=retry_strategy))
+        self._requests_session.mount('https://', requests.adapters.HTTPAdapter(pool_connections=8, pool_maxsize=8, max_retries=retry_strategy))
 
     @property
     def requests_session(self):
