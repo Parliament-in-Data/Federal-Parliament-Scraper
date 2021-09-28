@@ -967,6 +967,27 @@
         "gender": "male"
     },
     {
+        "first_name": "Chanelle",
+        "last_name": "Bonaventure",
+        "party": "PS",
+        "province": "Luik",
+        "language": "Frans",
+        "replaces": [
+            {
+                "name": "Goblet Marc",
+                "dates": [
+                    {
+                        "from": "2021-07-01"
+                    }
+                ]
+            }
+        ],
+        "wiki": "https://nl.wikipedia.org/wiki/Chanelle_Bonaventure",
+        "date_of_birth": "1991-07-5",
+        "wikibase_item": "Q107466577",
+        "gender": "female"
+    },
+    {
         "first_name": "Philippe",
         "last_name": "Goffin",
         "party": "MR",
