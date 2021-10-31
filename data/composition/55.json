@@ -1684,6 +1684,27 @@
         "gender": "female"
     },
     {
+        "first_name": "Olivier",
+        "last_name": "Vajda",
+        "party": "Ecolo",
+        "province": "Luxemburg",
+        "language": "Frans",
+        "replaces": [
+            {
+                "name": "Thibaut Cécile",
+                "dates": [
+                    {
+                        "from": "2021-09-23"
+                    }
+                ]
+            }
+        ],
+        "wiki": "https://nl.wikipedia.org/wiki/Olivier_Vajda",
+        "date_of_birth": "1975-09-17",
+        "wikibase_item": "Q108729871",
+        "gender": "male"
+    },
+    {
         "first_name": "Éric",
         "last_name": "Thiébaut",
         "party": "PS",
