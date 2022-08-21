@@ -298,7 +298,8 @@ class Meeting:
                 vote = None
 
                 # We can't always rely on the number of rows, since sometimes there's randomly an empty row.
-                if len(rows) == 5 or (len(rows) == 6 and rows[-1].get_text().strip() == ''):
+                last_row_text = rows[-1].get_text().strip()
+                if len(rows) == 5 or (len(rows) == 6 and (not last_row_text or last_row_text[0] == '<')):
                     vote = GenericVote.from_table(
                         self.topics[agenda_item], vote_number, rows)
                 elif len(rows) == 6:
