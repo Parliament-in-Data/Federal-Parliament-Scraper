@@ -621,6 +621,27 @@
         "gender": "male"
     },
     {
+        "first_name": "Mieke",
+        "last_name": "Claes",
+        "party": "N-VA",
+        "province": "Limburg",
+        "language": "Nederlands",
+        "replaces": [
+            {
+                "name": "Donné Joy",
+                "dates": [
+                    {
+                        "from": "2022-06-30"
+                    }
+                ]
+            }
+        ],
+        "wiki": "https://nl.wikipedia.org/wiki/Mieke_Claes",
+        "date_of_birth": "1985-06-24",
+        "wikibase_item": "Q112844664",
+        "gender": "female"
+    },
+    {
         "first_name": "Franky",
         "last_name": "Demon",
         "party": "CD&V",
@@ -2081,6 +2102,27 @@
         "wiki": "https://nl.wikipedia.org/wiki/Evita_Willaert",
         "date_of_birth": "1981-10-11",
         "wikibase_item": "Q17429594",
+        "gender": "female"
+    },
+    {
+        "first_name": "Kathleen",
+        "last_name": "Pisman",
+        "party": "Groen",
+        "province": "Oost-Vlaanderen",
+        "language": "Nederlands",
+        "replaces": [
+            {
+                "name": "Willaert Evita",
+                "dates": [
+                    {
+                        "from": "2022-05-23"
+                    }
+                ]
+            }
+        ],
+        "wiki": "https://nl.wikipedia.org/wiki/Kathleen_Pisman",
+        "date_of_birth": "1962-09-15",
+        "wikibase_item": "Q112132482",
         "gender": "female"
     },
     {
