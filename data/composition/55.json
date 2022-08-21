@@ -1451,6 +1451,9 @@
     {
         "first_name": "Benoît",
         "last_name": "Piedboeuf",
+        "alternative_names": [
+            "Piedboeuf BenoÃ®t"
+        ],
         "party": "MR",
         "province": "Luxemburg",
         "language": "Frans",
