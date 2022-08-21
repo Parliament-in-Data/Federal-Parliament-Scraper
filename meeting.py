@@ -170,9 +170,11 @@ class Meeting:
             class_name = Meeting.language_mapping[language][1]
 
             next_line = table.find_previous_sibling("p", {"class": class_name})
-            while not re.match(r"([0-9]+) (.)*", clean_string(next_line.text)):
+            while not re.match(r"[0-9]+ .*", clean_string(next_line.text)):
                 next_line = next_line.find_previous_sibling(
                     "p", {"class": class_name})
+                if not next_line:
+                    return None
 
             match = re.match(r"([0-9]+) (.*)", clean_string(next_line.text))
             return int(match.group(1))
@@ -284,6 +286,10 @@ class Meeting:
             agenda_item = extract_title_by_vote(tag, Language.FR)
             agenda_item1 = extract_title_by_vote(tag, Language.NL)
             assert agenda_item1 == agenda_item
+            # There's yet another mistake: https://www.dekamer.be/doc/PCRI/html/55/ip111x.html is missing topic numbers
+            if not agenda_item:
+                # FIXME: support this case somehow...
+                continue
 
             if not is_electronic_vote and len(tag.find_all('tr', attrs={'height': None})) <= 6:
                 # Some pages have a height="0" override tag to fix browser display issues.
@@ -332,37 +338,52 @@ class Meeting:
                 classes = Meeting.language_mapping[language]
                 titles = soup.find_all('p', {'class': classes[1]})
                 current_title = ""
+                last_item_id = 1 # Our own counter to recover missing item IDs
 
                 while titles:
                     item = titles.pop()
-                    if not clean_string(item.text):
+
+                    # Empty title or "bogus comment" title must be ignored
+                    # as they're not part of real titles
+                    cleaned_item_text = clean_string(item.text)
+                    if not cleaned_item_text or cleaned_item_text[0] == '<':
                         continue
+                    
                     while not re.match("([0-9]+) (.*)", clean_string(item.text)):
                         current_title = clean_string(
                             item.text) + '\n' + current_title
+                        # Only merge multiple elements if it belongs to the same language ( = class)
+                        item_previous_sibling = item.find_previous_siblings()[0]
+                        if 'class' not in item_previous_sibling or classes[1] not in item_previous_sibling['class']:
+                            break
                         item = titles.pop()
+                    # Deal with the possible mistake that the number of the question is missing.
+                    # Example on: https://www.dekamer.be/doc/PCRI/html/55/ip199x.html
                     m = re.match("([0-9]+) (.*)", clean_string(item.text))
-
-                    current_title = m.group(2) + '\n' + current_title
+                    if m is None:
+                        current_title = clean_string(item.text)
+                        item_id = last_item_id + 1
+                        last_item_id = item_id
+                    else:
+                        current_title = m.group(2) + '\n' + current_title
+                        last_item_id = item_id = int(m.group(1))
+                    
                     section = item.find_previous_sibling(
                         "p", {"class": classes[0]})
-
-                    item = int(m.group(1))
-                    if not item in self.topics:
-                        self.topics[item] = MeetingTopic(
-                            self.parliamentary_session, self, item)
-                    self.topics[item].set_title(
+                    if not item_id in self.topics:
+                        self.topics[item_id] = MeetingTopic(
+                            self.parliamentary_session, self, item_id)
+                    self.topics[item_id].set_title(
                         language, current_title.rstrip())
-                    self.topics[item].set_section(language, clean_string(section.text) if section else (
+                    self.topics[item_id].set_section(language, clean_string(section.text) if section else (
                         "Algemeen" if language == Language.NL else "Generale"))
-                    self.topics[item].complete_type()
+                    self.topics[item_id].complete_type()
                     if language == Language.NL:
                         title = normalize_str(current_title.rstrip().lower()).decode()
                         for member in self.parliamentary_session.get_members():
                             if member.normalized_name() in title:
                                 member.post_activity(TopicActivity(
-                                    member, self, self.topics[item]))
-                    current_title = ""
+                                    member, self, self.topics[item_id]))
 
             # Parse Dutch Meeting Topics
             parse_topics(Language.NL)
@@ -427,6 +448,8 @@ class MeetingTopic:
         self.votes = []
         self.related_documents = []
         self.related_questions = []
+        self.title_NL = None
+        self.title_FR = None
 
     def get_uri(self):
         return f'meetings/{self.id}/{self.item}.json'
