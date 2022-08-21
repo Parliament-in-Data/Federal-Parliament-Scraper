@@ -55,7 +55,9 @@ banned_set = set([
     " il n'y a pas de vote n° 2)",
     '(De heer Guido De Padt heeft gestemd vanop de bank van de heer Ludo Van Campenhout',
     ' afwezig)',
-    ' a été enregistré)'
+    ' a été enregistré)',
+    # Bogus comments
+    '<![if !supportEmptyParas]> <![endif]>',
 ])
 
 
