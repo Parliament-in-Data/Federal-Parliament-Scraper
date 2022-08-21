@@ -21,15 +21,12 @@ def print_usage():
 
 
 def main():
-    from multiprocessing import Pool, cpu_count
     if len(sys.argv) > 1 and sys.argv[1] == "--help":
         print_usage()
     os.makedirs(OUTPUT_PATH, exist_ok=True)
 
-    #with Pool(processes=min(cpu_count(), len(sys.argv[2:]))) as p:
-    #    urls = p.map(session_to_URL, sys.argv[2:])
-
-    urls = list(map(session_to_URL, sys.argv[2:])) # single-threaded version
+    # Use a single thread to prevent us being blocked during long runs
+    urls = list(map(session_to_URL, sys.argv[2:]))
     sessions = {value: urls[idx] for idx, value in enumerate(sys.argv[2:])}
 
     makedirs(OUTPUT_PATH, exist_ok=True)
