@@ -385,6 +385,8 @@ class Meeting:
                             if member.normalized_name() in title:
                                 member.post_activity(TopicActivity(
                                     member, self, self.topics[item_id]))
+                    # Reset state, as this is used for appends
+                    current_title = ""
 
             # Parse Dutch Meeting Topics
             parse_topics(Language.NL)
