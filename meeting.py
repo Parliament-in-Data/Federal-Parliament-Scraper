@@ -355,7 +355,7 @@ class Meeting:
                             item.text) + '\n' + current_title
                         # Only merge multiple elements if it belongs to the same language ( = class)
                         item_previous_sibling = item.find_previous_siblings()[0]
-                        if 'class' not in item_previous_sibling or classes[1] not in item_previous_sibling['class']:
+                        if 'class' not in item_previous_sibling.attrs or classes[1] not in item_previous_sibling.attrs['class']:
                             break
                         item = titles.pop()
                     # Deal with the possible mistake that the number of the question is missing.
