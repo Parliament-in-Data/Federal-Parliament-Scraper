@@ -209,8 +209,8 @@ class LanguageGroupVote(GenericVote):
         no_nl_text = clean_string(vote_rows[3].find_all('td')[3].find('p').get_text())
         abstention_nl_text = clean_string(vote_rows[4].find_all('td')[3].find('p').get_text())
 
+        print('fr row text >>>'+vote_rows[2].find_all('td')[1].find('p').get_text() + '<<<')
         if not yes_fr_text or not no_fr_text or not abstention_fr_text or not yes_nl_text or not no_nl_text or not abstention_nl_text:
-            print(vote_rows[2].find_all('td')[1].find('p').get_text())
             print('Warning: invalid language group vote table found')
             return
 
