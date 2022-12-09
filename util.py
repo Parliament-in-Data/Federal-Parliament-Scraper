@@ -61,10 +61,18 @@ banned_set = set([
 ])
 
 
+def is_string_banned(string: str):
+    return string in banned_set
+
+
+def is_string_banned_or_empty(string: str):
+    return not string or is_string_banned(string)
+
+
 def clean_list(list: List[any]):
     """Removes falsy items from a list
     """
-    return [clean_string(item) for item in list if item and item not in banned_set]
+    return [clean_string(item) for item in list if not is_string_banned_or_empty(item)]
 
 
 def go_to_p(tag: NavigableString):

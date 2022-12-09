@@ -1,4 +1,4 @@
-from util import clean_string
+from util import clean_string, is_string_banned_or_empty
 from bs4 import NavigableString
 from typing import List
 import activity
@@ -209,8 +209,7 @@ class LanguageGroupVote(GenericVote):
         no_nl_text = clean_string(vote_rows[3].find_all('td')[3].find('p').get_text())
         abstention_nl_text = clean_string(vote_rows[4].find_all('td')[3].find('p').get_text())
 
-        print('fr row text >>>'+vote_rows[2].find_all('td')[1].find('p').get_text() + '<<<')
-        if not yes_fr_text or not no_fr_text or not abstention_fr_text or not yes_nl_text or not no_nl_text or not abstention_nl_text:
+        if is_string_banned_or_empty(yes_fr_text) or is_string_banned_or_empty(no_fr_text) or is_string_banned_or_empty(abstention_fr_text) or is_string_banned_or_empty(yes_nl_text) or is_string_banned_or_empty(no_nl_text) or is_string_banned_or_empty(abstention_nl_text):
             print('Warning: invalid language group vote table found')
             return
 
