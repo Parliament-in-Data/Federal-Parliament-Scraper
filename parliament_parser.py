@@ -141,6 +141,7 @@ class ParliamentarySession:
             if member.has_name(query):
                 return member
         print(f'Undefined member: {query}')
+        assert False
 
     def get_members_dict(self):
         if not self.members_dict:
@@ -180,7 +181,8 @@ class ParliamentarySession:
             for meeting in meetings:
                 self.plenary_meetings.append(Meeting.from_soup(meeting, self))
 
-        #self.plenary_meetings = self.plenary_meetings[:10]
+        self.plenary_meetings = self.plenary_meetings[12:13]
+        print(self.plenary_meetings)
         return self.plenary_meetings
 
     def get_members(self):

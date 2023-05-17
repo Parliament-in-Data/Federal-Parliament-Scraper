@@ -72,9 +72,13 @@ class Meeting:
     """
     A Meeting represents the meeting notes for a gathering of the federal parliament.
     """
-    language_mapping = {
+    language_class_mapping = {
         Language.NL: ('Titre1NL', 'Titre2NL'),
         Language.FR: ('Titre1FR', 'Titre2FR'),
+    }
+    language_attribute_mapping = {
+        Language.NL: 'NL',
+        Language.FR: 'FR',
     }
 
     def __init__(self, session, id: int, time_of_day: TimeOfDay, date: datetime.datetime):
@@ -167,9 +171,12 @@ class Meeting:
         print('currently checking:', self.get_notes_url())
 
         def extract_title_by_vote(table: NavigableString, language: Language):
-            class_name = Meeting.language_mapping[language][1]
-
+            class_name = Meeting.language_class_mapping[language][1]
             next_line = table.find_previous_sibling("p", {"class": class_name})
+            # Changed since https://www.dekamer.be/doc/PCRI/html/55/ip230x.html
+            if not next_line:
+                next_line = table.find_previous_sibling("h2")
+            assert next_line, "Heading must be present"
             while not re.match(r"[0-9]+ .*", clean_string(next_line.text)):
                 next_line = next_line.find_previous_sibling(
                     "p", {"class": class_name})
@@ -336,8 +343,14 @@ class Meeting:
             self.topics = {}
 
             def parse_topics(language):
-                classes = Meeting.language_mapping[language]
+                classes = Meeting.language_class_mapping[language]
                 titles = soup.find_all('p', {'class': classes[1]})
+                if not titles:
+                    h2s = soup.find_all("h2")
+                    titles = []
+                    for h2 in h2s:
+                        titles += list(h2.find_all("span", {"lang": Meeting.language_attribute_mapping[language]}))
+                    print(titles)
                 current_title = ""
                 last_item_id = 1 # Our own counter to recover missing item IDs
 
@@ -350,11 +363,15 @@ class Meeting:
                     if not cleaned_item_text or cleaned_item_text[0] == '<':
                         continue
                     
+                    # TODO: deduplicate this
                     while not re.match("([0-9]+) (.*)", clean_string(item.text)):
-                        current_title = clean_string(
-                            item.text) + '\n' + current_title
-                        # Only merge multiple elements if it belongs to the same language ( = class)
-                        item_previous_sibling = item.find_previous_siblings()[0]
+                        print(item.text)
+                        current_title = clean_string(item.text) + '\n' + current_title
+                        # Only merge multiple elements if it belongs to the same language
+                        item_previous_siblings = item.find_previous_siblings()
+                        if not item_previous_siblings:
+                            break
+                        item_previous_sibling = item_previous_siblings[0]
                         if 'class' not in item_previous_sibling.attrs or classes[1] not in item_previous_sibling.attrs['class']:
                             break
                         item = titles.pop()
@@ -362,6 +379,7 @@ class Meeting:
                     # Example on: https://www.dekamer.be/doc/PCRI/html/55/ip199x.html
                     m = re.match("([0-9]+) (.*)", clean_string(item.text))
                     if m is None:
+                        print('Title match failure, falling back', item.text)
                         current_title = clean_string(item.text)
                         item_id = last_item_id + 1
                         last_item_id = item_id
@@ -372,6 +390,7 @@ class Meeting:
                     section = item.find_previous_sibling(
                         "p", {"class": classes[0]})
                     if not item_id in self.topics:
+                        print(f'Add meeting topic {item_id}')
                         self.topics[item_id] = MeetingTopic(
                             self.parliamentary_session, self, item_id)
                     self.topics[item_id].set_title(
