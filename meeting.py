@@ -174,12 +174,13 @@ class Meeting:
 
         print('currently checking:', self.get_notes_url())
 
-        def extract_title_by_vote(table: NavigableString, language: Language):
+        def extract_subject_nr_by_vote(table: NavigableString, language: Language):
             if self._use_new_format():
                 # Note: French is listed first in this layout, Dutch is next
+                # but we ignore the language and assume their IDs are the same (which they should btw)
                 next_line = table.find_previous_sibling('h2')
                 assert next_line, "broken layout"
-                while not (match := re.match(r"^([0-9]+)$", clean_string(next_line.text))):
+                while not (match := re.match(r"^([0-9]+)( .*)?$", clean_string(next_line.text))):
                     next_line = next_line.find_previous_sibling('h2')
                     if not next_line:
                         return None
@@ -228,6 +229,9 @@ class Meeting:
             electronic_votes = {}
             if self.session == 55 and self.id >= 229:
                 s3 = soup.find('div', {'class': 'WordSection3'})
+                if not s3:
+                    # Messed up layout
+                    s3 = soup.find('div', {'class': 'WordSection2'})
             else:
                 s3 = soup.find('div', {'class': 'Section3'})
             if s3:
@@ -302,8 +306,8 @@ class Meeting:
                 if not tag or tag.name != 'table':
                     continue
 
-            agenda_item = extract_title_by_vote(tag, Language.FR)
-            agenda_item1 = extract_title_by_vote(tag, Language.NL)
+            agenda_item = extract_subject_nr_by_vote(tag, Language.FR)
+            agenda_item1 = extract_subject_nr_by_vote(tag, Language.NL)
             assert agenda_item1 == agenda_item
             # There's yet another mistake: https://www.dekamer.be/doc/PCRI/html/55/ip111x.html is missing topic numbers
             if not agenda_item:
