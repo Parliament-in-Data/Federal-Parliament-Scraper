@@ -160,10 +160,11 @@ class Meeting:
 
     def _use_new_format(self):
         # Starting from session 55 meeting 230, dekamer changed their format
+        # and they re-released some old ones in the new format
         # the title is no longer in a <p class="Titre2XX"> tag, but is in an <h2> tag
         # e.g. <h2>...<span><b><span lang="NL/FR">...
         # The first branch handles the old case, while the second branch handles the new case
-        return self.session == 55 and self.id >= 230
+        return self.session == 55 and (self.id >= 230 or self.id == 151 or (self.id >= 154 and self.id <= 160))
 
     def __get_votes(self):
         '''
