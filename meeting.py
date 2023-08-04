@@ -226,7 +226,10 @@ class Meeting:
         def get_name_and_electronic_votes():
             name_votes = {}
             electronic_votes = {}
-            s3 = soup.find('div', {'class': 'Section3'})
+            if self.session == 55 and self.id >= 229:
+                s3 = soup.find('div', {'class': 'WordSection3'})
+            else:
+                s3 = soup.find('div', {'class': 'Section3'})
             if s3:
                 tags = s3.find_all(text=re.compile(
                     r'Vote\s*nominatif\s*-\s*Naamstemming:'))
