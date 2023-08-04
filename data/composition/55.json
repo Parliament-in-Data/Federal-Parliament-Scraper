@@ -1245,6 +1245,27 @@
         "gender": "female"
     },
     {
+        "first_name": "Louis",
+        "last_name": "Mariage",
+        "party": "Ecolo",
+        "province": "Henegouwen",
+        "language": "Frans",
+        "replaces": [
+            {
+                "name": "Leroy Marie-Colline",
+                "dates": [
+                    {
+                        "from": "2023-05-11"
+                    }
+                ]
+            }
+        ],
+        "wiki": "https://nl.wikipedia.org/wiki/Louis_Mariage",
+        "date_of_birth": "1993-11-21",
+        "wikibase_item": "Q118362446",
+        "gender": "male"
+    },
+    {
         "first_name": "Christian",
         "last_name": "Leysen",
         "party": "Open Vld",
@@ -1875,6 +1896,27 @@
         "wikibase_item": "Q60522578",
         "gender": "male",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Dries_vanlangenhove-1554558440.jpg"
+    },
+    {
+        "first_name": "Joris",
+        "last_name": "De Vriendt",
+        "party": "Vlaams Belang",
+        "province": "Vlaams-Brabant",
+        "language": "Nederlands",
+        "wiki": "https://nl.wikipedia.org/wiki/Joris_De_Vriendt",
+        "replaces": [
+            {
+                "name": "Van Langenhove Dries",
+                "dates": [
+                    {
+                        "from": "2023-02-04"
+                    }
+                ]
+            }
+        ],
+        "date_of_birth": "1966-03-10",
+        "wikibase_item": "Q116741964",
+        "gender": "male"
     },
     {
         "first_name": "Reccino",

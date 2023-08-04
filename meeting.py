@@ -72,7 +72,7 @@ class Meeting:
     """
     A Meeting represents the meeting notes for a gathering of the federal parliament.
     """
-    language_mapping = {
+    language_to_class_mapping = {
         Language.NL: ('Titre1NL', 'Titre2NL'),
         Language.FR: ('Titre1FR', 'Titre2FR'),
     }
@@ -158,6 +158,13 @@ class Meeting:
             self._cached_soup = BeautifulSoup(page.content, 'lxml', from_encoding='windows-1252')
         return self._cached_soup
 
+    def _use_new_format(self):
+        # Starting from session 55 meeting 230, dekamer changed their format
+        # the title is no longer in a <p class="Titre2XX"> tag, but is in an <h2> tag
+        # e.g. <h2>...<span><b><span lang="NL/FR">...
+        # The first branch handles the old case, while the second branch handles the new case
+        return self.session == 55 and self.id >= 230
+
     def __get_votes(self):
         '''
         This internal method adds information on the votes to MeetingTopics
@@ -167,16 +174,24 @@ class Meeting:
         print('currently checking:', self.get_notes_url())
 
         def extract_title_by_vote(table: NavigableString, language: Language):
-            class_name = Meeting.language_mapping[language][1]
+            if self._use_new_format():
+                # Note: French is listed first in this layout, Dutch is next
+                next_line = table.find_previous_sibling('h2')
+                assert next_line, "broken layout"
+                while not (match := re.match(r"^([0-9]+)$", clean_string(next_line.text))):
+                    next_line = next_line.find_previous_sibling('h2')
+                    if not next_line:
+                        return None
+            else:
+                class_name = Meeting.language_to_class_mapping[language][1]
+                next_line = table.find_previous_sibling("p", {"class": class_name})
+                while not re.match(r"[0-9]+ .*", clean_string(next_line.text)):
+                    next_line = next_line.find_previous_sibling(
+                        "p", {"class": class_name})
+                    if not next_line:
+                        return None
+                match = re.match(r"([0-9]+) (.*)", clean_string(next_line.text))
 
-            next_line = table.find_previous_sibling("p", {"class": class_name})
-            while not re.match(r"[0-9]+ .*", clean_string(next_line.text)):
-                next_line = next_line.find_previous_sibling(
-                    "p", {"class": class_name})
-                if not next_line:
-                    return None
-
-            match = re.match(r"([0-9]+) (.*)", clean_string(next_line.text))
             return int(match.group(1))
 
         def extract_vote_number_from_tag(tag, default):
@@ -335,8 +350,8 @@ class Meeting:
             soup = self.__get_soup()
             self.topics = {}
 
-            def parse_topics(language):
-                classes = Meeting.language_mapping[language]
+            def parse_topics_old(language):
+                classes = Meeting.language_to_class_mapping[language]
                 titles = soup.find_all('p', {'class': classes[1]})
                 current_title = ""
                 last_item_id = 1 # Our own counter to recover missing item IDs
@@ -351,8 +366,7 @@ class Meeting:
                         continue
                     
                     while not re.match("([0-9]+) (.*)", clean_string(item.text)):
-                        current_title = clean_string(
-                            item.text) + '\n' + current_title
+                        current_title = clean_string(item.text) + '\n' + current_title
                         # Only merge multiple elements if it belongs to the same language ( = class)
                         item_previous_sibling = item.find_previous_siblings()[0]
                         if 'class' not in item_previous_sibling.attrs or classes[1] not in item_previous_sibling.attrs['class']:
@@ -369,15 +383,14 @@ class Meeting:
                         current_title = m.group(2) + '\n' + current_title
                         last_item_id = item_id = int(m.group(1))
                     
-                    section = item.find_previous_sibling(
-                        "p", {"class": classes[0]})
+                    section = item.find_previous_sibling("p", {"class": classes[0]})
                     if not item_id in self.topics:
-                        self.topics[item_id] = MeetingTopic(
-                            self.parliamentary_session, self, item_id)
-                    self.topics[item_id].set_title(
-                        language, current_title.rstrip())
-                    self.topics[item_id].set_section(language, clean_string(section.text) if section else (
-                        "Algemeen" if language == Language.NL else "Generale"))
+                        self.topics[item_id] = MeetingTopic(self.parliamentary_session, self, item_id)
+                    self.topics[item_id].set_title(language, current_title.rstrip())
+                    self.topics[item_id].set_section(
+                        language,
+                        clean_string(section.text) if section else ("Algemeen" if language == Language.NL else "Generale")
+                    )
                     self.topics[item_id].complete_type()
                     if language == Language.NL:
                         title = normalize_str(current_title.rstrip().lower()).decode()
@@ -388,11 +401,79 @@ class Meeting:
                     # Reset state, as this is used for appends
                     current_title = ""
 
-            # Parse Dutch Meeting Topics
-            parse_topics(Language.NL)
+            def parse_topics_new(language):
+                # Note: cannot use attribute names because sometimes titles don't have one, or they have the wrong one, fun
+                titles = soup.select('h2 b>span[style^="font-size:10.0pt;"]')
+                # Because the attributes are so unreliable, we have to brute force it: we know French comes first, then comes Dutch
+                # so the odd parsed titles are French, the even ones are Dutch
+                # sigh
+                even_odd_modulo_nr = 1 if language == Language.FR else 0
 
-            # Parse French Meeting Topics
+                # TODO: deduplicate
+                counter = 0
+                while titles:
+                    item = titles.pop()
+
+                    # Empty title or "bogus comment" title must be ignored
+                    # as they're not part of real titles
+                    cleaned_item_text = clean_string(item.text)
+                    if not cleaned_item_text or cleaned_item_text[0] == '<':
+                        continue
+                    # XXX: this part is different
+                    current_title = cleaned_item_text
+                    while not re.match("^[0-9]+$", cleaned_item_text):
+                        # Cannot rely at all on language attributes, because they're almost always wrong somewhere
+                        if not titles:
+                            break
+                        item = titles.pop()
+                        cleaned_item_text = clean_string(item.text)
+                        current_title = cleaned_item_text + '\n' + current_title
+
+                    counter += 1
+                    if counter % 2 == even_odd_modulo_nr:
+                        continue
+
+                    # Replace first \n (after question number) with space to normalize with old format
+                    current_title = current_title.replace('\n', ' ', 1)
+
+                    m = re.match("([0-9]+) (.*)", current_title)
+                    try:
+                        # I'm catching exceptions here because if the format changes, this is the place where it breaks
+                        item_id = int(m.group(1))
+                    except:
+                        print(f'Potentially broken at {self.id} {current_title} (or might be not part of the questions/votes at all to begin with)')
+                        continue
+                    
+                    # French is first, then comes Dutch TODO: this part also differs a bit
+                    section = item.find_previous("h1", {"align": "left"})
+                    if section and language == Language.FR:
+                        section = section.find_previous("h1", {"align": "left"})
+                    # TODO: this is the same code again
+                    if not item_id in self.topics:
+                        self.topics[item_id] = MeetingTopic(self.parliamentary_session, self, item_id)
+                    self.topics[item_id].set_title(language, current_title.rstrip())
+                    self.topics[item_id].set_section(
+                        language,
+                        clean_string(section.text) if section else ("Algemeen" if language == Language.NL else "Generale")
+                    )
+                    self.topics[item_id].complete_type()
+                    if language == Language.NL:
+                        title = normalize_str(current_title.rstrip().lower()).decode()
+                        for member in self.parliamentary_session.get_members():
+                            if member.normalized_name() in title:
+                                member.post_activity(TopicActivity(
+                                    member, self, self.topics[item_id]))
+
+            def parse_topics(language):
+                if self._use_new_format():
+                    parse_topics_new(language)
+                else:
+                    parse_topics_old(language)
+
+            # Parse Dutch & French Meeting Topics
+            parse_topics(Language.NL)
             parse_topics(Language.FR)
+
             self.__get_votes()
         return self.topics
 
@@ -485,12 +566,8 @@ class MeetingTopic:
         else:
             self.title_FR = title
 
-    def complete_type(self, type: TopicType = None):
-        if type:
-            self.topic_type = type
-        else:
-            self.topic_type = TopicType.from_section_and_title(
-                self.title_NL, self.section_NL)
+    def complete_type(self):
+        self.topic_type = TopicType.from_section_and_title(self.title_NL, self.section_NL)
         # No multithreading here, since that causes more load to the site
         # which means we get blocked, and it also increases the lock contention.
         if self.topic_type == TopicType.BILL_PROPOSAL or self.topic_type == TopicType.DRAFT_BILL or self.topic_type == TopicType.LEGISLATION or self.topic_type == TopicType.NAME_VOTE or self.topic_type == TopicType.SECRET_VOTE:

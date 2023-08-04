@@ -180,7 +180,7 @@ class ParliamentarySession:
             for meeting in meetings:
                 self.plenary_meetings.append(Meeting.from_soup(meeting, self))
 
-        #self.plenary_meetings = self.plenary_meetings[:10]
+        #self.plenary_meetings = self.plenary_meetings[0:60]
         return self.plenary_meetings
 
     def get_members(self):
